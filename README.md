@@ -15,3 +15,4 @@ Une application qui prend en compte l'école de l'étudiant, la ville du départ
 - Recherche d'utilisateurs
 - Rating de conducteur et usager
 - Liste de places disponibles par jour pour le conducteur (Pas certain)
+- Notification si un nouveau utilisateur est dans la ville du conducteur
