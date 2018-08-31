@@ -10,7 +10,7 @@ Une application qui prend en compte l'école de l'étudiant, la ville du départ
 ## Fonctionnalités 
 - Login / Logout
 - Chat entre le conducteur et le passagé
-- Système de match selon les données (coordonnées, tarifs, destination, horraire)
+- Système de match selon les données (coordonnées, tarifs, destination, horaire)
 - Édition de profils et des horraires
 - Recherche d'utilisateurs
 - Rating de conducteur et usager
