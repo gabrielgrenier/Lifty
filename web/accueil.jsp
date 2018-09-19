@@ -52,21 +52,19 @@
                     Quis enim lobortis scelerisque fermentum dui. Lorem donec massa sapien faucibus et
                     molestie ac feugiat sed. Feugiat nisl pretium fusce id velit. Lacus vestibulum sed arcu non odio euismod.
                     In aliquam sem fringilla ut morbi tincidunt augue interdum. Mauris in aliquam sem fringilla ut morbi tincidunt. 
-
                 </p>
             </div>
         </div>
     </div>
     <div class="padding" id="contenu2">
         <div class="container">
-            <h2>Title Title</h2> <br/>
+            <h1 class='soustitre'>Pour des étudiants, par des étudiants</h1> <br/>
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <h4>Title Title</h4>
-                    <p>Aliquet nec ullamcorper sit amet risus. 
-                        Pretium quam vulputate dignissim suspendisse. Arcu cursus vitae congue mauris.
-                        Velit aliquet sagittis id consectetur. Facilisis leo vel fringilla est ullamcorper 
-                        eget nulla facilisi etiam. Est pellentesque elit ullamcorper dignissim.</p>
+                    <h4>Fonctionnalités</h4>
+                    <p>Lifty à été conçue avec les étudiants en tête. En effet, notre site utilise des 
+                        fonctionnalités pensées pour des étudiants comme la recherche de conducteur par
+                        établissement, la comparaison d'horraire, ou encore la recherche automatique.</p>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <img src="./images/student.jpg" class="img-responsive" />
@@ -95,7 +93,7 @@
                 <p>Il est possible de nous rencontrer au collège de Rosemont,
                     mais il serait préférable que vous remplissiez le 
                     formulaire ci-dessous : </p>
-                <form method="post" action="contactFormAction.php">
+                <form method="post" action="">
                     Votre Nom : <input type="text" name="nomContact" placeholder="Linus Torvalds" required> <br/><br/>
                     Votre Email : <input type="email" name="emailContact" placeholder="abc@xyz.com " required> <br/><br/>
                     <br><textarea name="questionContact" placeholder="Ecriver votre question ici!" required></textarea><br/><br/>
