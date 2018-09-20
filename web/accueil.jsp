@@ -47,7 +47,7 @@
                 <img src="./images/covoiturage.jpg" class="img-responsive" />
             </div>
             <div class="col-sm-6 text-center">
-                <h2>À Propos</h2>
+                <h1 class='soustitre'>À Propos</h1>
                 <p>At risus viverra adipiscing at in tellus. Elementum curabitur vitae nunc sed velit dignissim sodales.
                     Quis enim lobortis scelerisque fermentum dui. Lorem donec massa sapien faucibus et
                     molestie ac feugiat sed. Feugiat nisl pretium fusce id velit. Lacus vestibulum sed arcu non odio euismod.
