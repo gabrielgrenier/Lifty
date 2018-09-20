@@ -7,17 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<!--
-<?php 
-	if (!ISSET($_SESSION)) {session_start();}
-	if (!ISSET($_SESSION["connecte"])){$_SESSION["connecte"]= false;}
-	if (!ISSET($_SESSION["current_user"])){$_SESSION["current_user"]= "";}
-	if ($_SESSION["connecte"]){
-		  header('Location: ?action=affProjets'); //changer pour le main
-	}
-    if (ISSET($_SESSION)){
-    ?>
--->
 <head>
     <title>Lifty | Accueil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,11 +18,6 @@
 </head>
 
 <body>
-    <!--
-    <?php 
-    include("./vues/menuPasCo.php");
-    ?>
-    -->
     <%@include  file="menu.jsp" %>
     <div id="parallax">
         <div class="landing-text">
@@ -103,11 +87,6 @@
             </div>
         </div>
     </div>
-    <!--
-    <?php 
-    include("./vues/footer.php");
-	}
-    ?>
-    -->
+    <%@include  file="footer.jsp" %>
 </body>
 </html>
