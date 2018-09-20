@@ -34,6 +34,7 @@
     include("./vues/menuPasCo.php");
     ?>
     -->
+    <%@include  file="menu.jsp" %>
     <div id="parallax">
         <div class="landing-text">
             <img src="./images/logo.png" id="imgAccueil"/>
