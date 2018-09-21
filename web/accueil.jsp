@@ -33,10 +33,11 @@
             </div>
             <div class="col-sm-6 text-center">
                 <h1 class='soustitre'>À Propos</h1>
-                <p>At risus viverra adipiscing at in tellus. Elementum curabitur vitae nunc sed velit dignissim sodales.
-                    Quis enim lobortis scelerisque fermentum dui. Lorem donec massa sapien faucibus et
-                    molestie ac feugiat sed. Feugiat nisl pretium fusce id velit. Lacus vestibulum sed arcu non odio euismod.
-                    In aliquam sem fringilla ut morbi tincidunt augue interdum. Mauris in aliquam sem fringilla ut morbi tincidunt. 
+                <p>Lifty est un application web qui permet aux étudiants d'effectuer
+                    du covoiturage sans se soucier de trouver un chauffeur ou un 
+                    passager. Lifty a été développé avec les étudiants en tête, c'est 
+                    pourquoi nous avons intégré des fonctionnalités faîtes sur mesure pour 
+                    leur simplifier la vie.
                 </p>
             </div>
         </div>
@@ -46,19 +47,22 @@
             <h1 class='soustitre'>Pour des étudiants, par des étudiants</h1> <br/>
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <h4>Fonctionnalités</h4>
-                    <p>Lifty à été conçue avec les étudiants en tête. En effet, notre site utilise des 
-                        fonctionnalités pensées pour des étudiants comme la recherche de conducteur par
-                        établissement, la comparaison d'horraire, ou encore la recherche automatique.</p>
+                    <h4>Création d'horraire</h4>
+                    <p>Lifty permet aux utilisteurs d'entrer leur horraire pour maximiser
+                        les chances de trouver un chauffeur ou un passager qui concorde avec
+                        leur horraire. Cette fonctionnaté permet de sélectionner une personne qui
+                        ne va pas vous ralentir le matin ou lorsque vous devez partir de votre 
+                        école.</p>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <img src="./images/student.jpg" class="img-responsive" />
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <h4>Title Title</h4>
-                    <p>Dui nunc mattis enim ut tellus elementum sagittis vitae. Mollis nunc sed id semper risus. 
-                        Pellentesque dignissim enim sit amet venenatis urna. Felis eget nunc lobortis mattis aliquam faucibus. 
-                        Adipiscing elit duis tristique sollicitudin. Sed nisi lacus sed viverra tellus.</p>
+                    <h4>Recherche automatique</h4>
+                    <p>Lifty permet aux utilisateurs d'effectuer des recherches automatiques
+                        de chaffeurs ou de passagers selon les informations qu'ils ont rentrés. 
+                        En effet la recherche prend en compte le rayon du chauffeur, la ville ou que 
+                        vous habitez et l'établissement que vous fréquenter.</p>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <img src="./images/pancarte.jpeg"  class="img-responsive" />
