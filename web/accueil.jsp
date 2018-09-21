@@ -48,9 +48,9 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <h4>Création d'horraire</h4>
-                    <p>Lifty permet aux utilisteurs d'entrer leur horraire pour maximiser
+                    <p>Lifty permet aux utilisateurs d'entrer leur horaire pour maximiser
                         les chances de trouver un chauffeur ou un passager qui concorde avec
-                        leur horraire. Cette fonctionnaté permet de sélectionner une personne qui
+                        leur horaire. Cette fonctionnalité permet de sélectionner une personne qui
                         ne va pas vous ralentir le matin ou lorsque vous devez partir de votre 
                         école.</p>
                 </div>
@@ -60,7 +60,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <h4>Recherche automatique</h4>
                     <p>Lifty permet aux utilisateurs d'effectuer des recherches automatiques
-                        de chaffeurs ou de passagers selon les informations qu'ils ont rentrés. 
+                        de chauffeurs ou de passagers selon les informations qu'ils ont rentrés. 
                         En effet la recherche prend en compte le rayon du chauffeur, la ville ou que 
                         vous habitez et l'établissement que vous fréquenter.</p>
                 </div>
