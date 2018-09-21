@@ -1,4 +1,4 @@
-package com.mchausse.lifty;
+package modele.classes.com.mchausse.lifty;
 /* ==== INFO ====
 
  * @author maxime chausse
