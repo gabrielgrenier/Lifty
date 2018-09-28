@@ -1,5 +1,5 @@
 
-package modele.classes.com.mchausse.lifty;
+package classe;
 
 /* ==== INFO ====
 
