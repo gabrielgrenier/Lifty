@@ -1,5 +1,5 @@
 
-package classe;
+package com.lifty.classes;
 
 /* ==== INFO ====
 
@@ -37,14 +37,14 @@ public class Profil {
     role            : 0-Administrateur; 1-Modérateur; 2-Utilisateur
     */
     private int id,role;
-    private String email,nom,prenom,dateInscription,dateConnexion,codePostal,etablissement,imageProfil;
+    private String email,nom,prenom,dateInscription,dateConnexion,codePostal,etablissement,imageProfil,motDePasse;
     private boolean nomPublic,prenomPublic,emailPublic,valide,conducteur; 
     private double rating,tarif,rayon;
     private Vehicule vehicule;
     
     // ==== CONSTRUCTEURS ====
     // - complet -
-    public Profil(int id, int role, String email, String nom, String prenom, String dateInscription, String dateConnexion, String codePostal, String etablissement, String imageProfil, boolean isPublicNom, boolean isPublicPrenom, boolean isPublicEmail, boolean isValide, boolean isConducteur, double rating, double tarif, double rayon, Horaire horaire, Vehicule vehicule) {
+    public Profil(int id, String email, String nom, String prenom,String motDePasse, int role,  String dateInscription, String dateConnexion, String codePostal, String etablissement, String imageProfil, boolean isPublicNom, boolean isPublicPrenom, boolean isPublicEmail, boolean isValide, boolean isConducteur, double rating, double tarif, double rayon) {
         this.id = id;    
         this.role = role;
         this.email = email;
@@ -63,108 +63,10 @@ public class Profil {
         this.rating = rating;
         this.tarif = tarif;
         this.rayon = rayon;
-        this.vehicule = vehicule;
+        this.motDePasse = motDePasse;
+        this.conducteur = false;
     }
-    // - sans vehicule -
-    public Profil(int id, int role, String email, String nom, String prenom, String dateInscription, String dateConnexion, String codePostal, String etablissement, String imageProfil, boolean isPublicNom, boolean isPublicPrenom, boolean isPublicEmail, boolean isValide, boolean isConducteur, double rating, double tarif, double rayon, Horaire horaire) {
-        this.id = id;    
-        this.role = role;
-        this.email = email;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.dateInscription = dateInscription;
-        this.dateConnexion = dateConnexion;
-        this.codePostal = codePostal;
-        this.etablissement = etablissement;
-        this.imageProfil = imageProfil;
-        this.nomPublic = isPublicNom;
-        this.prenomPublic = isPublicPrenom;
-        this.emailPublic = isPublicEmail;
-        this.valide = isValide;
-        this.conducteur = isConducteur;
-        this.rating = rating;
-        this.tarif = tarif;
-        this.rayon = rayon;
-    }
-    // - sans vehicule et horaire -
-        public Profil(int id, int role, String email, String nom, String prenom, String dateInscription, String dateConnexion, String codePostal, String etablissement, String imageProfil, boolean isPublicNom, boolean isPublicPrenom, boolean isPublicEmail, boolean isValide, boolean isConducteur, double rating, double tarif, double rayon) {
-        this.id = id;    
-        this.role = role;
-        this.email = email;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.dateInscription = dateInscription;
-        this.dateConnexion = dateConnexion;
-        this.codePostal = codePostal;
-        this.etablissement = etablissement;
-        this.imageProfil = imageProfil;
-        this.nomPublic = isPublicNom;
-        this.prenomPublic = isPublicPrenom;
-        this.emailPublic = isPublicEmail;
-        this.valide = isValide;
-        this.conducteur = isConducteur;
-        this.rating = rating;
-        this.tarif = tarif;
-        this.rayon = rayon;
-    }
-    // - sans vehicule, horaire, rayon-
-        public Profil(int id, int role, String email, String nom, String prenom, String dateInscription, String dateConnexion, String codePostal, String etablissement, String imageProfil, boolean isPublicNom, boolean isPublicPrenom, boolean isPublicEmail, boolean isValide, boolean isConducteur, double rating, double tarif) {
-        this.id = id;    
-        this.role = role;
-        this.email = email;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.dateInscription = dateInscription;
-        this.dateConnexion = dateConnexion;
-        this.codePostal = codePostal;
-        this.etablissement = etablissement;
-        this.imageProfil = imageProfil;
-        this.nomPublic = isPublicNom;
-        this.prenomPublic = isPublicPrenom;
-        this.emailPublic = isPublicEmail;
-        this.valide = isValide;
-        this.conducteur = isConducteur;
-        this.rating = rating;
-        this.tarif = tarif;
-    }    
-    // - sans vehicule, horaire, rayon, tarif-
-        public Profil(int id, int role, String email, String nom, String prenom, String dateInscription, String dateConnexion, String codePostal, String etablissement, String imageProfil, boolean isPublicNom, boolean isPublicPrenom, boolean isPublicEmail, boolean isValide, boolean isConducteur, double rating) {
-        this.id = id;    
-        this.role = role;
-        this.email = email;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.dateInscription = dateInscription;
-        this.dateConnexion = dateConnexion;
-        this.codePostal = codePostal;
-        this.etablissement = etablissement;
-        this.imageProfil = imageProfil;
-        this.nomPublic = isPublicNom;
-        this.prenomPublic = isPublicPrenom;
-        this.emailPublic = isPublicEmail;
-        this.valide = isValide;
-        this.conducteur = isConducteur;
-        this.rating = rating;
-    }
-    // - sans vehicule, horaire, rayon, tarif, rating-
-    public Profil(int id, int role, String email, String nom, String prenom, String dateInscription, String dateConnexion, String codePostal, String etablissement, String imageProfil, boolean isPublicNom, boolean isPublicPrenom, boolean isPublicEmail, boolean isValide, boolean isConducteur) {
-        //this(id,role,email,nom,prenom,dateInscription,dateConnexion,codePostal,etablissement,imageProfil)
-        this.id = id;    
-        this.role = role;
-        this.email = email;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.dateInscription = dateInscription;
-        this.dateConnexion = dateConnexion;
-        this.codePostal = codePostal;
-        this.etablissement = etablissement;
-        this.imageProfil = imageProfil;
-        this.nomPublic = isPublicNom;
-        this.prenomPublic = isPublicPrenom;
-        this.emailPublic = isPublicEmail;
-        this.valide = isValide;
-        this.conducteur = isConducteur;
-    }
+    
     // ==== GETTERS ====
     // - String -
     public String getCodePostal() {return codePostal;}
@@ -175,6 +77,7 @@ public class Profil {
     public String getImageProfil() {return imageProfil;}
     public String getNom() {return nom;}
     public String getPrenom() {return prenom;}
+    public String getMotDePasse(){return motDePasse;}
     
     // - int -
     public int getId() {return id;}
@@ -215,4 +118,5 @@ public class Profil {
     public void setRayon(double rayon) {this.rayon = rayon;}
     public void setTarif(double tarif) {this.tarif = tarif;}
     public void setVehicule(Vehicule vehicule){this.vehicule = vehicule;}
+    public void setMotDePasse(String mdp){motDePasse = mdp;}
 }
