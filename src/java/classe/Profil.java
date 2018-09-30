@@ -1,5 +1,5 @@
 
-package com.lifty.classes;
+package classe;
 
 /* ==== INFO ====
 

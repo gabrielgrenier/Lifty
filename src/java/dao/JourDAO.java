@@ -1,10 +1,13 @@
-package classe;
+package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import classe.Jour;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JourDAO {
     
@@ -38,16 +41,50 @@ public class JourDAO {
             return null;
         }
 	finally{
-                try{
-                    if (rs!=null) rs.close();
-                    if (sqlQuery!=null) sqlQuery.close();
-                    if (con!=null) con.close();
-                }catch (SQLException e){System.out.println("Exception : "+e);}
+            try{
+                if (rs!=null) rs.close();
+                if (sqlQuery!=null) sqlQuery.close();
+                if (con!=null) con.close();
+            }catch (SQLException e){System.out.println("Exception : "+e);}
         }
     }
-    
-    public Jour findAll(int idUser){ //trouve tous les jours d'un utilisateur
-        return new Jour(1, 1, "", "", ""); //devrait return une liste de jour
+    public List<Jour> findAll(int idUser){ //trouve tous les jours d'un utilisateur
+        Connection con=null;
+        ResultSet rs=null;
+	Statement sqlQuery=null;
+        List<Jour> listeJour = new ArrayList<>();
+
+	try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/lifty?user=root&password=root&serverTimezone=EST");
+            String requete;
+            requete = "SELECT * FROM jour WHERE userID = '"+idUser+"'";
+            sqlQuery=con.createStatement();
+            rs = sqlQuery.executeQuery(requete);
+            while(rs.next()){
+                Jour temp = new Jour();
+                temp.setId(rs.getInt("ID"));
+                temp.setUserID(rs.getInt("userID"));
+                temp.setJour(rs.getString("journee"));
+                temp.setDebut(""+rs.getTime("debut"));
+                temp.setFin(""+rs.getTime("fin"));
+                
+                listeJour.add(temp);
+            }
+            return listeJour;              
+	}catch(SQLException e){ 
+            //return new Jour(0, 0, ""+e, "", "");
+            return null;
+        }catch (ClassNotFoundException e){
+            return null;
+        }
+	finally{
+            try{
+                if (rs!=null) rs.close();
+                if (sqlQuery!=null) sqlQuery.close();
+                if (con!=null) con.close();
+            }catch (SQLException e){System.out.println("Exception : "+e);}
+        }
     }
     public Jour create(int idJour, int idUser, String jour, String debut, String fin){ //créé un nouveau jour dans la BD
         return new Jour(idJour, idUser, jour, debut, fin);
