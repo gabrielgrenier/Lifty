@@ -1,5 +1,5 @@
 
-package com.lifty.classes;
+package classe;
 
 /* ==== INFO ====
 
@@ -67,6 +67,7 @@ public class Profil {
         this.conducteur = false;
     }
     
+    public Profil(){}
     // ==== GETTERS ====
     // - String -
     public String getCodePostal() {return codePostal;}

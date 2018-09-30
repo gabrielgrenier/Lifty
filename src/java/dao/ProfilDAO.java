@@ -1,5 +1,5 @@
 
-package com.lifty.dao;
+package dao;
 /* ==== INFO ====
 
  * @author maxime chausse
@@ -12,7 +12,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import com.lifty.classes.Profil;
+import classe.Profil;
 
 public class ProfilDAO {
     
@@ -21,52 +21,47 @@ public class ProfilDAO {
         Connection con=null;
         ResultSet rs=null;
         Statement sqlQuery=null;
-        Profil p = null;
+        Profil p;
         
         try{
             //Chargement du pilote 
-            Class.forName("com.mysql.jc.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             //Ouverture de connexion 
-            con = DriverManager.getConnection("jdbc:mysql://localhost/lifty?user=root&password=Admin");
+            //con = DriverManager.getConnection("jdbc:mysql://localhost/lifty?user=root&password=Admin");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:8081/lifty?user=root&password=root");
             String requete;
-            requete = "SELECT * FROM compte WHERE email = "+email;
+            requete = "SELECT * FROM utilisateur WHERE email = '"+email+"'";
             sqlQuery=con.createStatement();
-            rs = sqlQuery.executeQuery(requete);
+            rs = sqlQuery.executeQuery(requete);   
             if(rs.next()){
-                p=new Profil(
-                    rs.getInt("ID"),
-                    rs.getString("email"),
-                    rs.getString("nom"),
-                    rs.getString("prenom"),
-                    rs.getString("motDePasse"),
-                    rs.getInt("role"),
-                    rs.getString("dateInscription"),
-                    rs.getString("dateConnexion"),
-                    rs.getString("codePostal"),
-                    rs.getString("etablissement"),
-                    rs.getString("imageProfil"),
-                    rs.getBoolean("nomPublic"),
-                    rs.getBoolean("prenomPublic"),
-                    rs.getBoolean("emailPublic"),
-                    rs.getBoolean("valide"),
-                    rs.getBoolean("conducteur"),
-                    rs.getDouble("note"),
-                    rs.getDouble("tarif"),
-                    rs.getDouble("rayon")
-                );
-                return new Profil(5, "email", "Nom", "Prenom","mot", 1,  "123", "123", "123", "123", "123", false, false, false, false, false,5,23, 22);
-            }
-            //System.out.println(p);
-            if("1".equals(rs.getString("conducteur"))){
-                p.setConducteur(true);
-                //p.setVehicule(v); // Achanger pour aller chercher le vehicule de la personne
-            }
+                p=new Profil();
+                p.setId(Integer.parseInt(rs.getString("ID")));
+                p.setEmail(rs.getString("email"));
+                p.setNom(rs.getString("nom"));
+                p.setPrenom(rs.getString("prenom"));
+                p.setMotDePasse(rs.getString("motDePasse"));
+                p.setRole(Integer.parseInt(rs.getString("role")));
+                p.setDateInscription(rs.getString("dateInscription"));
+                p.setDateConnexion(rs.getString("dateConnexion"));
+                p.setCodePostal(rs.getString("codePostal"));
+                p.setEtablissement(rs.getString("etablissement"));
+                p.setImageProfil(rs.getString("imageProfil"));
+                p.setNomPublic(("0".equals(rs.getString("nomPublic"))));
+                p.setPrenomPublic(("0".equals(rs.getString("prenomPublic"))));
+                p.setEmailPublic(("0".equals(rs.getString("emailPublic"))));
+                p.setValide(("0".equals(rs.getString("valide"))));
+                p.setConducteur(("0".equals(rs.getString("nomPublic"))));
+                p.setRating(Double.parseDouble(rs.getString("note")));
+                p.setTarif(Double.parseDouble(rs.getString("tarif")));
+                p.setRayon(Double.parseDouble(rs.getString("rayon")));
+                // Verification du conducteur
+                if("1".equals(rs.getString("conducteur")))p.setConducteur(true);
+                    //p.setVehicule(v); // Achanger pour aller chercher le vehicule de la personne
+                return p;
+            }else return null;
         }
-        catch (SQLException e){
-            //ystem.out.println("Exception : "+e);
-            return new Profil(5, "email", "Nom", "Prenom","mot", 1,  "123", "123", "123", "123", "123", false, false, false, false, false,5,23, 22);
-        }
-        catch (ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch (SQLException e){return new Profil(5, "email", e+"", "Prenom","mot", 1,  "123", "123", "123", "123", "123", false, false, false, false, false,5,23, 22);}
+        catch (ClassNotFoundException e){    return new Profil(5, "email", e+"", "Prenom","mot", 1,  "123", "123", "123", "123", "123", false, false, false, false, false,5,23, 22);}
         finally{
             try{
                 if (rs!=null) rs.close();
@@ -75,9 +70,8 @@ public class ProfilDAO {
             }
             catch (SQLException e){
                 //System.out.println("Exception : "+e);
-                return new Profil(5, "email", "Nom", "Prenom","mot", 1,  "123", "123", "123", "123", "123", false, false, false, false, false,5,23, 22);
+                return new Profil(5, "email", e+"", "Prenom","mot", 1,  "123", "123", "123", "123", "123", false, false, false, false, false,5,23, 22);
             }
         }
-        return p;
     }
 }
