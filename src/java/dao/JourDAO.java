@@ -11,7 +11,7 @@ import java.util.List;
 
 public class JourDAO {
     
-    public Jour find(int idUser, String jour){ //trouve un jour de la semaine selon l'ID et le jour
+    public Jour find(int idUser, String jour){ //trouve un jour de la semaine selon l'ID du user et le jour
         Connection con=null;
         ResultSet rs=null;
 	Statement sqlQuery=null;
@@ -31,15 +31,10 @@ public class JourDAO {
                 j.setDebut(""+rs.getTime("debut"));
                 j.setFin(""+rs.getTime("fin"));
                 return j;
-            }else{return null;}
-
-                        
-	}catch(SQLException e){ 
-            //return new Jour(0, 0, ""+e, "", "");
-            return null;
-        }catch (ClassNotFoundException e){
-            return null;
-        }
+            }else{return null;} 
+	}
+        catch(SQLException e){ return null;}
+        catch (ClassNotFoundException e){return null;}
 	finally{
             try{
                 if (rs!=null) rs.close();
@@ -72,12 +67,9 @@ public class JourDAO {
                 listeJour.add(temp);
             }
             return listeJour;              
-	}catch(SQLException e){ 
-            //return new Jour(0, 0, ""+e, "", "");
-            return null;
-        }catch (ClassNotFoundException e){
-            return null;
-        }
+	}
+        catch(SQLException e){return null;}
+        catch (ClassNotFoundException e){return null;}
 	finally{
             try{
                 if (rs!=null) rs.close();
@@ -86,8 +78,8 @@ public class JourDAO {
             }catch (SQLException e){System.out.println("Exception : "+e);}
         }
     }
-    public Jour create(int idJour, int idUser, String jour, String debut, String fin){ //créé un nouveau jour dans la BD
-        return new Jour(idJour, idUser, jour, debut, fin);
+    public void create(int idJour, int idUser, String jour, String debut, String fin){ //créé un nouveau jour dans la BD
+        //ajoute un jour dans la BD
     }
     public void update(Jour j){ //remplace une journée
         //trouve un jour avec l'id de J et le remplace avec les nouvelles infos
