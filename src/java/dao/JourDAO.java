@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import classe.Jour;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,7 +80,28 @@ public class JourDAO {
         }
     }
     public void create(int idJour, int idUser, String jour, String debut, String fin){ //créé un nouveau jour dans la BD
-        //ajoute un jour dans la BD
+         Connection con=null;
+        ResultSet rs=null;
+	Statement sqlQuery=null;
+        List<Jour> listeJour = new ArrayList<>();
+
+	try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/lifty?user=root&password=root&serverTimezone=EST");
+            String requete;
+            requete = "INSERT INTO jour (`ID`, `debut`, `fin`, `journee`, `userID`) VALUES ('"+idJour+"','"+Time.valueOf(debut)+"', '"+Time.valueOf(fin)+"', '"+jour+"', '"+idUser+"')";
+            sqlQuery=con.createStatement();
+            rs = sqlQuery.executeQuery(requete);         
+	}
+        catch(SQLException e){}
+        catch (ClassNotFoundException e){}
+	finally{
+            try{
+                if (rs!=null) rs.close();
+                if (sqlQuery!=null) sqlQuery.close();
+                if (con!=null) con.close();
+            }catch (SQLException e){System.out.println("Exception : "+e);}
+        }
     }
     public void update(Jour j){ //remplace une journée
         //trouve un jour avec l'id de J et le remplace avec les nouvelles infos

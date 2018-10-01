@@ -42,6 +42,9 @@
                     out.println("<h4>Fin : "+listTest.get(i).getFin() +"</h4>");
                 }
             }
+            out.println("<hr>");
+            out.println("<h2>Test : create(idJour, idUser, jour, debut, fin)</h2>");
+            dao.create(4, 1, "jeudi","10:12:12", "16:12:12");
         %>
     </body>
 </html>
