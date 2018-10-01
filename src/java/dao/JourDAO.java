@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import classe.Jour;
+import java.sql.PreparedStatement;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,15 +84,20 @@ public class JourDAO {
          Connection con=null;
         ResultSet rs=null;
 	Statement sqlQuery=null;
-        List<Jour> listeJour = new ArrayList<>();
 
 	try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost/lifty?user=root&password=root&serverTimezone=EST");
             String requete;
-            requete = "INSERT INTO jour (`ID`, `debut`, `fin`, `journee`, `userID`) VALUES ('"+idJour+"','"+Time.valueOf(debut)+"', '"+Time.valueOf(fin)+"', '"+jour+"', '"+idUser+"')";
-            sqlQuery=con.createStatement();
-            rs = sqlQuery.executeQuery(requete);         
+            requete = "INSERT INTO `jour` (`ID`, `debut`, `fin`, `journee`, `userID`) VALUES (?, ?, ?, ?, ?)";
+            
+            PreparedStatement statement = con.prepareStatement(requete);
+            statement.setInt(1, idJour);
+            statement.setTime(2, Time.valueOf(debut));
+            statement.setTime(3, Time.valueOf(fin));
+            statement.setString(4, jour);
+            statement.setInt(5, idUser);
+            statement.executeUpdate();
 	}
         catch(SQLException e){}
         catch (ClassNotFoundException e){}
