@@ -3,7 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+<<<<<<< HEAD:web/modele/classes/com/mchausse/lifty/Jour.java
 package modele.classes.com.mchausse.lifty;
+=======
+package classe;
+>>>>>>> origin:src/java/classe/Jour.java
 
 /* ==== INFO ====
 
@@ -28,14 +32,25 @@ public class Jour {
         this.debut = debut;
         this.fin = fin;
     }
+     public Jour(){
+        this.id = 0;
+        this.userId = 0;
+        this.jour = "";
+        this.debut = "";
+        this.fin = "";
+    }
     
     // ==== GETTERS ====
     public int getId(){return id;}
     public String getDebut() {return debut;}
     public String getFin() {return fin;}
+    public int getUserId(){return userId;}
+    public String getJour() {return jour;}
     
     // ==== SETTERS ====
     public void setId(int id){this.id = id;}
     public void setDebut(String debut) {this.debut = debut;}
     public void setFin(String fin) {this.fin = fin;}
+    public void setUserID(int id){this.userId = id;}
+    public void setJour(String jour){this.jour = jour;}
 }
