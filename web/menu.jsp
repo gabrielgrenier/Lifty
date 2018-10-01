@@ -15,8 +15,74 @@
                 <li><a class="#" href="#contenu1">À Propos</a></li>
                 <li><a class="#" href="#contenu2">Fonctionnalitées</a></li>
                 <li><a class="#" href="#contenu3">Nous Contacter</a></li>
-                <li><a class="#" href="">Se Connecter</a></li>
+                <li><a class="#" id="inscription">Inscription</a></li>
+                <li><a class="#" id="login">Connexion</a></li>
             </ul>
         </div>
+        <form method="post" action="">
+            <div class="container" id="panelLogin">
+                <div class="row">
+                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
+                        <input type="email" name="emailLogin" placeholder="Courriel" required> <br/><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
+                        <input type="password" name="pswLogin" placeholder="Mot de passe " required> <br/><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
+                        <input type="submit" name="btnConnexion" id="btnConnexion" value="Se connecter">
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+        <form method="post" action="">
+            <div class="container" id="panelInscription">
+                <div class="row">
+                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
+                        <input type="text" name="prenomInscription" placeholder="Prénom" required> <br/><br/>
+                    </div>
+                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
+                        <input type="text" name="nomInscription" placeholder="Nom" required> <br/><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
+                        <input type="text" name="codePostaleInscription" placeholder="H0H 0H0" required> <br/><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
+                        <input type="email" name="emailInscription" placeholder="Courriel" required> <br/><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
+                        <input type="password" name="pswInscription" placeholder="Mot de passe" required> <br/><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
+                        <input type="password" name="confirmationPswInscription" placeholder="Confirmation du mot de passe" required> <br/><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
+                        Je suis un conducteur :<input type="checkbox" name="conducteurInscription" value="true" required><br/><br/>
+                    </div>
+                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
+                        Je suis un passager :<input type="checkbox" name="passagerInscription" value="false" required><br/><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
+                        <input type="submit" name="btnInscription" id="btnInscription" value="S'inscrire">
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </nav>
