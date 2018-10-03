@@ -36,8 +36,7 @@ public class JourDAO {
                 return j;
             }else{return null;} 
 	}
-        catch(SQLException e){ return null;}
-        catch (ClassNotFoundException e){return null;}
+        catch(SQLException | ClassNotFoundException e){ return null;}
 	finally{
             try{
                 if (rs!=null) rs.close();
@@ -71,8 +70,7 @@ public class JourDAO {
             }
             return listeJour;              
 	}
-        catch(SQLException e){return null;}
-        catch (ClassNotFoundException e){return null;}
+        catch(SQLException | ClassNotFoundException e){return null;}
 	finally{
             try{
                 if (rs!=null) rs.close();
@@ -96,8 +94,7 @@ public class JourDAO {
             PreparedStatement statement = con.prepareStatement(requete);
             statement.executeUpdate();
 	}
-        catch(SQLException e){}
-        catch (ClassNotFoundException e){}
+        catch(SQLException | ClassNotFoundException e){}
 	finally{
             try{
                 if (rs!=null) rs.close();
@@ -121,8 +118,7 @@ public class JourDAO {
             PreparedStatement statement = con.prepareStatement(requete);
             statement.executeUpdate();
 	}
-        catch(SQLException e){}
-        catch (ClassNotFoundException e){}
+        catch(SQLException | ClassNotFoundException e){}
 	finally{
             try{
                 if (rs!=null) rs.close();
@@ -147,8 +143,7 @@ public class JourDAO {
             PreparedStatement statement = con.prepareStatement(requete);
             statement.executeUpdate();
 	}
-        catch(SQLException e){}
-        catch (ClassNotFoundException e){}
+        catch(SQLException | ClassNotFoundException e){}
 	finally{
             try{
                 if (rs!=null) rs.close();
