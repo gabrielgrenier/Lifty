@@ -193,24 +193,27 @@ footer p{
     background-color: rgba(0, 0, 0, 0.6);;
     border-style: none;
     box-shadow: 0px 2px 94px 0px rgba(0,0,0,0.75);
+    color : white;
 }
-#panelLogin .row{
-    text-align:center;
-    padding : 20px 0 0 20%;
-    margin-top: 10px;
+#panelLogin #lblLink:hover{
+    color : #3399ff;
 }
-#panelLogin #btnConnexion{
-    margin-left: 35%;
+#panelLogin button{
+   width: 50%;
 }
 /** ---------------Inscription---------------*/
 #panelInscription {
     display: none;
     text-align: center;
-    height: 400px;
+    height: 600px;
     float : right;
     position:absolute;
     margin-top: 10px;
     background-color: rgba(0, 0, 0, 0.6);;
     border-style: none;
     box-shadow: 0px 2px 94px 0px rgba(0,0,0,0.75);
+    color : white;
+}
+#panelInscription button{
+   width: 50%;
 }

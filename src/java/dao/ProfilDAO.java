@@ -1,5 +1,5 @@
 
-package com.lifty.dao;
+package dao;
 /* ==== INFO ====
 
  * @author maxime chausse
@@ -12,7 +12,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import com.lifty.classes.Profil;
+import classe.Profil;
 
 public class ProfilDAO {
     

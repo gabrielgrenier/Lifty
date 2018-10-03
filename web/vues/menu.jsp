@@ -21,66 +21,56 @@
         </div>
         <form method="post" action="">
             <div class="container" id="panelLogin">
-                <div class="row">
-                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
-                        <input type="email" name="emailLogin" placeholder="Courriel" required> <br/><br/>
-                    </div>
+                <div class="form-group">
+                <label for="emailCon">Courriel:</label>
+                <input type="emailCon" class="form-control" id="emailCon" placeholder ='JDoe@gmail.com' required>
                 </div>
-                <div class="row">
-                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
-                        <input type="password" name="pswLogin" placeholder="Mot de passe " required> <br/><br/>
-                    </div>
+                <div class="form-group">
+                  <label for="pwdCon">Mot de passe:</label>
+                  <input type="password" class="form-control" id="pwdCon" placeholder='Mot de passe' required>
                 </div>
-                <div class="row">
-                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
-                        <input type="submit" name="btnConnexion" id="btnConnexion" value="Se connecter">
-                    </div>
+                <div class="form-group">
+                    <label id='lblLink'><u>S'insrire à Lifty</u></label>
+                </div>
+                <div class="form-group">
+                    <button type="submit" name="btnConnexion" id="btnConnexion" class="btn btn-primary">Se connecter</button>
                 </div>
             </div>
         </form>
         
         <form method="post" action="">
             <div class="container" id="panelInscription">
-                <div class="row">
-                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
-                        <input type="text" name="prenomInscription" placeholder="Prénom" required> <br/><br/>
-                    </div>
-                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
-                        <input type="text" name="nomInscription" placeholder="Nom" required> <br/><br/>
-                    </div>
+                <div class="form-group">
+                <label for="prenomInsc">Prénom:</label>
+                <input type="text" class="form-control" id="prenomInsc" placeholder ='John' required>
                 </div>
-                <div class="row">
-                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
-                        <input type="text" name="codePostaleInscription" placeholder="H0H 0H0" required> <br/><br/>
-                    </div>
+                <div class="form-group">
+                <label for="nomInsc">Nom:</label>
+                <input type="text" class="form-control" id="nomInsc" placeholder ='Doe' required>
                 </div>
-                <div class="row">
-                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
-                        <input type="email" name="emailInscription" placeholder="Courriel" required> <br/><br/>
-                    </div>
+                <div class="form-group">
+                <label for="emailInsc">Courriel:</label>
+                <input type="email" class="form-control" id="emailInsc" placeholder ='JDoe@gmail.com' required>
                 </div>
-                <div class="row">
-                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
-                        <input type="password" name="pswInscription" placeholder="Mot de passe" required> <br/><br/>
-                    </div>
+                <div class="form-group">
+                <label for="codePInsc">Code Postal:</label>
+                <input type="text" class="form-control" id="codePInsc" placeholder ='H0H 0H0' required>
                 </div>
-                <div class="row">
-                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
-                        <input type="password" name="confirmationPswInscription" placeholder="Confirmation du mot de passe" required> <br/><br/>
-                    </div>
+                <div class="form-group">
+                <label for="pwdInsc">Mot de passe:</label>
+                <input type="password" class="form-control" id="pwdInsc" placeholder='Mot de passe' required>
                 </div>
-                <div class="row">
-                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
-                        Je suis un conducteur :<input type="checkbox" name="conducteurInscription" value="true" required><br/><br/>
-                    </div>
-                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
-                        Je suis un passager :<input type="checkbox" name="passagerInscription" value="false" required><br/><br/>
-                    </div>
+                <div class="form-group">
+                <label for="pwdConfInsc">Mot de passe:</label>
+                <input type="password" class="form-control" id="pwdConfInsc" placeholder='Confirmation du mot de passe' required>
                 </div>
-                <div class="row">
-                    <div class="col-sm-2 col-md-4 col-lg-6 text-center">
-                        <input type="submit" name="btnInscription" id="btnInscription" value="S'inscrire">
-                    </div>
+                <label>Je suis un </label>
+                <div class="form-group">
+                <label class="radio-inline"><input type="radio" name="condInsc" checked>: Conducteur</label>
+                <label class="radio-inline"><input type="radio" name="passInsc">: Passager</label>
+                </div>
+                <div class="form-group">
+                    <button type="submit" name="btnInscription" id="btnInscription" class="btn btn-primary">S'inscrire</button>
                 </div>
             </div>
         </form>

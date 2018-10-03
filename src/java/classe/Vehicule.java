@@ -1,8 +1,4 @@
-<<<<<<< HEAD:web/modele/classes/com/mchausse/lifty/Vehicule.java
-package modele.classes.com.mchausse.lifty;
-=======
 package classe;
->>>>>>> origin:src/java/classe/Vehicule.java
 /* ==== INFO ====
 
  * @author maxime chausse

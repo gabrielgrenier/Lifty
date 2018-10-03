@@ -3,11 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-<<<<<<< HEAD:web/modele/classes/com/mchausse/lifty/Jour.java
-package modele.classes.com.mchausse.lifty;
-=======
 package classe;
->>>>>>> origin:src/java/classe/Jour.java
 
 /* ==== INFO ====
 
