@@ -3,8 +3,8 @@
     Created on : 2018-09-26, 13:57:33
     Author     : gabri
 --%>
+<%@page import="dao.JourDAO"%>
 <%@page import="classe.Jour"%>
-<%@page import="classe.JourDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
