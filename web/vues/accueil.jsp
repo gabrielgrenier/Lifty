@@ -14,6 +14,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="./css/style.css" rel="stylesheet" type="text/css"/>
+    <script> 
+    $(document).ready(function(){
+        $("#panelLogin").animate({right: '10px', width : '300px'});
+        $("#panelInscription").animate({right: '10px', width : '300px'});
+        
+        $("#login").click(function(){
+            if($("#panelInscription").is(':visible')){$("#panelInscription").animate({height:'toggle'});}
+            $("#panelLogin").animate({height:'toggle'});
+        });
+        
+        $("#inscription").click(function(){
+            if($("#panelLogin").is(':visible')){$("#panelLogin").animate({height:'toggle'});}
+            $("#panelInscription").animate({height:'toggle'});
+        });
+        $("#lblLink").click(function(){
+            if($("#panelLogin").is(':visible')){$("#panelLogin").animate({height:'toggle'});}
+            $("#panelInscription").animate({height:'toggle'});
+        });
+    });
+    </script>
     <link href="../css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 
@@ -33,9 +54,9 @@
             </div>
             <div class="col-sm-6 text-center">
                 <h1 class='soustitre'>À Propos</h1>
-                <p>Lifty est un application web qui permet aux étudiants d'effectuer
+                <p>Lifty est une application web qui permet aux étudiants d'effectuer
                     du covoiturage sans se soucier de trouver un chauffeur ou un 
-                    passager. Lifty a été développé avec les étudiants en tête, c'est 
+                    passager. Lifty a été développée avec les étudiants en tête, c'est 
                     pourquoi nous avons intégré des fonctionnalités faîtes sur mesure pour 
                     leur simplifier la vie.
                 </p>
@@ -47,7 +68,7 @@
             <h1 class='soustitre'>Pour des étudiants, par des étudiants</h1> <br/>
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <h4>Création d'horraire</h4>
+                    <h4>Création d'horaire</h4>
                     <p>Lifty permet aux utilisateurs d'entrer leur horaire pour maximiser
                         les chances de trouver un chauffeur ou un passager qui concorde avec
                         leur horaire. Cette fonctionnalité permet de sélectionner une personne qui
