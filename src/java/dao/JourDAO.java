@@ -91,7 +91,32 @@ public class JourDAO {
             con = DriverManager.getConnection("jdbc:mysql://localhost/lifty?user=root&password=root&serverTimezone=EST");
             String requete;
             requete = "INSERT INTO `jour` (`ID`, `debut`, `fin`, `journee`, `userID`) "
-                    + "VALUES ('"+idJour+"', '"+Time.valueOf(debut)+"', '"+Time.valueOf(debut)+"', '"+jour+"', '"+idUser+"')";
+                    + "VALUES ('"+idJour+"', '"+Time.valueOf(debut)+"', '"+Time.valueOf(fin)+"', '"+jour+"', '"+idUser+"')";
+            
+            PreparedStatement statement = con.prepareStatement(requete);
+            statement.executeUpdate();
+	}
+        catch(SQLException e){}
+        catch (ClassNotFoundException e){}
+	finally{
+            try{
+                if (rs!=null) rs.close();
+                if (sqlQuery!=null) sqlQuery.close();
+                if (con!=null) con.close();
+            }catch (SQLException e){System.out.println("Exception : "+e);}
+        }
+    }
+    public void createFromOBJ(Jour j){ //crée un nouveau jour à partir d'un OBJ
+        Connection con=null;
+        ResultSet rs=null;
+	Statement sqlQuery=null;
+
+	try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/lifty?user=root&password=root&serverTimezone=EST");
+            String requete;
+            requete = "INSERT INTO `jour` (`ID`, `debut`, `fin`, `journee`, `userID`) "
+                    + "VALUES ('"+j.getId()+"', '"+Time.valueOf(j.getDebut())+"', '"+Time.valueOf(j.getFin())+"', '"+j.getJour()+"', '"+j.getUserId()+"')";
             
             PreparedStatement statement = con.prepareStatement(requete);
             statement.executeUpdate();

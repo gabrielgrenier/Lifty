@@ -44,9 +44,14 @@
             dao.create(5, 2, "mardi","10:12:12", "15:12:12");
             
             out.println("<hr>");
+            out.println("<h2>Test : createFromOBJ(Jour j)</h2>");
+            Jour objTest1 = new Jour(6, 2, "","10:10:10", "16:16:16");
+            dao.createFromOBJ(objTest1);
+           
+            out.println("<hr>");
             out.println("<h2>Test : update(Jour j)</h2>");
-            Jour test = new Jour(4, 1, "jeudi","12:12:12", "16:16:16");
-            dao.update(test);
+            Jour objTest2 = new Jour(4, 1, "jeudi","12:12:12", "16:16:16");
+            dao.update(objTest2);
         %>
     </body>
 </html>
