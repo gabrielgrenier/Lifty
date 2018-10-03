@@ -8,8 +8,6 @@ package dao;
  * College Rosemont
  *
  * ==== A faire ==== 
- * find(int id)
- * find(Sting username)
  * create(Profil profil)
  * delete(int id)
 */
@@ -66,8 +64,7 @@ public class ProfilDAO {
                 return p;
             }else return null;
         }
-        catch (SQLException e){System.out.println("Exception : "+e);}
-        catch (ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch (SQLException |ClassNotFoundException e){System.out.println("Exception : "+e);}
         finally{
             try{
                 if (rs!=null) rs.close();
@@ -122,8 +119,7 @@ public class ProfilDAO {
                 return p;
             }else return null;
         }
-        catch (SQLException e){System.out.println("Exception : "+e);}
-        catch (ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch (SQLException|ClassNotFoundException e){System.out.println("Exception : "+e);}
         finally{
             try{
                 if (rs!=null) rs.close();
@@ -177,8 +173,7 @@ public class ProfilDAO {
                 return p;
             }else return null;
         }
-        catch (SQLException e){System.out.println("Exception : "+e);}
-        catch (ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch (SQLException |ClassNotFoundException e){System.out.println("Exception : "+e);}
         finally{
             try{
                 if (rs!=null) rs.close();
@@ -188,5 +183,38 @@ public class ProfilDAO {
             catch (SQLException e){System.out.println("Exception : "+e);}
         }
         return null;
+    }
+    
+    public void create(Profil profil){
+        Connection con=null;
+        Statement sqlQuery=null;
+        String vId;
+        try{
+//            try{
+//                vId=profil.getVehicule().getId();
+//            }catch(Exception){vId="";}
+            //Chargement du pilote 
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            //Ouverture de connexion 
+            con = DriverManager.getConnection("jdbc:mysql://localhost/lifty?user=root&password=&serverTimezone=UTC&characterEncoding=UTF-8");
+            String requete;
+            requete = "INSERT INTO utilisateur values ID='"+profil.getId()+"', username='"+profil.getUsername()+"',"
+                    + "email='"+profil.getEmail()+"',motDePasse='"+profil.getMotDePasse()+"',nom='"+profil.getNom()+"',prenom='"+profil.getPrenom()+"',"
+                    + "role='"+profil.getRole()+"',conducteur='"+profil.isConducteur()+"',note='"+profil.getRating()+"',codePostal='"+profil.getCodePostal()+"',"
+                    + "emailPublic='"+profil.isPublicEmail()+"',nomPublic='"+profil.isPublicNom()+"',prenomPublic='"+profil.isPublicPrenom()+"',valide='"+profil.isValide()+"',"
+                    + "dateInscription='"+profil.getDateInscription()+"',dateConnexion='"+profil.getDateConnexion()+"',etablissement='"+profil.getEtablissement()+"',rayon='"+profil.getRayon()+"',"
+                    + "tarif='"+profil.getTarif()+"',imageProfil='"+profil.getImageProfil()+"',vehiculeID='"+profil.getVehicule().getId()+"'";
+            System.out.println(requete);
+            sqlQuery=con.createStatement();
+            sqlQuery.executeUpdate(requete);
+        }
+        catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+        finally{
+            try{
+                if (sqlQuery!=null) sqlQuery.close();
+                if (con!=null) con.close();
+            }
+            catch (SQLException e){System.out.println("Exception : "+e);}
+        }
     }
 }
