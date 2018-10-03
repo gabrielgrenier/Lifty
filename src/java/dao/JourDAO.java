@@ -109,7 +109,29 @@ public class JourDAO {
             }catch (SQLException e){System.out.println("Exception : "+e);}
         }
     }
-    public void update(Jour j){ //remplace une journée
-        //trouve un jour avec l'id de J et le remplace avec les nouvelles infos
+    public void update(Jour j){ //pas tester
+        Connection con=null;
+        ResultSet rs=null;
+	Statement sqlQuery=null;
+
+	try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/lifty?user=root&password=root&serverTimezone=EST");
+            String requete;
+            requete = "UPDATE `jour` SET `ID` = '"+j.getId()+"', `debut`='"+Time.valueOf(j.getDebut())+"', "
+                    + "`fin`='"+Time.valueOf(j.getFin())+"',  `journee` = '"+j.getJour()+"', `userID` = '"+j.getUserId()+"' WHERE `jour`.`ID` = 4;";
+            
+            PreparedStatement statement = con.prepareStatement(requete);
+            statement.executeUpdate();
+	}
+        catch(SQLException e){}
+        catch (ClassNotFoundException e){}
+	finally{
+            try{
+                if (rs!=null) rs.close();
+                if (sqlQuery!=null) sqlQuery.close();
+                if (con!=null) con.close();
+            }catch (SQLException e){System.out.println("Exception : "+e);}
+        }
     }
 }
