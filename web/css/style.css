@@ -20,7 +20,7 @@ img{
 }
 
 .navbar{
-    background-color: rgba(0, 0, 0, 0.6);;
+    background-color: rgba(0, 0, 0, 0.6);
     padding: 0.5% 0;
     font-size: 1.2em;
     border-style: none;
@@ -181,4 +181,39 @@ footer p{
     border-style: none;
     border-radius: 0px;
     box-shadow: none;
+}
+/** ---------------Login---------------*/
+#panelLogin {
+    display: none;
+    text-align: center;
+    height: 250px;
+    float : right;
+    position:absolute;
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.6);;
+    border-style: none;
+    box-shadow: 0px 2px 94px 0px rgba(0,0,0,0.75);
+    color : white;
+}
+#panelLogin #lblLink:hover{
+    color : #3399ff;
+}
+#panelLogin button{
+   width: 50%;
+}
+/** ---------------Inscription---------------*/
+#panelInscription {
+    display: none;
+    text-align: center;
+    height: 600px;
+    float : right;
+    position:absolute;
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.6);;
+    border-style: none;
+    box-shadow: 0px 2px 94px 0px rgba(0,0,0,0.75);
+    color : white;
+}
+#panelInscription button{
+   width: 50%;
 }
