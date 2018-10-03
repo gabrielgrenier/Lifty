@@ -119,8 +119,8 @@ public class JourDAO {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost/lifty?user=root&password=root&serverTimezone=EST");
             String requete;
-            requete = "UPDATE `jour` SET `ID` = '"+j.getId()+"', `debut`='"+Time.valueOf(j.getDebut())+"', "
-                    + "`fin`='"+Time.valueOf(j.getFin())+"',  `journee` = '"+j.getJour()+"', `userID` = '"+j.getUserId()+"' WHERE `jour`.`ID` = 4;";
+            requete = "UPDATE `jour` SET `debut`='"+Time.valueOf(j.getDebut())+"', "
+                    + "`fin`='"+Time.valueOf(j.getFin())+"',  `journee` = '"+j.getJour()+"', `userID` = '"+j.getUserId()+"' WHERE `jour`.`ID` = '"+j.getId()+"';";
             
             PreparedStatement statement = con.prepareStatement(requete);
             statement.executeUpdate();

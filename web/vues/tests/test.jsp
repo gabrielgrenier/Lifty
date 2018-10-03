@@ -1,16 +1,8 @@
-<%-- 
-    Document   : test
-    Created on : 2018-09-26, 13:57:33
-    Author     : gabri
---%>
-<<<<<<< HEAD
 <%@page import="java.util.List"%>
 <%@page import="classe.Jour"%>
 <%@page import="dao.JourDAO"%>
-=======
 <%@page import="dao.JourDAO"%>
 <%@page import="classe.Jour"%>
->>>>>>> fae68d657613c2d920fa021a2fa1007b864acedf
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -50,6 +42,11 @@
             out.println("<hr>");
             out.println("<h2>Test : create(idJour, idUser, jour, debut, fin)</h2>");
             //dao.create(4, 1, "jeudi","10:12:12", "16:12:12");
+            
+            out.println("<hr>");
+            out.println("<h2>Test : update(Jour j)</h2>");
+            Jour test = new Jour(4, 1, "jeudi","12:12:12", "16:16:16");
+            dao.update(test);
         %>
     </body>
 </html>
