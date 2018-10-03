@@ -8,7 +8,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Test jourDAO</title>
     </head>
     <body>
         <h1>Teste jourDAO</h1>
@@ -41,7 +41,7 @@
             }
             out.println("<hr>");
             out.println("<h2>Test : create(idJour, idUser, jour, debut, fin)</h2>");
-            //dao.create(4, 1, "jeudi","10:12:12", "16:12:12");
+            dao.create(5, 2, "mardi","10:12:12", "15:12:12");
             
             out.println("<hr>");
             out.println("<h2>Test : update(Jour j)</h2>");
