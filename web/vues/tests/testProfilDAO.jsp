@@ -16,15 +16,38 @@
 
 <body>
     <%
-    
+    // Declaration des variables
     ProfilDAO profilDAO = new ProfilDAO();
-    Profil p=new Profil(5, "email", "Nom du profil de test", "Prenom","mot", 1,  "123", "123", "123", "123", "123", false, false, false, false, false,5,23, 22);
+    Profil p;
     %>
-    <h1><%=p.getNom()%></h1>
+    <h1>
+        -----------------------
+        <br />
+        findByEmail(email)
+    </h1>
     <%
-    p = profilDAO.find("max@lifty.ca");
+    p = profilDAO.findByEmail("max@lifty.ca");
     out.println("<h1>"+(p==null?"ca marche pas":"Ca marche")+"</h1>");
-    if(p!=null)%><h1><%=p.getNom()%></h1><%
-    %>
+    if(p!=null)%><h3><%=p.getNom()%></h3>
+
+    <h1>
+        -----------------------
+        <br />
+        findById(id)
+    </h1>
+    <%
+    p = profilDAO.findById(1);
+    out.println("<h1>"+(p==null?"ca marche pas":"Ca marche")+"</h1>");
+    if(p!=null)%><h3><%=p.getNom()%></h3>
+    
+    <h1>
+        -----------------------
+        <br />
+        findByUsername(username)
+    </h1>
+    <%
+    p = profilDAO.findByUsername("maximechausse");
+    out.println("<h1>"+(p==null?"ca marche pas":"Ca marche")+"</h1>");
+    if(p!=null)%><h3><%=p.getNom()%></h3>
 </body>
 </html>

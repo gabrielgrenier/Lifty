@@ -12,6 +12,7 @@ public class Profil {
     /* ==== VARIABLES ====
     - strings -
     id              : numéro du profil
+    username        : username generer
     email           : email du profil
     nom             : nom de la personne
     prenom          : prénom de la personne
@@ -37,15 +38,16 @@ public class Profil {
     role            : 0-Administrateur; 1-Modérateur; 2-Utilisateur
     */
     private int id,role;
-    private String email,nom,prenom,dateInscription,dateConnexion,codePostal,etablissement,imageProfil,motDePasse;
+    private String email,nom,prenom,dateInscription,dateConnexion,codePostal,etablissement,imageProfil,motDePasse,username;
     private boolean nomPublic,prenomPublic,emailPublic,valide,conducteur; 
     private double rating,tarif,rayon;
     private Vehicule vehicule;
     
     // ==== CONSTRUCTEURS ====
     // - complet -
-    public Profil(int id, String email, String nom, String prenom,String motDePasse, int role,  String dateInscription, String dateConnexion, String codePostal, String etablissement, String imageProfil, boolean isPublicNom, boolean isPublicPrenom, boolean isPublicEmail, boolean isValide, boolean isConducteur, double rating, double tarif, double rayon) {
-        this.id = id;    
+    public Profil(int id, String username, String email, String nom, String prenom,String motDePasse, int role,  String dateInscription, String dateConnexion, String codePostal, String etablissement, String imageProfil, boolean isPublicNom, boolean isPublicPrenom, boolean isPublicEmail, boolean isValide, boolean isConducteur, double rating, double tarif, double rayon) {
+        this.id = id;   
+        this.username = username;
         this.role = role;
         this.email = email;
         this.nom = nom;
@@ -79,6 +81,7 @@ public class Profil {
     public String getNom() {return nom;}
     public String getPrenom() {return prenom;}
     public String getMotDePasse(){return motDePasse;}
+    public String getUsername(){return username;}
     
     // - int -
     public int getId() {return id;}
@@ -120,4 +123,5 @@ public class Profil {
     public void setTarif(double tarif) {this.tarif = tarif;}
     public void setVehicule(Vehicule vehicule){this.vehicule = vehicule;}
     public void setMotDePasse(String mdp){motDePasse = mdp;}
+    public void setUsername(String username){this.username = username;}
 }
