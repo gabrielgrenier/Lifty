@@ -95,7 +95,7 @@ public class Profil {
     // - boolean -
     public boolean isConducteur() {return conducteur;}
     public boolean isPublicEmail() {return emailPublic;}
-    public boolean isNomPublic() {return nomPublic;}
+    public boolean isPublicNom() {return nomPublic;}
     public boolean isPublicPrenom() {return prenomPublic;}
     public boolean isValide() {return valide;}
     

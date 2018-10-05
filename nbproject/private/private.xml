@@ -3,8 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Lifty/src/java/classe/Vehicule.java</file>
+            <file>file:/C:/Lifty/src/java/classe/Profil.java</file>
+            <file>file:/C:/Lifty/src/java/dao/ProfilDAO.java</file>
+            <file>file:/C:/Lifty/web/vues/tests/testProfilDAO.jsp</file>
+            <file>file:/C:/Lifty/web/vues/accueil.jsp</file>
+            <file>file:/C:/Lifty/web/css/style.css</file>
+            <file>file:/C:/Lifty/src/java/dao/JourDAO.java</file>
+=======
             <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/web/vues/accueil.jsp</file>
             <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/src/java/dao/JourDAO.java</file>
+>>>>>>> 4ef8b3e39673cb73a8a8f6bf8bbce140e19608c9
         </group>
     </open-files>
 </project-private>
