@@ -86,5 +86,13 @@
         p = profilDAO.findByEmail("sam@lifty.ca");
         out.println("<h1>"+(p==null?"ca marche pas":"Ca marche")+"</h1>");
         %>
+    <h1/>
+        -----------------------
+        delete(Profil)
+    </h1>
+    <%
+        p = profilDAO.findByEmail("sam@lifty.ca");
+        profilDAO.delete(p);
+        %>
 </body>
 </html>

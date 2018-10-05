@@ -9,19 +9,23 @@ package dao;
  *
  * ==== A faire ==== 
  * Arrangee le find pour assigner le vehicule au profil
- * update(Profil p)
+ * findAll(Etablissement, conducteur)
+ * findAll(Etablissement, passager)
+ * findAll(passager)
+ * findAll(conducteur)
+ * findAll()
+ * findAll()
+ * findAll()
  * delete(int id)
+ * delete(profil p)
 */
-import classe.Jour;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import classe.Profil;
-import static java.lang.System.out;
 import java.sql.PreparedStatement;
-import java.sql.Time;
 
 public class ProfilDAO {
     private static String connexionString = "jdbc:mysql://localhost/lifty?user=root&password=&serverTimezone=UTC&characterEncoding=UTF-8";
@@ -233,6 +237,7 @@ public class ProfilDAO {
             catch (SQLException e){System.out.println("Exception : "+e);}
         }
     }
+    
     public void update(Profil p){ //pas tester
         Connection con=null;
         ResultSet rs=null;
@@ -251,6 +256,32 @@ public class ProfilDAO {
                     + "`rayon`='"+p.getRayon()+"',  `tarif` = '"+p.getTarif()+"', `imageProfil` = "+(p.getImageProfil()!=null?"\'"+p.getImageProfil()+"\'":"NULL")+", "
                     + "`vehiculeID`="+(p.getVehicule()!=null?"\'"+p.getVehicule().getId()+"\'":"NULL")+""
                     + " WHERE `utilisateur`.`ID` = '"+p.getId()+"';";
+            PreparedStatement statement = con.prepareStatement(requete);
+            statement.executeUpdate();
+	}
+        catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+	finally{
+            try{
+                if (rs!=null) rs.close();
+                if (sqlQuery!=null) sqlQuery.close();
+                if (con!=null) con.close();
+            }
+            catch (SQLException e){System.out.println("Exception : "+e);}
+        }
+    }
+    
+    public void delete(Profil p){delete(p.getId());}
+    public void delete(int id){
+        Connection con=null;
+        ResultSet rs=null;
+	Statement sqlQuery=null;
+
+	try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(connexionString);
+            String requete;
+            requete = "DELETE FROM `utilisateur` "
+                    + "WHERE `utilisateur`.`ID` = '"+id+"';";
             PreparedStatement statement = con.prepareStatement(requete);
             System.out.println("Requete : "+requete);
             statement.executeUpdate();
