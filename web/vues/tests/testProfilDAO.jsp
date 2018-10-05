@@ -4,6 +4,7 @@
     Author     : gabri
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="classe.Profil"%>
 <%@page import="classe.Vehicule"%>
 <%@page import="dao.ProfilDAO"%>
@@ -86,7 +87,7 @@
         p = profilDAO.findByEmail("sam@lifty.ca");
         out.println("<h1>"+(p==null?"ca marche pas":"Ca marche")+"</h1>");
         %>
-    <h1/>
+    <h1>
         -----------------------
         delete(Profil)
     </h1>
@@ -94,5 +95,22 @@
         p = profilDAO.findByEmail("sam@lifty.ca");
         profilDAO.delete(p);
         %>
+    <h1>
+        -----------------------
+        findAll(etablissement, conducteur)
+    </h1>
+    <table>
+        <%
+        ArrayList<Profil> profils = new ArrayList<>();
+        profils = profilDAO.findAll("1231231",true);
+        for(int i=0;i<profils.size();i++){
+            %>
+            <tr>
+                <td><%=profils.get(i).getUsername()+" et nom "+profils.get(i).getId()%></td>
+            </tr>
+            <%
+        }
+        %>
+    </table>
 </body>
 </html>
