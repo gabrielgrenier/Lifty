@@ -20,7 +20,23 @@
         // Declaration des variables
         ProfilDAO profilDAO = new ProfilDAO();
         Profil p;
+        Profil p1;
     %>
+    
+    <h1>
+        -----------------------
+        <br />
+        update(profil)
+    </h1>
+    <%  
+        Profil p2;
+        p1 = profilDAO.findById(0);
+        p1.setUsername("maximechausse");
+        p1.setEmail("max@lifty.ca");
+        profilDAO.update(p1);
+        p2 = profilDAO.findByUsername("maximechausse");
+        out.println("<h1>"+(p2==null?"ca marche pas":"Ca marche")+"</h1>");
+        %>
     <h1>
         -----------------------
         <br />
@@ -48,6 +64,7 @@
     </h1>
     <%
         p = profilDAO.findByUsername("maximechausse");
+        p1=p;
         out.println("<h1>"+(p==null?"ca marche pas":"Ca marche")+"</h1>");
         if(p!=null)%><h3><%=p.getNom()%></h3>
     

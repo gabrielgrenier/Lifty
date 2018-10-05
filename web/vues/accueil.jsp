@@ -15,26 +15,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="./css/style.css" rel="stylesheet" type="text/css"/>
-    <script> 
-    $(document).ready(function(){
-        $("#panelLogin").animate({right: '10px', width : '300px'});
-        $("#panelInscription").animate({right: '10px', width : '300px'});
-        
-        $("#login").click(function(){
-            if($("#panelInscription").is(':visible')){$("#panelInscription").animate({height:'toggle'});}
-            $("#panelLogin").animate({height:'toggle'});
-        });
-        
-        $("#inscription").click(function(){
-            if($("#panelLogin").is(':visible')){$("#panelLogin").animate({height:'toggle'});}
-            $("#panelInscription").animate({height:'toggle'});
-        });
-        $("#lblLink").click(function(){
-            if($("#panelLogin").is(':visible')){$("#panelLogin").animate({height:'toggle'});}
-            $("#panelInscription").animate({height:'toggle'});
-        });
-    });
-    </script>
     <link href="../css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 
@@ -113,5 +93,25 @@
         </div>
     </div>
     <%@include  file="footer.jsp" %>
+    <script> 
+    $(document).ready(function(){
+        $("#panelLogin").animate({right: '10px', width : '300px'});
+        $("#panelInscription").animate({right: '10px', width : '300px'});
+        
+        $("#login").click(function(){
+            if($("#panelInscription").is(':visible')){$("#panelInscription").animate({height:'toggle'});}
+            $("#panelLogin").animate({height:'toggle'});
+        });
+        
+        $("#inscription").click(function(){
+            if($("#panelLogin").is(':visible')){$("#panelLogin").animate({height:'toggle'});}
+            $("#panelInscription").animate({height:'toggle'});
+        });
+        $("#lblLink").click(function(){
+            if($("#panelLogin").is(':visible')){$("#panelLogin").animate({height:'toggle'});}
+            $("#panelInscription").animate({height:'toggle'});
+        });
+    });
+    </script>
 </body>
 </html>
