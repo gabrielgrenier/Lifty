@@ -3,18 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Lifty/src/java/classe/Vehicule.java</file>
-            <file>file:/C:/Lifty/src/java/classe/Profil.java</file>
-            <file>file:/C:/Lifty/src/java/dao/ProfilDAO.java</file>
-            <file>file:/C:/Lifty/web/vues/tests/testProfilDAO.jsp</file>
-            <file>file:/C:/Lifty/web/vues/accueil.jsp</file>
-            <file>file:/C:/Lifty/web/css/style.css</file>
-            <file>file:/C:/Lifty/src/java/dao/JourDAO.java</file>
-=======
-            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/web/vues/accueil.jsp</file>
-            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/src/java/dao/JourDAO.java</file>
->>>>>>> 4ef8b3e39673cb73a8a8f6bf8bbce140e19608c9
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/accueil.jsp</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/web.xml</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/Action.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/nbproject/build-impl.xml</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/AbstractAction.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/servlets/ControleurFrontal.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/tests/testProfilDAO.jsp</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/DefaultAction.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/footer.jsp</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/tests/test.jsp</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/static/css/style.css</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/menu.jsp</file>
         </group>
     </open-files>
 </project-private>
