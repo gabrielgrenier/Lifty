@@ -3,25 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/web/tests/test.jsp</file>
             <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/src/java/dao/JourDAO.java</file>
-            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/web/vues/accueil.jsp</file>
-            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/web/vues/tests/test.jsp</file>
-            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/src/java/classe/Jour.java</file>
-=======
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/accueil.jsp</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/web.xml</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/Action.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/nbproject/build-impl.xml</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/AbstractAction.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/servlets/ControleurFrontal.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/tests/testProfilDAO.jsp</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/DefaultAction.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/footer.jsp</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/tests/test.jsp</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/static/css/style.css</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/menu.jsp</file>
->>>>>>> 6616aa5465690a9a40bc8610c6ae1faede0f1f65
         </group>
     </open-files>
 </project-private>

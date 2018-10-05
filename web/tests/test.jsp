@@ -93,7 +93,6 @@
                         jeudiF = Integer.valueOf(listHorraire.get(3).getFin().split(":")[0]);
                         vendrediD = Integer.valueOf(listHorraire.get(4).getDebut().split(":")[0]);
                         vendrediF = Integer.valueOf(listHorraire.get(4).getFin().split(":")[0]);
-
                         for(int y=8; y<19; y++){ //Création des colonnes dans la table
                     %>
                                 <tr>
