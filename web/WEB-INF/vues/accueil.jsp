@@ -16,13 +16,34 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="./css/style.css" rel="stylesheet" type="text/css"/>
     <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="./static/css/style.css" type="text/css"/>
+    <script> 
+    $(document).ready(function(){
+        $("#panelLogin").animate({right: '10px', width : '300px'});
+        $("#panelInscription").animate({right: '10px', width : '300px'});
+        
+        $("#login").click(function(){
+            if($("#panelInscription").is(':visible')){$("#panelInscription").animate({height:'toggle'});}
+            $("#panelLogin").animate({height:'toggle'});
+        });
+        
+        $("#inscription").click(function(){
+            if($("#panelLogin").is(':visible')){$("#panelLogin").animate({height:'toggle'});}
+            $("#panelInscription").animate({height:'toggle'});
+        });
+        $("#lblLink").click(function(){
+            if($("#panelLogin").is(':visible')){$("#panelLogin").animate({height:'toggle'});}
+            $("#panelInscription").animate({height:'toggle'});
+        });
+    });
+    </script>
 </head>
 
 <body>
     <%@include  file="menu.jsp" %>
     <div id="parallax">
         <div class="landing-text">
-            <img src="../images/logo.png" id="imgAccueil"/>
+            <img src="./static/images/logo.png" id="imgAccueil"/>
             <h3>L'application de covoiturage pour étudiants</h3>
         </div>
     </div>
@@ -30,7 +51,7 @@
     <div class="padding" id="contenu1">
         <div class="container">
             <div class="col-sm-6">
-                <img src="../images/covoiturage.jpg" class="img-responsive" />
+                <img src="./static/images/covoiturage.jpg" class="img-responsive" />
             </div>
             <div class="col-sm-6 text-center">
                 <h1 class='soustitre'>À Propos</h1>
@@ -56,7 +77,7 @@
                         école.</p>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <img src="../images/student.jpg" class="img-responsive" />
+                    <img src="./static/images/student.jpg" class="img-responsive" />
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <h4>Recherche automatique</h4>
@@ -66,7 +87,7 @@
                         vous habitez et l'établissement que vous fréquenter.</p>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <img src="../images/pancarte.jpeg"  class="img-responsive" />
+                    <img src="./static/images/pancarte.jpeg"  class="img-responsive" />
                 </div>
             </div>
         </div>
