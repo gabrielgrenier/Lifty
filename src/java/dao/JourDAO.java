@@ -36,8 +36,7 @@ public class JourDAO {
                 return j;
             }else{return null;} 
 	}
-        catch(SQLException e){ return null;}
-        catch (ClassNotFoundException e){return null;}
+        catch(SQLException | ClassNotFoundException e){ return null;}
 	finally{
             try{
                 if (rs!=null) rs.close();
@@ -71,8 +70,7 @@ public class JourDAO {
             }
             return listeJour;              
 	}
-        catch(SQLException e){return null;}
-        catch (ClassNotFoundException e){return null;}
+        catch(SQLException | ClassNotFoundException e){return null;}
 	finally{
             try{
                 if (rs!=null) rs.close();
@@ -81,7 +79,7 @@ public class JourDAO {
             }catch (SQLException e){System.out.println("Exception : "+e);}
         }
     }
-    public void create(int idJour, int idUser, String jour, String debut, String fin){ //créé un nouveau jour dans la BD
+    public void create(int idJour, int idUser, String jour, String debut, String fin){ //crée un nouveau jour à partir de paramètre
         Connection con=null;
         ResultSet rs=null;
 	Statement sqlQuery=null;
@@ -90,18 +88,13 @@ public class JourDAO {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost/lifty?user=root&password=root&serverTimezone=EST");
             String requete;
-            requete = "INSERT INTO `jour` (`ID`, `debut`, `fin`, `journee`, `userID`) VALUES (?, ?, ?, ?, ?)";
+            requete = "INSERT INTO `jour` (`ID`, `debut`, `fin`, `journee`, `userID`) "
+                    + "VALUES ('"+idJour+"', '"+Time.valueOf(debut)+"', '"+Time.valueOf(fin)+"', '"+jour+"', '"+idUser+"')";
             
             PreparedStatement statement = con.prepareStatement(requete);
-            statement.setInt(1, idJour);
-            statement.setTime(2, Time.valueOf(debut));
-            statement.setTime(3, Time.valueOf(fin));
-            statement.setString(4, jour);
-            statement.setInt(5, idUser);
             statement.executeUpdate();
 	}
-        catch(SQLException e){}
-        catch (ClassNotFoundException e){}
+        catch(SQLException | ClassNotFoundException e){}
 	finally{
             try{
                 if (rs!=null) rs.close();
@@ -110,7 +103,7 @@ public class JourDAO {
             }catch (SQLException e){System.out.println("Exception : "+e);}
         }
     }
-    public void update(Jour j){ //pas tester
+    public void createFromOBJ(Jour j){ //crée un nouveau jour à partir d'un OBJ
         Connection con=null;
         ResultSet rs=null;
 	Statement sqlQuery=null;
@@ -119,14 +112,38 @@ public class JourDAO {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost/lifty?user=root&password=root&serverTimezone=EST");
             String requete;
-            requete = "UPDATE `jour` SET `ID` = '"+j.getId()+"', `debut`='"+Time.valueOf(j.getDebut())+"', "
-                    + "`fin`='"+Time.valueOf(j.getFin())+"',  `journee` = '"+j.getJour()+"', `userID` = '"+j.getUserId()+"' WHERE `jour`.`ID` = 4;";
+            requete = "INSERT INTO `jour` (`ID`, `debut`, `fin`, `journee`, `userID`) "
+                    + "VALUES ('"+j.getId()+"', '"+Time.valueOf(j.getDebut())+"', '"+Time.valueOf(j.getFin())+"', '"+j.getJour()+"', '"+j.getUserId()+"')";
             
             PreparedStatement statement = con.prepareStatement(requete);
             statement.executeUpdate();
 	}
-        catch(SQLException e){}
-        catch (ClassNotFoundException e){}
+        catch(SQLException | ClassNotFoundException e){}
+	finally{
+            try{
+                if (rs!=null) rs.close();
+                if (sqlQuery!=null) sqlQuery.close();
+                if (con!=null) con.close();
+            }catch (SQLException e){System.out.println("Exception : "+e);}
+        }
+    }
+    public void update(Jour j){ //Update un jour à partir d'un objet jour
+        Connection con=null;
+        ResultSet rs=null;
+	Statement sqlQuery=null;
+
+	try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/lifty?user=root&password=root&serverTimezone=EST");
+            String requete;
+            requete = "UPDATE `jour` SET `debut`='"+Time.valueOf(j.getDebut())+"', "
+                    + "`fin`='"+Time.valueOf(j.getFin())+"',  `journee` = '"+j.getJour()+"', `userID` = '"+j.getUserId()+"' "
+                    + "WHERE `jour`.`ID` = '"+j.getId()+"';";
+            
+            PreparedStatement statement = con.prepareStatement(requete);
+            statement.executeUpdate();
+	}
+        catch(SQLException | ClassNotFoundException e){}
 	finally{
             try{
                 if (rs!=null) rs.close();
