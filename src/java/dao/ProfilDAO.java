@@ -54,7 +54,7 @@ public class ProfilDAO {
                 p.setPrenomPublic(("0".equals(rs.getString("prenomPublic"))));
                 p.setEmailPublic(("0".equals(rs.getString("emailPublic"))));
                 p.setValide(("0".equals(rs.getString("valide"))));
-                p.setConducteur(("0".equals(rs.getString("nomPublic"))));
+                p.setConducteur(("0".equals(rs.getString("conducteur"))));
                 if(rs.getString("note")!=null)p.setRating(Double.parseDouble(rs.getString("note")));
                 if(rs.getString("tarif")!=null)p.setTarif(Double.parseDouble(rs.getString("tarif")));
                 if(rs.getString("rayon")!=null)p.setRayon(Double.parseDouble(rs.getString("rayon")));
@@ -109,7 +109,7 @@ public class ProfilDAO {
                 p.setPrenomPublic(("0".equals(rs.getString("prenomPublic"))));
                 p.setEmailPublic(("0".equals(rs.getString("emailPublic"))));
                 p.setValide(("0".equals(rs.getString("valide"))));
-                p.setConducteur(("0".equals(rs.getString("nomPublic"))));
+                p.setConducteur(("0".equals(rs.getString("conducteur"))));
                 if(rs.getString("note")!=null)p.setRating(Double.parseDouble(rs.getString("note")));
                 if(rs.getString("tarif")!=null)p.setTarif(Double.parseDouble(rs.getString("tarif")));
                 if(rs.getString("rayon")!=null)p.setRayon(Double.parseDouble(rs.getString("rayon")));
@@ -163,7 +163,7 @@ public class ProfilDAO {
                 p.setPrenomPublic(("0".equals(rs.getString("prenomPublic"))));
                 p.setEmailPublic(("0".equals(rs.getString("emailPublic"))));
                 p.setValide(("0".equals(rs.getString("valide"))));
-                p.setConducteur(("0".equals(rs.getString("nomPublic"))));
+                p.setConducteur(("0".equals(rs.getString("conducteur"))));
                 if(rs.getString("note")!=null)p.setRating(Double.parseDouble(rs.getString("note")));
                 if(rs.getString("tarif")!=null)p.setTarif(Double.parseDouble(rs.getString("tarif")));
                 if(rs.getString("rayon")!=null)p.setRayon(Double.parseDouble(rs.getString("rayon")));
@@ -190,23 +190,23 @@ public class ProfilDAO {
         Statement sqlQuery=null;
         String vId;
         try{
-//            try{
-//                vId=profil.getVehicule().getId();
-//            }catch(Exception){vId="";}
-            //Chargement du pilote 
             Class.forName("com.mysql.cj.jdbc.Driver");
             //Ouverture de connexion 
             con = DriverManager.getConnection("jdbc:mysql://localhost/lifty?user=root&password=&serverTimezone=UTC&characterEncoding=UTF-8");
             String requete;
-            requete = "INSERT INTO utilisateur values ID='"+profil.getId()+"', username='"+profil.getUsername()+"',"
-                    + "email='"+profil.getEmail()+"',motDePasse='"+profil.getMotDePasse()+"',nom='"+profil.getNom()+"',prenom='"+profil.getPrenom()+"',"
-                    + "role='"+profil.getRole()+"',conducteur='"+profil.isConducteur()+"',note='"+profil.getRating()+"',codePostal='"+profil.getCodePostal()+"',"
-                    + "emailPublic='"+profil.isPublicEmail()+"',nomPublic='"+profil.isPublicNom()+"',prenomPublic='"+profil.isPublicPrenom()+"',valide='"+profil.isValide()+"',"
-                    + "dateInscription='"+profil.getDateInscription()+"',dateConnexion='"+profil.getDateConnexion()+"',etablissement='"+profil.getEtablissement()+"',rayon='"+profil.getRayon()+"',"
-                    + "tarif='"+profil.getTarif()+"',imageProfil='"+profil.getImageProfil()+"',vehiculeID='"+profil.getVehicule().getId()+"'";
-            System.out.println(requete);
+//            requete = "INSERT INTO utilisateur values (ID=\'"+profil.getId()+"\', username=\'"+profil.getUsername()+"\',"
+//                    + "email=\'"+profil.getEmail()+"\',motDePasse=\'"+profil.getMotDePasse()+"\',nom=\'"+profil.getNom()+"\',prenom=\'"+profil.getPrenom()+"\',"
+//                    + "role=\'"+profil.getRole()+"\',conducteur=\'"+(profil.isConducteur()?1:0)+"\',note="+profil.getRating()+",codePostal=\'"+profil.getCodePostal()+"\',"
+//                    + "emailPublic=\'"+(profil.isPublicEmail()?1:0)+"\',nomPublic=\'"+(profil.isPublicNom()?1:0)+"\',prenomPublic=\'"+(profil.isPublicPrenom()?1:0)+"\',valide=\'"+(profil.isValide()?1:0)+"\',"
+//                    + "dateInscription=\'"+profil.getDateInscription()+"\',dateConnexion=\'"+profil.getDateConnexion()+"\',etablissement=\'"+profil.getEtablissement()+"\',rayon="+profil.getRayon()+","
+//                    + "tarif="+profil.getTarif()+",imageProfil="+profil.getImageProfil()+"";
+//                    + ",vehiculeID="+profil.getVehicule().getId()+")";
+
             sqlQuery=con.createStatement();
-            sqlQuery.executeUpdate(requete);
+            requete = "INSERT INTO `utilisateur` (`ID`, `username`, `email`, `motDePasse`, `nom`, `prenom`, `role`, `conducteur`, `note`, `codePostal`, `emailPublic`, `nomPublic`, `prenomPublic`, `valide`, `dateInscription`, `dateConnexion`, `etablissement`, `rayon`, `tarif`, `imageProfil`, `vehiculeID`) "
+                    + "VALUES (\'"+profil.getId()+"\', \'"+profil.getUsername()+"\', \'"+profil.getEmail()+"\', \'"+profil.getMotDePasse()+"\', \'"+profil.getNom()+"\', \'"+profil.getPrenom()+"\', \'"+profil.getRole()+"\', \'"+(profil.isConducteur()?1:0)+"\', \'"+profil.getRating()+"\', \'"+profil.getCodePostal()+"\', \'"+(profil.isPublicEmail()?1:0)+"\', \'"+(profil.isPublicNom()?1:0)+"\', \'"+(profil.isPublicPrenom()?1:0)+"\', \'"+(profil.isValide()?1:0)+"\', \'"+profil.getDateInscription()+"\', \'"+profil.getDateConnexion()+"\', "+(profil.getEtablissement()!=null?"\'"+profil.getEtablissement()+"\'":"NULL")+", \'"+profil.getRayon()+"\', \'"+profil.getTarif()+"\', "+(profil.getImageProfil()!=null?"\'"+profil.getImageProfil()+"\'":"NULL")+", "+(profil.getVehicule()!=null?"\'"+profil.getVehicule().getId()+"\'":"NULL")+")";
+            int x =sqlQuery.executeUpdate(requete);
+            System.out.println(requete+"; "+x);
         }
         catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
         finally{

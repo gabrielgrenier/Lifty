@@ -57,11 +57,12 @@
         create(profil)
     </h1>
     <%
-        p.setId(2);
+        p.setId(0);
+        p.setUsername("samuellaverdure");
         p.setNom("Slaverdure");
         p.setPrenom("Samuel");
         p.setEmail("sam@lifty.ca");
-        p.setVehicule(new Vehicule(1, 4, "Mazda 3", "2014", "Noir", false));
+        //p.setVehicule(new Vehicule(1, 4, "Mazda 3", "2014", "Noir", false));
                 
         profilDAO.create(p);
         p=null;
