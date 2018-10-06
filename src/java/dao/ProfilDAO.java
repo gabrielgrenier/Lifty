@@ -1,4 +1,3 @@
-
 package dao;
 /* ==== INFO ====
 
@@ -9,8 +8,6 @@ package dao;
  *
  * ==== A faire ==== 
  * Arrangee le find pour assigner le vehicule au profil
- * findAll(etablissement, conducteur)
- * findAll(conducteur)
 */
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,14 +19,13 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 public class ProfilDAO {
+    private static Connection con=null;
+    private static ResultSet rs=null;
+    private static Statement sqlQuery=null;
     private static final String CONNEXIONSTRING = "jdbc:mysql://localhost/lifty?user=root&password=&serverTimezone=UTC&characterEncoding=UTF-8";
     
     // Trouver un profil grace au email
     public static Profil findByEmail(String email){
-        Connection con=null;
-        ResultSet rs=null;
-        Statement sqlQuery=null;
-        
         try{
             //Chargement du pilote 
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -46,21 +42,13 @@ public class ProfilDAO {
         }
         catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
         finally{
-            try{
-                if (rs!=null) rs.close();
-                if (sqlQuery!=null) sqlQuery.close();
-                if (con!=null) con.close();
-            }
+            try{fermerConnexions(con,rs,sqlQuery);}
             catch (SQLException e){System.out.println("Exception : "+e);}
         }
         return null;
     }
     
     public Profil findById(int id){
-        Connection con=null;
-        ResultSet rs=null;
-        Statement sqlQuery=null;
-        
         try{
             //Chargement du pilote 
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -77,21 +65,13 @@ public class ProfilDAO {
         }
         catch (SQLException|ClassNotFoundException e){System.out.println("Exception : "+e);}
         finally{
-            try{
-                if (rs!=null) rs.close();
-                if (sqlQuery!=null) sqlQuery.close();
-                if (con!=null) con.close();
-            }
+            try{fermerConnexions(con,rs,sqlQuery);}
             catch (SQLException e){System.out.println("Exception : "+e);}
         }
         return null;
     }
     
     public Profil findByUsername(String username){
-        Connection con=null;
-        ResultSet rs=null;
-        Statement sqlQuery=null;
-        
         try{
             //Chargement du pilote 
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -108,19 +88,13 @@ public class ProfilDAO {
         }
         catch (SQLException |ClassNotFoundException e){System.out.println("Exception : "+e);}
         finally{
-            try{
-                if (rs!=null) rs.close();
-                if (sqlQuery!=null) sqlQuery.close();
-                if (con!=null) con.close();
-            }
+            try{fermerConnexions(con,rs,sqlQuery);}
             catch (SQLException e){System.out.println("Exception : "+e);}
         }
         return null;
     }
     
     public void create(Profil p){
-        Connection con=null;
-        Statement sqlQuery=null;
         try{            
             String requete;
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -153,19 +127,12 @@ public class ProfilDAO {
         }
         catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
         finally{
-            try{
-                if (sqlQuery!=null) sqlQuery.close();
-                if (con!=null) con.close();
-            }
+            try{fermerConnexions(con,sqlQuery);}
             catch (SQLException e){System.out.println("Exception : "+e);}
         }
     }
     
-    public void update(Profil p){ //pas tester
-        Connection con=null;
-        ResultSet rs=null;
-	Statement sqlQuery=null;
-
+    public void update(Profil p){
 	try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(CONNEXIONSTRING);
@@ -186,22 +153,12 @@ public class ProfilDAO {
 	}
         catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
 	finally{
-            try{
-                if (rs!=null) rs.close();
-                if (sqlQuery!=null) sqlQuery.close();
-                if (con!=null) con.close();
-            }
+            try{fermerConnexions(con,rs,sqlQuery);}
             catch (SQLException e){System.out.println("Exception : "+e);}
         }
     }
     
-    public void delete(Profil p){delete(p.getId());}
-    
     public void delete(int id){
-        Connection con=null;
-        ResultSet rs=null;
-	Statement sqlQuery=null;
-
 	try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(CONNEXIONSTRING);
@@ -214,28 +171,24 @@ public class ProfilDAO {
 	}
         catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
 	finally{
-            try{
-                if (rs!=null) rs.close();
-                if (sqlQuery!=null) sqlQuery.close();
-                if (con!=null) con.close();
-            }
+            try{fermerConnexions(con,rs,sqlQuery);}
             catch (SQLException e){System.out.println("Exception : "+e);}
         }
     }
+    public void delete(Profil p){delete(p.getId());}
     
     public ArrayList<Profil> findAll(String etablissement, boolean conducteur){
-        Connection con=null;
-        ResultSet rs=null;
-	Statement sqlQuery=null;
+        // Variable qui sera retourner et qui va contenir les profils
         ArrayList<Profil> output;
-
 	try{
             Class.forName("com.mysql.cj.jdbc.Driver");
+            //Faire a connexion
             con = DriverManager.getConnection(CONNEXIONSTRING);
+            //Construire la requete
             String requete;
-            requete = "SELECT * FROM `utilisateur` "
-                    + "WHERE `utilisateur`.`etablissement` = '"+etablissement+"'"
-                    + "AND   `utilisateur`.`conducteur` = '"+(conducteur?1:0)+"'";
+            requete = "SELECT * FROM `utilisateur` WHERE";
+            if(etablissement!=null)requete += " `utilisateur`.`etablissement` = '"+etablissement+"' AND";
+            requete += " `utilisateur`.`conducteur` = '"+(conducteur?1:0)+"'";
             // Executer la requete
             sqlQuery=con.createStatement();
             rs = sqlQuery.executeQuery(requete);
@@ -247,15 +200,14 @@ public class ProfilDAO {
 	}
         catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
 	finally{
-            try{
-                if (rs!=null) rs.close();
-                if (sqlQuery!=null) sqlQuery.close();
-                if (con!=null) con.close();
-            }
+            try{fermerConnexions(con,rs,sqlQuery);}
             catch (SQLException e){System.out.println("Exception : "+e);}
         }
         return null;
     }
+    public ArrayList<Profil> findAll(boolean conducteur){return findAll(null,conducteur);}
+    
+    // ====================== FONCTIONS PRIVEES ======================
     
     // Fonction qui recois un resultat de requete et construit un profil avec
     // Elle peut faire une exception sql car elle n'est pas traiter a l'interieur
@@ -273,11 +225,13 @@ public class ProfilDAO {
         p.setCodePostal(rs.getString("codePostal"));
         p.setEtablissement(rs.getString("etablissement"));
         p.setImageProfil(rs.getString("imageProfil"));
+        // Convertion des valeurs en boolean
         p.setNomPublic(("0".equals(rs.getString("nomPublic"))));
         p.setPrenomPublic(("0".equals(rs.getString("prenomPublic"))));
         p.setEmailPublic(("0".equals(rs.getString("emailPublic"))));
         p.setValide(("0".equals(rs.getString("valide"))));
         p.setConducteur(("0".equals(rs.getString("conducteur"))));
+        // Convertion valeurs des doubles
         if(rs.getString("note")!=null)p.setRating(Double.parseDouble(rs.getString("note")));
         if(rs.getString("tarif")!=null)p.setTarif(Double.parseDouble(rs.getString("tarif")));
         if(rs.getString("rayon")!=null)p.setRayon(Double.parseDouble(rs.getString("rayon")));
@@ -286,4 +240,13 @@ public class ProfilDAO {
             //p.setVehicule(v); // Achanger pour aller chercher le vehicule de la personne
         return p;
     }
+    
+    // Fonctions qui recouves et fermes les connexions ouvertes
+    // lors des traitements dans les fonctions public
+    private static void fermerConnexions(Connection c, ResultSet r, Statement s) throws SQLException{
+        if (c!=null) c.close();
+        if (r!=null) r.close();
+        if (s!=null) s.close();
+    }
+    private static void fermerConnexions(Connection c, Statement s) throws SQLException{fermerConnexions(c,null,s);}
 }

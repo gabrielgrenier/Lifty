@@ -112,5 +112,22 @@
         }
         %>
     </table>
+    <h1>
+        -----------------------
+        findAll(etablissement, conducteur)
+    </h1>
+    <table>
+        <%
+        ArrayList<Profil> profils2 = new ArrayList<>();
+        profils2 = profilDAO.findAll(true);
+        for(int i=0;i<profils2.size();i++){
+            %>
+            <tr>
+                <td><%=profils2.get(i).getUsername()+" et nom "+profils2.get(i).getId()%></td>
+            </tr>
+            <%
+        }
+        %>
+    </table>
 </body>
 </html>
