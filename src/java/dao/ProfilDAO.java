@@ -29,7 +29,6 @@ public class ProfilDAO {
         Connection con=null;
         ResultSet rs=null;
         Statement sqlQuery=null;
-        Profil p;
         
         try{
             //Chargement du pilote 
@@ -38,35 +37,12 @@ public class ProfilDAO {
             con = DriverManager.getConnection(CONNEXIONSTRING);
             String requete;
             requete = "SELECT * FROM utilisateur WHERE email = '"+email+"'";
+            // Executer la requete
             sqlQuery=con.createStatement();
-            rs = sqlQuery.executeQuery(requete);   
-            if(rs.next()){
-                p=new Profil();
-                p.setId(Integer.parseInt(rs.getString("ID")));
-                p.setUsername(rs.getString("username"));
-                p.setEmail(rs.getString("email"));
-                p.setNom(rs.getString("nom"));
-                p.setPrenom(rs.getString("prenom"));
-                p.setMotDePasse(rs.getString("motDePasse"));
-                p.setRole(Integer.parseInt(rs.getString("role")));
-                p.setDateInscription(rs.getString("dateInscription"));
-                p.setDateConnexion(rs.getString("dateConnexion"));
-                p.setCodePostal(rs.getString("codePostal"));
-                p.setEtablissement(rs.getString("etablissement"));
-                p.setImageProfil(rs.getString("imageProfil"));
-                p.setNomPublic(("0".equals(rs.getString("nomPublic"))));
-                p.setPrenomPublic(("0".equals(rs.getString("prenomPublic"))));
-                p.setEmailPublic(("0".equals(rs.getString("emailPublic"))));
-                p.setValide(("0".equals(rs.getString("valide"))));
-                p.setConducteur(("0".equals(rs.getString("conducteur"))));
-                if(rs.getString("note")!=null)p.setRating(Double.parseDouble(rs.getString("note")));
-                if(rs.getString("tarif")!=null)p.setTarif(Double.parseDouble(rs.getString("tarif")));
-                if(rs.getString("rayon")!=null)p.setRayon(Double.parseDouble(rs.getString("rayon")));
-                // Verification du conducteur
-                if("1".equals(rs.getString("conducteur")))p.setConducteur(true);
-                    //p.setVehicule(v); // Achanger pour aller chercher le vehicule de la personne
-                return p;
-            }else return null;
+            rs = sqlQuery.executeQuery(requete);
+            // Construire le profil avec le resultat recu de la requete
+            if(rs.next())return construireProfil(rs);
+            else return null;
         }
         catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
         finally{
@@ -84,7 +60,6 @@ public class ProfilDAO {
         Connection con=null;
         ResultSet rs=null;
         Statement sqlQuery=null;
-        Profil p;
         
         try{
             //Chargement du pilote 
@@ -93,35 +68,12 @@ public class ProfilDAO {
             con = DriverManager.getConnection(CONNEXIONSTRING);
             String requete;
             requete = "SELECT * FROM utilisateur WHERE ID = '"+id+"'";
+            // Executer la requete
             sqlQuery=con.createStatement();
-            rs = sqlQuery.executeQuery(requete);   
-            if(rs.next()){
-                p=new Profil();
-                p.setId(Integer.parseInt(rs.getString("ID")));
-                p.setUsername(rs.getString("username"));
-                p.setEmail(rs.getString("email"));
-                p.setNom(rs.getString("nom"));
-                p.setPrenom(rs.getString("prenom"));
-                p.setMotDePasse(rs.getString("motDePasse"));
-                p.setRole(Integer.parseInt(rs.getString("role")));
-                p.setDateInscription(rs.getString("dateInscription"));
-                p.setDateConnexion(rs.getString("dateConnexion"));
-                p.setCodePostal(rs.getString("codePostal"));
-                p.setEtablissement(rs.getString("etablissement"));
-                p.setImageProfil(rs.getString("imageProfil"));
-                p.setNomPublic(("0".equals(rs.getString("nomPublic"))));
-                p.setPrenomPublic(("0".equals(rs.getString("prenomPublic"))));
-                p.setEmailPublic(("0".equals(rs.getString("emailPublic"))));
-                p.setValide(("0".equals(rs.getString("valide"))));
-                p.setConducteur(("0".equals(rs.getString("conducteur"))));
-                if(rs.getString("note")!=null)p.setRating(Double.parseDouble(rs.getString("note")));
-                if(rs.getString("tarif")!=null)p.setTarif(Double.parseDouble(rs.getString("tarif")));
-                if(rs.getString("rayon")!=null)p.setRayon(Double.parseDouble(rs.getString("rayon")));
-                // Verification du conducteur
-                if("1".equals(rs.getString("conducteur")))p.setConducteur(true);
-                    //p.setVehicule(v); // Achanger pour aller chercher le vehicule de la personne
-                return p;
-            }else return null;
+            rs = sqlQuery.executeQuery(requete);
+            // Construire le profil avec le resultat recu de la requete
+            if(rs.next())return construireProfil(rs);
+            else return null;
         }
         catch (SQLException|ClassNotFoundException e){System.out.println("Exception : "+e);}
         finally{
@@ -139,7 +91,6 @@ public class ProfilDAO {
         Connection con=null;
         ResultSet rs=null;
         Statement sqlQuery=null;
-        Profil p;
         
         try{
             //Chargement du pilote 
@@ -148,35 +99,12 @@ public class ProfilDAO {
             con = DriverManager.getConnection(CONNEXIONSTRING);
             String requete;
             requete = "SELECT * FROM utilisateur WHERE username = '"+username+"'";
+            // Executer la requete
             sqlQuery=con.createStatement();
-            rs = sqlQuery.executeQuery(requete);   
-            if(rs.next()){
-                p=new Profil();
-                p.setId(Integer.parseInt(rs.getString("ID")));
-                p.setUsername(rs.getString("username"));
-                p.setEmail(rs.getString("email"));
-                p.setNom(rs.getString("nom"));
-                p.setPrenom(rs.getString("prenom"));
-                p.setMotDePasse(rs.getString("motDePasse"));
-                p.setRole(Integer.parseInt(rs.getString("role")));
-                p.setDateInscription(rs.getString("dateInscription"));
-                p.setDateConnexion(rs.getString("dateConnexion"));
-                p.setCodePostal(rs.getString("codePostal"));
-                p.setEtablissement(rs.getString("etablissement"));
-                p.setImageProfil(rs.getString("imageProfil"));
-                p.setNomPublic(("0".equals(rs.getString("nomPublic"))));
-                p.setPrenomPublic(("0".equals(rs.getString("prenomPublic"))));
-                p.setEmailPublic(("0".equals(rs.getString("emailPublic"))));
-                p.setValide(("0".equals(rs.getString("valide"))));
-                p.setConducteur(("0".equals(rs.getString("conducteur"))));
-                if(rs.getString("note")!=null)p.setRating(Double.parseDouble(rs.getString("note")));
-                if(rs.getString("tarif")!=null)p.setTarif(Double.parseDouble(rs.getString("tarif")));
-                if(rs.getString("rayon")!=null)p.setRayon(Double.parseDouble(rs.getString("rayon")));
-                // Verification du conducteur
-                if("1".equals(rs.getString("conducteur")))p.setConducteur(true);
-                    //p.setVehicule(v); // Achanger pour aller chercher le vehicule de la personne
-                return p;
-            }else return null;
+            rs = sqlQuery.executeQuery(requete);
+            // Construire le profil avec le resultat recu de la requete
+            if(rs.next())return construireProfil(rs);
+            else return null;
         }
         catch (SQLException |ClassNotFoundException e){System.out.println("Exception : "+e);}
         finally{
@@ -242,6 +170,7 @@ public class ProfilDAO {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(CONNEXIONSTRING);
             String requete;
+            // Faire le requete qui va aller updater tous les champs 
             requete = "UPDATE `utilisateur` SET `ID` = '"+p.getId()+"', `username`='"+p.getUsername()+"', "
                     + "`email`='"+p.getEmail()+"',                      `motDePasse` = '"+p.getMotDePasse()+"',             `nom` = '"+p.getNom()+"', "
                     + "`prenom`='"+p.getPrenom()+"',                    `role` = '"+p.getRole()+"',                         `conducteur` = '"+(p.isConducteur()?1:0)+"', "
@@ -251,6 +180,7 @@ public class ProfilDAO {
                     + "`rayon`='"+p.getRayon()+"',                      `tarif` = '"+p.getTarif()+"',                       `imageProfil` = "+(p.getImageProfil()!=null?"\'"+p.getImageProfil()+"\'":"NULL")+", "
                     + "`vehiculeID`="+(p.getVehicule()!=null?"\'"+p.getVehicule().getId()+"\'":"NULL")+""
                     + " WHERE `utilisateur`.`ID` = '"+p.getId()+"';";
+            // Executer la requete
             PreparedStatement statement = con.prepareStatement(requete);
             statement.executeUpdate();
 	}
@@ -278,6 +208,7 @@ public class ProfilDAO {
             String requete;
             requete = "DELETE FROM `utilisateur` "
                     + "WHERE `utilisateur`.`ID` = '"+id+"';";
+            // Executer la requete
             PreparedStatement statement = con.prepareStatement(requete);
             statement.executeUpdate();
 	}
@@ -296,7 +227,6 @@ public class ProfilDAO {
         Connection con=null;
         ResultSet rs=null;
 	Statement sqlQuery=null;
-        int i=0;
         ArrayList<Profil> output;
 
 	try{
@@ -311,34 +241,8 @@ public class ProfilDAO {
             rs = sqlQuery.executeQuery(requete);
             // Definir un tableau de la du nombres de champs recu
             output = new ArrayList<>();
-            while(rs.next()){
-                output.add(new Profil());
-                output.get(i).setId(Integer.parseInt(rs.getString("ID")));
-                output.get(i).setUsername(rs.getString("username"));
-                output.get(i).setEmail(rs.getString("email"));
-                output.get(i).setNom(rs.getString("nom"));
-                output.get(i).setPrenom(rs.getString("prenom"));
-                output.get(i).setMotDePasse(rs.getString("motDePasse"));
-                output.get(i).setRole(Integer.parseInt(rs.getString("role")));
-                output.get(i).setDateInscription(rs.getString("dateInscription"));
-                output.get(i).setDateConnexion(rs.getString("dateConnexion"));
-                output.get(i).setCodePostal(rs.getString("codePostal"));
-                output.get(i).setEtablissement(rs.getString("etablissement"));
-                output.get(i).setImageProfil(rs.getString("imageProfil"));
-                output.get(i).setNomPublic(("0".equals(rs.getString("nomPublic"))));
-                output.get(i).setPrenomPublic(("0".equals(rs.getString("prenomPublic"))));
-                output.get(i).setEmailPublic(("0".equals(rs.getString("emailPublic"))));
-                output.get(i).setValide(("0".equals(rs.getString("valide"))));
-                output.get(i).setConducteur(("0".equals(rs.getString("conducteur"))));
-                if(rs.getString("note")!=null)output.get(i).setRating(Double.parseDouble(rs.getString("note")));
-                if(rs.getString("tarif")!=null)output.get(i).setTarif(Double.parseDouble(rs.getString("tarif")));
-                if(rs.getString("rayon")!=null)output.get(i).setRayon(Double.parseDouble(rs.getString("rayon")));
-                // Verification du conducteur
-                if("1".equals(rs.getString("conducteur")))output.get(i).setConducteur(true);
-                    //p.setVehicule(v); // Achanger pour aller chercher le vehicule de la personne
-                // Incrementer l'index
-                i++;
-            }
+            // Construire un profil et le mettre dans la liste pour chaque donnees recu
+            while(rs.next()) output.add(construireProfil(rs));
             return output;
 	}
         catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
@@ -351,5 +255,35 @@ public class ProfilDAO {
             catch (SQLException e){System.out.println("Exception : "+e);}
         }
         return null;
+    }
+    
+    // Fonction qui recois un resultat de requete et construit un profil avec
+    // Elle peut faire une exception sql car elle n'est pas traiter a l'interieur
+    private static Profil construireProfil(ResultSet rs) throws SQLException{
+        Profil p=new Profil();
+        p.setId(Integer.parseInt(rs.getString("ID")));
+        p.setUsername(rs.getString("username"));
+        p.setEmail(rs.getString("email"));
+        p.setNom(rs.getString("nom"));
+        p.setPrenom(rs.getString("prenom"));
+        p.setMotDePasse(rs.getString("motDePasse"));
+        p.setRole(Integer.parseInt(rs.getString("role")));
+        p.setDateInscription(rs.getString("dateInscription"));
+        p.setDateConnexion(rs.getString("dateConnexion"));
+        p.setCodePostal(rs.getString("codePostal"));
+        p.setEtablissement(rs.getString("etablissement"));
+        p.setImageProfil(rs.getString("imageProfil"));
+        p.setNomPublic(("0".equals(rs.getString("nomPublic"))));
+        p.setPrenomPublic(("0".equals(rs.getString("prenomPublic"))));
+        p.setEmailPublic(("0".equals(rs.getString("emailPublic"))));
+        p.setValide(("0".equals(rs.getString("valide"))));
+        p.setConducteur(("0".equals(rs.getString("conducteur"))));
+        if(rs.getString("note")!=null)p.setRating(Double.parseDouble(rs.getString("note")));
+        if(rs.getString("tarif")!=null)p.setTarif(Double.parseDouble(rs.getString("tarif")));
+        if(rs.getString("rayon")!=null)p.setRayon(Double.parseDouble(rs.getString("rayon")));
+        // Verification du conducteur
+        if("1".equals(rs.getString("conducteur")))p.setConducteur(true);
+            //p.setVehicule(v); // Achanger pour aller chercher le vehicule de la personne
+        return p;
     }
 }
