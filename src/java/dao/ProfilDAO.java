@@ -1,4 +1,3 @@
-
 package dao;
 /* ==== INFO ====
 
@@ -6,78 +5,180 @@ package dao;
  * date : 19 septembre 2018
  * cour : Développement de projet informatique
  * College Rosemont
+ *
+ * ==== A faire ==== 
+ * Arrangee le find pour assigner le vehicule au profil
 */
-import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import classe.Profil;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
 
-public class ProfilDAO {
-    
+public class ProfilDAO extends Dao{
     // Trouver un profil grace au email
-    public static Profil find(String email){
-        Connection con=null;
-        ResultSet rs=null;
-        Statement sqlQuery=null;
-        Profil p = null;
-        
+    public static Profil findByEmail(String email){
+        String requete;
         try{
             //Chargement du pilote 
-            Class.forName("com.mysql.jc.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             //Ouverture de connexion 
-            con = DriverManager.getConnection("jdbc:mysql://localhost/lifty?user=root&password=Admin");
-            String requete;
-            requete = "SELECT * FROM compte WHERE email = "+email;
+            con = DriverManager.getConnection(CONNEXIONSTRING);
+            requete = "SELECT * FROM utilisateur WHERE email = '"+email+"'";
+            // Executer la requete
             sqlQuery=con.createStatement();
             rs = sqlQuery.executeQuery(requete);
-            if(rs.next()){
-                p=new Profil(
-                    rs.getInt("ID"),
-                    rs.getString("email"),
-                    rs.getString("nom"),
-                    rs.getString("prenom"),
-                    rs.getString("motDePasse"),
-                    rs.getInt("role"),
-                    rs.getString("dateInscription"),
-                    rs.getString("dateConnexion"),
-                    rs.getString("codePostal"),
-                    rs.getString("etablissement"),
-                    rs.getString("imageProfil"),
-                    rs.getBoolean("nomPublic"),
-                    rs.getBoolean("prenomPublic"),
-                    rs.getBoolean("emailPublic"),
-                    rs.getBoolean("valide"),
-                    rs.getBoolean("conducteur"),
-                    rs.getDouble("note"),
-                    rs.getDouble("tarif"),
-                    rs.getDouble("rayon")
-                );
-                return new Profil(5, "email", "Nom", "Prenom","mot", 1,  "123", "123", "123", "123", "123", false, false, false, false, false,5,23, 22);
-            }
-            //System.out.println(p);
-            if("1".equals(rs.getString("conducteur"))){
-                p.setConducteur(true);
-                //p.setVehicule(v); // Achanger pour aller chercher le vehicule de la personne
-            }
+            // Construire le profil avec le resultat recu de la requete
+            if(rs.next())return (Profil)construireObject(rs,new Profil());
+            else return null;
         }
-        catch (SQLException e){
-            //ystem.out.println("Exception : "+e);
-            return new Profil(5, "email", "Nom", "Prenom","mot", 1,  "123", "123", "123", "123", "123", false, false, false, false, false,5,23, 22);
-        }
-        catch (ClassNotFoundException e){System.out.println("Exception : "+e);}
-        finally{
-            try{
-                if (rs!=null) rs.close();
-                if (sqlQuery!=null) sqlQuery.close();
-                if (con!=null) con.close();
-            }
-            catch (SQLException e){
-                //System.out.println("Exception : "+e);
-                return new Profil(5, "email", "Nom", "Prenom","mot", 1,  "123", "123", "123", "123", "123", false, false, false, false, false,5,23, 22);
-            }
-        }
-        return p;
+        catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+	finally{fermerConnexions(con,rs,sqlQuery);}
+        return null;
     }
+    
+    @Override
+    public Profil findById(int id) {
+        String requete;
+        try{
+            //Chargement du pilote 
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            //Ouverture de connexion 
+            con = DriverManager.getConnection(CONNEXIONSTRING);
+            requete = "SELECT * FROM utilisateur WHERE ID = '"+id+"'";
+            // Executer la requete
+            sqlQuery=con.createStatement();
+            rs = sqlQuery.executeQuery(requete);
+            // Construire le profil avec le resultat recu de la requete
+            if(rs.next())return (Profil)construireObject(rs,new Profil());
+            else return null;
+        }
+        catch (SQLException|ClassNotFoundException e){System.out.println("Exception : "+e);}
+	finally{fermerConnexions(con,rs,sqlQuery);}
+        return null;
+    }
+    
+    public Profil findByUsername(String username){
+        String requete;
+        try{
+            //Chargement du pilote 
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            //Ouverture de connexion 
+            con = DriverManager.getConnection(CONNEXIONSTRING);
+            requete = "SELECT * FROM utilisateur WHERE username = '"+username+"'";
+            // Executer la requete
+            sqlQuery=con.createStatement();
+            rs = sqlQuery.executeQuery(requete);
+            // Construire le profil avec le resultat recu de la requete
+            if(rs.next())return (Profil)construireObject(rs,new Profil());
+            else return null;
+        }
+        catch (SQLException |ClassNotFoundException e){System.out.println("Exception : "+e);}
+	finally{fermerConnexions(con,rs,sqlQuery);}
+        return null;
+    }
+    
+    @Override
+    public void create(Object o) {
+        // Verifie que l'objet sois un Profil
+        if(o instanceof Profil){
+            // Caster l<objet en Profil
+            Profil p=(Profil)o;
+            String requete;
+            try{
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                //Ouverture de connexion 
+                con = DriverManager.getConnection(CONNEXIONSTRING);
+                sqlQuery=con.createStatement();
+                requete = "INSERT INTO `utilisateur` (`ID`, `username`, `email`, `motDePasse`, "
+                        + "`nom`, `prenom`, `role`, `conducteur`, "
+                        + "`note`, `codePostal`, `emailPublic`, `nomPublic`, "
+                        + "`prenomPublic`, `valide`, `dateInscription`, `dateConnexion`, "
+                        + "`etablissement`, `rayon`, `tarif`, `imageProfil`, "
+                        + "`vehiculeID`) "
+                        + "VALUES (\'"+p.getId()+"\', \'"+p.getUsername()+"\', \'"+p.getEmail()+"\', \'"+p.getMotDePasse()+"\',"
+                        + " \'"+p.getNom()+"\', \'"+p.getPrenom()+"\', \'"+p.getRole()+"\', \'"+(p.isConducteur()?1:0)+"\',"
+                        + " \'"+p.getRating()+"\', \'"+p.getCodePostal()+"\', \'"+(p.isPublicEmail()?1:0)+"\', \'"+(p.isPublicNom()?1:0)+"\',"
+                        + " \'"+(p.isPublicPrenom()?1:0)+"\', \'"+(p.isValide()?1:0)+"\', \'"+p.getDateInscription()+"\', \'"+p.getDateConnexion()+"\',"
+                        + " "+(p.getEtablissement()!=null?"\'"+p.getEtablissement()+"\'":"NULL")+", \'"+p.getRayon()+"\', \'"+p.getTarif()+"\', "+(p.getImageProfil()!=null?"\'"+p.getImageProfil()+"\'":"NULL")+", "
+                        + ""+(p.getVehicule()!=null?"\'"+p.getVehicule().getId()+"\'":"NULL")+")";
+                sqlQuery.executeUpdate(requete);
+            }
+            catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+            finally{fermerConnexions(con,rs,sqlQuery);}
+        }
+    }
+    
+    @Override
+    public void update(Object o) {
+        // Verifie que l'objet sois un Profil
+        if(o instanceof Profil){
+            String requete;
+            // Caster l<objet en Profil
+            Profil p = (Profil)o;
+            try{
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                con = DriverManager.getConnection(CONNEXIONSTRING);
+                // Faire le requete qui va aller updater tous les champs 
+                requete = "UPDATE `utilisateur` SET `ID` = '"+p.getId()+"', `username`='"+p.getUsername()+"', "
+                        + "`email`='"+p.getEmail()+"',                      `motDePasse` = '"+p.getMotDePasse()+"',             `nom` = '"+p.getNom()+"', "
+                        + "`prenom`='"+p.getPrenom()+"',                    `role` = '"+p.getRole()+"',                         `conducteur` = '"+(p.isConducteur()?1:0)+"', "
+                        + "`note`='"+p.getRating()+"',                      `codePostal` = '"+p.getCodePostal()+"',             `emailPublic` = '"+(p.isPublicEmail()?1:0)+"', "
+                        + "`nomPublic`='"+(p.isPublicNom()?1:0)+"',         `prenomPublic` = '"+(p.isPublicPrenom()?1:0)+"',    `valide` = '"+(p.isValide()?1:0)+"', "
+                        + "`dateInscription`='"+p.getDateInscription()+"',  `dateConnexion` = '"+p.getDateConnexion()+"',       `etablissement` = "+(p.getEtablissement()!=null?"\'"+p.getEtablissement()+"\'":"NULL")+", "
+                        + "`rayon`='"+p.getRayon()+"',                      `tarif` = '"+p.getTarif()+"',                       `imageProfil` = "+(p.getImageProfil()!=null?"\'"+p.getImageProfil()+"\'":"NULL")+", "
+                        + "`vehiculeID`="+(p.getVehicule()!=null?"\'"+p.getVehicule().getId()+"\'":"NULL")+""
+                        + " WHERE `utilisateur`.`ID` = '"+p.getId()+"';";
+                // Executer la requete
+                PreparedStatement statement = con.prepareStatement(requete);
+                statement.executeUpdate();
+            }
+            catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+            finally{fermerConnexions(con,rs,sqlQuery);}
+        }
+    }
+    
+    @Override
+    public void delete(int id) {
+        String requete;
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(CONNEXIONSTRING);
+            requete = "DELETE FROM `utilisateur` "
+                    + "WHERE `utilisateur`.`ID` = '"+id+"';";
+            // Executer la requete
+            PreparedStatement statement = con.prepareStatement(requete);
+            statement.executeUpdate();
+        }
+        catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+        finally{fermerConnexions(con,rs,sqlQuery);}
+    }
+    public void delete(Profil p){delete(p.getId());}
+    
+    public ArrayList<Profil> findAll(String etablissement, boolean conducteur){
+        // Variable qui sera retourner et qui va contenir les profils
+        ArrayList<Profil> output;
+        String requete;
+	try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            //Faire a connexion
+            con = DriverManager.getConnection(CONNEXIONSTRING);
+            //Construire la requete
+            requete = "SELECT * FROM `utilisateur` WHERE";
+            if(etablissement!=null)requete += " `utilisateur`.`etablissement` = '"+etablissement+"' AND";
+            requete += " `utilisateur`.`conducteur` = '"+(conducteur?1:0)+"'";
+            // Executer la requete
+            sqlQuery=con.createStatement();
+            rs = sqlQuery.executeQuery(requete);
+            // Definir un tableau de la du nombres de champs recu
+            output = new ArrayList<>();
+            // Construire un profil et le mettre dans la liste pour chaque donnees recu
+            while(rs.next()) output.add((Profil)construireObject(rs,new Profil()));
+            return output;
+	}
+        catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+	finally{fermerConnexions(con,rs,sqlQuery);}
+        return null;
+    }
+    public ArrayList<Profil> findAll(boolean conducteur){return findAll(null,conducteur);}
 }
