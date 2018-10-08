@@ -49,9 +49,9 @@
             dao.create(100, 2, "mardi","10:12:12", "15:12:12");
             
             out.println("<hr>");
-            out.println("<h2>Test : createFromOBJ(Jour j)</h2>");
+            out.println("<h2>Test : create(Jour j)</h2>");
             Jour objTest1 = new Jour(101, 2, "","10:10:10", "16:16:16");
-            dao.createFromOBJ(objTest1);
+            dao.create(objTest1);
            
             out.println("<hr>");
             out.println("<h2>Test : update(Jour j)</h2>");

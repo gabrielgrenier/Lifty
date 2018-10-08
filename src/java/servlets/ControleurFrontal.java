@@ -6,6 +6,7 @@
 package servlets;
 
 import controleurs.AbstractAction;
+import controleurs.ConnexionAction;
 import controleurs.DefaultAction;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -38,6 +39,9 @@ public class ControleurFrontal extends HttpServlet {
             actionAFaire = "";
         }
         switch (actionAFaire) {
+            case "Connexion":
+                action = new ConnexionAction();
+                break;
             default :
                 action = new DefaultAction();
         }
