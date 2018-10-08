@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class ProfilDAO extends Dao{
     // Trouver un profil grace au email
-    public static Profil findByEmail(String email){
+    public Profil findByEmail(String email){
         String requete;
         try{
             //Chargement du pilote 
@@ -36,6 +36,7 @@ public class ProfilDAO extends Dao{
 	finally{fermerConnexions(con,rs,sqlQuery);}
         return null;
     }
+    public Profil findByEmail(Profil p){return findByEmail(p.getEmail());}
     
     @Override
     public Profil findById(int id) {
@@ -57,6 +58,7 @@ public class ProfilDAO extends Dao{
 	finally{fermerConnexions(con,rs,sqlQuery);}
         return null;
     }
+    public Profil findById(Profil p){return findById(p.getId());}
     
     public Profil findByUsername(String username){
         String requete;

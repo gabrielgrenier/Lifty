@@ -1,5 +1,14 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>    
+<%
+    // MARCHE PAS PARCE QUE LA VARIABLE NE PEUX NE PAS AVOIR ETE INITIALISER
+    // Initialisation des variables
+    //String emailCon, pwdCon = "";
+    // Gestions des valeurs entrees
+    //if(request.getParameter("emailCon")!=null)emailCon=request.getParameter("emailCon");
+    //if(request.getParameter("pwdCon")!=null)pwdCon=request.getParameter("pwdCon");
+    %>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menu" 
+
     <div class="container-fluid">
         <div clas="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-main">
@@ -22,15 +31,25 @@
         <form method="post" action="">
             <div class="container" id="panelLogin">
                 <div class="form-group">
-                <label for="emailCon">Courriel:</label>
-                <input type="emailCon" class="form-control" id="emailCon" placeholder ='JDoe@gmail.com' required>
+                    <label for="emailCon">Courriel:</label>
+                    <input type="emailCon" class="form-control" id="emailCon" name="emailCon" placeholder ='JDoe@gmail.com' value="<%=(request.getParameter("emailCon")!=null)?request.getParameter("emailCon"):""%>" required>
                 </div>
                 <div class="form-group">
                   <label for="pwdCon">Mot de passe:</label>
-                  <input type="password" class="form-control" id="pwdCon" placeholder='Mot de passe' required>
+                  <input type="password" class="form-control" id="pwdCon" name="pwdCon" placeholder='Mot de passe' value="<%=(request.getParameter("pwdCon")!=null)?request.getParameter("pwdCon"):""%>" required>
+                </div>
+                <%//DEVERAIS APPARAITRE EN ROUGE%>
+                <div class="erreur">
+                    <%
+                    // Afficher le message d<erreur si il y en a un
+                    if(request.getAttribute("errCon")!=null){out.print(String.valueOf(request.getAttribute("errCon")));}
+                    %>
                 </div>
                 <div class="form-group">
                     <label id='lblLink'><u>S'insrire à Lifty</u></label>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" name="action" value="Connexion"/>
                 </div>
                 <div class="form-group">
                     <button type="submit" name="btnConnexion" id="btnConnexion" class="btn btn-primary">Se connecter</button>
