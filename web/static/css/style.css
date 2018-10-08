@@ -193,7 +193,7 @@ footer p{
     float : right;
     position:absolute;
     margin-top: 10px;
-    background-color: rgba(0, 0, 0, 0.6);;
+    background-color: rgba(0, 0, 0, 0.6);
     border-style: none;
     box-shadow: 0px 2px 94px 0px rgba(0,0,0,0.75);
     color : white;
@@ -212,7 +212,7 @@ footer p{
     float : right;
     position:absolute;
     margin-top: 10px;
-    background-color: rgba(0, 0, 0, 0.6);;
+    background-color: rgba(0, 0, 0, 0.6);
     border-style: none;
     box-shadow: 0px 2px 94px 0px rgba(0,0,0,0.75);
     color : white;
@@ -220,3 +220,44 @@ footer p{
 #panelInscription button{
    width: 50%;
 }
+/** ---------------Recherche---------------*/
+#recherchePanel{
+    background: url("../images/routeMontage.jpeg") no-repeat center center fixed;
+    display: table;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-size: cover;
+    z-index: -1;
+}
+#recherchePanel label{
+    color : white;
+}
+#recherchePanel #filtre{
+    display: inline-block;
+    margin-top:5px;
+}
+#recherchePanel #mapContainer{
+    background : rgba(0, 0, 0, 0.6);
+    margin : 10% 5% 0 5%;
+    height: 570px;
+}
+#recherchePanel #mapRecherche{
+    height: 500px;
+    width: 94%;
+    margin : 0 0 3% 3%;
+   
+}
+#recherchePanel #tblSecteur{
+    background : rgba(0, 0, 0, 0.6);
+    margin : 5% 5% 40% 5%;
+    height: 250px;
+}
+#recherchePanel table {
+    font-family: Helvetica;
+    border-collapse: collapse;
+    width: 94%;
+    margin : 3% 0 3% 3%;
+    background-color: white;
+}
+
