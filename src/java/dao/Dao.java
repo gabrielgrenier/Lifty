@@ -1,5 +1,6 @@
 package dao;
 
+import classe.Jour;
 import classe.Profil;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -31,7 +32,7 @@ public abstract class Dao {
     
     // Fonction qui recois un resultat de requete et construit un profil avec
     // Elle peut faire une exception sql car elle n'est pas traiter a l'interieur
-    protected static Object construireObject(ResultSet rs, Object o) throws SQLException{
+    protected static Object construireObjet(ResultSet rs, Object o) throws SQLException{
         if(o instanceof Profil){
             Profil p=new Profil();
             p.setId(Integer.parseInt(rs.getString("ID")));
@@ -60,6 +61,16 @@ public abstract class Dao {
             if("1".equals(rs.getString("conducteur")))p.setConducteur(true);
                 //p.setVehicule(v); // Achanger pour aller chercher le vehicule de la personne
             return (Profil)p;
+        }
+        if(o instanceof Jour){
+            Jour j = new Jour();
+            j.setId(rs.getInt("ID"));
+            j.setUserID(rs.getInt("userID"));
+            j.setJour(rs.getString("journee"));
+            j.setDebut(""+rs.getTime("debut"));
+            j.setFin(""+rs.getTime("fin"));
+            return (Jour)j;
+        
         }
         return null;
     }

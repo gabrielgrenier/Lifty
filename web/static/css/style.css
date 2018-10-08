@@ -182,6 +182,9 @@ footer p{
     border-radius: 0px;
     box-shadow: none;
 }
+.erreur *{
+    color : red;
+}
 /** ---------------Login---------------*/
 #panelLogin {
     display: none;
