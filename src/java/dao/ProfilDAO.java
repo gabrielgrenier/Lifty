@@ -29,7 +29,7 @@ public class ProfilDAO extends Dao{
             sqlQuery=con.createStatement();
             rs = sqlQuery.executeQuery(requete);
             // Construire le profil avec le resultat recu de la requete
-            if(rs.next())return (Profil)construireObject(rs,new Profil());
+            if(rs.next())return (Profil)construireObjet(rs,new Profil());
             else return null;
         }
         catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
@@ -51,7 +51,7 @@ public class ProfilDAO extends Dao{
             sqlQuery=con.createStatement();
             rs = sqlQuery.executeQuery(requete);
             // Construire le profil avec le resultat recu de la requete
-            if(rs.next())return (Profil)construireObject(rs,new Profil());
+            if(rs.next())return (Profil)construireObjet(rs,new Profil());
             else return null;
         }
         catch (SQLException|ClassNotFoundException e){System.out.println("Exception : "+e);}
@@ -72,7 +72,7 @@ public class ProfilDAO extends Dao{
             sqlQuery=con.createStatement();
             rs = sqlQuery.executeQuery(requete);
             // Construire le profil avec le resultat recu de la requete
-            if(rs.next())return (Profil)construireObject(rs,new Profil());
+            if(rs.next())return (Profil)construireObjet(rs,new Profil());
             else return null;
         }
         catch (SQLException |ClassNotFoundException e){System.out.println("Exception : "+e);}
@@ -175,7 +175,7 @@ public class ProfilDAO extends Dao{
             // Definir un tableau de la du nombres de champs recu
             output = new ArrayList<>();
             // Construire un profil et le mettre dans la liste pour chaque donnees recu
-            while(rs.next()) output.add((Profil)construireObject(rs,new Profil()));
+            while(rs.next()) output.add((Profil)construireObjet(rs,new Profil()));
             return output;
 	}
         catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
