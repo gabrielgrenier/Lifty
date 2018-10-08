@@ -15,7 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="shortcut icon" href="#">
-    <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="./static/css/style.css" type="text/css"/>
     <script> 
     $(document).ready(function(){
         $("#panelLogin").animate({right: '10px', width : '300px'});
@@ -60,26 +60,30 @@
             <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
+                    <th></th>
+                    <th>Utilisateur</th>
+                    <th>Destination</th>
+                    <th>Note</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
+                    <td></td>
+                    <td>SLav01</td>
+                    <td>Rosemont</td>
+                    <td>4.2</td>
                   </tr>
                   <tr>
-                    <td>Mary</td>
-                    <td>Moe</td>
-                    <td>mary@example.com</td>
+                    <td></td>
+                    <td>MCha01</td>
+                    <td>Rosemont</td>
+                    <td>3.4</td>
                   </tr>
                   <tr>
-                    <td>July</td>
-                    <td>Dooley</td>
-                    <td>july@example.com</td>
+                    <td></td>
+                    <td>GBra</td>
+                    <td>Rosemont</td>
+                    <td>4</td>
                   </tr>
                 </tbody>
               </table>
