@@ -3,7 +3,6 @@ package dao;
 import java.sql.SQLException;
 import classe.Jour;
 import classe.Profil;
-import static dao.Dao.con;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Time;

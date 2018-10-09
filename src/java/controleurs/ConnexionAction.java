@@ -3,10 +3,6 @@ package controleurs;
 import classe.Profil;
 import dao.ProfilDAO;
 
-/**
- *
- * @author mchausse
- */
 public class ConnexionAction extends AbstractAction {
 
     @Override

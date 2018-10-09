@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Lifty/src/java/controleurs/ConnexionAction.java</file>
             <file>file:/C:/Lifty/src/java/classe/Vehicule.java</file>
             <file>file:/C:/Lifty/src/java/dao/Dao.java</file>
-            <file>file:/C:/Lifty/src/java/classe/Profil.java</file>
             <file>file:/C:/Lifty/src/java/dao/ProfilDAO.java</file>
             <file>file:/C:/Lifty/web/tests/testProfilDAO.jsp</file>
             <file>file:/C:/Lifty/src/java/dao/JourDAO.java</file>
+            <file>file:/C:/Lifty/web/tests/testJourDAO.jsp</file>
         </group>
     </open-files>
 </project-private>
