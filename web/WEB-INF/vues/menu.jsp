@@ -28,7 +28,7 @@
                 <li><a class="#" id="login">Connexion</a></li>
             </ul>
         </div>
-        <form method="post" action="">
+        <form method="post" action="login">
             <div class="container" id="panelLogin">
                 <div class="form-group">
                     <label for="emailCon">Courriel:</label>
