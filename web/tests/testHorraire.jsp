@@ -113,6 +113,7 @@
             </thead>
             <tbody>
             <%
+            int[] constat = new int[5]; //refaire avec string qui ajoute le jour et le nombre d'heures
             for(int x=8; x<19; x++){ //Création des colonnes dans la table
             %>
             <tr>
@@ -123,11 +124,14 @@
                     int fin1 = Integer.valueOf(listHorraire1.get(y).getFin().split(":")[0]);
                     int debut2 = Integer.valueOf(listHorraire2.get(y).getDebut().split(":")[0]);
                     int fin2 = Integer.valueOf(listHorraire2.get(y).getFin().split(":")[0]);
-            %>
+            %>  
                     <td style="
                         <%  //Style de la case
-                            //if(x>=debut1 && x<=fin1 && x>=debut2 && x<=fin2 && debut1==debut2 && fin1==fin2){out.println("background-color:#ADFF9E");} //si les jours sont identique
-                            if(x>=debut1 && x<=fin1 && debut1>=debut2 && debut1<fin2 && debut2>=debut1){out.println("background-color:#ADFF9E");}
+                            //if(x>=debut1 && x<=fin1 && x>=debut2 && x<=fin2 && debut1==debut2 && fin1==fin2){ out.println("background-color:#ADFF9E");} 
+                            if(x>=debut1 && x<=fin1 && debut1>=debut2 && debut1<fin2 && debut2>=debut1){
+                                out.println("background-color:#ADFF9E");
+                                constat[y] = Math.abs((debut1+fin1) - (debut2+fin2));
+                            }
                             else if(x>=debut1 && x<=fin1){out.println("background-color:none");}
                             else{out.println("background-color:lightgrey");}
                         %>
@@ -147,6 +151,11 @@
             <% } %>
             </tbody>
         </table>
-            <!-- Ajout d'un constat si les jours ne sont pas pareil -->
+        <h2>Constat : </h2>
+        <% 
+            for(int i=0; i<constat.length; i++){
+                if(constat[i]!=0){out.println("<h4 style='color:red;'>Le jour#"+i+" a un temps d'attente de "+constat[i]+"h</h4>");}
+            }
+        %>
     </body>
 </html>
