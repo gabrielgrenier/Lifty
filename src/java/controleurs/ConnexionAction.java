@@ -3,10 +3,6 @@ package controleurs;
 import classe.Profil;
 import dao.ProfilDAO;
 
-/**
- *
- * @author mchausse
- */
 public class ConnexionAction extends AbstractAction {
 
     @Override
@@ -24,7 +20,11 @@ public class ConnexionAction extends AbstractAction {
             // Verifier si le email a ete trouver
             if(p!=null)
                 // Verifier si les deux mots de passes sont les memes
-                if(p.getMotDePasse().equals(pwd))return "tempRecherche";
+                if(p.getMotDePasse().equals(pwd)){
+                    // Retouner setter une variable de connexion pour compensser la session pour le moment
+                    request.setAttribute("connecte",""+p.getId());
+                    return "recherche";
+                }
                 else invalide();
             else invalide();
                 
