@@ -20,6 +20,7 @@
     $(document).ready(function(){
         $("#panelLogin").animate({right: '10px', width : '300px'});
         $("#panelInscription").animate({right: '10px', width : '300px'});
+        $("#panelProfil").animate({right: '10px', width : '300px'});
         
         $("#login").click(function(){
             if($("#panelInscription").is(':visible')){$("#panelInscription").animate({height:'toggle'});}
@@ -33,6 +34,10 @@
         $("#lblLink").click(function(){
             if($("#panelLogin").is(':visible')){$("#panelLogin").animate({height:'toggle'});}
             $("#panelInscription").animate({height:'toggle'});
+        });
+        
+        $("#profil").click(function(){
+            $("#panelProfil").animate({height:'toggle'});
         });
     });
     </script>

@@ -70,7 +70,6 @@ public abstract class Dao {
             j.setDebut(""+rs.getTime("debut"));
             j.setFin(""+rs.getTime("fin"));
             return (Jour)j;
-        
         }
         return null;
     }
