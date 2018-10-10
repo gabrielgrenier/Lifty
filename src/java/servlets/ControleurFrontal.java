@@ -1,8 +1,11 @@
 package servlets;
 
 import controleurs.AbstractAction;
+import controleurs.ConfidentialiteAction;
 import controleurs.ConnexionAction;
+import controleurs.DeconnexionAction;
 import controleurs.DefaultAction;
+import controleurs.PreferencesAction;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,12 +19,20 @@ public class ControleurFrontal extends HttpServlet {
         AbstractAction action;
         String vue;
         String actionAFaire = request.getParameter("action");
-        if (actionAFaire == null) {
-            actionAFaire = "";
-        }
+        if (actionAFaire == null) actionAFaire = "";
+        
         switch (actionAFaire) {
             case "Connexion":
                 action = new ConnexionAction();
+                break;
+            case "confidentialite":
+                action = new ConfidentialiteAction();
+                break;
+            case "preferences":
+                action = new PreferencesAction();
+                break;
+            case "deconnexion":
+                action = new DeconnexionAction();
                 break;
             default :
                 action = new DefaultAction();

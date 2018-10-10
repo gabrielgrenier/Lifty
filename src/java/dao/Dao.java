@@ -1,8 +1,7 @@
 package dao;
 
-import classe.Jour;
-import classe.Profil;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,47 +31,15 @@ public abstract class Dao {
     
     // Fonction qui recois un resultat de requete et construit un profil avec
     // Elle peut faire une exception sql car elle n'est pas traiter a l'interieur
-    protected static Object construireObjet(ResultSet rs, Object o) throws SQLException{
-        if(o instanceof Profil){
-            Profil p=new Profil();
-            p.setId(Integer.parseInt(rs.getString("ID")));
-            p.setUsername(rs.getString("username"));
-            p.setEmail(rs.getString("email"));
-            p.setNom(rs.getString("nom"));
-            p.setPrenom(rs.getString("prenom"));
-            p.setMotDePasse(rs.getString("motDePasse"));
-            p.setRole(Integer.parseInt(rs.getString("role")));
-            p.setDateInscription(rs.getString("dateInscription"));
-            p.setDateConnexion(rs.getString("dateConnexion"));
-            p.setCodePostal(rs.getString("codePostal"));
-            p.setEtablissement(rs.getString("etablissement"));
-            p.setImageProfil(rs.getString("imageProfil"));
-            // Convertion des valeurs en boolean
-            p.setNomPublic(("0".equals(rs.getString("nomPublic"))));
-            p.setPrenomPublic(("0".equals(rs.getString("prenomPublic"))));
-            p.setEmailPublic(("0".equals(rs.getString("emailPublic"))));
-            p.setValide(("0".equals(rs.getString("valide"))));
-            p.setConducteur(("0".equals(rs.getString("conducteur"))));
-            // Convertion valeurs des doubles
-            if(rs.getString("note")!=null)p.setRating(Double.parseDouble(rs.getString("note")));
-            if(rs.getString("tarif")!=null)p.setTarif(Double.parseDouble(rs.getString("tarif")));
-            if(rs.getString("rayon")!=null)p.setRayon(Double.parseDouble(rs.getString("rayon")));
-            // Verification du conducteur
-            if("1".equals(rs.getString("conducteur")))p.setConducteur(true);
-                //p.setVehicule(v); // Achanger pour aller chercher le vehicule de la personne
-            return (Profil)p;
-        }
-        if(o instanceof Jour){
-            Jour j = new Jour();
-            j.setId(rs.getInt("ID"));
-            j.setUserID(rs.getInt("userID"));
-            j.setJour(rs.getString("journee"));
-            j.setDebut(""+rs.getTime("debut"));
-            j.setFin(""+rs.getTime("fin"));
-            return (Jour)j;
-        
-        }
-        return null;
+    protected abstract Object construireObjet(ResultSet rs) throws SQLException;
+    
+    protected Statement ouvrirConnexion()throws SQLException, ClassNotFoundException{
+        //Chargement du pilote 
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //Ouverture de connexion 
+        con = DriverManager.getConnection(CONNEXIONSTRING);
+        // Executer la requete
+        return con.createStatement();
     }
     
     // Fonctions qui recouves et fermes les connexions ouvertes
