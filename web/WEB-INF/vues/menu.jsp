@@ -124,22 +124,21 @@
             Profil p = new Profil();
             p=pDao.findById(Integer.parseInt(String.valueOf(request.getAttribute("connecte"))));
             %>
-        <form method="post" action="">
-            <div class="container" id="panelProfil">
-                <div class="form-group">
-                    <label id='lblNom'><%=p.getPrenom()+" "+p.getNom()%></label>
-                </div>
-                <div class="form-group">
-                    <label id='lblNom'><%="@"+p.getUsername()%></label>
-                </div>
-                <div class="form-group">
-                    <label id='lblModifier'><u>Modifier</u></label>
-                </div>
-                <div class="form-group">
-                    <label id='lblDeconnexion'><u>Deconnexion</u></label>
-                </div>
+        <div class="container" id="panelProfil">
+            <div class="form-group">
+                <label id='lblPrenomNom'><%=p.getPrenom()+" "+p.getNom()%></label>
+                <label id='lblUsername'><%="@"+p.getUsername()%></label>
             </div>
-        </form>
+            <div class="form-group">
+                <label><a href="?action=preferences"><u>Preferences</u></label>
+            </div>
+            <div class="form-group">
+                <label><a href="?action=confidentialite"><u>Confidentialite</u></a></label>
+            </div>
+            <div class="form-group">
+                <label><a href="?action=deconnexion"><u>Deconnexion</u></a></label>
+            </div>
+        </div>
         <%
         }
         %>
