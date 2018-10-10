@@ -50,5 +50,4 @@ public class ControleurFrontal extends HttpServlet {
     public String getServletInfo() {
         return "Servelet du controleurFrontal";
     }// </editor-fold>
-
 }
