@@ -136,6 +136,9 @@
                 <label><a href="?action=confidentialite"><u>Confidentialite</u></a></label>
             </div>
             <div class="form-group">
+                <label><a href="?action="><u>Horaire</u></a></label>
+            </div>
+            <div class="form-group">
                 <label><a href="?action=deconnexion"><u>Deconnexion</u></a></label>
             </div>
         </div>

@@ -3,8 +3,7 @@ package dao;
 import java.sql.SQLException;
 import classe.Jour;
 import classe.Profil;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +12,11 @@ public class JourDAO extends Dao{
     
     public Jour find(int idUser, String jour){ //trouve un jour de la semaine selon l'ID du user et le jour
 	try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
             String requete;
             requete = "SELECT * FROM jour WHERE userID = '"+idUser+"' and journee = '"+jour+"'";
-            //Ouverture de connexion 
-            con = DriverManager.getConnection(CONNEXIONSTRING);
-            sqlQuery=con.createStatement();
-            rs = sqlQuery.executeQuery(requete);
-            if (rs.next()) return (Jour)construireObjet(rs,new Jour());
+            // Executer la requete
+            rs = ouvrirConnexion().executeQuery(requete);
+            if (rs.next()) return construireObjet(rs);
             else return null;
 	}
         catch(SQLException | ClassNotFoundException e){ return null;}
@@ -32,14 +28,11 @@ public class JourDAO extends Dao{
         List<Jour> listeJour = new ArrayList<>();
         String requete;
 	try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
             requete = "SELECT * FROM jour WHERE userID = '"+idUser+"'";
-            //Ouverture de connexion 
-            con = DriverManager.getConnection(CONNEXIONSTRING);
-            sqlQuery=con.createStatement();
-            rs = sqlQuery.executeQuery(requete);
+            // Executer la requete
+            rs = ouvrirConnexion().executeQuery(requete);
             // Pour chaque on cree un jour et lajoute a la liste
-            while(rs.next())listeJour.add((Jour)construireObjet(rs,new Jour()));
+            while(rs.next())listeJour.add(construireObjet(rs));
             return listeJour;              
 	}
         catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
@@ -55,15 +48,12 @@ public class JourDAO extends Dao{
             // Caster l<objet en Jour
             Jour j=(Jour)o;
             try{
-                Class.forName("com.mysql.cj.jdbc.Driver");
                 String requete;
                 requete = "INSERT INTO `jour` (`ID`, `debut`, `fin`, `journee`, `userID`) "
                         + "VALUES ('"+j.getId()+"', '"+Time.valueOf(j.getDebut())+"', '"+Time.valueOf(j.getFin())+"', '"+j.getJour()+"', '"+j.getUserId()+"')";
 
-                //Ouverture de connexion 
-                con = DriverManager.getConnection(CONNEXIONSTRING);
-                PreparedStatement statement = con.prepareStatement(requete);
-                statement.executeUpdate();
+                //Ouverture de connexion
+                ouvrirConnexion().executeUpdate(requete);
             }
             catch(SQLException | ClassNotFoundException e){}
             finally{fermerConnexions(con,rs,sqlQuery);}
@@ -78,16 +68,12 @@ public class JourDAO extends Dao{
             // Caster l<objet en Jour
             Jour j=(Jour)o;
             try{
-                Class.forName("com.mysql.cj.jdbc.Driver");
                 String requete;
                 requete = "UPDATE `jour` SET `debut`='"+Time.valueOf(j.getDebut())+"', "
                         + "`fin`='"+Time.valueOf(j.getFin())+"',  `journee` = '"+j.getJour()+"', `userID` = '"+j.getUserId()+"' "
                         + "WHERE `jour`.`ID` = '"+j.getId()+"';";
-
                 //Ouverture de connexion 
-                con = DriverManager.getConnection(CONNEXIONSTRING);
-                PreparedStatement statement = con.prepareStatement(requete);
-                statement.executeUpdate();
+                ouvrirConnexion().executeUpdate(requete);
             }
             catch(SQLException | ClassNotFoundException e){}
             finally{fermerConnexions(con,rs,sqlQuery);}
@@ -101,5 +87,16 @@ public class JourDAO extends Dao{
     @Override
     public void delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    protected Jour construireObjet(ResultSet rs) throws SQLException{
+        Jour j = new Jour();
+        j.setId(rs.getInt("ID"));
+        j.setUserID(rs.getInt("userID"));
+        j.setJour(rs.getString("journee"));
+        j.setDebut(""+rs.getTime("debut"));
+        j.setFin(""+rs.getTime("fin"));
+        return (Jour)j;
     }
 }

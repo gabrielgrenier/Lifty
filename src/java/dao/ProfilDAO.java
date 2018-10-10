@@ -9,10 +9,9 @@ package dao;
  * ==== A faire ==== 
  * Arrangee le find pour assigner le vehicule au profil
 */
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import classe.Profil;
-import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class ProfilDAO extends Dao{
@@ -20,17 +19,11 @@ public class ProfilDAO extends Dao{
     public Profil findByEmail(String email){
         String requete;
         try{
-            //Chargement du pilote 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            //Ouverture de connexion 
-            con = DriverManager.getConnection(CONNEXIONSTRING);
             requete = "SELECT * FROM utilisateur WHERE email = '"+email+"'";
             // Executer la requete
-            sqlQuery=con.createStatement();
-            rs = sqlQuery.executeQuery(requete);
+            rs = ouvrirConnexion().executeQuery(requete);
             // Construire le profil avec le resultat recu de la requete
-            if(rs.next())return (Profil)construireObjet(rs,new Profil());
-            else return null;
+            if(rs.next())return construireObjet(rs);
         }
         catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
 	finally{fermerConnexions(con,rs,sqlQuery);}
@@ -42,19 +35,14 @@ public class ProfilDAO extends Dao{
     public Profil findById(int id) {
         String requete;
         try{
-            //Chargement du pilote 
-            Class.forName("com.mysql.cj.jdbc.Driver");
             //Ouverture de connexion 
-            con = DriverManager.getConnection(CONNEXIONSTRING);
             requete = "SELECT * FROM utilisateur WHERE ID = '"+id+"'";
             // Executer la requete
-            sqlQuery=con.createStatement();
-            rs = sqlQuery.executeQuery(requete);
+            rs = ouvrirConnexion().executeQuery(requete);
             // Construire le profil avec le resultat recu de la requete
-            if(rs.next())return (Profil)construireObjet(rs,new Profil());
-            else return null;
+            if(rs.next())return construireObjet(rs);
         }
-        catch (SQLException|ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
 	finally{fermerConnexions(con,rs,sqlQuery);}
         return null;
     }
@@ -63,17 +51,10 @@ public class ProfilDAO extends Dao{
     public Profil findByUsername(String username){
         String requete;
         try{
-            //Chargement du pilote 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            //Ouverture de connexion 
-            con = DriverManager.getConnection(CONNEXIONSTRING);
             requete = "SELECT * FROM utilisateur WHERE username = '"+username+"'";
-            // Executer la requete
-            sqlQuery=con.createStatement();
-            rs = sqlQuery.executeQuery(requete);
+            rs = ouvrirConnexion().executeQuery(requete);
             // Construire le profil avec le resultat recu de la requete
-            if(rs.next())return (Profil)construireObjet(rs,new Profil());
-            else return null;
+            if(rs.next())return construireObjet(rs);
         }
         catch (SQLException |ClassNotFoundException e){System.out.println("Exception : "+e);}
 	finally{fermerConnexions(con,rs,sqlQuery);}
@@ -88,10 +69,6 @@ public class ProfilDAO extends Dao{
             Profil p=(Profil)o;
             String requete;
             try{
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                //Ouverture de connexion 
-                con = DriverManager.getConnection(CONNEXIONSTRING);
-                sqlQuery=con.createStatement();
                 requete = "INSERT INTO `utilisateur` (`ID`, `username`, `email`, `motDePasse`, "
                         + "`nom`, `prenom`, `role`, `conducteur`, "
                         + "`note`, `codePostal`, `emailPublic`, `nomPublic`, "
@@ -104,7 +81,7 @@ public class ProfilDAO extends Dao{
                         + " \'"+(p.isPublicPrenom()?1:0)+"\', \'"+(p.isValide()?1:0)+"\', \'"+p.getDateInscription()+"\', \'"+p.getDateConnexion()+"\',"
                         + " "+(p.getEtablissement()!=null?"\'"+p.getEtablissement()+"\'":"NULL")+", \'"+p.getRayon()+"\', \'"+p.getTarif()+"\', "+(p.getImageProfil()!=null?"\'"+p.getImageProfil()+"\'":"NULL")+", "
                         + ""+(p.getVehicule()!=null?"\'"+p.getVehicule().getId()+"\'":"NULL")+")";
-                sqlQuery.executeUpdate(requete);
+                ouvrirConnexion().executeUpdate(requete);
             }
             catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
             finally{fermerConnexions(con,rs,sqlQuery);}
@@ -119,8 +96,6 @@ public class ProfilDAO extends Dao{
             // Caster l<objet en Profil
             Profil p = (Profil)o;
             try{
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                con = DriverManager.getConnection(CONNEXIONSTRING);
                 // Faire le requete qui va aller updater tous les champs 
                 requete = "UPDATE `utilisateur` SET `ID` = '"+p.getId()+"', `username`='"+p.getUsername()+"', "
                         + "`email`='"+p.getEmail()+"',                      `motDePasse` = '"+p.getMotDePasse()+"',             `nom` = '"+p.getNom()+"', "
@@ -132,8 +107,7 @@ public class ProfilDAO extends Dao{
                         + "`vehiculeID`="+(p.getVehicule()!=null?"\'"+p.getVehicule().getId()+"\'":"NULL")+""
                         + " WHERE `utilisateur`.`ID` = '"+p.getId()+"';";
                 // Executer la requete
-                PreparedStatement statement = con.prepareStatement(requete);
-                statement.executeUpdate();
+                ouvrirConnexion().executeUpdate(requete);
             }
             catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
             finally{fermerConnexions(con,rs,sqlQuery);}
@@ -144,13 +118,10 @@ public class ProfilDAO extends Dao{
     public void delete(int id) {
         String requete;
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(CONNEXIONSTRING);
             requete = "DELETE FROM `utilisateur` "
                     + "WHERE `utilisateur`.`ID` = '"+id+"';";
             // Executer la requete
-            PreparedStatement statement = con.prepareStatement(requete);
-            statement.executeUpdate();
+            ouvrirConnexion().executeUpdate(requete);
         }
         catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
         finally{fermerConnexions(con,rs,sqlQuery);}
@@ -162,20 +133,16 @@ public class ProfilDAO extends Dao{
         ArrayList<Profil> output;
         String requete;
 	try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            //Faire a connexion
-            con = DriverManager.getConnection(CONNEXIONSTRING);
             //Construire la requete
             requete = "SELECT * FROM `utilisateur` WHERE";
             if(etablissement!=null)requete += " `utilisateur`.`etablissement` = '"+etablissement+"' AND";
             requete += " `utilisateur`.`conducteur` = '"+(conducteur?1:0)+"'";
             // Executer la requete
-            sqlQuery=con.createStatement();
-            rs = sqlQuery.executeQuery(requete);
+            rs = ouvrirConnexion().executeQuery(requete);
             // Definir un tableau de la du nombres de champs recu
             output = new ArrayList<>();
             // Construire un profil et le mettre dans la liste pour chaque donnees recu
-            while(rs.next()) output.add((Profil)construireObjet(rs,new Profil()));
+            while(rs.next()) output.add(construireObjet(rs));
             return output;
 	}
         catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
@@ -183,4 +150,37 @@ public class ProfilDAO extends Dao{
         return null;
     }
     public ArrayList<Profil> findAll(boolean conducteur){return findAll(null,conducteur);}
+    
+        // Fonction qui recois un resultat de requete et construit un profil avec
+    // Elle peut faire une exception sql car elle n'est pas traiter a l'interieur
+    @Override
+    protected Profil construireObjet(ResultSet rs) throws SQLException{
+        Profil p=new Profil();
+        p.setId(Integer.parseInt(rs.getString("ID")));
+        p.setUsername(rs.getString("username"));
+        p.setEmail(rs.getString("email"));
+        p.setNom(rs.getString("nom"));
+        p.setPrenom(rs.getString("prenom"));
+        p.setMotDePasse(rs.getString("motDePasse"));
+        p.setRole(Integer.parseInt(rs.getString("role")));
+        p.setDateInscription(rs.getString("dateInscription"));
+        p.setDateConnexion(rs.getString("dateConnexion"));
+        p.setCodePostal(rs.getString("codePostal"));
+        p.setEtablissement(rs.getString("etablissement"));
+        p.setImageProfil(rs.getString("imageProfil"));
+        // Convertion des valeurs en boolean
+        p.setNomPublic(("0".equals(rs.getString("nomPublic"))));
+        p.setPrenomPublic(("0".equals(rs.getString("prenomPublic"))));
+        p.setEmailPublic(("0".equals(rs.getString("emailPublic"))));
+        p.setValide(("0".equals(rs.getString("valide"))));
+        p.setConducteur(("0".equals(rs.getString("conducteur"))));
+        // Convertion valeurs des doubles
+        if(rs.getString("note")!=null)p.setRating(Double.parseDouble(rs.getString("note")));
+        if(rs.getString("tarif")!=null)p.setTarif(Double.parseDouble(rs.getString("tarif")));
+        if(rs.getString("rayon")!=null)p.setRayon(Double.parseDouble(rs.getString("rayon")));
+        // Verification du conducteur
+        if("1".equals(rs.getString("conducteur")))p.setConducteur(true);
+            //p.setVehicule(v); // Achanger pour aller chercher le vehicule de la personne
+        return (Profil)p;
+    }
 }

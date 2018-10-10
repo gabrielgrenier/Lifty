@@ -38,9 +38,8 @@ public class ControleurFrontal extends HttpServlet {
         AbstractAction action;
         String vue;
         String actionAFaire = request.getParameter("action");
-        if (actionAFaire == null) {
-            actionAFaire = "";
-        }
+        if (actionAFaire == null) actionAFaire = "";
+        
         switch (actionAFaire) {
             case "Connexion":
                 action = new ConnexionAction();
