@@ -5,6 +5,7 @@ import controleurs.ConfidentialiteAction;
 import controleurs.ConnexionAction;
 import controleurs.DeconnexionAction;
 import controleurs.DefaultAction;
+import controleurs.InscriptionAction;
 import controleurs.PreferencesAction;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -24,6 +25,9 @@ public class ControleurFrontal extends HttpServlet {
         switch (actionAFaire) {
             case "Connexion":
                 action = new ConnexionAction();
+                break;
+            case "Inscription":
+                action = new InscriptionAction();
                 break;
             case "confidentialite":
                 action = new ConfidentialiteAction();

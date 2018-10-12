@@ -25,7 +25,6 @@ public class ConnexionAction extends AbstractAction {
                     request.setAttribute("connecte",""+p.getId());
                     return "recherche";
                 }
-                else invalide();
             else invalide();
                 
         }
