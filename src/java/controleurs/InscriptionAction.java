@@ -25,10 +25,11 @@ public class InscriptionAction extends AbstractAction {
             email = request.getParameter("emailInsc"),
             nom = request.getParameter("nomInsc"),
             prenom = request.getParameter("prenomInsc"),        
-            motDePasse = request.getParameter("pswInsc"),
+            motDePasse = request.getParameter("pwdInsc"),
             dateInscription = now.toString(),
             dateConnexion = now.toString(),
-            codePostal = request.getParameter("codePInsc");
+            codePostal = request.getParameter("codePInsc"),
+            imageProfil = "./static/images/profils/default.png";
             boolean isPublicNom = false,
             isPublicPrenom = false,
             isPublicEmail =false,
@@ -43,8 +44,10 @@ public class InscriptionAction extends AbstractAction {
             Profil p;
             p = pDao.findByEmail(email);
             if(p==null){
-                p = new Profil(id,username,email,nom,prenom,motDePasse,role,dateInscription,dateConnexion,codePostal,null,null,isPublicNom,isPublicPrenom,isPublicEmail,isValide,isConducteur,rating,tarif,rayon);
+                p = new Profil(id,username,email,nom,prenom,motDePasse,role,dateInscription,dateConnexion,codePostal,null,imageProfil,isPublicNom,isPublicPrenom,isPublicEmail,isValide,isConducteur,rating,tarif,rayon);
                 pDao.create(p);
+                p = pDao.findByEmail(email);
+                request.setAttribute("connecte",""+p.getId());
                 return "recherche";
             }
             else{return "accueil";}

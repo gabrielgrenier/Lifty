@@ -80,8 +80,8 @@
                 </div>
             </div>
         </form>
-<<<<<<< HEAD
         
+        <%// ====================== FORMULAIRE D'INSCRIPTION =====================%>
         <form method="post" action="register">
             <div class="container" id="panelInscription">
                 <div class="form-group">
@@ -115,39 +115,6 @@
                 </div>
                 <div class="form-group">
                     <input type="hidden" name="action" value="Inscription"/>
-=======
-        <%// ====================== FORMULAIRE D'INSCRIPTION =====================%>
-        <form method="post" action="">
-            <div class="container" id="panelInscription">
-                <div class="form-group">
-                    <label for="prenomInsc">Prénom:</label>
-                    <input type="text" class="form-control" id="prenomInsc" placeholder ='John' required>
-                </div>
-                <div class="form-group">
-                    <label for="nomInsc">Nom:</label>
-                    <input type="text" class="form-control" id="nomInsc" placeholder ='Doe' required>
-                </div>
-                <div class="form-group">
-                    <label for="emailInsc">Courriel:</label>
-                    <input type="email" class="form-control" id="emailInsc" placeholder ='JDoe@gmail.com' required>
-                </div>
-                <div class="form-group">
-                    <label for="codePInsc">Code Postal:</label>
-                    <input type="text" class="form-control" id="codePInsc" placeholder ='H0H 0H0' required>
-                </div>
-                <div class="form-group">
-                    <label for="pwdInsc">Mot de passe:</label>
-                    <input type="password" class="form-control" id="pwdInsc" placeholder='Mot de passe' required>
-                </div>
-                    <div class="form-group">
-                    <label for="pwdConfInsc">Mot de passe:</label>
-                    <input type="password" class="form-control" id="pwdConfInsc" placeholder='Confirmation du mot de passe' required>
-                </div>
-                <label>Je suis un </label>
-                <div class="form-group">
-                    <label class="radio-inline"><input type="radio" name="condInsc" checked>: Conducteur</label>
-                    <label class="radio-inline"><input type="radio" name="passInsc">: Passager</label>
->>>>>>> origin
                 </div>
                 <div class="form-group">
                     <button type="submit" name="btnInscription" id="btnInscription" class="btn btn-primary">S'inscrire</button>

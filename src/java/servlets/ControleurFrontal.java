@@ -5,11 +5,8 @@ import controleurs.ConfidentialiteAction;
 import controleurs.ConnexionAction;
 import controleurs.DeconnexionAction;
 import controleurs.DefaultAction;
-<<<<<<< HEAD
 import controleurs.InscriptionAction;
-=======
 import controleurs.PreferencesAction;
->>>>>>> origin
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,10 +26,9 @@ public class ControleurFrontal extends HttpServlet {
             case "Connexion":
                 action = new ConnexionAction();
                 break;
-<<<<<<< HEAD
             case "Inscription":
                 action = new InscriptionAction();
-=======
+                break;
             case "confidentialite":
                 action = new ConfidentialiteAction();
                 break;
@@ -41,7 +37,6 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "deconnexion":
                 action = new DeconnexionAction();
->>>>>>> origin
                 break;
             default :
                 action = new DefaultAction();
