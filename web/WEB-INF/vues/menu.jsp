@@ -10,7 +10,6 @@
     //if(request.getParameter("pwdCon")!=null)pwdCon=request.getParameter("pwdCon");
     %>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menu" >
-
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-main">
@@ -70,7 +69,7 @@
                     %>
                 </div>
                 <div class="form-group">
-                    <label id='lblLink'><u>S'insrire à Lifty</u></label>
+                    <label class='lblLink'><u>S'insrire à Lifty</u></label>
                 </div>
                 <div class="form-group">
                     <input type="hidden" name="action" value="Connexion"/>
@@ -128,24 +127,31 @@
             Profil p = new Profil();
             p=pDao.findById(Integer.parseInt(String.valueOf(request.getAttribute("connecte"))));
             %>
-        <div class="container" id="panelProfil">
-            <div class="form-group">
-                <label id='lblPrenomNom'><%=p.getPrenom()+" "+p.getNom()%></label>
-                <label id='lblUsername'><%="@"+p.getUsername()%></label>
+            <div class="container" id="panelProfil">
+                <div class="form-group">
+                    <div class='row'>
+                        <div class='col-lg-4'>
+                            <img src="./static/images/profils/default.png" class="img-responsive" />
+                        </div>
+                        <div class='col-lg-8'>
+                            <label id='lblPrenomNom'><%=p.getPrenom()+" "+p.getNom()%></label>
+                            <label id='lblUsername'><%="@"+p.getUsername()%></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class='lblLink'><a href="?action=preferences"><u>Preferences</u></label>
+                </div>
+                <div class="form-group">
+                    <label class='lblLink'><a href="?action=confidentialite"><u>Confidentialite</u></a></label>
+                </div>
+                <div class="form-group">
+                    <label class='lblLink'><a href="?action="><u>Horaire</u></a></label>
+                </div>
+                <div class="form-group">
+                    <label class='lblLink'><a href="?action=deconnexion"><u>Deconnexion</u></a></label>
+                </div>
             </div>
-            <div class="form-group">
-                <label><a href="?action=preferences"><u>Preferences</u></label>
-            </div>
-            <div class="form-group">
-                <label><a href="?action=confidentialite"><u>Confidentialite</u></a></label>
-            </div>
-            <div class="form-group">
-                <label><a href="?action="><u>Horaire</u></a></label>
-            </div>
-            <div class="form-group">
-                <label><a href="?action=deconnexion"><u>Deconnexion</u></a></label>
-            </div>
-        </div>
         <%
         }
         %>
