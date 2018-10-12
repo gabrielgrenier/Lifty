@@ -18,14 +18,16 @@
     <link rel="stylesheet" href="./static/css/style.css" type="text/css"/>
     <script> 
     $(document).ready(function(){
+        // Setter les grandeurs
         $("#panelLogin").animate({right: '10px', width : '300px'});
         $("#panelInscription").animate({right: '10px', width : '300px'});
+        $("#panelProfil").animate({right: '10px', width : '300px'});
         
+        // Fonctions lorque l'ont clique
         $("#login").click(function(){
             if($("#panelInscription").is(':visible')){$("#panelInscription").animate({height:'toggle'});}
             $("#panelLogin").animate({height:'toggle'});
         });
-        
         $("#inscription").click(function(){
             if($("#panelLogin").is(':visible')){$("#panelLogin").animate({height:'toggle'});}
             $("#panelInscription").animate({height:'toggle'});
@@ -33,6 +35,9 @@
         $("#lblLink").click(function(){
             if($("#panelLogin").is(':visible')){$("#panelLogin").animate({height:'toggle'});}
             $("#panelInscription").animate({height:'toggle'});
+        });
+        $("#profil").click(function(){
+            $("#panelProfil").animate({height:'toggle'});
         });
     });
     </script>
