@@ -69,7 +69,7 @@
                 <tbody>
                   <tr>
                     <td></td>
-                    <td>SLav01</td>
+                    <td><%if(request.getParameter("type").equals("passInsc")){%>passager<%}%></td>
                     <td>Rosemont</td>
                     <td>4.2</td>
                   </tr>

@@ -24,7 +24,7 @@ public class ConnexionAction extends AbstractAction {
             // Verifier si le email a ete trouver
             if(p!=null)
                 // Verifier si les deux mots de passes sont les memes
-                if(p.getMotDePasse().equals(pwd))return "tempRecherche";
+                if(p.getMotDePasse().equals(pwd))return "recherche";
                 else invalide();
             else invalide();
                 
