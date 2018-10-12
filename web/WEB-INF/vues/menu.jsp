@@ -65,7 +65,7 @@
                 <div class="erreur">
                     <%
                     // Afficher le message d<erreur si il y en a un
-                    if(request.getAttribute("errCon")!=null){out.print(String.valueOf(request.getAttribute("errCon")));}
+                    if(request.getAttribute("errCon")!=null){%><label><%out.print(String.valueOf(request.getAttribute("errCon")));%></label><%}
                     %>
                 </div>
                 <div class="form-group">
@@ -79,37 +79,47 @@
                 </div>
             </div>
         </form>
+        
         <%// ====================== FORMULAIRE D'INSCRIPTION =====================%>
-        <form method="post" action="">
+        <form method="post" action="register">
             <div class="container" id="panelInscription">
                 <div class="form-group">
                     <label for="prenomInsc">Prénom:</label>
-                    <input type="text" class="form-control" id="prenomInsc" placeholder ='John' required>
+                    <input type="text" class="form-control" id="prenomInsc" name="prenomInsc" placeholder ='John' value="<%=(request.getParameter("prenomInsc")!=null)?request.getParameter("prenomInsc"):""%>" required>
                 </div>
                 <div class="form-group">
                     <label for="nomInsc">Nom:</label>
-                    <input type="text" class="form-control" id="nomInsc" placeholder ='Doe' required>
+                    <input type="text" class="form-control" id="nomInsc" name="nomInsc" placeholder ='Doe' value="<%=(request.getParameter("nomInsc")!=null)?request.getParameter("nomInsc"):""%>" required>
                 </div>
                 <div class="form-group">
                     <label for="emailInsc">Courriel:</label>
-                    <input type="email" class="form-control" id="emailInsc" placeholder ='JDoe@gmail.com' required>
+                    <input type="email" class="form-control" id="emailInsc" name="emailInsc" placeholder ='JDoe@gmail.com' value="<%=(request.getParameter("emailInsc")!=null)?request.getParameter("emailInsc"):""%>" required>
                 </div>
                 <div class="form-group">
                     <label for="codePInsc">Code Postal:</label>
-                    <input type="text" class="form-control" id="codePInsc" placeholder ='H0H 0H0' required>
+                    <input type="text" class="form-control" id="codePInsc" name="codePInsc" placeholder ='H0H 0H0' value="<%=(request.getParameter("codePInsc")!=null)?request.getParameter("codePInsc"):""%>" required>
                 </div>
                 <div class="form-group">
                     <label for="pwdInsc">Mot de passe:</label>
-                    <input type="password" class="form-control" id="pwdInsc" placeholder='Mot de passe' required>
+                    <input type="password" class="form-control" id="pwdInsc" name="pwdInsc" placeholder='Mot de passe' value="<%=(request.getParameter("pwdInsc")!=null)?request.getParameter("pwdInsc"):""%>" required>
                 </div>
-                    <div class="form-group">
-                    <label for="pwdConfInsc">Mot de passe:</label>
-                    <input type="password" class="form-control" id="pwdConfInsc" placeholder='Confirmation du mot de passe' required>
+                <div class="form-group">
+                    <label for="pwdConfInsc">Confirmation:</label>
+                    <input type="password" class="form-control" id="pwdConfInsc" name="pwdConfInsc" placeholder='Confirmation du mot de passe' value="<%=(request.getParameter("pwdConfInsc")!=null)?request.getParameter("pwdConfInsc"):""%>" required>
                 </div>
                 <label>Je suis un </label>
                 <div class="form-group">
-                    <label class="radio-inline"><input type="radio" name="condInsc" checked>: Conducteur</label>
-                    <label class="radio-inline"><input type="radio" name="passInsc">: Passager</label>
+                    <label class="radio-inline"><input type="radio" name="type" value="condInsc" checked>: Conducteur</label>
+                    <label class="radio-inline"><input type="radio" name="type" value="passInsc">: Passager</label>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" name="action" value="Inscription"/>
+                </div>
+                <div class="erreur">
+                    <%
+                    // Afficher le message d<erreur si il y en a un
+                    if(request.getAttribute("errPwd")!=null){%><label><%out.print(String.valueOf(request.getAttribute("errPwd")));%></label><%}
+                    %>
                 </div>
                 <div class="form-group">
                     <button type="submit" name="btnInscription" id="btnInscription" class="btn btn-primary">S'inscrire</button>
