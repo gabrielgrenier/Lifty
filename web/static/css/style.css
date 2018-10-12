@@ -189,16 +189,17 @@ footer p{
 #panelLogin, #panelProfil {
     display: none;
     text-align: center;
-    height: 250px;
+    height: 272px;
     float : right;
     position:absolute;
     margin-top: 10px;
+    padding-top: 10px;
     background-color: rgba(0, 0, 0, 0.6);
     border-style: none;
     box-shadow: 0px 2px 94px 0px rgba(0,0,0,0.75);
     color : white;
 }
-#panelLogin #lblLink:hover,#panelProfil #lblLink:hover{
+#panelLogin .lblLink:hover,#panelProfil .lblLink:hover{
     color : #3399ff;
 }
 #panelLogin button{
@@ -212,6 +213,7 @@ footer p{
     float : right;
     position:absolute;
     margin-top: 10px;
+    padding-top: 10px;
     background-color: rgba(0, 0, 0, 0.6);
     border-style: none;
     box-shadow: 0px 2px 94px 0px rgba(0,0,0,0.75);
