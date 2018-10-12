@@ -18,10 +18,11 @@ public class InscriptionAction extends AbstractAction {
     @Override
     public String execute() {
         if(request.getParameter("prenomInsc")!=null && request.getParameter("nomInsc")!=null && request.getParameter("emailInsc")!=null && request.getParameter("codePInsc")!=null && request.getParameter("pwdInsc")!=null && request.getParameter("pwdConfInsc")!=null && request.getParameter("type")!=null){
+            if(!request.getParameter("pwdInsc").equals(request.getParameter("pwdConfInsc"))){badPwd(); return "accueil";}
             LocalDate now = LocalDate.now( ZoneId.of( "America/Montreal" ) ) ;
             int id = 0,
             role = 2;
-            String username = ""+request.getParameter("prenomInsc").substring(0,0)+request.getParameter("nomInsc").substring(0,2)+"",
+            String username = ""+request.getParameter("prenomInsc").substring(0,2)+request.getParameter("nomInsc").substring(0,3)+"",
             email = request.getParameter("emailInsc"),
             nom = request.getParameter("nomInsc"),
             prenom = request.getParameter("prenomInsc"),        
@@ -56,4 +57,6 @@ public class InscriptionAction extends AbstractAction {
             return "accueil";
         }
     }
+    
+    private void badPwd(){request.setAttribute("errPwd"," Mot de passe incorrect ");}
 }

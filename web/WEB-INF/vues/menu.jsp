@@ -104,7 +104,7 @@
                     <input type="password" class="form-control" id="pwdInsc" name="pwdInsc" placeholder='Mot de passe' value="<%=(request.getParameter("pwdInsc")!=null)?request.getParameter("pwdInsc"):""%>" required>
                 </div>
                 <div class="form-group">
-                    <label for="pwdConfInsc">Mot de passe:</label>
+                    <label for="pwdConfInsc">Confirmation:</label>
                     <input type="password" class="form-control" id="pwdConfInsc" name="pwdConfInsc" placeholder='Confirmation du mot de passe' value="<%=(request.getParameter("pwdConfInsc")!=null)?request.getParameter("pwdConfInsc"):""%>" required>
                 </div>
                 <label>Je suis un </label>
@@ -114,6 +114,12 @@
                 </div>
                 <div class="form-group">
                     <input type="hidden" name="action" value="Inscription"/>
+                </div>
+                <div class="erreur">
+                    <%
+                    // Afficher le message d<erreur si il y en a un
+                    if(request.getAttribute("errPwd")!=null){%><label><%out.print(String.valueOf(request.getAttribute("errPwd")));%></label><%}
+                    %>
                 </div>
                 <div class="form-group">
                     <button type="submit" name="btnInscription" id="btnInscription" class="btn btn-primary">S'inscrire</button>
