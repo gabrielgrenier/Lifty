@@ -3,17 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/web/tests/testHorraire.jsp</file>
-=======
-            <file>file:/C:/Lifty/web/WEB-INF/vues/menu.jsp</file>
-            <file>file:/C:/Lifty/src/java/classe/Vehicule.java</file>
-            <file>file:/C:/Lifty/src/java/dao/Dao.java</file>
-            <file>file:/C:/Lifty/src/java/controleurs/DeconnexionAction.java</file>
-            <file>file:/C:/Lifty/web/tests/testHorraire.jsp</file>
-            <file>file:/C:/Lifty/src/java/dao/ProfilDAO.java</file>
-            <file>file:/C:/Lifty/src/java/dao/JourDAO.java</file>
->>>>>>> 0dafe216e624a179df0bc9dfb67a30d2fd97555c
         </group>
     </open-files>
 </project-private>
