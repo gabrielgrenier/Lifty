@@ -20,6 +20,7 @@
             <a class="navbar-brand" href="#parallax"><img id="logo" src="./static/images/petitLogo.png"/></a>
         </div>
         <%
+        // ====================== MENU =====================
         if(request.getAttribute("connecte")==null){
             // -----------------------------------------
             // Section de menu si non connecte
@@ -43,7 +44,7 @@
             <div class="collapse navbar-collapse" id="navbar-collapse-main">
                 <ul class="nav navbar-nav navbar-right" style="margin-right: 1%;">
                     <li><a class="#" >Recherche</a></li>
-                    <li><a class="#" >Messages</a></li>
+                    <li><a class="#" href="?action=messagerie&connecte=<%=String.valueOf(request.getAttribute("connecte"))%>">Messagerie</a></li>
                     <li><a class="#" id="profil">Profil</a></li>
                 </ul>
             </div>
@@ -136,7 +137,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class='lblLink'><a href="?action=preferences"><u>Preferences</u></label>
+                    <label class='lblLink'><a href="?action=preferences"><u>Preferences</u></a></label>
                 </div>
                 <div class="form-group">
                     <label class='lblLink'><a href="?action=confidentialite"><u>Confidentialite</u></a></label>

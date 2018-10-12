@@ -5,6 +5,7 @@ import controleurs.ConfidentialiteAction;
 import controleurs.ConnexionAction;
 import controleurs.DeconnexionAction;
 import controleurs.DefaultAction;
+import controleurs.MessagerieAction;
 import controleurs.PreferencesAction;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -33,6 +34,9 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "deconnexion":
                 action = new DeconnexionAction();
+                break;
+            case "messagerie":
+                action = new MessagerieAction();
                 break;
             default :
                 action = new DefaultAction();

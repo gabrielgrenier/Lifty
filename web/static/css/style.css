@@ -264,3 +264,53 @@ footer p{
     background-color: white;
 }
 
+/** --------------- Messagerie ---------------*/
+#messageriePanel{
+    background: url("../images/routeMontage.jpeg") no-repeat center center fixed;
+    display: table;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-size: cover;
+    z-index: -1;
+}
+#messagerieContainer{
+    background : rgba(0, 0, 0, 0.6);
+    margin : 10% 10% 5% 10%;
+    height: 585px;
+}
+/** --------------- Cote droit ---------------*/
+#messagesContainer{
+    margin : 15px 0px 0px 0px;
+}
+#messagesHead{
+    background : grey;
+    color : black;
+    height: 60px;
+    font-size: 28px;
+    text-align: center;
+    padding-top: 10px;
+}
+#messages{
+    background : lightgrey;
+    color : black;
+    height: 480px;
+}
+/** --------------- Cote gauche ---------------*/
+#messageContainer{
+    margin : 15px 0px 0px 0px;
+}
+.messageHead{
+    background : lightgrey;
+    color : black;
+    height: 60px;
+    font-size: 24px;
+    text-align: center;
+    vertical-align: central;
+    padding-top: 10px;
+}
+.messageBody{
+    background : white;
+    color : black;
+    height: 480px;
+}
