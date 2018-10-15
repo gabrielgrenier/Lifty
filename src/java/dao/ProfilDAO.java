@@ -181,6 +181,6 @@ public class ProfilDAO extends Dao{
         // Verification du conducteur
         if("1".equals(rs.getString("conducteur")))p.setConducteur(true);
             //p.setVehicule(v); // Achanger pour aller chercher le vehicule de la personne
-        return (Profil)p;
+        return p;
     }
 }

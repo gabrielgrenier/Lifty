@@ -49,11 +49,13 @@
         <div class='row' id='messagerieContainer'>
             <div class='col-lg-3'>
                 <div class='col-lg-12' id='messagesContainer'>
-                    <div class='col-lg-12' id='messagesHead'>
-                        Messages
-                    </div>
+                    <div class='col-lg-12' id='messagesHead'>Messages</div>
+                    
+                    <%// ---- section avec la liste de message ----%>
                     <div class='col-lg-12' id='messages'>
-
+                        <%
+                        
+                        %>
                     </div>
                 </div>
             </div>

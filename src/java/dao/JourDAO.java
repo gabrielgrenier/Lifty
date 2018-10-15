@@ -97,6 +97,6 @@ public class JourDAO extends Dao{
         j.setJour(rs.getString("journee"));
         j.setDebut(""+rs.getTime("debut"));
         j.setFin(""+rs.getTime("fin"));
-        return (Jour)j;
+        return j;
     }
 }
