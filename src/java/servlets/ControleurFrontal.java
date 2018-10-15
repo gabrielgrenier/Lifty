@@ -7,6 +7,7 @@ import controleurs.DeconnexionAction;
 import controleurs.DefaultAction;
 import controleurs.MessagerieAction;
 import controleurs.PreferencesAction;
+import controleurs.RechercheAction;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -37,6 +38,9 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "messagerie":
                 action = new MessagerieAction();
+                break;
+            case "recherche":
+                action = new RechercheAction();
                 break;
             default :
                 action = new DefaultAction();

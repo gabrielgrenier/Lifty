@@ -43,7 +43,7 @@
             %>
             <div class="collapse navbar-collapse" id="navbar-collapse-main">
                 <ul class="nav navbar-nav navbar-right" style="margin-right: 1%;">
-                    <li><a class="#" >Recherche</a></li>
+                    <li><a class="#" href="?action=recherche&connecte=<%=String.valueOf(request.getAttribute("connecte"))%>">Recherche</a></li>
                     <li><a class="#" href="?action=messagerie&connecte=<%=String.valueOf(request.getAttribute("connecte"))%>">Messagerie</a></li>
                     <li><a class="#" id="profil">Profil</a></li>
                 </ul>

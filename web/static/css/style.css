@@ -281,9 +281,11 @@ footer p{
 }
 /** --------------- Cote droit ---------------*/
 #messagesContainer{
+    font-family: Helvetica;
     margin : 15px 0px 0px 0px;
 }
 #messagesHead{
+    font-family: Helvetica;
     background : grey;
     color : black;
     height: 60px;
@@ -308,6 +310,13 @@ footer p{
     text-align: center;
     vertical-align: central;
     padding-top: 10px;
+}
+.messageHead a{
+    font-family: Helvetica;
+    color : black;
+}
+.messageHead a:hover{
+    color : grey;
 }
 .messageBody{
     background : white;
