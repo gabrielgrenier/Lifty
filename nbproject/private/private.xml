@@ -3,11 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/G:/Session4/Project/git/Lifty/src/java/controleurs/InscriptionAction.java</file>
-            <file>file:/G:/Session4/Project/git/Lifty/web/WEB-INF/vues/menu.jsp</file>
-            <file>file:/G:/Session4/Project/git/Lifty/src/java/dao/Dao.java</file>
-            <file>file:/G:/Session4/Project/git/Lifty/web/WEB-INF/vues/recherche.jsp</file>
-            <file>file:/G:/Session4/Project/git/Lifty/src/java/controleurs/ConnexionAction.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/tempConfidentialite.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/AbstractAction.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/AfficherProfilAction.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/menu.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/static/css/style.css</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/accueil.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/recherche.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/profil.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/footer.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/ConnexionAction.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/Action.java</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/tempPreferences.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -1,6 +1,7 @@
 package servlets;
 
 import controleurs.AbstractAction;
+import controleurs.AfficherProfilAction;
 import controleurs.ConfidentialiteAction;
 import controleurs.ConnexionAction;
 import controleurs.DeconnexionAction;
@@ -37,6 +38,9 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "deconnexion":
                 action = new DeconnexionAction();
+                break;
+            case "afficherProfil":
+                action = new AfficherProfilAction();
                 break;
             default :
                 action = new DefaultAction();
