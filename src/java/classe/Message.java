@@ -38,4 +38,10 @@ public class Message {
     public void setDate(String date) {this.date = date;}
     public void setTime(String time) {this.time = time;}
     public void setVu(boolean vu) {this.vu = vu;}
+    
+    // ==== AFFICHAGE ====
+    @Override
+    public String toString(){
+        return "["+this.getId()+"] "+this.getTitre()+" "+this.getDate()+"-"+this.getTime()+" ("+this.isVu()+")";
+    }
 }

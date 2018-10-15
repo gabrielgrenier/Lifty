@@ -15,7 +15,7 @@ public class ListeMessage {
     
     // ==== CONSTRUCTEURS ====
     public ListeMessage(ArrayList l){messages = l;}
-    public ListeMessage(){}
+    public ListeMessage(){messages = new ArrayList();}
     
     // ==== GETTERS ====
     public int length(){return messages.size();}

@@ -1,9 +1,9 @@
 package dao;
 
+import classe.ListeMessage;
 import classe.Message;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 // ================================ CLASSE NON-TESTER ======================================
 
 /* ==== INFO ====
@@ -24,25 +24,52 @@ public class MessageDAO extends Dao{
             rs = ouvrirConnexion().executeQuery(requete);
             // Construire le profil avec le resultat recu de la requete
             if(rs.next())return construireObjet(rs);
+                System.out.println(requete);
         }
         catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
 	finally{fermerConnexions(con,rs,sqlQuery);}
         return null;
     }
     
-    public ArrayList<Message> findAll(int idE, int idR){
+    public ListeMessage findAll(int idE, int idR){
         // Variable qui sera retourner et qui va contenir les profils
-        ArrayList<Message> output;
+        ListeMessage output;
+        String requete;
+        String sousRequete;
+	try{
+            //Construire la requete
+            sousRequete = "SELECT messageID FROM `messageutilisateur` WHERE `messageutilisateur`.`receveurID` = '"+idR+"' AND `messageutilisateur`.`envoyeurID` = '"+idE+"'";
+            requete = "SELECT * FROM message WHERE message.ID IN ( "+sousRequete+" )";
+            // Executer la requete
+            System.out.println(sousRequete);
+            System.out.println(requete);
+            rs = ouvrirConnexion().executeQuery(requete);
+            // Definir un tableau de la du nombres de champs recu
+            output = new ListeMessage();
+            // Construire un profil et le mettre dans la liste pour chaque donnees recu
+            while(rs.next()) output.add((Message)construireObjet(rs));
+            return output;
+	}
+        catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+	finally{fermerConnexions(con,rs,sqlQuery);}
+        return null;
+    }
+    
+    public ListeMessage findAllVu(int idE, int idR, boolean vu){
+        // Variable qui sera retourner et qui va contenir les profils
+        ListeMessage output;
         String requete;
         String sousRequete;
 	try{
             //Construire la requete
             sousRequete = "SELECT id FROM `messageutilisateur` WHERE `messageutilisateur`.`receveurID` = '"+idR+"' AND `messageutilisateur`.`envoyeurID` = '"+idE+"'";
-            requete = "SELECT * FROM message WHERE message.ID = ("+sousRequete+")";
+            requete = "SELECT * FROM message WHERE message.vu = '"+(vu?1:0)+"'message.ID = ("+sousRequete+")";
             // Executer la requete
+            System.out.println(requete);
             rs = ouvrirConnexion().executeQuery(requete);
+            System.out.println(requete);
             // Definir un tableau de la du nombres de champs recu
-            output = new ArrayList<>();
+            output = new ListeMessage();
             // Construire un profil et le mettre dans la liste pour chaque donnees recu
             while(rs.next()) output.add(construireObjet(rs));
             return output;
@@ -51,10 +78,28 @@ public class MessageDAO extends Dao{
 	finally{fermerConnexions(con,rs,sqlQuery);}
         return null;
     }
+    public ListeMessage findAllVu(int idE, int idR){return findAllVu(idE,idR,true);}
+    
+    // Retourne le nombre de message qui non pas encore ete vu/ouvert
+    public int countNonVu(int idE, int idR){return findAllVu(idE,idR,false).length();}
 
     @Override
     public void create(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // Verifie que l'objet sois un Profil
+        if(o instanceof Message){
+            // Caster l<objet en Profil
+            Message p=(Message)o;
+            String requete;
+            try{
+                requete = "INSERT INTO `message` (`ID`, `titre`, `message`, `date`, `time`, `vu`) "
+                        + "VALUES (\'"+p.getId()+"\', \'"+p.getTitre()+"\', \'"+p.getMessage()+"\', \'"+p.getDate()+"\', \'"+p.getTime()+"\', \'"+(p.isVu()?1:0)+"\')";
+                
+                System.out.println(requete);
+                ouvrirConnexion().executeUpdate(requete);
+            }
+            catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+            finally{fermerConnexions(con,rs,sqlQuery);}
+        }
     }
 
     @Override
@@ -76,6 +121,7 @@ public class MessageDAO extends Dao{
         m.setDate(rs.getString("date"));
         m.setTime(rs.getString("time"));
         m.setVu("0".equals(rs.getString("vu")));
+        System.out.println(m);
         return m;
     }
     
