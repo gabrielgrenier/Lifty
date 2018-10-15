@@ -37,19 +37,24 @@
         %>
     <h1>
         -----------------------
-        <br />
-        findById(id)
+        findAllVu()
     </h1>
-    <h1>
-        -----------------------
-        delete(Profil)
-    </h1>
+    <%
+    ListeMessage messages;
+    messages = mDAO.findAllVu(0,1);
+    out.println(messages.length());
+    %>
+    <table>
+        <%
+        for(int i=0;i<messages.length();i++)out.println("<tr><td>"+messages.get(i)+"</td></tr>");
+        %>
+    </table>
+    
     <h1>
         -----------------------
         findAll()
     </h1>
     <%
-    ListeMessage messages;
     messages = mDAO.findAll(0,1);
     out.println(messages.length());
     %>
@@ -58,11 +63,13 @@
         for(int i=0;i<messages.length();i++)out.println("<tr><td>"+messages.get(i)+"</td></tr>");
         %>
     </table>
+    
     <h1>
         -----------------------
-        findAll(etablissement, conducteur)
+        countAllVu()
     </h1>
-    <table>
-    </table>
+    <%
+    out.println(mDAO.countNonVu(0,1));
+    %>
 </body>
 </html>

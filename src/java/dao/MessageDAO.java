@@ -62,8 +62,8 @@ public class MessageDAO extends Dao{
         String sousRequete;
 	try{
             //Construire la requete
-            sousRequete = "SELECT id FROM `messageutilisateur` WHERE `messageutilisateur`.`receveurID` = '"+idR+"' AND `messageutilisateur`.`envoyeurID` = '"+idE+"'";
-            requete = "SELECT * FROM message WHERE message.vu = '"+(vu?1:0)+"'message.ID = ("+sousRequete+")";
+            sousRequete = "SELECT messageID FROM `messageutilisateur` WHERE `messageutilisateur`.`receveurID` = '"+idR+"' AND `messageutilisateur`.`envoyeurID` = '"+idE+"'";
+            requete = "SELECT * FROM message WHERE message.vu = '"+(vu?1:0)+"' AND message.ID IN ("+sousRequete+")";
             // Executer la requete
             System.out.println(requete);
             rs = ouvrirConnexion().executeQuery(requete);
@@ -93,7 +93,6 @@ public class MessageDAO extends Dao{
             try{
                 requete = "INSERT INTO `message` (`ID`, `titre`, `message`, `date`, `time`, `vu`) "
                         + "VALUES (\'"+p.getId()+"\', \'"+p.getTitre()+"\', \'"+p.getMessage()+"\', \'"+p.getDate()+"\', \'"+p.getTime()+"\', \'"+(p.isVu()?1:0)+"\')";
-                
                 System.out.println(requete);
                 ouvrirConnexion().executeUpdate(requete);
             }
@@ -103,8 +102,23 @@ public class MessageDAO extends Dao{
     }
 
     @Override
-    public void update(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(Object o) {// Pas tester
+        // Verifie que l'objet sois un Profil
+        if(o instanceof Message){
+            String requete;
+            // Caster l<objet en Profil
+            Message ms = (Message)o;
+            try{
+                // Faire le requete qui va aller updater tous les champs 
+                requete = "UPDATE `message` SET `ID` = '"+ms.getId()+"', `titre`='"+ms.getTitre()+"', "
+                        + "`message`="+ms.getMessage()+" `date`="+ms.getDate()+" `time`="+ms.getTime()+" `vu`="+(ms.isVu()?1:0)+""
+                        + " WHERE `message`.`ID` = '"+ms.getId()+"';";
+                // Executer la requete
+                ouvrirConnexion().executeUpdate(requete);
+            }
+            catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+            finally{fermerConnexions(con,rs,sqlQuery);}
+        }
     }
 
     @Override
