@@ -14,30 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="./css/style.css" rel="stylesheet" type="text/css"/>
-    <link href="../css/style.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="./static/css/style.css" type="text/css"/>
-    <script> 
-    $(document).ready(function(){
-        $("#panelLogin").animate({right: '10px', width : '300px'});
-        $("#panelInscription").animate({right: '10px', width : '300px'});
-        
-        $("#login").click(function(){
-            if($("#panelInscription").is(':visible'))$("#panelInscription").animate({height:'toggle'});
-            $("#panelLogin").animate({height:'toggle'});
-        });
-        
-        $("#inscription").click(function(){
-            if($("#panelLogin").is(':visible'))$("#panelLogin").animate({height:'toggle'});
-            $("#panelInscription").animate({height:'toggle'});
-        });
-        
-        $("#lblLink").click(function(){
-            if($("#panelLogin").is(':visible'))$("#panelLogin").animate({height:'toggle'});
-            $("#panelInscription").animate({height:'toggle'});
-        });
-    });
-    </script>
 </head>
 
 <body>
