@@ -11,7 +11,6 @@ img{
     border-width:3px;
     border-style:solid;
     border-color:#ffffff;
-    box-shadow: 0px 0px 47px -3px rgba(0,0,0,0.75);
 }
 
 .attribue{
@@ -286,7 +285,7 @@ footer p{
     margin : 10% 10% 5% 10%;
     height: 585px;
 }
-/** --------------- Cote droit ---------------*/
+/** --------------- Cote gauche ---------------*/
 #messagesContainer{
     font-family: Helvetica;
     margin : 15px 0px 0px 0px;
@@ -307,12 +306,18 @@ footer p{
 }
 .unMessage{
     background : white;
-    border: solid black 1px;
-    margin : 2px 0px 2px -20px;
+    border: outset black 1px;
+    margin : 5px 0px 5px 0px;
     padding:5px;
-    width:205px;
+    height:75px;
 }
-/** --------------- Cote gauche ---------------*/
+.imgMessage img{
+    border-style:ridge;
+    margin-left:-10px;
+    margin-top:2px;
+    width: 60px;
+}
+/** --------------- Cote droit ---------------*/
 #messageContainer{
     margin : 15px 0px 0px 0px;
 }

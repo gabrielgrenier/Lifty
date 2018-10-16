@@ -90,7 +90,7 @@ public class JourDAO extends Dao{
     }
     
     @Override
-    protected Jour construireObjet(ResultSet rs) throws SQLException{
+    public Jour construireObjet(ResultSet rs) throws SQLException{
         Jour j = new Jour();
         j.setId(rs.getInt("ID"));
         j.setUserID(rs.getInt("userID"));

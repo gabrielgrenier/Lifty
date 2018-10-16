@@ -31,7 +31,7 @@ public abstract class Dao {
     
     // Fonction qui recois un resultat de requete et construit un profil avec
     // Elle peut faire une exception sql car elle n'est pas traiter a l'interieur
-    protected abstract Object construireObjet(ResultSet rs) throws SQLException;
+    public abstract Object construireObjet(ResultSet rs) throws SQLException;
     
     protected Statement ouvrirConnexion()throws SQLException, ClassNotFoundException{
         //Chargement du pilote 

@@ -50,7 +50,8 @@
         
         <%// ======================  TABLEAU DE MESSAGERIE =====================%>
         <div class='row' id='messagerieContainer'>
-            <div class='col-lg-3'>
+            <%// ---- section de gauche ----%>
+            <div class='col-lg-4'>
                 <div class='col-lg-12' id='messagesContainer'>
                     <div class='col-lg-12' id='messagesHead'>Messages</div>
                     
@@ -58,16 +59,32 @@
                     <div class='col-lg-12' id='messages'>
                         <%
                         MessageDAO mDao = new MessageDAO();
-                        Message m;
+                        Profil sender;
+                        Message message;
                         ListeMessage messages;
                         messages = mDao.findAll(Integer.parseInt(String.valueOf(request.getAttribute("connecte"))));
-                        for(int i=0;i<messages.length();i++)out.println("<div class='col-lg-12'><div class='unMessage'>"+messages.get(i)+"</div></div>");
+                        for(int i=0;i<messages.length();i++){
+                            sender = mDao.getSender(messages.get(i));
+                            message = messages.get(i);
+                            %>
+                            <div class='unMessage'>
+                                <div class='col-lg-3'>
+                                    <div class="imgMessage"><img src="<%=sender.getImageProfil()%>" ></div>
+                                </div>
+                                <div class='col-lg-9'>
+                                    <b><%=message.getTitre()%></b>
+                                    <br />
+                                    <span><%=sender.getUsername()%></span>
+                                </div>
+                            </div>
+                            <%
+                        }
                         %>
                     </div>
                 </div>
             </div>
             
-            <div class='col-lg-9'>
+            <div class='col-lg-8'>
                 <div class='col-lg-12' id='messageContainer'>
                     <div class='messageHead'>
                         <div class="col-lg-4"><a><span class="glyphicon glyphicon-plus">Nouveau</span></a></div>

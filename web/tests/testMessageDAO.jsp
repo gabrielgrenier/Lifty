@@ -9,6 +9,7 @@
 <%@page import="classe.Message"%>
 <%@page import="classe.Vehicule"%>
 <%@page import="dao.MessageDAO"%>
+<%@page import="dao.ProfilDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -70,6 +71,14 @@
     </h1>
     <%
     out.println(mDAO.countNonVu(1));
+    %>
+    
+    <h1>
+        -----------------------
+        getSender()
+    </h1>
+    <%
+    out.println(mDAO.getSender(4));
     %>
 </body>
 </html>

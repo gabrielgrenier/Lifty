@@ -177,6 +177,21 @@ public class MessageDAO extends Dao{
         }
     }
 
+    public Profil getSender(int message){
+        String requete;
+        String sousRequete;
+        try{
+            sousRequete = "SELECT envoyeurID FROM messageutilisateur WHERE messageID = '"+message+"'";
+            requete = "SELECT * FROM utilisateur WHERE ID = ("+sousRequete+")";
+            System.out.println(requete);
+            rs = ouvrirConnexion().executeQuery(requete);
+            // Cree et retourne le profilDAO pour utiliser la methode construireProfil pour construire le profil du sender
+            if(rs.next()){return new ProfilDAO().construireObjet(rs);}
+        }catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+        return null;
+    }
+    public Profil getSender(Message m){return getSender(m.getId());}
+    
     @Override
     public void update(Object o) {// Pas tester
         // Verifie que l'objet sois un Profil
@@ -203,7 +218,7 @@ public class MessageDAO extends Dao{
     }
 
     @Override
-    protected Message construireObjet(ResultSet rs) throws SQLException {
+    public Message construireObjet(ResultSet rs) throws SQLException {
         Message m = new Message();
         m.setId(Integer.parseInt(rs.getString("ID")));
         m.setMessage(rs.getString("message"));
