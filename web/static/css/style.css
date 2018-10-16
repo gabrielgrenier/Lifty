@@ -305,6 +305,13 @@ footer p{
     color : black;
     height: 480px;
 }
+.unMessage{
+    background : white;
+    border: solid black 1px;
+    margin : 2px 0px 2px -20px;
+    padding:5px;
+    width:205px;
+}
 /** --------------- Cote gauche ---------------*/
 #messageContainer{
     margin : 15px 0px 0px 0px;

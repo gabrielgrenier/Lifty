@@ -4,6 +4,9 @@
     Author     : mchausse
 --%>
 
+<%@page import="classe.ListeMessage"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="classe.Message"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -54,7 +57,11 @@
                     <%// ---- section avec la liste de message ----%>
                     <div class='col-lg-12' id='messages'>
                         <%
-                        
+                        MessageDAO mDao = new MessageDAO();
+                        Message m;
+                        ListeMessage messages;
+                        messages = mDao.findAll(Integer.parseInt(String.valueOf(request.getAttribute("connecte"))));
+                        for(int i=0;i<messages.length();i++)out.println("<div class='col-lg-12'><div class='unMessage'>"+messages.get(i)+"</div></div>");
                         %>
                     </div>
                 </div>

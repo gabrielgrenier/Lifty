@@ -54,7 +54,6 @@
                             Messagerie
                             <span id='alerteNum'><sup><b><%=nb%></b></sup></span>
                         </a>
-
                     </li>
                     <li><a class="#" id="profil">Profil</a></li>
                 </ul>

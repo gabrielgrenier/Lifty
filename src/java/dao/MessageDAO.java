@@ -32,6 +32,30 @@ public class MessageDAO extends Dao{
     }
     public Message findById(Message m){return findById(m.getId());}
     
+    public ListeMessage findAll(int idR){
+        // Variable qui sera retourner et qui va contenir les profils
+        ListeMessage output;
+        String requete;
+        String sousRequete;
+	try{
+            //Construire la requete
+            sousRequete = "SELECT messageID FROM `messageutilisateur` WHERE `messageutilisateur`.`receveurID` = '"+idR+"'";
+            requete = "SELECT * FROM message WHERE message.ID IN ( "+sousRequete+" )";
+            // Executer la requete
+            System.out.println(sousRequete);
+            System.out.println(requete);
+            rs = ouvrirConnexion().executeQuery(requete);
+            // Definir un tableau de la du nombres de champs recu
+            output = new ListeMessage();
+            // Construire un profil et le mettre dans la liste pour chaque donnees recu
+            while(rs.next()) output.add((Message)construireObjet(rs));
+            return output;
+	}
+        catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+	finally{fermerConnexions(con,rs,sqlQuery);}
+        return null;
+    }
+    public ListeMessage findAll(Profil pR){return findAll(pR.getId());}
     public ListeMessage findAll(int idE, int idR){
         // Variable qui sera retourner et qui va contenir les profils
         ListeMessage output;
