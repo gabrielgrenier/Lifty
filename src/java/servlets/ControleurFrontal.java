@@ -1,11 +1,13 @@
 package servlets;
 
 import controleurs.AbstractAction;
+import controleurs.AfficherProfilAction;
 import controleurs.ConfidentialiteAction;
 import controleurs.ConnexionAction;
 import controleurs.DeconnexionAction;
 import controleurs.DefaultAction;
 import controleurs.MessagerieAction;
+import controleurs.InscriptionAction;
 import controleurs.PreferencesAction;
 import controleurs.RechercheAction;
 import java.io.IOException;
@@ -27,6 +29,9 @@ public class ControleurFrontal extends HttpServlet {
             case "Connexion":
                 action = new ConnexionAction();
                 break;
+            case "Inscription":
+                action = new InscriptionAction();
+                break;
             case "confidentialite":
                 action = new ConfidentialiteAction();
                 break;
@@ -41,6 +46,8 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "recherche":
                 action = new RechercheAction();
+            case "afficherProfil":
+                action = new AfficherProfilAction();
                 break;
             default :
                 action = new DefaultAction();
