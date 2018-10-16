@@ -98,5 +98,23 @@
             </div>
         </div>
         <%@include  file="footer.jsp" %>
+        <script>
+            $(document).ready(function(){
+                $(".unMessage").mousedown(function(){
+                    $(this).css("background","gray");
+                    $(this).css("border","inset black 1px");
+                });
+                $(".unMessage").mouseup(function(){
+                    $(this).css("background","white");
+                    $(this).css("border","outset black 1px");
+                });
+                $(".unMessage").hover(function(){
+                    $(this).css("background","lightgray");
+                });
+                $(".unMessage").mouseleave(function(){
+                    $(this).css("background","white");
+                });
+            });
+        </script>
     </body>
 </html>
