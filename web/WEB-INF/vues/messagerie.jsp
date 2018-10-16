@@ -63,7 +63,7 @@
             <div class='col-lg-9'>
                 <div class='col-lg-12' id='messageContainer'>
                     <div class='messageHead'>
-                        <div class="col-lg-4"><a><span class="glyphicon glyphicon-asterisk">Nouveau</span></a></div>
+                        <div class="col-lg-4"><a><span class="glyphicon glyphicon-plus">Nouveau</span></a></div>
                         <div class="col-lg-4"><a><span class="glyphicon glyphicon-share-alt">Repondre</span></a></div>
                         <div class="col-lg-4"><a><span class="glyphicon glyphicon-trash">Supprimer</span></a></div>
                     </div>

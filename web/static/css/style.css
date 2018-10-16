@@ -185,6 +185,13 @@ footer p{
 .erreur *{
     color : red;
 }
+#alerteNum{
+    color : red;
+    font-family: Helvetica;
+    margin-bottom: 5px;
+    font-size: 20px;
+    
+}
 /** --------------- Login et profil---------------*/
 #panelLogin, #panelProfil {
     display: none;
@@ -306,7 +313,7 @@ footer p{
     background : lightgrey;
     color : black;
     height: 60px;
-    font-size: 24px;
+    font-size: 23px;
     text-align: center;
     vertical-align: central;
     padding-top: 10px;

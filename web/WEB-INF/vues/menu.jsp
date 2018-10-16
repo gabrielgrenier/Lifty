@@ -1,3 +1,4 @@
+<%@page import="dao.MessageDAO"%>
 <%@page import="classe.Profil"%>
 <%@page import="dao.ProfilDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>    
@@ -40,11 +41,21 @@
         else{
             // -----------------------------------------
             // Section de menu si connecte
+
+            // code pour afficher un nombre qui signifie le nombre de messages non-vu
+            MessageDAO mDao= new MessageDAO();
+            int nb = mDao.countNonVu(Integer.parseInt(String.valueOf(request.getAttribute("connecte"))));
             %>
             <div class="collapse navbar-collapse" id="navbar-collapse-main">
                 <ul class="nav navbar-nav navbar-right" style="margin-right: 1%;">
                     <li><a class="#" href="?action=recherche&connecte=<%=String.valueOf(request.getAttribute("connecte"))%>">Recherche</a></li>
-                    <li><a class="#" href="?action=messagerie&connecte=<%=String.valueOf(request.getAttribute("connecte"))%>">Messagerie</a></li>
+                    <li>
+                        <a class="#" href="?action=messagerie&connecte=<%=String.valueOf(request.getAttribute("connecte"))%>">
+                            Messagerie
+                            <span id='alerteNum'><sup><b><%=nb%></b></sup></span>
+                        </a>
+
+                    </li>
                     <li><a class="#" id="profil">Profil</a></li>
                 </ul>
             </div>

@@ -69,7 +69,7 @@
         countAllVu()
     </h1>
     <%
-    out.println(mDAO.countNonVu(0,1));
+    out.println(mDAO.countNonVu(1));
     %>
 </body>
 </html>
