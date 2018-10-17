@@ -154,7 +154,7 @@ public class ProfilDAO extends Dao{
         // Fonction qui recois un resultat de requete et construit un profil avec
     // Elle peut faire une exception sql car elle n'est pas traiter a l'interieur
     @Override
-    protected Profil construireObjet(ResultSet rs) throws SQLException{
+    public Profil construireObjet(ResultSet rs) throws SQLException{
         Profil p=new Profil();
         p.setId(Integer.parseInt(rs.getString("ID")));
         p.setUsername(rs.getString("username"));
@@ -181,6 +181,6 @@ public class ProfilDAO extends Dao{
         // Verification du conducteur
         if("1".equals(rs.getString("conducteur")))p.setConducteur(true);
             //p.setVehicule(v); // Achanger pour aller chercher le vehicule de la personne
-        return (Profil)p;
+        return p;
     }
 }
