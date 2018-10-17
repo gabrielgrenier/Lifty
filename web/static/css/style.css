@@ -7,10 +7,11 @@ htlm, body {
     width: 100%;
 }
 
-img{
+.imgAcc {
     border-width:3px;
     border-style:solid;
     border-color:#ffffff;
+    box-shadow: 0px 0px 53px -8px rgba(0,0,0,0.75);
 }
 
 .attribue{
@@ -176,10 +177,7 @@ footer p{
     color: white;
 }
 #logo{
-    max-height: 50px;
-    border-style: none;
-    border-radius: 0px;
-    box-shadow: none;
+    max-height: 2.5em;
 }
 .erreur *{
     color : red;
