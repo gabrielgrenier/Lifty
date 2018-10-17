@@ -178,6 +178,7 @@ footer p{
 }
 #logo{
     max-height: 2.5em;
+    margin-left: -1.5em;
 }
 .erreur *{
     color : red;
