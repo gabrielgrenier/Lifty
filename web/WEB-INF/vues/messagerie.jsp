@@ -58,24 +58,39 @@
                     <%// ---- section avec la liste de message ----%>
                     <div class='col-lg-12' id='messages'>
                         <%
+                        Message messageSelect;
                         MessageDAO mDao = new MessageDAO();
                         Profil sender;
                         Message message;
                         ListeMessage messages;
+                        messageSelect = mDao.findById(Integer.parseInt(String.valueOf(request.getAttribute("messageSelect"))));
                         messages = mDao.findAll(Integer.parseInt(String.valueOf(request.getAttribute("connecte"))));
                         for(int i=0;i<messages.length();i++){
                             sender = mDao.getSender(messages.get(i));
                             message = messages.get(i);
+                            if(messageSelect.getId() == message.getId()){
+                                %>
+                            <div class='unMessageSelect' onclick="ouvrirMessage(<%=message.getId()%>)">
+                                <%
+                            }
+                            else{
+                                %>
+                            <div class='unMessage' onclick="ouvrirMessage(<%=message.getId()%>)">
+                                <%
+                            }
                             %>
-                            <div class='unMessage'>
-                                <div class='col-lg-3'>
-                                    <div class="imgMessage"><img src="<%=sender.getImageProfil()%>" ></div>
-                                </div>
-                                <div class='col-lg-9'>
-                                    <b><%=message.getTitre()%></b>
-                                    <br />
-                                    <span><%=sender.getUsername()%></span>
-                                </div>
+                                <form method="post" class="form<%=message.getId()%>">
+                                    <input type="hidden" name="messageSelect" value="<%=message.getId()%>">
+                                    <input type="hidden" name="action" value="ouvrirMessage"/>
+                                    <div class='col-lg-3'>
+                                        <div class="imgMessage"><img src="<%=sender.getImageProfil()%>" ></div>
+                                    </div>
+                                    <div class='col-lg-9'>
+                                        <b><%=message.getTitre()%></b>
+                                        <br />
+                                        <span><%=sender.getUsername()%></span>
+                                    </div>
+                                </form>
                             </div>
                             <%
                         }
@@ -87,13 +102,35 @@
             <div class='col-lg-8'>
                 <div class='col-lg-12' id='messageContainer'>
                     <div class='messageHead'>
-                        <div class="col-lg-4"><a><span class="glyphicon glyphicon-plus">Nouveau</span></a></div>
-                        <div class="col-lg-4"><a><span class="glyphicon glyphicon-share-alt">Repondre</span></a></div>
-                        <div class="col-lg-4"><a><span class="glyphicon glyphicon-trash">Supprimer</span></a></div>
-                    </div>
-                    <div class='messageBody'>
-
-                    </div>
+                    <div class="col-lg-4"><a><span class="glyphicon glyphicon-plus">Nouveau</span></a></div>
+                    <%
+                    if(request.getAttribute("messageSelect")!=null){
+                        %>
+                            <div class="col-lg-4"><a><span class="glyphicon glyphicon-share-alt">Repondre</span></a></div>
+                            <div class="col-lg-4"><a><span class="glyphicon glyphicon-trash">Supprimer</span></a></div>
+                        </div>
+                        <div class='messageBody'>
+                            <%
+                            if(request.getAttribute("messageSelect")!=null){
+                                %>
+                                <div class="col-lg-12" id="messageEnvoyeur">
+                                    <label id="messageEnvoyeur"><b>Envoyeur : </b></label><span><%=mDao.getSender(messageSelect.getId()).getUsername()%></span>
+                                    <hr>
+                                </div>
+                                <div class="col-lg-12" id="messageTitre">
+                                    <label id="messageTitre"><b>Titre : </b></label><span><%=messageSelect.getTitre()%></span>
+                                    <hr>
+                                </div>
+                                <div class="col-lg-12" id="messageText">
+                                    <p><%=messageSelect.getMessage()%></p>
+                                </div>
+                                <%
+                            }
+                            %>
+                        </div>
+                        <%
+                    }
+                    %>
                 </div>
             </div>
         </div>
@@ -114,7 +151,16 @@
                 $(".unMessage").mouseleave(function(){
                     $(this).css("background","white");
                 });
+                $("#messages").hover(function(){
+                    $(this).css("overflow-y","scroll");
+                });
+                $("#messages").mouseleave(function(){
+                    $(this).css("overflow-y","hidden");
+                });
             });
+            function ouvrirMessage(id){
+                 $(".form"+id).submit();
+            }
         </script>
     </body>
 </html>

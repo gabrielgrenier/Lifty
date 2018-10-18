@@ -2,6 +2,7 @@ package servlets;
 
 import controleurs.AbstractAction;
 import controleurs.AfficherProfilAction;
+import controleurs.OuvrirMessageAction;
 import controleurs.ConfidentialiteAction;
 import controleurs.ConnexionAction;
 import controleurs.DeconnexionAction;
@@ -46,8 +47,12 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "recherche":
                 action = new RechercheAction();
+                break;
             case "afficherProfil":
                 action = new AfficherProfilAction();
+                break;
+            case "ouvrirMessage":
+                action = new OuvrirMessageAction();
                 break;
             default :
                 action = new DefaultAction();
