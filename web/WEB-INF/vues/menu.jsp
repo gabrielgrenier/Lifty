@@ -18,7 +18,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#parallax"><img id="logo" src="./static/images/petitLogo.png"/></a>
+            <%if(request.getAttribute("connecte")==null){ %>
+                <a class="navbar-brand" href="#parallax"><img id="logo" src="./static/images/petitLogo.png"/></a>
+            <%}
+            else{%>
+                <a class="navbar-brand"><img id="logo" src="./static/images/petitLogo.png"/></a>
+            <%}%>
         </div>
         <%
         // ====================== MENU =====================

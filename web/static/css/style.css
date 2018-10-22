@@ -7,11 +7,15 @@ htlm, body {
     width: 100%;
 }
 
-img{
+/*img{
     border-width:3px;
     border-style:solid;
     border-color:#ffffff;
-}
+    box-shadow: 0px 0px 47px -3px rgba(0,0,0,0.75);
+}*/
+
+
+
 
 .attribue{
     font-style:italic; 
@@ -270,6 +274,8 @@ footer p{
     background-color: white;
 }
 
+/* -----------------------------Profils----------------------------------*/
+
 /** --------------- Messagerie ---------------*/
 #messageriePanel{
     background: url("../images/routeMontage.jpeg") no-repeat center center fixed;
@@ -279,6 +285,107 @@ footer p{
     position: relative;
     background-size: cover;
     z-index: -1;
+}
+
+#ProfilContainer{
+   /* background : rgba(0, 0, 0, 0.8);*/
+    margin : 8% 10% 5% 10%;
+    padding: 1em 2em;
+    height: 95%;
+
+}
+#InformationProfilContainer{
+    background : rgba(255, 255, 255, 0.4);
+    padding: 2em 4em;
+    height: 100%;
+    color: black;
+    border-width:1em;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+
+}
+#imageProfil{
+    max-height: 15em;
+    min-height: 12em;
+    min-width: 12em;
+    border-width:5px;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+.textProfil{
+    font-size: 18px;
+
+}
+
+#infoPro{
+    border-width:5px;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    background : rgba(255, 255, 255, 0.6);
+}
+#modifPro{
+    margin-left: 35px;
+    margin-top: -55px;
+    background : rgba(255, 255, 255, 0.4);
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    font-size: 16px;
+    color: black;
+}
+
+.TitreProf{
+    font-size: 20px;
+    background : rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+#comProf{
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+}
+
+.contProf{
+    height: 500px;
+}
+#contProfHoraire{
+    height: 40%;
+    background-color: white;
+}
+#test32{
+    text-align: left;
+    background : rgba(255, 255, 255, 0.4);
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    font-size: 16px;
+    color: black;
+}
+
+#menuRating{
+    padding-left: 80%;
+}
+
+.imageEtoile{
+    height: 20px;
+    width: 20px;
+    margin:auto;
+}
+
+#textEtoile{
+    font-size: 16px;
+    background : rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+#titreProfil{
+    font-size: 32px;
+    font-weight: bold;
+}
+#enteteProfil{
+    margin-top: 3%;
+    margin-bottom: 7%;
 }
 #messagerieContainer{
     background : rgba(0, 0, 0, 0.6);
