@@ -74,3 +74,28 @@
     <%@include  file="footer.jsp" %>
     </body>
 </html>
+<script>
+    function recherche() {
+        var input, filter, container, row, label;
+            input = document.getElementById('rechercheBar');
+            filter = input.value.toUpperCase();
+            container = document.getElementById("usagerListe");
+            row = container.getElementsByClassName('row');
+        if(filter!==""){
+            if(document.getElementById("usagerListe").style.display === "none"){
+                $("#usagerListe").animate({height:'toggle'});
+            }
+            for (i = 0; i < row.length; i++) {
+                label = row[i].getElementsByTagName("label")[0];
+                if (label.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    row[i].style.display = "";
+                } else {
+                    row[i].style.display = "none";
+                }
+            }
+        }
+        else{
+            if(document.getElementById("usagerListe").style.display !== "none"){$("#usagerListe").animate({height:'toggle'});}
+        }
+    }
+</script>

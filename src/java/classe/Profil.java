@@ -66,7 +66,6 @@ public class Profil {
         this.tarif = tarif;
         this.rayon = rayon;
         this.motDePasse = motDePasse;
-        this.conducteur = false;
     }
     
     public Profil(){}

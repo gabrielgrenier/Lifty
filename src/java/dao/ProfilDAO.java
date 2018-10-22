@@ -128,6 +128,25 @@ public class ProfilDAO extends Dao{
     }
     public void delete(Profil p){delete(p.getId());}
     
+    public ArrayList<Profil> findAll(){
+        // Variable qui sera retourner et qui va contenir les profils
+        ArrayList<Profil> output;
+        String requete;
+	try{
+            //Construire la requete
+            requete = "SELECT * FROM `utilisateur`";
+            // Executer la requete
+            rs = ouvrirConnexion().executeQuery(requete);
+            // Definir un tableau de la du nombres de champs recu
+            output = new ArrayList<>();
+            // Construire un profil et le mettre dans la liste pour chaque donnees recu
+            while(rs.next()) output.add(construireObjet(rs));
+            return output;
+	}
+        catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+	finally{fermerConnexions(con,rs,sqlQuery);}
+        return null;
+    }
     public ArrayList<Profil> findAll(String etablissement, boolean conducteur){
         // Variable qui sera retourner et qui va contenir les profils
         ArrayList<Profil> output;

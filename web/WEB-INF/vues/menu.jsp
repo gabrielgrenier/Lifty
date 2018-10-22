@@ -1,4 +1,6 @@
 
+<%@page import="services.rechercheService"%>
+<%@page import="java.util.List"%>
 <%@page import="classe.Profil"%>
 <%@page import="dao.ProfilDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>    
@@ -42,6 +44,28 @@
             // Section de menu si connecte
             %>
             <div class="collapse navbar-collapse" id="navbar-collapse-main">
+                <ul class="navbar-form navbar-left" action="/action_page.php">
+                    <div class="form-group">
+                        <input type="text" id="rechercheBar" onkeyup="recherche()" placeholder="Rechercher un usager">
+                         <div class="container" id="usagerListe">
+                            <div class="form-group">
+                          <%List<Profil> liste = rechercheService.rechercheUsername();
+                            for(int i = 0;i<liste.size();i++){ 
+                                Profil p = liste.get(i);
+                          %>
+                          <div class='row'>
+                                <div class='col-lg-4'>
+                                    <img src="<%=p.getImageProfil()%>" class="img-responsive" />
+                                </div>
+                                <div class='col-lg-8'>
+                                    <label id='lblUsername'><%="@"+p.getUsername()%></label>
+                                </div>
+                            </div>
+                        <%}%>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
                 <ul class="nav navbar-nav navbar-right" style="margin-right: 1%;">
                     <li><a class="#" >Recherche</a></li>
                     <li><a class="#" >Messages</a></li>
@@ -86,11 +110,11 @@
             <div class="container" id="panelInscription">
                 <div class="form-group">
                     <label for="prenomInsc">Prénom:</label>
-                    <input type="text" class="form-control" id="prenomInsc" name="prenomInsc" placeholder ='John' value="<%=(request.getParameter("prenomInsc")!=null)?request.getParameter("prenomInsc"):""%>" required>
+                    <input type="text" class="form-control" id="prenomInsc" name="prenomInsc" placeholder ='John' value="<%=(request.getParameter("prenomInsc")!=null)?request.getParameter("prenomInsc"):""%>" pattern="[a-zA-Z]*" title="Aucun chiffre permis" required>
                 </div>
                 <div class="form-group">
                     <label for="nomInsc">Nom:</label>
-                    <input type="text" class="form-control" id="nomInsc" name="nomInsc" placeholder ='Doe' value="<%=(request.getParameter("nomInsc")!=null)?request.getParameter("nomInsc"):""%>" required>
+                    <input type="text" class="form-control" id="nomInsc" name="nomInsc" placeholder ='Doe' value="<%=(request.getParameter("nomInsc")!=null)?request.getParameter("nomInsc"):""%>" pattern="[a-zA-Z]*" title="Aucun chiffre permis" required>
                 </div>
                 <div class="form-group">
                     <label for="emailInsc">Courriel:</label>
@@ -98,7 +122,7 @@
                 </div>
                 <div class="form-group">
                     <label for="codePInsc">Code Postal:</label>
-                    <input type="text" class="form-control" id="codePInsc" name="codePInsc" placeholder ='H0H 0H0' value="<%=(request.getParameter("codePInsc")!=null)?request.getParameter("codePInsc"):""%>" required>
+                    <input type="text" class="form-control" id="codePInsc" name="codePInsc" placeholder ='H0H 0H0' value="<%=(request.getParameter("codePInsc")!=null)?request.getParameter("codePInsc"):""%>" pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]" title="Code postal invalide" required>
                 </div>
                 <div class="form-group">
                     <label for="pwdInsc">Mot de passe:</label>
@@ -119,7 +143,9 @@
                 <div class="erreur">
                     <%
                     // Afficher le message d<erreur si il y en a un
-                    if(request.getAttribute("errPwd")!=null){%><label><%out.print(String.valueOf(request.getAttribute("errPwd")));%></label><%}
+                    if(request.getAttribute("err")!=null){
+                    %><label><%out.print(String.valueOf(request.getAttribute("err")));%></label>
+                    <%}
                     %>
                 </div>
                 <div class="form-group">
@@ -173,6 +199,7 @@ if(request.getAttribute("connecte")!=null){ %>
         $("#panelLogin").animate({right: '10px', width : '300px'});
         $("#panelInscription").animate({right: '10px', width : '300px'});
         $("#panelProfil").animate({right: '10px', width : '300px'});
+        $("#usagerListe").animate({width : '300px'});
 
         // Fonctions lorque l'ont clique
         $("#login").click(function(){
@@ -198,6 +225,8 @@ else{%>
     $(document).ready(function(){
         $("#panelLogin").animate({right: '10px', width : '300px'});
         $("#panelInscription").animate({right: '10px', width : '300px'});
+        
+        // Afficher le message d<erreur si il y en a un
         
         $("#login").click(function(){
             if($("#panelInscription").is(':visible'))$("#panelInscription").animate({height:'toggle'});
