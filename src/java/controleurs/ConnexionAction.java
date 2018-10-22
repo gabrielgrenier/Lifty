@@ -1,5 +1,11 @@
 package controleurs;
+/* ==== INFO ====
 
+ * @author maxime chausse
+ * date : 19 septembre 2018
+ * cour : Développement de projet informatique
+ * College Rosemont
+*/
 import classe.Profil;
 import dao.ProfilDAO;
 
@@ -25,8 +31,7 @@ public class ConnexionAction extends AbstractAction {
                     request.setAttribute("connecte",""+p.getId());
                     return "recherche";
                 }
-            else invalide();
-                
+            invalide();
         }
         return "accueil";
     }
