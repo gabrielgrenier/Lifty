@@ -6,8 +6,10 @@ import controleurs.ConfidentialiteAction;
 import controleurs.ConnexionAction;
 import controleurs.DeconnexionAction;
 import controleurs.DefaultAction;
+import controleurs.MessagerieAction;
 import controleurs.InscriptionAction;
 import controleurs.PreferencesAction;
+import controleurs.RechercheAction;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,6 +41,11 @@ public class ControleurFrontal extends HttpServlet {
             case "deconnexion":
                 action = new DeconnexionAction();
                 break;
+            case "messagerie":
+                action = new MessagerieAction();
+                break;
+            case "recherche":
+                action = new RechercheAction();
             case "afficherProfil":
                 action = new AfficherProfilAction();
                 break;

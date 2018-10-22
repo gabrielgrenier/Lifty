@@ -19,7 +19,8 @@ public abstract class Dao {
     protected static Connection con=null;
     protected static ResultSet rs=null;
     protected static Statement sqlQuery=null;
-    protected static final String CONNEXIONSTRING = "jdbc:mysql://localhost/lifty?user=root&password=root&serverTimezone=EST&characterEncoding=UTF-8";
+    protected static final String CONNEXIONSTRING = "jdbc:mysql://localhost/lifty?user=root&password=&serverTimezone=EST&characterEncoding=UTF-8";
+    
     // ==== METHODES ====
     public abstract Object findById(int id);
     public abstract void create(Object o);
@@ -30,7 +31,7 @@ public abstract class Dao {
     
     // Fonction qui recois un resultat de requete et construit un profil avec
     // Elle peut faire une exception sql car elle n'est pas traiter a l'interieur
-    protected abstract Object construireObjet(ResultSet rs) throws SQLException;
+    public abstract Object construireObjet(ResultSet rs) throws SQLException;
     
     protected Statement ouvrirConnexion()throws SQLException, ClassNotFoundException{
         //Chargement du pilote 
