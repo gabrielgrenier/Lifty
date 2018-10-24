@@ -173,7 +173,7 @@
             }
         %>
         <h1>Création des horraires :</h1>
-        <form>
+        <form action="ControleurFrontal?action=createHoraire" method="post">
         id user : <input type="number">
             <table class="table table-hover table-bordered">
                 <thead>
@@ -203,13 +203,22 @@
                         <th scope="row"><input type="number" class="inputHorraireNum" min="9" max="18" name="finVen" id="finVen" required>h</th>
                     </tr>
                 </tbody>
-                <input type="submit" value="Créer">
+                <input type="submit" value="Créer" id="subHoraire">
             </table>
         </form>
     </body>
     <script>
     function validationCreate(){
-
+        var checkbox = document.querySelectorAll('input[type=checkbox]'); 
+        var vide = [].filter.call( checkbox, function( el ) {
+           return el.checked
+        });
+        if (checkbox.length == vide.length) {
+            document.getElementById("subHoraire").disabled = true;
+        }
+        else{
+            document.getElementById("subHoraire").disabled = false;
+        }
     }
     function removeJour(jour, check){ //Permet d'Avoir des jours libres
         var jourDeb = "deb"+jour;
@@ -227,6 +236,7 @@
             document.getElementById(jourDeb).disabled = false;
             document.getElementById(jourFin).disabled = false;
         }
+        validationCreate();
     }
    function uncheck(){ //pour firefox parce que il uncheck pas lors des refresh
         $(':checkbox:checked').prop('checked',false);

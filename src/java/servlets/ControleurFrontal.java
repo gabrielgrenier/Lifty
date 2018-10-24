@@ -10,6 +10,7 @@ import controleurs.MessagerieAction;
 import controleurs.InscriptionAction;
 import controleurs.PreferencesAction;
 import controleurs.RechercheAction;
+import controleurs.createHoraireAction;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -50,7 +51,7 @@ public class ControleurFrontal extends HttpServlet {
                 action = new AfficherProfilAction();
                 break;
             case "createHoraire":
-                action = new MessagerieAction();
+                action = new createHoraireAction();
                 break;
             default :
                 action = new DefaultAction();
