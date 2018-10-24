@@ -12,8 +12,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="../static/css/style.css" type="text/css"/>
     </head>
-    <body>
+    <body onLoad="uncheck()">
         <%
             JourDAO dao = new JourDAO();
             List<Jour> listHorraire1 = dao.findAll(1);
@@ -171,5 +172,64 @@
                 if(constat[i]!=0){out.println("<h4'>Le jour <b>#"+i+"</b> a un temps d'attente de <b>"+constat[i]+"h</b></h4>");}
             }
         %>
+        <h1>Création des horraires :</h1>
+        <form>
+        id user : <input type="number">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr><th style="width:5%; background-color: grey;"></th>
+                        <th style="width:19%;">Lundi <input type="checkbox" onchange="removeJour('Lun', this)" id="checkLun"></th>
+                        <th style="width:19%;">Mardi <input type="checkbox" onchange="removeJour('Mar', this)" id="checkMar"></th>
+                        <th style="width:19%;" >Mercredi <input type="checkbox" onchange="removeJour('Mer', this)" id="checkMer"></th>
+                        <th style="width:19%;">Jeudi <input type="checkbox" onchange="removeJour('Jeu', this)" id="checkJeu"></th>
+                        <th style="width:19%;" >Vendredi <input type="checkbox" onchange="removeJour('Ven', this)" id="checkVen"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Début </th>
+                        <th scope="row"><input type="number" class="inputHorraireNum" min="8" max="17" name="debLun" id="debLun" required>h</th>
+                        <th scope="row"><input type="number" class="inputHorraireNum" min="8" max="17" name="debMar" id="debMar" required>h</th>
+                        <th scope="row"><input type="number" class="inputHorraireNum" min="8" max="17" name="debMer" id="debMer" required>h</th>
+                        <th scope="row"><input type="number" class="inputHorraireNum" min="8" max="17" name="debJeu" id="debJeu" required>h</th>
+                        <th scope="row"><input type="number" class="inputHorraireNum" min="8" max="17" name="debVen" id="debVen" required>h</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Fin </th>
+                        <th scope="row"><input type="number" class="inputHorraireNum" min="9" max="18" name="finLun" id="finLun" required>h</th>
+                        <th scope="row"><input type="number" class="inputHorraireNum" min="9" max="18" name="finMar" id="finMar" required>h</th>
+                        <th scope="row"><input type="number" class="inputHorraireNum" min="9" max="18" name="finMer" id="finMer" required>h</th>
+                        <th scope="row"><input type="number" class="inputHorraireNum" min="9" max="18" name="finJeu" id="finJeu" required>h</th>
+                        <th scope="row"><input type="number" class="inputHorraireNum" min="9" max="18" name="finVen" id="finVen" required>h</th>
+                    </tr>
+                </tbody>
+                <input type="submit" value="Créer">
+            </table>
+        </form>
     </body>
+    <script>
+    function validationCreate(){
+
+    }
+    function removeJour(jour, check){ //Permet d'Avoir des jours libres
+        var jourDeb = "deb"+jour;
+        var jourFin = "fin"+jour;
+        
+        if(check.checked){
+            document.getElementById(jourDeb).required = false;
+            document.getElementById(jourFin).required = false;
+            document.getElementById(jourDeb).disabled = true;
+            document.getElementById(jourFin).disabled = true;
+        }
+        else{
+            document.getElementById(jourDeb).required = true;
+            document.getElementById(jourFin).required = true;
+            document.getElementById(jourDeb).disabled = false;
+            document.getElementById(jourFin).disabled = false;
+        }
+    }
+   function uncheck(){ //pour firefox parce que il uncheck pas lors des refresh
+        $(':checkbox:checked').prop('checked',false);
+   }
+</script>
 </html>

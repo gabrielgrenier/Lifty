@@ -49,6 +49,9 @@ public class ControleurFrontal extends HttpServlet {
             case "afficherProfil":
                 action = new AfficherProfilAction();
                 break;
+            case "createHoraire":
+                action = new MessagerieAction();
+                break;
             default :
                 action = new DefaultAction();
         }
