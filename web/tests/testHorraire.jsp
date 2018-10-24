@@ -166,7 +166,7 @@
             </tbody>
         </table>
         <h3>Constat : </h3>
-        <% 
+        <% //Fonctionne pas
             for(int i=0; i<constat.length; i++){
                 if(constat[i]!=0){out.println("<h4'>Le jour <b>#"+i+"</b> a un temps d'attente de <b>"+constat[i]+"h</b></h4>");}
             }
