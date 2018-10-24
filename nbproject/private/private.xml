@@ -3,7 +3,34 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/src/java/dao/Dao.java</file>
+=======
+<<<<<<< HEAD
+            <file>file:/C:/Lifty/web/WEB-INF/vues/menu.jsp</file>
+            <file>file:/C:/Lifty/src/java/dao/ProfilDAO.java</file>
+            <file>file:/C:/Lifty/web/tests/testMessageDAO.jsp</file>
+            <file>file:/C:/Lifty/web/WEB-INF/vues/accueil.jsp</file>
+            <file>file:/C:/Lifty/web/static/css/style.css</file>
+            <file>file:/C:/Lifty/web/WEB-INF/vues/messagerie.jsp</file>
+            <file>file:/C:/Lifty/web/tests/testProfilDAO.jsp</file>
+            <file>file:/C:/Lifty/src/java/dao/MessageDAO.java</file>
+            <file>file:/C:/Lifty/src/java/dao/JourDAO.java</file>
+=======
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/tempConfidentialite.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/menu.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/static/css/style.css</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/accueil.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/recherche.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/profil.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/footer.jsp</file>
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/tempPreferences.jsp</file>
+<<<<<<< HEAD
+            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/classe/Profil.java</file>
+=======
+>>>>>>> af3c40c99e10e3f052467d414f322ba363473fdb
+>>>>>>> 13015bd7f415ddc847b0a82bbb99cdb4aa0df1a8
+>>>>>>> 5c9f39179f950c060f7d9c77c31226c1c9595727
         </group>
     </open-files>
 </project-private>
