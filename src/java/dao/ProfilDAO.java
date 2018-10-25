@@ -25,7 +25,7 @@ public class ProfilDAO extends Dao{
             // Construire le profil avec le resultat recu de la requete
             if(rs.next())return construireObjet(rs);
         }
-        catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch (SQLException e){System.out.println("Exception : "+e);}
 	finally{fermerConnexions(con,rs,sqlQuery);}
         return null;
     }
@@ -42,7 +42,7 @@ public class ProfilDAO extends Dao{
             // Construire le profil avec le resultat recu de la requete
             if(rs.next())return construireObjet(rs);
         }
-        catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch (SQLException e){System.out.println("Exception : "+e);}
 	finally{fermerConnexions(con,rs,sqlQuery);}
         return null;
     }
@@ -56,7 +56,7 @@ public class ProfilDAO extends Dao{
             // Construire le profil avec le resultat recu de la requete
             if(rs.next())return construireObjet(rs);
         }
-        catch (SQLException |ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch (SQLException e){System.out.println("Exception : "+e);}
 	finally{fermerConnexions(con,rs,sqlQuery);}
         return null;
     }
@@ -83,7 +83,7 @@ public class ProfilDAO extends Dao{
                         + ""+(p.getVehicule()!=null?"\'"+p.getVehicule().getId()+"\'":"NULL")+")";
                 ouvrirConnexion().executeUpdate(requete);
             }
-            catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+            catch (SQLException e){System.out.println("Exception : "+e);}
             finally{fermerConnexions(con,rs,sqlQuery);}
         }
     }
@@ -109,7 +109,7 @@ public class ProfilDAO extends Dao{
                 // Executer la requete
                 ouvrirConnexion().executeUpdate(requete);
             }
-            catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+            catch(SQLException e){System.out.println("Exception : "+e);}
             finally{fermerConnexions(con,rs,sqlQuery);}
         }
     }
@@ -123,7 +123,7 @@ public class ProfilDAO extends Dao{
             // Executer la requete
             ouvrirConnexion().executeUpdate(requete);
         }
-        catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch(SQLException e){System.out.println("Exception : "+e);}
         finally{fermerConnexions(con,rs,sqlQuery);}
     }
     public void delete(Profil p){delete(p.getId());}
@@ -145,7 +145,7 @@ public class ProfilDAO extends Dao{
             while(rs.next()) output.add(construireObjet(rs));
             return output;
 	}
-        catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch(SQLException e){System.out.println("Exception : "+e);}
 	finally{fermerConnexions(con,rs,sqlQuery);}
         return null;
     }

@@ -26,7 +26,7 @@ public class MessageDAO extends Dao{
             if(rs.next())return construireObjet(rs);
                 System.out.println(requete);
         }
-        catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch (SQLException e){System.out.println("Exception : "+e);}
 	finally{fermerConnexions(con,rs,sqlQuery);}
         return null;
     }
@@ -51,7 +51,7 @@ public class MessageDAO extends Dao{
             while(rs.next()) output.add((Message)construireObjet(rs));
             return output;
 	}
-        catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch(SQLException e){System.out.println("Exception : "+e);}
 	finally{fermerConnexions(con,rs,sqlQuery);}
         return null;
     }
@@ -75,7 +75,7 @@ public class MessageDAO extends Dao{
             while(rs.next()) output.add((Message)construireObjet(rs));
             return output;
 	}
-        catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch(SQLException e){System.out.println("Exception : "+e);}
 	finally{fermerConnexions(con,rs,sqlQuery);}
         return null;
     }
@@ -100,7 +100,7 @@ public class MessageDAO extends Dao{
             while(rs.next()) output.add(construireObjet(rs));
             return output;
 	}
-        catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch(SQLException e){System.out.println("Exception : "+e);}
 	finally{fermerConnexions(con,rs,sqlQuery);}
         return null;
     }
@@ -126,7 +126,7 @@ public class MessageDAO extends Dao{
             while(rs.next()) output.add(construireObjet(rs));
             return output;
 	}
-        catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch(SQLException e){System.out.println("Exception : "+e);}
 	finally{fermerConnexions(con,rs,sqlQuery);}
         return null;
     
@@ -152,7 +152,7 @@ public class MessageDAO extends Dao{
             while(rs.next()) i++;
             return i;
 	}
-        catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch(SQLException e){System.out.println("Exception : "+e);}
 	finally{fermerConnexions(con,rs,sqlQuery);}
         return -1;
         
@@ -172,7 +172,7 @@ public class MessageDAO extends Dao{
                 System.out.println(requete);
                 ouvrirConnexion().executeUpdate(requete);
             }
-            catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+            catch (SQLException e){System.out.println("Exception : "+e);}
             finally{fermerConnexions(con,rs,sqlQuery);}
         }
     }
@@ -187,7 +187,7 @@ public class MessageDAO extends Dao{
             rs = ouvrirConnexion().executeQuery(requete);
             // Cree et retourne le profilDAO pour utiliser la methode construireProfil pour construire le profil du sender
             if(rs.next()){return new ProfilDAO().construireObjet(rs);}
-        }catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+        }catch(SQLException e){System.out.println("Exception : "+e);}
         return null;
     }
     public Profil getSender(Message m){return getSender(m.getId());}
@@ -207,7 +207,7 @@ public class MessageDAO extends Dao{
                 // Executer la requete
                 ouvrirConnexion().executeUpdate(requete);
             }
-            catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+            catch(SQLException e){System.out.println("Exception : "+e);}
             finally{fermerConnexions(con,rs,sqlQuery);}
         }
     }

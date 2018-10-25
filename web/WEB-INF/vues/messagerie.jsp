@@ -4,9 +4,11 @@
     Author     : mchausse
 --%>
 
-<%@page import="classe.ListeMessage"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="classe.ListeMessage"%>
+<%@page import="classe.Profil"%>
 <%@page import="classe.Message"%>
+<%@page import="dao.MessageDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -49,6 +51,7 @@
         <%@include  file="menu.jsp" %>
         
         <%// ======================  TABLEAU DE MESSAGERIE =====================%>
+        <div class="container-fluid">
         <div class='row' id='messagerieContainer'>
             <%// ---- section de gauche ----%>
             <div class='col-lg-4'>
@@ -63,36 +66,39 @@
                         Profil sender;
                         Message message;
                         ListeMessage messages;
-                        messageSelect = mDao.findById(Integer.parseInt(String.valueOf(request.getAttribute("messageSelect"))));
+                        System.out.println("messageSelect : "+String.valueOf(request.getAttribute("messageSelect")));
+                        if(request.getAttribute("messageSelect") != null){
+                            messageSelect = mDao.findById(Integer.parseInt(String.valueOf(request.getAttribute("messageSelect"))));
+                        }
+                        else{
+                            messageSelect = new Message();
+                            messageSelect.setId(-1);
+                        }
                         messages = mDao.findAll(Integer.parseInt(String.valueOf(request.getAttribute("connecte"))));
                         for(int i=0;i<messages.length();i++){
                             sender = mDao.getSender(messages.get(i));
                             message = messages.get(i);
+                            // Ouvrir le bon div si un message est selectionner
                             if(messageSelect.getId() == message.getId()){
-                                %>
-                            <div class='unMessageSelect' onclick="ouvrirMessage(<%=message.getId()%>)">
-                                <%
-                            }
+                                out.print("<div class='unMessageSelect' onclick='ouvrirMessage("+message.getId()+")'>");}
                             else{
-                                %>
-                            <div class='unMessage' onclick="ouvrirMessage(<%=message.getId()%>)">
-                                <%
-                            }
+                                out.print("<div class='unMessage' onclick='ouvrirMessage("+message.getId()+")'>");}
                             %>
-                                <form method="post" class="form<%=message.getId()%>">
-                                    <input type="hidden" name="messageSelect" value="<%=message.getId()%>">
-                                    <input type="hidden" name="action" value="ouvrirMessage"/>
-                                    <div class='col-lg-3'>
-                                        <div class="imgMessage"><img src="<%=sender.getImageProfil()%>" ></div>
-                                    </div>
-                                    <div class='col-lg-9'>
-                                        <b><%=message.getTitre()%></b>
-                                        <br />
-                                        <span><%=sender.getUsername()%></span>
-                                    </div>
-                                </form>
-                            </div>
+                            <form method="post" class="form<%=message.getId()%>">
+                                <input type="hidden" name="messageSelect" value="<%=message.getId()%>">
+                                <input type="hidden" name="action" value="ouvrirMessage"/>
+                                <div class='col-lg-3'>
+                                    <div class="imgMessage"><img src="<%=sender.getImageProfil()%>" ></div>
+                                </div>
+                                <div class='col-lg-9'>
+                                    <b><%=message.getTitre()%></b>
+                                    <br />
+                                    <span><%=sender.getUsername()%></span>
+                                </div>
+                            </form>
                             <%
+                            // Fermer le div en java pour eveter les problemes d'indentations
+                            out.print("</div>");
                         }
                         %>
                     </div>
@@ -134,6 +140,8 @@
                 </div>
             </div>
         </div>
+        </div>
+                
         <%@include  file="footer.jsp" %>
         <script>
             $(document).ready(function(){

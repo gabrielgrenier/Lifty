@@ -175,7 +175,7 @@
     </div>
 </nav>
 
-<% // Script animation du menu
+<% // Script animation du menu si lusager est connecter
 if(request.getAttribute("connecte")!=null){ %>
 <script> 
     $(document).ready(function(){

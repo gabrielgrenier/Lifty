@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import singleton.ConnexionBD;
+import static singleton.ConnexionBD.loadDriver;
 /* ==== INFO ====
 
  * @author maxime chausse
@@ -33,13 +35,9 @@ public abstract class Dao {
     // Elle peut faire une exception sql car elle n'est pas traiter a l'interieur
     public abstract Object construireObjet(ResultSet rs) throws SQLException;
     
-    protected Statement ouvrirConnexion()throws SQLException, ClassNotFoundException{
-        //Chargement du pilote 
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        //Ouverture de connexion 
-        con = DriverManager.getConnection(CONNEXIONSTRING);
-        // Executer la requete
-        return con.createStatement();
+    protected Statement ouvrirConnexion()throws SQLException{
+        // Ouverture de connexion et retour du statement
+        return ConnexionBD.getConnexion().createStatement();
     }
     
     // Fonctions qui recouves et fermes les connexions ouvertes
