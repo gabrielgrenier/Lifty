@@ -304,7 +304,7 @@ footer p{
     width: 345px
 }
 #messages{
-    background : lightgrey;
+    background : rgba(211,211,211,0.8);
     color : black;
     height: 510px;
     margin-left: -15px;
@@ -334,7 +334,7 @@ footer p{
 }
 /** --------------- Cote droit ---------------*/
 #messageContainer{
-    margin : 15px 0px 0px 0px;
+    margin-top : 15px;
 }
 .messageHead{
     background : lightgrey;
@@ -343,7 +343,6 @@ footer p{
     font-size: 23px;
     text-align: center;
     vertical-align: central;
-    padding-top: 10px;
 }
 .messageHead a{
     font-family: Helvetica;
@@ -352,22 +351,34 @@ footer p{
 .messageHead a:hover{
     color : grey;
 }
-.messageBody{
+#messageBody{
     background : white;
     color : black;
     height: 490px;
 }
-#messageEnvoyeur,#messageTitre,#messageText{
-    margin-top:7px;
+#messageEnvoyeur,
+#messageTitre,
+#messageTexte{
     margin-left:7px;
     margin-right:5px;
     height:40px;
 }
-#messageText p{
+#messageTexte p{
     margin-left:7px;
-    
 }
 hr{
     margin-top:-15px;
     margin-bottom:10px;
+}
+#btnEnvoyerMessage{
+    position: absolute;
+    right:30px;
+    bottom:40px;
+}
+.notif{
+    font-size: 18px;
+    margin-top: 4em;
+    margin-bottom:-100px;
+    position:relative;
+    z-index:100;
 }

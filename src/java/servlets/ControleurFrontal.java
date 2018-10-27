@@ -7,6 +7,7 @@ import controleurs.ConfidentialiteAction;
 import controleurs.ConnexionAction;
 import controleurs.DeconnexionAction;
 import controleurs.DefaultAction;
+import controleurs.EnvoyerMessageAction;
 import controleurs.MessagerieAction;
 import controleurs.InscriptionAction;
 import controleurs.PreferencesAction;
@@ -53,6 +54,9 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "ouvrirMessage":
                 action = new OuvrirMessageAction();
+                break;
+            case "envoyerMessage":
+                action = new EnvoyerMessageAction();
                 break;
             default :
                 action = new DefaultAction();
