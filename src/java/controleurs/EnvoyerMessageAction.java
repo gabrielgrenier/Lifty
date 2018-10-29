@@ -50,6 +50,7 @@ public class EnvoyerMessageAction extends AbstractAction{
                 else request.setAttribute("notif2", "Oups! Un probleme est survenu. Veuiller recommencer.");
             }
             return "messagerie";
+            //return "accueil";
         }
         //return "accueil";
         return "messagerie";

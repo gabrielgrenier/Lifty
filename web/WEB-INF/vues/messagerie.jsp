@@ -21,31 +21,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="shortcut icon" href="#">
         <link rel="stylesheet" href="./static/css/style.css" type="text/css"/>
-        <script> 
-        $(document).ready(function(){
-            // Setter les grandeurs
-            $("#panelLogin").animate({right: '10px', width : '300px'});
-            $("#panelInscription").animate({right: '10px', width : '300px'});
-            $("#panelProfil").animate({right: '10px', width : '300px'});
-
-            // Fonctions lorque l'ont clique
-            $("#login").click(function(){
-                if($("#panelInscription").is(':visible')){$("#panelInscription").animate({height:'toggle'});}
-                $("#panelLogin").animate({height:'toggle'});
-            });
-            $("#inscription").click(function(){
-                if($("#panelLogin").is(':visible')){$("#panelLogin").animate({height:'toggle'});}
-                $("#panelInscription").animate({height:'toggle'});
-            });
-            $("#lblLink").click(function(){
-                if($("#panelLogin").is(':visible')){$("#panelLogin").animate({height:'toggle'});}
-                $("#panelInscription").animate({height:'toggle'});
-            });
-            $("#profil").click(function(){
-                $("#panelProfil").animate({height:'toggle'});
-            });
-        });
-        </script>
     </head>
     <body id='messageriePanel'>
         <%@include  file="menu.jsp" %>
@@ -90,7 +65,6 @@
                             Profil sender;
                             Message message;
                             ListeMessage messages;
-                            System.out.println("messageSelect : "+String.valueOf(request.getAttribute("messageSelect")));
                             if(request.getAttribute("messageSelect") != null){
                                 messageSelect = mDao.findById(Integer.parseInt(String.valueOf(request.getAttribute("messageSelect"))));
                             }
@@ -139,14 +113,19 @@
                         <!-- Heading avec les boutons -->
                         <div class='panel-heading messageHead'>
                             <div class="col-lg-4">
-                                <a onclick="nouveauMessage(<%=String.valueOf(request.getAttribute("connecte"))%>)">
-                                <span class="glyphicon glyphicon-plus">Nouveau</span></a>
+                                <a onclick="nouveauMessage(<%=String.valueOf(request.getAttribute("connecte"))%>,'','')">
+                                    <span class="glyphicon glyphicon-plus">Nouveau</span>
+                                </a>
                             </div>
-                            <div class="col-lg-4"><a>
-                                <span class="glyphicon glyphicon-share-alt">Repondre</span></a>
+                            <div class="col-lg-4">
+                                <a onclick="nouveauMessage(<%=String.valueOf(request.getAttribute("connecte"))%>,'<%=mDao.getSender(messageSelect.getId()).getUsername()%>','<%=messageSelect.getTitre()%>')">
+                                    <span class="glyphicon glyphicon-share-alt">Repondre</span>
+                                </a>
                             </div>
-                            <div class="col-lg-4"><a>
-                                <span class="glyphicon glyphicon-trash">Supprimer</span></a>
+                            <div class="col-lg-4">
+                                <a>
+                                    <span class="glyphicon glyphicon-trash">Supprimer</span>
+                                </a>
                             </div>
                         </div>
                         
@@ -179,7 +158,7 @@
                         <!-- Heading avec les boutons -->
                         <div class='panel-heading messageHead'>
                             <div class="col-lg-4">
-                                <a onclick="nouveauMessage(<%=String.valueOf(request.getAttribute("connecte"))%>)">
+                                <a onclick="nouveauMessage(<%=String.valueOf(request.getAttribute("connecte"))%>,'','')">
                                 <span class="glyphicon glyphicon-plus">Nouveau</span></a>
                             </div>
                         </div>
@@ -220,25 +199,28 @@
             function ouvrirMessage(id){
                  $(".form"+id).submit();
             }
-            function nouveauMessage(idUser){
+            function nouveauMessage(idUser,username,titre){
                 // Aller chercher le formulaire
                 var form = document.getElementById("messageBody");
+                
+                // Ajouter RE:
+                if(titre !== '')titre="RE: "+titre;
                 
                 // Vider le formulaire
                 $("#messageBody").empty();
                 
                 // Remplir le formulaire
-                form.innerHTML+="<form class='form-horizontal' methode='post' action='messagerie'>"+
+                form.innerHTML+="<form class='form-horizontal' methode='post' action=''>"+
                                     "<div class='col-sm-12 col-lg-12' id='messageEnvoyeur' class='form-group'>"+
                                         "<label class='control-label col-sm-2 col-lg-2'><b>Destinataire: </b></label>"+
                                         "<div class='col-sm-10 col-lg-9'>"+
-                                            "<input type='text' class='form-control' id='username' name='usernameDestinataire' placeholder='username'>"+
+                                            "<input type='text' class='form-control' value='"+username+"' id='username' name='usernameDestinataire' placeholder='username'>"+
                                         "</div>"+
                                     "</div>"+
                                     "<div class='col-lg-12 col-lg-12' id='messageTitre' class='form-group'>"+
                                         "<label class='control-label col-sm-2 col-lg-2'><b>Titre: </b></label>"+
                                         "<div class='col-sm-10 col-lg-9'>"+
-                                            "<input type='text' class='form-control' name='titre' id='titre' placeholder='objet du message'>"+
+                                            "<input type='text' class='form-control' name='titre' value='"+titre+"' id='titre' placeholder='objet du message'>"+
                                         "</div>"+
                                     "</div>"+
                                     "<div class='col-lg-12' id='messageTexte' class='form-group'>"+

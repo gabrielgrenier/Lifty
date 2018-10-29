@@ -246,7 +246,6 @@ public class MessageDAO extends Dao{
             // Cree le lien
             rCreationLink = "INSERT INTO `messageutilisateur` (`receveurID`, `messageID`, `envoyeurID`)"
                             + "VALUES ('"+destinataire.getId()+"','"+idMessage+"','"+envoyeur.getId()+"')";
-            System.out.println("requete d'envoie : "+rCreationLink);
             ouvrirConnexion().executeUpdate(rCreationLink);
             return true;
         }
