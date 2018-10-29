@@ -169,12 +169,37 @@ public class MessageDAO extends Dao{
             try{
                 requete = "INSERT INTO `message` (`ID`, `titre`, `message`, `date`, `time`, `vu`) "
                         + "VALUES (\'"+p.getId()+"\', \'"+p.getTitre()+"\', \'"+p.getMessage()+"\', \'"+p.getDate()+"\', \'"+p.getTime()+"\', \'"+(p.isVu()?1:0)+"\')";
-                System.out.println(requete);
                 ouvrirConnexion().executeUpdate(requete);
             }
             catch (SQLException e){System.out.println("Exception : "+e);}
             finally{fermerConnexions(con,rs,sqlQuery);}
         }
+    }
+    public int createAndReturnId(Object o) {
+        // Verifie que l'objet sois un Profil
+        if(o instanceof Message){
+            // Caster l<objet en Profil
+            Message p=(Message)o;
+            String requete;
+            try{
+                requete = "INSERT INTO `message` (`ID`, `titre`, `message`, `date`, `time`, `vu`) "
+                        + "VALUES (\'"+p.getId()+"\', \'"+p.getTitre()+"\', \'"+p.getMessage()+"\', \'"+p.getDate()+"\', \'"+p.getTime()+"\', \'"+(p.isVu()?1:0)+"\')";
+
+                ouvrirConnexion().executeUpdate(requete);
+                
+                // ============ A OPTIMISER PLUS TARD =============
+                // Aller chercher ce message et la retourner
+                rs=null;
+                requete = "SELECT LAST_INSERT_ID(ID) from message;";
+                rs=ouvrirConnexion().executeQuery(requete);
+                rs.last();
+                System.out.println(" RESULT SET : "+rs.getString("LAST_INSERT_ID(ID)"));
+                return Integer.parseInt(rs.getString("LAST_INSERT_ID(ID)"));
+            }
+            catch (SQLException e){System.out.println("Exception : "+e);}
+            finally{fermerConnexions(con,rs,sqlQuery);}
+        }
+        return -1;
     }
 
     public Profil getSender(int message){
@@ -193,7 +218,7 @@ public class MessageDAO extends Dao{
     public Profil getSender(Message m){return getSender(m.getId());}
     
     @Override
-    public void update(Object o) {// Pas tester
+    public void update(Object o) {
         // Verifie que l'objet sois un Profil
         if(o instanceof Message){
             String requete;
@@ -210,6 +235,42 @@ public class MessageDAO extends Dao{
             catch(SQLException e){System.out.println("Exception : "+e);}
             finally{fermerConnexions(con,rs,sqlQuery);}
         }
+    }
+    
+    public boolean envoyerMessage(Message m, Profil envoyeur, Profil destinataire){
+        String rCreationLink;
+        int idMessage;
+        try{
+            // Cree le message
+            idMessage = createAndReturnId(m);
+            // Cree le lien
+            rCreationLink = "INSERT INTO `messageutilisateur` (`receveurID`, `messageID`, `envoyeurID`)"
+                            + "VALUES ('"+destinataire.getId()+"','"+idMessage+"','"+envoyeur.getId()+"')";
+            System.out.println("requete d'envoie : "+rCreationLink);
+            ouvrirConnexion().executeUpdate(rCreationLink);
+            return true;
+        }
+        catch(SQLException e){
+            System.out.println("Exception : "+e);
+            return false;
+        }
+        finally{fermerConnexions(con,rs,sqlQuery);}
+    }
+    public boolean envoyerMessage(Message m,int idEnvoyeur, String usernameDestinataire){
+        ProfilDAO pDao = new ProfilDAO();
+        // Trouver destinataire par le username
+        Profil pD = pDao.findByUsername(usernameDestinataire);
+        // Trouver envoyer par Id
+        Profil pE = pDao.findById(idEnvoyeur);
+        return envoyerMessage(m,pE,pD);
+    }
+    public boolean envoyerMessage(Message m, String usernameEnvoyeur, String usernameDestinataire){
+        ProfilDAO pDao = new ProfilDAO();
+        // Trouver destinataire par le username
+        Profil pD = pDao.findByUsername(usernameDestinataire);
+        // Trouver envoyer par Id
+        Profil pE = pDao.findByUsername(usernameEnvoyeur);
+        return envoyerMessage(m,pE,pD);
     }
 
     @Override

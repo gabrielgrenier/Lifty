@@ -1,4 +1,10 @@
 package controleurs;
+
+import classe.Message;
+import dao.MessageDAO;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /* ==== INFO ====
 
  * @author maxime chausse
@@ -13,10 +19,36 @@ public class EnvoyerMessageAction extends AbstractAction{
         if(request.getParameter("connecte")!=null){
             request.setAttribute("connecte",request.getParameter("connecte"));
             
-            // Afficher une notification
-            request.setAttribute("notif1","Le message a bien été envoyer!");
-            request.setAttribute("notif0","Le message n'a pas pu être envoyer!");
-            
+            if(request.getParameter("titre")!=null){
+                MessageDAO mDao = new MessageDAO();
+                Message newMessage = new Message();
+                
+                // Trouver la date live
+                Date dateTime = new Date();
+                // Avoir un format qui affiche juste la date
+                SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+                // Avoir un format qui affiche juste le temps
+                SimpleDateFormat time = new SimpleDateFormat("hh:mm:ss");
+                
+                // Remplir le nouveau message
+                newMessage.setId(0);
+                newMessage.setTitre(String.valueOf(request.getParameter("titre")));
+                newMessage.setMessage(String.valueOf(request.getParameter("texte")));
+                newMessage.setDate(date.format(dateTime));
+                newMessage.setTime(time.format(dateTime));
+                newMessage.setVu(false);
+                
+                // Envoyer le message
+                boolean succes;
+                succes = mDao.envoyerMessage(newMessage,
+                        Integer.parseInt(request.getParameter("connecte")),
+                        String.valueOf(request.getParameter("usernameDestinataire"))
+                );
+                
+                // Afficher une notification
+                if(succes)request.setAttribute("notif1", "Message envoyé à "+String.valueOf(request.getParameter("usernameDestinataire")));
+                else request.setAttribute("notif2", "Oups! Un probleme est survenu. Veuiller recommencer.");
+            }
             return "messagerie";
         }
         //return "accueil";

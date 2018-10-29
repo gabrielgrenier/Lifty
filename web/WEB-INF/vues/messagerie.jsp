@@ -183,7 +183,8 @@
                                 <span class="glyphicon glyphicon-plus">Nouveau</span></a>
                             </div>
                         </div>
-                        <div class='panel-body' id="messageBody"></div>
+                        <div class='panel-body' id="messageBody">
+                        </div>
                     </div>
                 </div>
                 <%
@@ -231,19 +232,19 @@
                                     "<div class='col-sm-12 col-lg-12' id='messageEnvoyeur' class='form-group'>"+
                                         "<label class='control-label col-sm-2 col-lg-2'><b>Destinataire: </b></label>"+
                                         "<div class='col-sm-10 col-lg-9'>"+
-                                            "<input type='text' class='form-control' id='username' placeholder='username'>"+
+                                            "<input type='text' class='form-control' id='username' name='usernameDestinataire' placeholder='username'>"+
                                         "</div>"+
                                     "</div>"+
                                     "<div class='col-lg-12 col-lg-12' id='messageTitre' class='form-group'>"+
                                         "<label class='control-label col-sm-2 col-lg-2'><b>Titre: </b></label>"+
                                         "<div class='col-sm-10 col-lg-9'>"+
-                                            "<input type='text' class='form-control' id='titre' placeholder='objet du message'>"+
+                                            "<input type='text' class='form-control' name='titre' id='titre' placeholder='objet du message'>"+
                                         "</div>"+
                                     "</div>"+
                                     "<div class='col-lg-12' id='messageTexte' class='form-group'>"+
                                         "<label class='control-label col-sm-2 col-lg-2'><b>Message: </b></label>"+
                                         "<div class='col-sm-10 col-lg-9'>"+
-                                            "<textarea class='form-control' rows='10' id='texte'></textarea>"+
+                                            "<textarea class='form-control' rows='10' id='texte' name='texte' ></textarea>"+
                                         "</div>"+
                                     "</div>"+
                                     "<div class='form-group'>"+
