@@ -205,7 +205,8 @@
                 </tbody>
                 <input type="submit" value="Créer" id="subHoraire">
             </table>
-        <!--<input type="hidden" value="createHoraire" name="action">-->
+            <input type="hidden" value="createHoraire" name="action">
+            <h1>Teste</h1>
         </form>
     </body>
     <script>
