@@ -27,10 +27,10 @@ public class ControleurFrontal extends HttpServlet {
         if (actionAFaire == null) actionAFaire = "";
         
         switch (actionAFaire) {
-            case "Connexion":
+            case "connexion":
                 action = new ConnexionAction();
                 break;
-            case "Inscription":
+            case "inscription":
                 action = new InscriptionAction();
                 break;
             case "confidentialite":
