@@ -173,7 +173,7 @@
             }
         %>
         <h1>Création des horraires :</h1>
-        <form action="ControleurFrontal?action=createHoraire" method="post">
+        <form action="./" method="post">
         id user : <input type="number">
             <table class="table table-hover table-bordered">
                 <thead>
@@ -205,6 +205,7 @@
                 </tbody>
                 <input type="submit" value="Créer" id="subHoraire">
             </table>
+        <!--<input type="hidden" value="createHoraire" name="action">-->
         </form>
     </body>
     <script>
