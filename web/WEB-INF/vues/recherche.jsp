@@ -47,24 +47,20 @@
                   </tr>
                 </thead>
                 <tbody>
+                    <%
+                        ProfilDAO pDao = new ProfilDAO();
+                        Profil user = pDao.findById(Integer.parseInt(String.valueOf(request.getAttribute("connecte"))));
+                        List<Profil> liste = rechercheService.ListeUserAround(user.getEtablissement(), user.isConducteur());
+                        for(int i = 0;i<liste.size();i++){ 
+                            Profil p = liste.get(i);
+                       %>
                   <tr>
                     <td></td>
-                    <td>SLav01</td>
-                    <td>Rosemont</td>
-                    <td>4.2</td>
+                    <td><%=""+p.getUsername()%></td>
+                    <td><%=""+p.getEtablissement()%></td>
+                    <td><%=""+p.getRating()%></td>
                   </tr>
-                  <tr>
-                    <td></td>
-                    <td>MCha01</td>
-                    <td>Rosemont</td>
-                    <td>3.4</td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td>GBra</td>
-                    <td>Rosemont</td>
-                    <td>4</td>
-                  </tr>
+                  <%}%>
                 </tbody>
               </table>
         </div>
@@ -72,3 +68,28 @@
     <%@include  file="footer.jsp" %>
     </body>
 </html>
+<script>
+    function recherche() {
+        var input, filter, container, row, label;
+            input = document.getElementById('rechercheBar');
+            filter = input.value.toUpperCase();
+            container = document.getElementById("usagerListe");
+            row = container.getElementsByClassName('row');
+        if(filter!==""){
+            if(document.getElementById("usagerListe").style.display === "none"){
+                $("#usagerListe").animate({height:'toggle'});
+            }
+            for (i = 0; i < row.length; i++) {
+                label = row[i].getElementsByTagName("label")[0];
+                if (label.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    row[i].style.display = "";
+                } else {
+                    row[i].style.display = "none";
+                }
+            }
+        }
+        else{
+            if(document.getElementById("usagerListe").style.display !== "none"){$("#usagerListe").animate({height:'toggle'});}
+        }
+    }
+</script>

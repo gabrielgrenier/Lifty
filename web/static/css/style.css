@@ -7,12 +7,24 @@ htlm, body {
     width: 100%;
 }
 
+<<<<<<< HEAD
 .imgAcc {
     border-width:3px;
     border-style:solid;
     border-color:#ffffff;
     box-shadow: 0px 0px 53px -8px rgba(0,0,0,0.75);
 }
+=======
+/*img{
+    border-width:3px;
+    border-style:solid;
+    border-color:#ffffff;
+    box-shadow: 0px 0px 47px -3px rgba(0,0,0,0.75);
+}*/
+
+
+
+>>>>>>> 217b02a3c0a1b186aa110655172bb7f5c7f5d996
 
 .attribue{
     font-style:italic; 
@@ -110,7 +122,7 @@ text-shadow: 0 1px 0 #ccc,
 }
 
 footer{
-    background-color: #3A3A3A;
+    background-color: rgba(0, 0, 0, 0.6);
     display: table;
     height: 5em;
     width: 100%;
@@ -259,15 +271,45 @@ footer p{
 #recherchePanel #tblSecteur{
     background : rgba(0, 0, 0, 0.6);
     margin : 5% 5% 40% 5%;
-    height: 250px;
+    height: 20%px;
 }
 #recherchePanel table {
     font-family: Helvetica;
     border-collapse: collapse;
     width: 94%;
+    height: 80%;
+    overflow-y: auto;
     margin : 3% 0 3% 3%;
     background-color: white;
 }
+#usagerListe{
+    text-align: center;
+    float : left;
+    position:absolute;
+    margin-top: 22px;
+    padding: 0 0 20px 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-style: none;
+    box-shadow: 0px 2px 94px 0px rgba(0,0,0,0.75);
+    color : white;
+    width:20%;
+    display: none;
+}
+#usagerListe .row{
+    background : rgba(0, 0, 0, 0.4);
+    margin : 10% 0 0 0;
+    width: 100%;
+}
+#usagerListe label{
+    padding: 10% 0 0 0;
+}
+#rechercheBar{
+    margin-top: 2%;
+    padding-right: 40%;;
+}
+
+
+/* -----------------------------Profils----------------------------------*/
 
 /** --------------- Messagerie ---------------*/
 #messageriePanel{
@@ -279,10 +321,142 @@ footer p{
     background-size: cover;
     z-index: -1;
 }
+#profilBackground{
+    background: url("../images/routeMontage.jpeg") no-repeat center center fixed;
+    display: table;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-size: cover;
+    z-index: -1;
+}
+#ProfilContainer{
+   /* background : rgba(0, 0, 0, 0.8);*/
+    margin : 8% 10% 5% 10%;
+    padding: 1em 2em;
+    height: 95%;
+
+}
+#InformationProfilContainer{
+    background : rgba(255, 255, 255, 0.4);
+    padding: 2em 4em;
+    height: 100%;
+    color: black;
+    border-width:1em;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+
+}
+#imageProfil{
+    max-height: 15em;
+    min-height: 12em;
+    min-width: 12em;
+    border-width:5px;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+.textProfil{
+    font-size: 18px;
+
+}
+
+#infoPro{
+    border-width:5px;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    background : rgba(255, 255, 255, 0.6);
+}
+#modifPro{
+    margin-left: 35px;
+    margin-top: -55px;
+    background : rgba(255, 255, 255, 0.4);
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    font-size: 16px;
+    color: black;
+}
+
+.TitreProf{
+    font-size: 20px;
+    background : rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+#comProf{
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+}
+
+.contProf{
+    height: 500px;
+}
+#contProfHoraire{
+    height: 40%;
+    background-color: white;
+}
+#test32{
+    text-align: left;
+    background : rgba(255, 255, 255, 0.4);
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    font-size: 16px;
+    color: black;
+    height: 50px;
+    width: 140px;
+}
+
+#menuRating{
+    padding-left: 80%;
+}
+
+.btn btn-default{
+   margin: 10px;
+   height: 50px;
+}
+.imageEtoile{
+    height: 20px;
+    width: 20px;
+    margin:auto;
+}
+#boiteEtoile{
+     padding-left:1%;
+         
+}
+#textEtoile{
+    font-size: 16px;
+    background : rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+#titreProfil{
+    font-size: 32px;
+    font-weight: bold;
+}
+#enteteProfil{
+    margin-top: 3%;
+    margin-bottom: 7%;
+}
 #messagerieContainer{
     background : rgba(0, 0, 0, 0.6);
     margin : 10% 10% 5% 10%;
     height: 585px;
+}
+#menu_button{
+    margin-top: -55px;
+}
+
+.bt_mod{
+    width: 215px;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    background : rgba(255, 255, 255, 0.4);
+    font-weight: bold;
+    color: black;
+    margin-bottom: 1em;
+    
 }
 /** --------------- Cote gauche ---------------*/
 #messagesContainer{

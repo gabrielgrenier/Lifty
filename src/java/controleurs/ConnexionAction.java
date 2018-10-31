@@ -8,6 +8,8 @@ package controleurs;
 */
 import classe.Profil;
 import dao.ProfilDAO;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ConnexionAction extends AbstractAction {
 
@@ -27,9 +29,12 @@ public class ConnexionAction extends AbstractAction {
             if(p!=null)
                 // Verifier si les deux mots de passes sont les memes
                 if(p.getMotDePasse().equals(pwd)){
-                    // Retouner setter une variable de connexion pour compensser la session pour le moment
-                    request.setAttribute("connecte",""+p.getId());
-                    return "recherche";
+                        SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                        // Retouner setter une variable de connexion pour compensser la session pour le moment
+                        p.setDateConnexion(sm.format(new Date()));
+                        pDao.update(p);
+                        request.setAttribute("connecte",""+p.getId());
+                        return "recherche";
                 }
             invalide();
         }

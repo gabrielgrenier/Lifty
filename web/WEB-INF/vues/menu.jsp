@@ -1,3 +1,5 @@
+<%@page import="services.rechercheService"%>
+<%@page import="java.util.List"%>
 <%@page import="dao.MessageDAO"%>
 <%@page import="classe.Profil"%>
 <%@page import="dao.ProfilDAO"%>
@@ -18,7 +20,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#parallax"><img id="logo" src="./static/images/petitLogo.png"/></a>
+            <%if(request.getAttribute("connecte")==null){ %>
+                <a class="navbar-brand" href="#parallax"><img id="logo" src="./static/images/petitLogo.png"/></a>
+            <%}
+            else{%>
+                <a class="navbar-brand"><img id="logo" src="./static/images/petitLogo.png"/></a>
+            <%}%>
         </div>
         <%
         // ====================== MENU =====================
@@ -46,6 +53,28 @@
             int nb = mDao.countNonVu(Integer.parseInt(String.valueOf(request.getAttribute("connecte"))));
             %>
             <div class="collapse navbar-collapse" id="navbar-collapse-main">
+                <ul class="navbar-form navbar-left" action="/action_page.php">
+                    <div class="form-group">
+                        <input type="text" id="rechercheBar" onkeyup="recherche()" placeholder="Rechercher un usager">
+                         <div class="container" id="usagerListe">
+                            <div class="form-group">
+                          <%List<Profil> liste = rechercheService.rechercheUsername();
+                            for(int i = 0;i<liste.size();i++){ 
+                                Profil p = liste.get(i);
+                          %>
+                          <div class='row'>
+                                <div class='col-lg-4'>
+                                    <img src="<%=p.getImageProfil()%>" class="img-responsive" />
+                                </div>
+                                <div class='col-lg-8'>
+                                    <label id='lblUsername'><%="@"+p.getUsername()%></label>
+                                </div>
+                            </div>
+                        <%}%>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
                 <ul class="nav navbar-nav navbar-right" style="margin-right: 1%;">
                     <li><a class="#" href="?action=recherche&connecte=<%=String.valueOf(request.getAttribute("connecte"))%>">Recherche</a></li>
                     <li>
@@ -62,7 +91,7 @@
         }
         %>
         <%// ====================== FORMULAIRE DE LOGIN =====================%>
-        <form method="post" action="login">
+        <form method="post" action="./">
             <div class="container" id="panelLogin">
                 <div class="form-group">
                     <label for="emailCon">Courriel:</label>
@@ -79,27 +108,28 @@
                     %>
                 </div>
                 <div class="form-group">
-                    <label class='lblLink'><u>S'insrire à Lifty</u></label>
+                    <label id="inscriptionLink" class='lblLink'><u>S'insrire à Lifty</u></label>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" name="action" value="Connexion"/>
+                    
                 </div>
                 <div class="form-group">
+                    <input type="hidden" name="action" value="connexion"/>
                     <button type="submit" name="btnConnexion" id="btnConnexion" class="btn btn-primary">Se connecter</button>
                 </div>
             </div>
         </form>
         
         <%// ====================== FORMULAIRE D'INSCRIPTION =====================%>
-        <form method="post" action="register">
+        <form method="post" action="./" >
             <div class="container" id="panelInscription">
                 <div class="form-group">
                     <label for="prenomInsc">Prénom:</label>
-                    <input type="text" class="form-control" id="prenomInsc" name="prenomInsc" placeholder ='John' value="<%=(request.getParameter("prenomInsc")!=null)?request.getParameter("prenomInsc"):""%>" required>
+                    <input type="text" class="form-control" id="prenomInsc" name="prenomInsc" placeholder ='John' value="<%=(request.getParameter("prenomInsc")!=null)?request.getParameter("prenomInsc"):""%>" pattern="[a-zA-Z]*" title="Aucun chiffre permis" required>
                 </div>
                 <div class="form-group">
                     <label for="nomInsc">Nom:</label>
-                    <input type="text" class="form-control" id="nomInsc" name="nomInsc" placeholder ='Doe' value="<%=(request.getParameter("nomInsc")!=null)?request.getParameter("nomInsc"):""%>" required>
+                    <input type="text" class="form-control" id="nomInsc" name="nomInsc" placeholder ='Doe' value="<%=(request.getParameter("nomInsc")!=null)?request.getParameter("nomInsc"):""%>" pattern="[a-zA-Z]*" title="Aucun chiffre permis" required>
                 </div>
                 <div class="form-group">
                     <label for="emailInsc">Courriel:</label>
@@ -107,7 +137,7 @@
                 </div>
                 <div class="form-group">
                     <label for="codePInsc">Code Postal:</label>
-                    <input type="text" class="form-control" id="codePInsc" name="codePInsc" placeholder ='H0H 0H0' value="<%=(request.getParameter("codePInsc")!=null)?request.getParameter("codePInsc"):""%>" required>
+                    <input type="text" class="form-control" id="codePInsc" name="codePInsc" placeholder ='H0H 0H0' value="<%=(request.getParameter("codePInsc")!=null)?request.getParameter("codePInsc"):""%>" pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]" title="Code postal invalide" required>
                 </div>
                 <div class="form-group">
                     <label for="pwdInsc">Mot de passe:</label>
@@ -123,16 +153,20 @@
                     <label class="radio-inline"><input type="radio" name="type" value="passInsc">: Passager</label>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" name="action" value="Inscription"/>
                 </div>
                 <div class="erreur">
                     <%
                     // Afficher le message d<erreur si il y en a un
-                    if(request.getAttribute("errPwd")!=null){%><label><%out.print(String.valueOf(request.getAttribute("errPwd")));%></label><%}
+                    if(request.getAttribute("err")!=null){
+                    %><label><%out.print(String.valueOf(request.getAttribute("err")));%></label>
+                    <%}
                     %>
                 </div>
                 <div class="form-group">
+                    <form>
+                    <input type="hidden" name="action" value="inscription"/>
                     <button type="submit" name="btnInscription" id="btnInscription" class="btn btn-primary">S'inscrire</button>
+                    </form>
                 </div>
             </div>
         </form>
@@ -147,7 +181,7 @@
                 <div class="form-group">
                     <div class='row'>
                         <div class='col-lg-4'>
-                            <img src="./static/images/profils/default.png" class="img-responsive" />
+                            <a href="?action=afficherProfil&connecte=<%=String.valueOf(request.getAttribute("connecte"))%>"><img src="./static/images/profils/default.png" class="img-responsive" /></a>
                         </div>
                         <div class='col-lg-8'>
                             <label id='lblPrenomNom'><%=p.getPrenom()+" "+p.getNom()%></label>
@@ -165,7 +199,7 @@
                     <label class='lblLink'><a href="?action="><u>Horaire</u></a></label>
                 </div>
                 <div class="form-group">
-                    <label class='lblLink'><a href="?action=deconnexion"><u>Deconnexion</u></a></label>
+                    <label class='lblLink'><a action="" href="?action=deconnexion" ><u>Deconnexion</u></a></label>
                 </div>
             </div>
         <%
@@ -182,20 +216,9 @@ if(request.getAttribute("connecte")!=null){ %>
         $("#panelLogin").animate({right: '10px', width : '300px'});
         $("#panelInscription").animate({right: '10px', width : '300px'});
         $("#panelProfil").animate({right: '10px', width : '300px'});
+        $("#usagerListe").animate({width : '300px'});
 
         // Fonctions lorque l'ont clique
-        $("#login").click(function(){
-            if($("#panelInscription").is(':visible')){$("#panelInscription").animate({height:'toggle'});}
-            $("#panelLogin").animate({height:'toggle'});
-        });
-        $("#inscription").click(function(){
-            if($("#panelLogin").is(':visible')){$("#panelLogin").animate({height:'toggle'});}
-            $("#panelInscription").animate({height:'toggle'});
-        });
-        $("#lblLink").click(function(){
-            if($("#panelLogin").is(':visible')){$("#panelLogin").animate({height:'toggle'});}
-            $("#panelInscription").animate({height:'toggle'});
-        });
         $("#profil").click(function(){
             $("#panelProfil").animate({height:'toggle'});
         });
@@ -208,6 +231,8 @@ else{%>
         $("#panelLogin").animate({right: '10px', width : '300px'});
         $("#panelInscription").animate({right: '10px', width : '300px'});
         
+        // Afficher le message d<erreur si il y en a un
+        
         $("#login").click(function(){
             if($("#panelInscription").is(':visible'))$("#panelInscription").animate({height:'toggle'});
             $("#panelLogin").animate({height:'toggle'});
@@ -218,7 +243,7 @@ else{%>
             $("#panelInscription").animate({height:'toggle'});
         });
         
-        $("#lblLink").click(function(){
+        $("#inscriptionLink").click(function(){
             if($("#panelLogin").is(':visible'))$("#panelLogin").animate({height:'toggle'});
             $("#panelInscription").animate({height:'toggle'});
         });
