@@ -7,7 +7,15 @@
 =======
         <group>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/C:/Users/gabri/Desktop/backup/Lifty/web/tests/testHorraire.jsp</file>
+=======
+            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/src/java/servlets/ControleurFrontal.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/src/java/controleurs/RechercheAction.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/web/tests/testHorraire.jsp</file>
+            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/web/static/css/style.css</file>
+            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/src/java/controleurs/createHoraireAction.java</file>
+>>>>>>> 0116ebf8e411fb955c6bcfe878222342d4c7937c
 =======
 <<<<<<< HEAD
             <file>file:/G:/Session4/Project/git/Lifty/web/WEB-INF/vues/menu.jsp</file>
