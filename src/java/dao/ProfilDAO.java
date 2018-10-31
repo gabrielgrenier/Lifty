@@ -107,6 +107,7 @@ public class ProfilDAO extends Dao{
                         + "`vehiculeID`="+(p.getVehicule()!=null?"\'"+p.getVehicule().getId()+"\'":"NULL")+""
                         + " WHERE `utilisateur`.`ID` = '"+p.getId()+"';";
                 // Executer la requete
+                System.out.println(requete);
                 ouvrirConnexion().executeUpdate(requete);
             }
             catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
@@ -169,11 +170,11 @@ public class ProfilDAO extends Dao{
         p.setEtablissement(rs.getString("etablissement"));
         p.setImageProfil(rs.getString("imageProfil"));
         // Convertion des valeurs en boolean
-        p.setNomPublic(("0".equals(rs.getString("nomPublic"))));
-        p.setPrenomPublic(("0".equals(rs.getString("prenomPublic"))));
+        p.setNomPublic(("1".equals(rs.getString("nomPublic"))));
+        p.setPrenomPublic(("1".equals(rs.getString("prenomPublic"))));
         p.setEmailPublic(("0".equals(rs.getString("emailPublic"))));
         p.setValide(("0".equals(rs.getString("valide"))));
-        p.setConducteur(("0".equals(rs.getString("conducteur"))));
+        p.setConducteur(("1".equals(rs.getString("conducteur"))));
         // Convertion valeurs des doubles
         if(rs.getString("note")!=null)p.setRating(Double.parseDouble(rs.getString("note")));
         if(rs.getString("tarif")!=null)p.setTarif(Double.parseDouble(rs.getString("tarif")));

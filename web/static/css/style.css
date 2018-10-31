@@ -286,7 +286,15 @@ footer p{
     background-size: cover;
     z-index: -1;
 }
-
+#profilBackground{
+    background: url("../images/routeMontage.jpeg") no-repeat center center fixed;
+    display: table;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-size: cover;
+    z-index: -1;
+}
 #ProfilContainer{
    /* background : rgba(0, 0, 0, 0.8);*/
     margin : 8% 10% 5% 10%;
@@ -361,18 +369,27 @@ footer p{
     border-color: rgba(0, 0, 0, 0.8);
     font-size: 16px;
     color: black;
+    height: 50px;
+    width: 140px;
 }
 
 #menuRating{
     padding-left: 80%;
 }
 
+.btn btn-default{
+   margin: 10px;
+   height: 50px;
+}
 .imageEtoile{
     height: 20px;
     width: 20px;
     margin:auto;
 }
-
+#boiteEtoile{
+     padding-left:1%;
+         
+}
 #textEtoile{
     font-size: 16px;
     background : rgba(0, 0, 0, 0.8);
@@ -391,6 +408,20 @@ footer p{
     background : rgba(0, 0, 0, 0.6);
     margin : 10% 10% 5% 10%;
     height: 585px;
+}
+#menu_button{
+    margin-top: -55px;
+}
+
+.bt_mod{
+    width: 215px;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    background : rgba(255, 255, 255, 0.4);
+    font-weight: bold;
+    color: black;
+    margin-bottom: 1em;
+    
 }
 /** --------------- Cote gauche ---------------*/
 #messagesContainer{
