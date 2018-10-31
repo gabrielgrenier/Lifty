@@ -260,12 +260,14 @@ footer p{
 #recherchePanel #tblSecteur{
     background : rgba(0, 0, 0, 0.6);
     margin : 5% 5% 40% 5%;
-    height: 250px;
+    height: 20%px;
 }
 #recherchePanel table {
     font-family: Helvetica;
     border-collapse: collapse;
     width: 94%;
+    height: 80%;
+    overflow-y: auto;
     margin : 3% 0 3% 3%;
     background-color: white;
 }
@@ -291,6 +293,7 @@ footer p{
     padding: 10% 0 0 0;
 }
 #rechercheBar{
+    margin-top: 2%;
     padding-right: 40%;;
 }
 

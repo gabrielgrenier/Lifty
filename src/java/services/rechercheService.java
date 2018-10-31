@@ -19,4 +19,10 @@ public class rechercheService {
         List<Profil> listProfil = pDao.findAll();
         return listProfil;
     }
+    
+    public static List<Profil> ListeUserAround(String etablissement, boolean conducteur) {
+        ProfilDAO pDao = new ProfilDAO();
+        List<Profil> listProfil = pDao.findAll(etablissement, conducteur);
+        return listProfil;
+    }
 }

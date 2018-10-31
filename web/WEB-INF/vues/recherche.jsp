@@ -47,24 +47,20 @@
                   </tr>
                 </thead>
                 <tbody>
+                    <%
+                        ProfilDAO pDao = new ProfilDAO();
+                        Profil user = pDao.findById(Integer.parseInt(String.valueOf(request.getAttribute("connecte"))));
+                        List<Profil> liste = rechercheService.ListeUserAround(user.getEtablissement(), user.isConducteur());
+                        for(int i = 0;i<liste.size();i++){ 
+                            Profil p = liste.get(i);
+                       %>
                   <tr>
                     <td></td>
-                    <td>SLav01</td>
-                    <td>Rosemont</td>
-                    <td>4.2</td>
+                    <td><%=""+p.getUsername()%></td>
+                    <td><%=""+p.getEtablissement()%></td>
+                    <td><%=""+p.getRating()%></td>
                   </tr>
-                  <tr>
-                    <td></td>
-                    <td>MCha01</td>
-                    <td>Rosemont</td>
-                    <td>3.4</td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td>GBra</td>
-                    <td>Rosemont</td>
-                    <td>4</td>
-                  </tr>
+                  <%}%>
                 </tbody>
               </table>
         </div>

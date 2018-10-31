@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-
 <%@page import="services.rechercheService"%>
 <%@page import="java.util.List"%>
-=======
 <%@page import="dao.MessageDAO"%>
->>>>>>> 13015bd7f415ddc847b0a82bbb99cdb4aa0df1a8
 <%@page import="classe.Profil"%>
 <%@page import="dao.ProfilDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>    
@@ -108,7 +104,7 @@
                     %>
                 </div>
                 <div class="form-group">
-                    <label class='lblLink'><u>S'insrire à Lifty</u></label>
+                    <label id="inscriptionLink" class='lblLink'><u>S'insrire à Lifty</u></label>
                 </div>
                 <div class="form-group">
                     <input type="hidden" name="action" value="Connexion"/>
@@ -216,18 +212,6 @@ if(request.getAttribute("connecte")!=null){ %>
         $("#usagerListe").animate({width : '300px'});
 
         // Fonctions lorque l'ont clique
-        $("#login").click(function(){
-            if($("#panelInscription").is(':visible')){$("#panelInscription").animate({height:'toggle'});}
-            $("#panelLogin").animate({height:'toggle'});
-        });
-        $("#inscription").click(function(){
-            if($("#panelLogin").is(':visible')){$("#panelLogin").animate({height:'toggle'});}
-            $("#panelInscription").animate({height:'toggle'});
-        });
-        $("#lblLink").click(function(){
-            if($("#panelLogin").is(':visible')){$("#panelLogin").animate({height:'toggle'});}
-            $("#panelInscription").animate({height:'toggle'});
-        });
         $("#profil").click(function(){
             $("#panelProfil").animate({height:'toggle'});
         });
@@ -252,7 +236,7 @@ else{%>
             $("#panelInscription").animate({height:'toggle'});
         });
         
-        $("#lblLink").click(function(){
+        $("#inscriptionLink").click(function(){
             if($("#panelLogin").is(':visible'))$("#panelLogin").animate({height:'toggle'});
             $("#panelInscription").animate({height:'toggle'});
         });
