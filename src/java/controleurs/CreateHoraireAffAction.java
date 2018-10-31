@@ -9,10 +9,10 @@ package controleurs;
  *
  * @author gabri
  */
-public class createHoraireAction extends AbstractAction {
+public class CreateHoraireAffAction extends AbstractAction {
     @Override
     public String execute() {
         
-        return "profil";
+        return "testCreateHoraire";
     }
 }

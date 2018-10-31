@@ -18,6 +18,18 @@
     <link rel="stylesheet" href="./static/css/style.css" type="text/css"/>
 </head>
     <body id="recherchePanel">
+        <!-- btn pour tester creation horraire -->
+        <form action="./" method="post">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <input type="submit">
+            <input type="hidden" value="createHoraireAff" name="action">
+        </form>
     <%@include  file="menu.jsp" %>
     <div class="container">
         <div class="row" id="mapContainer">

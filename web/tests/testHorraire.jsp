@@ -205,12 +205,7 @@
                 </tbody>
                 <input type="submit" value="Créer" id="subHoraire">
             </table>
-<<<<<<< HEAD
             <input type="hidden" value="createHoraire" name="action">
-            <h1>Teste</h1>
-=======
-        <!--<input type="hidden" value="createHoraire" name="action">-->
->>>>>>> 0116ebf8e411fb955c6bcfe878222342d4c7937c
         </form>
     </body>
     <script>
@@ -248,8 +243,5 @@
         $(':checkbox:checked').prop('checked',false);
    }
 </script>
-<<<<<<< HEAD
 </html>
-=======
 </html>
->>>>>>> 0116ebf8e411fb955c6bcfe878222342d4c7937c
