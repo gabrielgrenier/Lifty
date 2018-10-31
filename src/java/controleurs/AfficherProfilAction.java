@@ -12,7 +12,10 @@ package controleurs;
 public class AfficherProfilAction extends AbstractAction{
     @Override
     public String execute() {
-        request.setAttribute("connecte",""+1);
+        if(request.getParameter("connecte")!=null){
+            request.setAttribute("connecte",request.getParameter("connecte"));
+            return "profil";
+        }
         return "profil";
     }
 }

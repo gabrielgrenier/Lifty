@@ -2,6 +2,9 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group/>
+=======
         <group>
 <<<<<<< HEAD
             <file>file:/G:/Session4/Project/git/Lifty/web/WEB-INF/vues/menu.jsp</file>
@@ -33,5 +36,6 @@
 >>>>>>> 13015bd7f415ddc847b0a82bbb99cdb4aa0df1a8
 >>>>>>> 5c9f39179f950c060f7d9c77c31226c1c9595727
         </group>
+>>>>>>> f4eb5557e74d4c0b6ed93a7075395ac70b07175e
     </open-files>
 </project-private>

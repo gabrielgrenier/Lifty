@@ -107,6 +107,7 @@ public class ProfilDAO extends Dao{
                         + "`vehiculeID`="+(p.getVehicule()!=null?"\'"+p.getVehicule().getId()+"\'":"NULL")+""
                         + " WHERE `utilisateur`.`ID` = '"+p.getId()+"';";
                 // Executer la requete
+                System.out.println(requete);
                 ouvrirConnexion().executeUpdate(requete);
             }
             catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}

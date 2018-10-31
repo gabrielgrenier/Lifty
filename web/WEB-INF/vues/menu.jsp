@@ -92,7 +92,7 @@
         }
         %>
         <%// ====================== FORMULAIRE DE LOGIN =====================%>
-        <form method="post" action="login">
+        <form method="post" action="./">
             <div class="container" id="panelLogin">
                 <div class="form-group">
                     <label for="emailCon">Courriel:</label>
@@ -112,16 +112,17 @@
                     <label id="inscriptionLink" class='lblLink'><u>S'insrire à Lifty</u></label>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" name="action" value="Connexion"/>
+                    
                 </div>
                 <div class="form-group">
+                    <input type="hidden" name="action" value="connexion"/>
                     <button type="submit" name="btnConnexion" id="btnConnexion" class="btn btn-primary">Se connecter</button>
                 </div>
             </div>
         </form>
         
         <%// ====================== FORMULAIRE D'INSCRIPTION =====================%>
-        <form method="post" action="register">
+        <form method="post" action="./" >
             <div class="container" id="panelInscription">
                 <div class="form-group">
                     <label for="prenomInsc">Prénom:</label>
@@ -153,7 +154,6 @@
                     <label class="radio-inline"><input type="radio" name="type" value="passInsc">: Passager</label>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" name="action" value="Inscription"/>
                 </div>
                 <div class="erreur">
                     <%
@@ -164,7 +164,10 @@
                     %>
                 </div>
                 <div class="form-group">
+                    <form>
+                    <input type="hidden" name="action" value="inscription"/>
                     <button type="submit" name="btnInscription" id="btnInscription" class="btn btn-primary">S'inscrire</button>
+                    </form>
                 </div>
             </div>
         </form>
@@ -179,7 +182,7 @@
                 <div class="form-group">
                     <div class='row'>
                         <div class='col-lg-4'>
-                            <img src="./static/images/profils/default.png" class="img-responsive" />
+                            <a href="?action=afficherProfil&connecte=<%=String.valueOf(request.getAttribute("connecte"))%>"><img src="./static/images/profils/default.png" class="img-responsive" /></a>
                         </div>
                         <div class='col-lg-8'>
                             <label id='lblPrenomNom'><%=p.getPrenom()+" "+p.getNom()%></label>
@@ -197,7 +200,7 @@
                     <label class='lblLink'><a href="?action="><u>Horaire</u></a></label>
                 </div>
                 <div class="form-group">
-                    <label class='lblLink'><a href="?action=deconnexion"><u>Deconnexion</u></a></label>
+                    <label class='lblLink'><a action="" href="?action=deconnexion" ><u>Deconnexion</u></a></label>
                 </div>
             </div>
         <%
