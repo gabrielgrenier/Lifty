@@ -10,11 +10,16 @@ import classe.Profil;
 import dao.ProfilDAO;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.servlet.http.HttpSession;
 
 public class ConnexionAction extends AbstractAction {
 
     @Override
     public String execute() {
+        HttpSession session = request.getSession(true);
+        if (session.getAttribute("connected")!=null) {//déjà connecté
+            return "recherche";
+        }
         if(request.getParameter("emailCon")!=null){
             // *** faire le verification pour un mot de passe null si il ne le verifie pas sur le cote client
             // Initialisation
@@ -33,6 +38,7 @@ public class ConnexionAction extends AbstractAction {
                         // Retouner setter une variable de connexion pour compensser la session pour le moment
                         p.setDateConnexion(sm.format(new Date()));
                         pDao.update(p);
+                        session.setAttribute("connected", p);
                         request.setAttribute("connecte",""+p.getId());
                         return "recherche";
                 }

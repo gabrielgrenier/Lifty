@@ -340,15 +340,17 @@ footer p{
     border-color: rgba(0, 0, 0, 0.8);
 
 }
+.mErreur{
+    color: red;
+}
 #imageProfil{
-    max-height: 15em;
-    min-height: 12em;
-    min-width: 12em;
+    height: 12em;
     border-width:5px;
     border-style:solid;
     border-color: rgba(0, 0, 0, 0.8);
-    margin-top: 15px;
-    margin-left: 20px;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .textProfil{
@@ -357,6 +359,12 @@ footer p{
 }
 
 #infoPro{
+    border-width:5px;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    background : rgba(255, 255, 255, 0.6);
+}
+#vehiPro{
     border-width:5px;
     border-style:solid;
     border-color: rgba(0, 0, 0, 0.8);
@@ -392,17 +400,18 @@ footer p{
 }
 #test32{
     text-align: left;
-    background : rgba(255, 255, 255, 0.4);
+    background : rgba(255, 255, 255, 0.6);
     border-style:solid;
     border-color: rgba(0, 0, 0, 0.8);
-    font-size: 16px;
+    font-size: 20px;
     color: black;
-    height: 50px;
-    width: 140px;
+    height: 65px;
+    width: 170px;
 }
 
 #menuRating{
-    padding-left: 80%;
+   display: flex; 
+   justify-content: flex-end;
 }
 
 .btn btn-default{
@@ -410,8 +419,8 @@ footer p{
    height: 50px;
 }
 .imageEtoile{
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    width: 25px;
     margin:auto;
 }
 #boiteEtoile{
@@ -419,18 +428,18 @@ footer p{
          
 }
 #textEtoile{
-    font-size: 16px;
+    font-size: 18px;
     background : rgba(0, 0, 0, 0.8);
     color: white;
 }
 
 #titreProfil{
-    font-size: 32px;
+    font-size: 40px;
     font-weight: bold;
 }
 #enteteProfil{
     margin-top: 3%;
-    margin-bottom: 7%;
+    margin-bottom: 10%;
 }
 #messagerieContainer{
     background : rgba(0, 0, 0, 0.6);
@@ -438,18 +447,22 @@ footer p{
     height: 585px;
 }
 #menu_button{
-    margin-top: -55px;
+    margin-top: 0;
+    height: 200px;
 }
 
 .bt_mod{
-    width: 215px;
+    width: 100%;
+    font-size: 100%;
     border-style:solid;
     border-color: rgba(0, 0, 0, 0.8);
     background : rgba(255, 255, 255, 0.4);
     font-weight: bold;
     color: black;
-    margin-bottom: 1em;
-    
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -40%;
+    white-space: normal;
 }
 /** --------------- Cote gauche ---------------*/
 #messagesContainer{

@@ -8,6 +8,7 @@ import controleurs.DeconnexionAction;
 import controleurs.DefaultAction;
 import controleurs.MessagerieAction;
 import controleurs.InscriptionAction;
+import controleurs.ModifierInformationProfilAction;
 import controleurs.PreferencesAction;
 import controleurs.RechercheAction;
 import java.io.IOException;
@@ -46,8 +47,12 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "recherche":
                 action = new RechercheAction();
+                break;
             case "afficherProfil":
                 action = new AfficherProfilAction();
+                break;
+            case "modInformationProfil":
+                action = new ModifierInformationProfilAction();
                 break;
             default :
                 action = new DefaultAction();
