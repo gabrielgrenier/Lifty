@@ -3,22 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/messagerie.jsp</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/menu.jsp</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/MessagerieAction.java</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/classe/ListeMessage.java</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/DeconnexionAction.java</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/recherche.jsp</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/profil.jsp</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/ConnexionAction.java</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/ModifierInformationProfilAction.java</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/servlets/ControleurFrontal.java</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/AbstractAction.java</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/AfficherProfilAction.java</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/static/css/style.css</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/dao/ProfilDAO.java</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/footer.jsp</file>
-            <file>file:/H:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/classe/Profil.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/classe/Profil.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/profil.jsp</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/ModifierInformationProfilAction.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/AfficherProfilAction.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/InscriptionAction.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/ConnexionAction.java</file>
         </group>
     </open-files>
 </project-private>
