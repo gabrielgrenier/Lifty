@@ -32,17 +32,23 @@
             ProfilDAO paDao = new ProfilDAO();
             List<Jour> listHorraire1 = dao.findAll(1);
             Profil profil;
-            if(request.getParameter("user")==null||Integer.parseInt(String.valueOf(request.getParameter("user")))==((Profil)session.getAttribute("connected")).getId()){
-                profil = (Profil) session.getAttribute("connected") ;
-            }
-            else{
-                profil = paDao.findById(Integer.parseInt(String.valueOf(request.getParameter("user"))));
+            try{
+                if(request.getParameter("user")==null||Integer.parseInt(String.valueOf(request.getParameter("user")))==((Profil)session.getAttribute("connected")).getId()){
+                    profil = (Profil) session.getAttribute("connected") ;
+                }
+                else{
+                    profil = paDao.findById(Integer.parseInt(String.valueOf(request.getParameter("user"))));
+                }
+            } 
+            catch (Exception e) {
+                 profil=null;
             }
             %>
 
         <%@include  file="menu.jsp" %>
             <div class="container-fluid" id="ProfilContainer">
                 <div class="row" id="InformationProfilContainer">
+                    <%if(profil!=null){%>
                     <div class="row">
                         <div id="enteteProfil">
                             <div class="col-lg-4 col-md-6 col-sm-6">
@@ -664,6 +670,9 @@
                             </div>
                         </div>
                     </div>
+                     <%}else{%>
+                        <h1>Le profil que vous tentez d'accéder n'est pas valide ou n'existe pas !</h1>
+                     <%}%>
                 </div>
             </div>
         <%@include  file="footer.jsp" %>
