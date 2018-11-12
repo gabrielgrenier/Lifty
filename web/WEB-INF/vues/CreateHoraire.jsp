@@ -77,6 +77,8 @@
             document.getElementById(jourFin).required = false;
             document.getElementById(jourDeb).disabled = true;
             document.getElementById(jourFin).disabled = true;
+            document.getElementById(jourDeb).value = "";
+            document.getElementById(jourFin).value = "";
         }
         else{
             document.getElementById(jourDeb).required = true;
