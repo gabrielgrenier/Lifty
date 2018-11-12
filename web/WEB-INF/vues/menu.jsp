@@ -20,7 +20,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <%if(request.getAttribute("connecte")==null){ %>
+            <%if(session.getAttribute("connected")==null){ %>
                 <a class="navbar-brand" href="#parallax"><img id="logo" src="./static/images/petitLogo.png"/></a>
             <%}
             else{%>
@@ -29,7 +29,7 @@
         </div>
         <%
         // ====================== MENU =====================
-        if(request.getAttribute("connecte")==null){
+        if(session.getAttribute("connected")==null){
             // -----------------------------------------
             // Section de menu si non connecte
             %>
@@ -50,7 +50,7 @@
 
             // code pour afficher un nombre qui signifie le nombre de messages non-vu
             MessageDAO mDao= new MessageDAO();
-            int nb = mDao.countNonVu(Integer.parseInt(String.valueOf(request.getAttribute("connecte"))));
+            int nb = mDao.countNonVu(((Profil)session.getAttribute("connected")).getId());
             %>
             <div class="collapse navbar-collapse" id="navbar-collapse-main">
                 <ul class="navbar-form navbar-left" action="/action_page.php">
@@ -76,9 +76,9 @@
                     </div>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" style="margin-right: 1%;">
-                    <li><a class="#" href="?action=recherche&connecte=<%=String.valueOf(request.getAttribute("connecte"))%>">Recherche</a></li>
+                    <li><a class="#" href="?action=recherche&connecte=<%=((Profil)session.getAttribute("connected")).getId()%>">Recherche</a></li>
                     <li>
-                        <a class="#" href="?action=messagerie&connecte=<%=String.valueOf(request.getAttribute("connecte"))%>">
+                        <a class="#" href="?action=messagerie&connecte=<%=((Profil)session.getAttribute("connected")).getId()%>">
                             Messagerie
                             <span id='alerteNum'><sup><b><%=nb%></b></sup></span>
                         </a>
@@ -172,16 +172,16 @@
         </form>
         <%// ====================== PANNEAU DE PROFIL =====================%>
         <%
-        if(request.getAttribute("connecte")!=null){
+        if(session.getAttribute("connected")!=null){
             ProfilDAO pDao = new ProfilDAO();
             Profil p = new Profil();
-            p=pDao.findById(Integer.parseInt(String.valueOf(request.getAttribute("connecte"))));
+            p=(Profil)session.getAttribute("connected");
             %>
             <div class="container" id="panelProfil">
                 <div class="form-group">
                     <div class='row'>
                         <div class='col-lg-4'>
-                            <a href="?action=afficherProfil&connecte=<%=String.valueOf(request.getAttribute("connecte"))%>"><img src="./static/images/profils/default.png" class="img-responsive" /></a>
+                            <a href="?action=afficherProfil"><img src="./static/images/profils/default.png" class="img-responsive" /></a>
                         </div>
                         <div class='col-lg-8'>
                             <label id='lblPrenomNom'><%=p.getPrenom()+" "+p.getNom()%></label>
@@ -209,7 +209,7 @@
 </nav>
 
 <% // Script animation du menu
-if(request.getAttribute("connecte")!=null){ %>
+if(session.getAttribute("connected")!=null){ %>
 <script> 
     $(document).ready(function(){
         // Setter les grandeurs

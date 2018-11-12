@@ -1,4 +1,7 @@
 package controleurs;
+
+import javax.servlet.http.HttpSession;
+
 /* ==== INFO ====
 
  * @author maxime chausse
@@ -11,6 +14,8 @@ public class DeconnexionAction extends AbstractAction{
     @Override
     public String execute() {
         request.removeAttribute("connecte");
+        HttpSession session = request.getSession(true);
+        session.invalidate();
         return "accueil";
     }
     

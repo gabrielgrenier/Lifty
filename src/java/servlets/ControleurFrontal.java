@@ -9,6 +9,7 @@ import controleurs.DeconnexionAction;
 import controleurs.DefaultAction;
 import controleurs.MessagerieAction;
 import controleurs.InscriptionAction;
+import controleurs.ModifierInformationProfilAction;
 import controleurs.PreferencesAction;
 import controleurs.RechercheAction;
 import controleurs.CreateHoraireAffAction;
@@ -48,14 +49,20 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "recherche":
                 action = new RechercheAction();
+                break;
             case "afficherProfil":
                 action = new AfficherProfilAction();
                 break;
+<<<<<<< HEAD
             case "createHoraireAff":
                 action = new CreateHoraireAffAction();
                 break;
             case "createHoraire":
                 action = new CreateHoraireAction();
+=======
+            case "modInformationProfil":
+                action = new ModifierInformationProfilAction();
+>>>>>>> 1fb75304f6ba1f99a3300d9aeef4d410531f65c9
                 break;
             default :
                 action = new DefaultAction();

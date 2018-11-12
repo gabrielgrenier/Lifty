@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/classe/Profil.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/profil.jsp</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/ModifierInformationProfilAction.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/AfficherProfilAction.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/InscriptionAction.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/ConnexionAction.java</file>
+        </group>
+>>>>>>> 1fb75304f6ba1f99a3300d9aeef4d410531f65c9
     </open-files>
 </project-private>
