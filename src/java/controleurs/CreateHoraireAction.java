@@ -14,14 +14,36 @@ import dao.JourDAO;
 public class CreateHoraireAction extends AbstractAction {
     @Override
     public String execute() {
-        JourDAO dao = new JourDAO();
-        String idUser = request.getParameter("idCreateHoraire");
-        String debLun = request.getParameter("debLun");
-        String finLun = request.getParameter("finLun");
-        
-        
-        dao.create(0, Integer.parseInt(idUser), "Lundi", (debLun+":00:00"), (finLun+":00:00"));
-        
-        return "profil";
+        try{
+            JourDAO dao = new JourDAO();
+            String idUser = request.getParameter("idCreateHoraire");
+            //Lundi
+            String debLun = request.getParameter("debLun");
+            String finLun = request.getParameter("finLun");
+
+            //Mardi
+            String debMar = request.getParameter("debMar");
+            String finMar = request.getParameter("finMar");
+
+            //Mercredi
+            String debMer = request.getParameter("debMer");
+            String finMer = request.getParameter("finMer");
+
+            //Jeudi
+            String debJeu = request.getParameter("debJeu");
+            String finJeu = request.getParameter("finJeu");
+
+            //Vendredi
+            String debVen = request.getParameter("debVen");
+            String finVen = request.getParameter("finVen");
+
+            //Ajout dans la BD
+            dao.create(0, Integer.parseInt(idUser), "lundi", (debLun+":00:00"), (finLun+":00:00"));
+            dao.create(0, Integer.parseInt(idUser), "mardi", (debMar+":00:00"), (finMar+":00:00"));
+            dao.create(0, Integer.parseInt(idUser), "mercredi", (debMer+":00:00"), (finMer+":00:00"));
+            dao.create(0, Integer.parseInt(idUser), "jeudi", (debJeu+":00:00"), (finJeu+":00:00"));
+            dao.create(0, Integer.parseInt(idUser), "vendredi", (debJeu+":00:00"), (finVen+":00:00"));
+            return "profil";
+        }catch(NumberFormatException e){return "profil";}
     }
 }

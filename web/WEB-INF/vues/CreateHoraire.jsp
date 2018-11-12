@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="../static/css/style.css" type="text/css"/>
     </head>
     </head>
-    <body>
+    <body onLoad="uncheck()">
         <h1>Création des horraires :</h1>
         <form action="./" method="post">
         <input type="number" name="idCreateHoraire">
@@ -54,7 +54,6 @@
             </table>
             <input type="hidden" value="createHoraire" name="action">
         </form>
-
     </body>
     <script>
     function validationCreate(){
@@ -62,7 +61,7 @@
         var vide = [].filter.call( checkbox, function( el ) {
            return el.checked
         });
-        if (checkbox.length == vide.length) {
+        if (checkbox.length === vide.length) {
             document.getElementById("subHoraire").disabled = true;
         }
         else{

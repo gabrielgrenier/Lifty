@@ -13,6 +13,6 @@ public class CreateHoraireAffAction extends AbstractAction {
     @Override
     public String execute() {
         
-        return "testCreateHoraire";
+        return "CreateHoraire";
     }
 }
