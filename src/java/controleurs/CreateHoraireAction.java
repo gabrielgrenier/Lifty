@@ -5,6 +5,8 @@
  */
 package controleurs;
 
+import dao.JourDAO;
+
 /**
  *
  * @author gabri
@@ -12,7 +14,14 @@ package controleurs;
 public class CreateHoraireAction extends AbstractAction {
     @Override
     public String execute() {
+        JourDAO dao = new JourDAO();
+        String idUser = request.getParameter("idCreateHoraire");
+        String debLun = request.getParameter("debLun");
+        String finLun = request.getParameter("finLun");
         
-        return "recherche"; //changer a profil quand sa va être implémenter
+        
+        dao.create(0, Integer.parseInt(idUser), "Lundi", (debLun+":00:00"), (finLun+":00:00"));
+        
+        return "profil";
     }
 }
