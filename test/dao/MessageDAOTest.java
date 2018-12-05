@@ -9,6 +9,9 @@ import classe.ListeMessage;
 import classe.Message;
 import classe.Profil;
 import java.sql.ResultSet;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,6 +24,7 @@ import static org.junit.Assert.*;
  * @author mchausse
  */
 public class MessageDAOTest {
+    private static final MessageDAO dao = new MessageDAO();
     
     public MessageDAOTest() {
     }
@@ -47,13 +51,6 @@ public class MessageDAOTest {
     @Test
     public void testFindById_int() {
         System.out.println("findById");
-        int id = 0;
-        MessageDAO instance = new MessageDAO();
-        Object expResult = null;
-        Object result = instance.findById(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -61,14 +58,30 @@ public class MessageDAOTest {
      */
     @Test
     public void testFindById_String() {
-        System.out.println("findById");
-        String id = "";
-        MessageDAO instance = new MessageDAO();
-        Message expResult = null;
-        Message result = instance.findById(id);
+        
+        // Cree le message a aller chercher
+        Message m = new Message();
+        Date dateTime = new Date();
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat time = new SimpleDateFormat("hh:mm:ss");
+        m.setId("ABCDE12345");
+        m.setTitre("classe de test");
+        m.setMessage("classe de test");
+        m.setDate(date.format(dateTime));
+        m.setTime(time.format(dateTime));
+        m.setVu(false);
+        dao.create(m);
+        
+        // Comparer les noms 
+        Object expResult = m;
+        Object result = dao.findById("ABCDE12345");
+        
+        // Supprimer le message pour le test
+        dao.delete("ABCDE12345");
+        
+        // Faire la verification des donnees recus
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        fail("Pas trouver le profil");
     }
 
     /**
@@ -76,14 +89,30 @@ public class MessageDAOTest {
      */
     @Test
     public void testFindById_Message() {
-        System.out.println("findById");
-        Message m = null;
-        MessageDAO instance = new MessageDAO();
-        Message expResult = null;
-        Message result = instance.findById(m);
+        
+        // Cree le message a aller chercher
+        Message m = new Message();
+        Date dateTime = new Date();
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat time = new SimpleDateFormat("hh:mm:ss");
+        m.setId("ABCDE12345");
+        m.setTitre("classe de test");
+        m.setMessage("classe de test");
+        m.setDate(date.format(dateTime));
+        m.setTime(time.format(dateTime));
+        m.setVu(false);
+        dao.create(m);
+        
+        // Comparer les noms 
+        Object expResult = m;
+        Object result = dao.findById(m);
+        
+        // Supprimer le message pour le test
+        dao.delete("ABCDE12345");
+        
+        // Faire la verification des donnees recus
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        fail("Pas trouver le profil");
     }
 
     /**
@@ -445,11 +474,25 @@ public class MessageDAOTest {
     @Test
     public void testConstruireObjet() throws Exception {
         System.out.println("construireObjet");
-        ResultSet rs = null;
+        
+        // Cree le message a aller chercher
+        Message m = new Message();
+        Date dateTime = new Date();
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat time = new SimpleDateFormat("hh:mm:ss");
+        m.setId("ABCDE12345");
+        m.setTitre("classe de test");
+        m.setMessage("classe de test");
+        m.setDate(date.format(dateTime));
+        m.setTime(time.format(dateTime));
+        m.setVu(false);
+        dao.create(m);
+        
+        //ResultSet rs = dao.findById(m);
         MessageDAO instance = new MessageDAO();
         Message expResult = null;
-        Message result = instance.construireObjet(rs);
-        assertEquals(expResult, result);
+        //Message result = instance.construireObjet(rs);
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

@@ -170,7 +170,8 @@ public class MessageDAO extends Dao{
             String requete;
             try{
                 requete = "INSERT INTO `message` (`ID`, `titre`, `message`, `date`, `time`, `vu`) "
-                        + "VALUES (\'"+p.getId()+"\', \'"+p.getTitre()+"\', \'"+p.getMessage()+"\', \'"+p.getDate()+"\', \'"+p.getTime()+"\', \'"+(p.isVu()?1:0)+"\')";
+                        + "VALUES (\'"+p.getId()+"\', \'"+p.getTitre()+"\', \'"+p.getMessage()+"\', "
+                        + "\'"+p.getDate()+"\', \'"+p.getTime()+"\', \'"+(p.isVu()?0:1)+"\')";
                 ouvrirConnexion().executeUpdate(requete);
             }
             catch (SQLException e){System.out.println("Exception de creation de message : "+e);}
@@ -254,7 +255,11 @@ public class MessageDAO extends Dao{
     }
     @Override
     public void delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String requete = "DELETE FROM `message` "
+                + "WHERE `ID` = '"+id+"'";
+        try{ouvrirConnexion().executeUpdate(requete);}
+        catch (SQLException e){System.out.println("Exception de creation de message : "+e);}
+        finally{fermerConnexions(con,rs,sqlQuery);}
     }
 
     @Override
