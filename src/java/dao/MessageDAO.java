@@ -44,7 +44,7 @@ public class MessageDAO extends Dao{
             //Construire la requete
             sousRequete = "SELECT messageID FROM `messageutilisateur` WHERE `messageutilisateur`.`receveurID` = '"+idR+"'";
             requete = "SELECT * FROM message WHERE message.ID IN ( "+sousRequete+" )"
-                    + "ORDER BY message.date DESC, message.time";
+                    + "ORDER BY message.date DESC, message.time DESC";
             // Executer la requete
             rs = ouvrirConnexion().executeQuery(requete);
             // Definir un tableau de la du nombres de champs recu

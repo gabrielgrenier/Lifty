@@ -50,8 +50,6 @@ public class EnvoyerMessageAction extends AbstractAction{
                 if(succes)request.setAttribute("notif1", "Message envoyé à "+String.valueOf(request.getParameter("usernameDestinataire")));
                 else request.setAttribute("notif2", "Oups! Un probleme est survenu. Veuiller recommencer.");
             }
-            return "messagerie";
-            //return "accueil";
         }
         //return "accueil";
         return "messagerie";
