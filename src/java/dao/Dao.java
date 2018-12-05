@@ -21,13 +21,14 @@ public abstract class Dao {
     protected static Connection con=null;
     protected static ResultSet rs=null;
     protected static Statement sqlQuery=null;
-    protected static final String CONNEXIONSTRING = "jdbc:mysql://localhost/lifty?user=root&password=&serverTimezone=EST&characterEncoding=UTF-8";
     
     // ==== METHODES ====
     public abstract Object findById(int id);
+    public abstract Object findById(String id);
     public abstract void create(Object o);
     public abstract void update(Object o);
     public abstract void delete(int id);
+    public abstract void delete(String id);
     
     // ==== FONCTIONS ====
     

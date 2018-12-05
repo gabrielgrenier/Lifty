@@ -8,13 +8,13 @@ package classe;
 */
 public class Message {
     // ==== VARIABLES ====
-    private int id;
+    private String id;
     private String titre, message, date, time;
     private boolean vu;
     
     // ==== CONSTRUCTEURS ====
     public Message(){}
-    public Message(int id, String titre, String message, String date, String time, boolean vu){
+    public Message(String id, String titre, String message, String date, String time, boolean vu){
         this.id = id;
         this.titre = titre;
         this.message = message;
@@ -24,7 +24,7 @@ public class Message {
     }
 
     // ==== GETTERS ====
-    public int getId() {return id;}
+    public String getId() {return id;}
     public String getTitre() {return titre;}
     public String getMessage() {return message;}
     public String getDate() {return date;}
@@ -32,7 +32,7 @@ public class Message {
     public boolean isVu() {return vu;}
 
     // ==== SETTERS ====
-    public void setId(int id) {this.id = id;}
+    public void setId(String id) {this.id = id;}
     public void setTitre(String titre) {this.titre = titre;}
     public void setMessage(String message) {this.message = message;}
     public void setDate(String date) {this.date = date;}

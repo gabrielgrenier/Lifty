@@ -4,6 +4,7 @@ import classe.Message;
 import dao.MessageDAO;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 /* ==== INFO ====
 
@@ -31,7 +32,7 @@ public class EnvoyerMessageAction extends AbstractAction{
                 SimpleDateFormat time = new SimpleDateFormat("hh:mm:ss");
                 
                 // Remplir le nouveau message
-                newMessage.setId(0);
+                newMessage.setId(UUID.randomUUID().toString());
                 newMessage.setTitre(String.valueOf(request.getParameter("titre")));
                 newMessage.setMessage(String.valueOf(request.getParameter("texte")));
                 newMessage.setDate(date.format(dateTime));

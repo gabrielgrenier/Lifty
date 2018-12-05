@@ -16,7 +16,11 @@ import java.sql.SQLException;
 public class MessageDAO extends Dao{
 
     @Override
-    public Message findById(int id) {
+    public Object findById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    @Override
+    public Message findById(String id) {
         String requete;
         try{
             requete = "SELECT * FROM message WHERE ID = '"+id+"'";
@@ -24,7 +28,6 @@ public class MessageDAO extends Dao{
             rs = ouvrirConnexion().executeQuery(requete);
             // Construire le profil avec le resultat recu de la requete
             if(rs.next())return construireObjet(rs);
-                System.out.println(requete);
         }
         catch (SQLException e){System.out.println("Exception : "+e);}
 	finally{fermerConnexions(con,rs,sqlQuery);}
@@ -40,10 +43,9 @@ public class MessageDAO extends Dao{
 	try{
             //Construire la requete
             sousRequete = "SELECT messageID FROM `messageutilisateur` WHERE `messageutilisateur`.`receveurID` = '"+idR+"'";
-            requete = "SELECT * FROM message WHERE message.ID IN ( "+sousRequete+" )";
+            requete = "SELECT * FROM message WHERE message.ID IN ( "+sousRequete+" )"
+                    + "ORDER BY message.date DESC, message.time";
             // Executer la requete
-            System.out.println(sousRequete);
-            System.out.println(requete);
             rs = ouvrirConnexion().executeQuery(requete);
             // Definir un tableau de la du nombres de champs recu
             output = new ListeMessage();
@@ -64,10 +66,9 @@ public class MessageDAO extends Dao{
 	try{
             //Construire la requete
             sousRequete = "SELECT messageID FROM `messageutilisateur` WHERE `messageutilisateur`.`receveurID` = '"+idR+"' AND `messageutilisateur`.`envoyeurID` = '"+idE+"'";
-            requete = "SELECT * FROM message WHERE message.ID IN ( "+sousRequete+" )";
+            requete = "SELECT * FROM message WHERE message.ID IN ( "+sousRequete+" )"
+                    + "ORDER BY message.date DESC, message.time";
             // Executer la requete
-            System.out.println(sousRequete);
-            System.out.println(requete);
             rs = ouvrirConnexion().executeQuery(requete);
             // Definir un tableau de la du nombres de champs recu
             output = new ListeMessage();
@@ -88,12 +89,14 @@ public class MessageDAO extends Dao{
         String sousRequete;
 	try{
             //Construire la requete
-            sousRequete = "SELECT messageID FROM `messageutilisateur` WHERE `messageutilisateur`.`receveurID` = '"+idR+"' AND `messageutilisateur`.`envoyeurID` = '"+idE+"'";
-            requete = "SELECT * FROM message WHERE message.vu = '"+(vu?1:0)+"' AND message.ID IN ("+sousRequete+")";
+            sousRequete = "SELECT messageID "
+                    + "FROM `messageutilisateur` "
+                    + "WHERE `messageutilisateur`.`receveurID` = '"+idR+"' AND `messageutilisateur`.`envoyeurID` = '"+idE+"'";
+            requete = "SELECT * FROM message "
+                    + "WHERE message.vu = '"+(vu?1:0)+"' AND message.ID IN ("+sousRequete+")"
+                    + "ORDER BY message.date DESC, message.time";
             // Executer la requete
-            System.out.println(requete);
             rs = ouvrirConnexion().executeQuery(requete);
-            System.out.println(requete);
             // Definir un tableau de la du nombres de champs recu
             output = new ListeMessage();
             // Construire un profil et le mettre dans la liste pour chaque donnees recu
@@ -116,9 +119,9 @@ public class MessageDAO extends Dao{
 	try{
             //Construire la requete
             sousRequete = "SELECT messageID FROM `messageutilisateur` WHERE `messageutilisateur`.`receveurID` = '"+idR+"'";
-            requete = "SELECT * FROM message WHERE message.ID IN ("+sousRequete+")";
+            requete = "SELECT * FROM message WHERE message.ID IN ("+sousRequete+")"
+                    + "ORDER BY message.date DESC, message.time";
             // Executer la requete
-            System.out.println(requete);
             rs = ouvrirConnexion().executeQuery(requete);
             // Definir un tableau de la du nombres de champs recu
             output = new ListeMessage();
@@ -146,7 +149,6 @@ public class MessageDAO extends Dao{
             sousRequete = "SELECT messageID FROM `messageutilisateur` WHERE `messageutilisateur`.`receveurID` = '"+idR+"'";
             requete = "SELECT * FROM message WHERE message.vu = '0' AND message.ID IN ("+sousRequete+")";
             // Executer la requete
-            System.out.println(requete);
             rs = ouvrirConnexion().executeQuery(requete);
             // Construire un profil et le mettre dans la liste pour chaque donnees recu
             while(rs.next()) i++;
@@ -171,44 +173,17 @@ public class MessageDAO extends Dao{
                         + "VALUES (\'"+p.getId()+"\', \'"+p.getTitre()+"\', \'"+p.getMessage()+"\', \'"+p.getDate()+"\', \'"+p.getTime()+"\', \'"+(p.isVu()?1:0)+"\')";
                 ouvrirConnexion().executeUpdate(requete);
             }
-            catch (SQLException e){System.out.println("Exception : "+e);}
+            catch (SQLException e){System.out.println("Exception de creation de message : "+e);}
             finally{fermerConnexions(con,rs,sqlQuery);}
         }
     }
-    public int createAndReturnId(Object o) {
-        // Verifie que l'objet sois un Profil
-        if(o instanceof Message){
-            // Caster l<objet en Profil
-            Message p=(Message)o;
-            String requete;
-            try{
-                requete = "INSERT INTO `message` (`ID`, `titre`, `message`, `date`, `time`, `vu`) "
-                        + "VALUES (\'"+p.getId()+"\', \'"+p.getTitre()+"\', \'"+p.getMessage()+"\', \'"+p.getDate()+"\', \'"+p.getTime()+"\', \'"+(p.isVu()?1:0)+"\')";
 
-                ouvrirConnexion().executeUpdate(requete);
-                
-                // ============ A OPTIMISER PLUS TARD =============
-                // Aller chercher ce message et la retourner
-                rs=null;
-                requete = "SELECT LAST_INSERT_ID(ID) from message;";
-                rs=ouvrirConnexion().executeQuery(requete);
-                rs.last();
-                System.out.println(" RESULT SET : "+rs.getString("LAST_INSERT_ID(ID)"));
-                return Integer.parseInt(rs.getString("LAST_INSERT_ID(ID)"));
-            }
-            catch (SQLException e){System.out.println("Exception : "+e);}
-            finally{fermerConnexions(con,rs,sqlQuery);}
-        }
-        return -1;
-    }
-
-    public Profil getSender(int message){
+    public Profil getSender(String message){
         String requete;
         String sousRequete;
         try{
             sousRequete = "SELECT envoyeurID FROM messageutilisateur WHERE messageID = '"+message+"'";
             requete = "SELECT * FROM utilisateur WHERE ID = ("+sousRequete+")";
-            System.out.println(requete);
             rs = ouvrirConnexion().executeQuery(requete);
             // Cree et retourne le profilDAO pour utiliser la methode construireProfil pour construire le profil du sender
             if(rs.next()){return new ProfilDAO().construireObjet(rs);}
@@ -239,13 +214,14 @@ public class MessageDAO extends Dao{
     
     public boolean envoyerMessage(Message m, Profil envoyeur, Profil destinataire){
         String rCreationLink;
-        int idMessage;
         try{
-            // Cree le message
-            idMessage = createAndReturnId(m);
+            create(m);
             // Cree le lien
+            System.out.println(destinataire.getId());
+            System.out.println(m.getId());
+            System.out.println(envoyeur.getId());
             rCreationLink = "INSERT INTO `messageutilisateur` (`receveurID`, `messageID`, `envoyeurID`)"
-                            + "VALUES ('"+destinataire.getId()+"','"+idMessage+"','"+envoyeur.getId()+"')";
+                            + "VALUES ('"+destinataire.getId()+"','"+m.getId()+"','"+envoyeur.getId()+"')";
             ouvrirConnexion().executeUpdate(rCreationLink);
             return true;
         }
@@ -276,18 +252,20 @@ public class MessageDAO extends Dao{
     public void delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    @Override
+    public void delete(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public Message construireObjet(ResultSet rs) throws SQLException {
         Message m = new Message();
-        m.setId(Integer.parseInt(rs.getString("ID")));
+        m.setId(rs.getString("ID"));
         m.setMessage(rs.getString("message"));
         m.setTitre(rs.getString("titre"));
         m.setDate(rs.getString("date"));
         m.setTime(rs.getString("time"));
         m.setVu("0".equals(rs.getString("vu")));
-        System.out.println(m);
         return m;
     }
-    
 }

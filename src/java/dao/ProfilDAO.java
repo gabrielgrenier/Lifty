@@ -183,4 +183,14 @@ public class ProfilDAO extends Dao{
             //p.setVehicule(v); // Achanger pour aller chercher le vehicule de la personne
         return p;
     }
+
+    @Override
+    public Object findById(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

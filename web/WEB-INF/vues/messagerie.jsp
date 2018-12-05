@@ -66,11 +66,11 @@
                             Message message;
                             ListeMessage messages;
                             if(request.getAttribute("messageSelect") != null){
-                                messageSelect = mDao.findById(Integer.parseInt(String.valueOf(request.getAttribute("messageSelect"))));
+                                messageSelect = mDao.findById(String.valueOf(request.getAttribute("messageSelect")));
                             }
                             else{
                                 messageSelect = new Message();
-                                messageSelect.setId(-1);
+                                messageSelect.setId("");
                             }
                             messages = mDao.findAll(Integer.parseInt(String.valueOf(request.getAttribute("connecte"))));
                             for(int i=0;i<messages.length();i++){
@@ -78,9 +78,14 @@
                                 message = messages.get(i);
                                 // Ouvrir le bon div si un message est selectionner
                                 if(messageSelect.getId() == message.getId()){
-                                    out.print("<div class='unMessageSelect' onclick='ouvrirMessage("+message.getId()+")'>");}
-                                else{
-                                    out.print("<div class='unMessage' onclick='ouvrirMessage("+message.getId()+")'>");}
+                                    %>
+                                    <div class='unMessageSelect' onclick='ouvrirMessage("<%=message.getId()%>")'>
+                                    <%
+                                }else{
+                                    %>
+                                    <div class='unMessage' onclick='ouvrirMessage("<%=message.getId()%>")'>
+                                    <%
+                                }
                                 %>
                                 <form method="post" class="form<%=message.getId()%>">
                                     <input type="hidden" name="messageSelect" value="<%=message.getId()%>">
