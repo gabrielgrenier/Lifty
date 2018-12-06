@@ -93,7 +93,7 @@ public class MessageDAO extends Dao{
                     + "FROM `messageutilisateur` "
                     + "WHERE `messageutilisateur`.`receveurID` = '"+idR+"' AND `messageutilisateur`.`envoyeurID` = '"+idE+"'";
             requete = "SELECT * FROM message "
-                    + "WHERE message.vu = '"+(vu?1:0)+"' AND message.ID IN ("+sousRequete+")"
+                    + "WHERE message.vu = '"+(vu?0:1)+"' AND message.ID IN ("+sousRequete+")"
                     + "ORDER BY message.date DESC, message.time";
             // Executer la requete
             rs = ouvrirConnexion().executeQuery(requete);
@@ -118,8 +118,8 @@ public class MessageDAO extends Dao{
         String sousRequete;
 	try{
             //Construire la requete
-            sousRequete = "SELECT messageID FROM `messageutilisateur` WHERE `messageutilisateur`.`receveurID` = '"+idR+"'";
-            requete = "SELECT * FROM message WHERE message.ID IN ("+sousRequete+")"
+            sousRequete = "SELECT DISTINCT messageID FROM `messageutilisateur` WHERE `messageutilisateur`.`receveurID` = '"+idR+"'";
+            requete = "SELECT * FROM message WHERE message.ID IN ("+sousRequete+") AND message.VU = '1'"
                     + "ORDER BY message.date DESC, message.time";
             // Executer la requete
             rs = ouvrirConnexion().executeQuery(requete);
@@ -146,8 +146,8 @@ public class MessageDAO extends Dao{
         String sousRequete;
 	try{
             //Construire la requete
-            sousRequete = "SELECT messageID FROM `messageutilisateur` WHERE `messageutilisateur`.`receveurID` = '"+idR+"'";
-            requete = "SELECT * FROM message WHERE message.vu = '0' AND message.ID IN ("+sousRequete+")";
+            sousRequete = "SELECT DISTINCT messageID FROM `messageutilisateur` WHERE `messageutilisateur`.`receveurID` = '"+idR+"'";
+            requete = "SELECT * FROM message WHERE message.vu = '1' AND message.ID IN ("+sousRequete+")";
             // Executer la requete
             rs = ouvrirConnexion().executeQuery(requete);
             // Construire un profil et le mettre dans la liste pour chaque donnees recu
