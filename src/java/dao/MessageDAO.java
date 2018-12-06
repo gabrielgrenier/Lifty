@@ -218,9 +218,6 @@ public class MessageDAO extends Dao{
         try{
             create(m);
             // Cree le lien
-            System.out.println(destinataire.getId());
-            System.out.println(m.getId());
-            System.out.println(envoyeur.getId());
             rCreationLink = "INSERT INTO `messageutilisateur` (`receveurID`, `messageID`, `envoyeurID`)"
                             + "VALUES ('"+destinataire.getId()+"','"+m.getId()+"','"+envoyeur.getId()+"')";
             ouvrirConnexion().executeUpdate(rCreationLink);
@@ -254,11 +251,14 @@ public class MessageDAO extends Dao{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     @Override
-    public void delete(String id) {
+    public boolean delete(String id) {
         String requete = "DELETE FROM `message` "
                 + "WHERE `ID` = '"+id+"'";
-        try{ouvrirConnexion().executeUpdate(requete);}
-        catch (SQLException e){System.out.println("Exception de creation de message : "+e);}
+        try{return (ouvrirConnexion().executeUpdate(requete)>0);}
+        catch (SQLException e){
+            System.out.println("Exception de creation de message : "+e);
+            return false;
+        }
         finally{fermerConnexions(con,rs,sqlQuery);}
     }
 

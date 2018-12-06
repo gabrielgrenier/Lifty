@@ -1,12 +1,10 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import singleton.ConnexionBD;
-import static singleton.ConnexionBD.loadDriver;
 /* ==== INFO ====
 
  * @author maxime chausse
@@ -28,7 +26,7 @@ public abstract class Dao {
     public abstract void create(Object o);
     public abstract void update(Object o);
     public abstract void delete(int id);
-    public abstract void delete(String id);
+    public abstract boolean delete(String id);
     
     // ==== FONCTIONS ====
     

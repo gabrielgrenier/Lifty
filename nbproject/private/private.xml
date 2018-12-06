@@ -4,6 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Lifty/test/dao/MessageDAOTest.java</file>
+            <file>file:/C:/Lifty/src/java/classe/Message.java</file>
+            <file>file:/C:/Lifty/src/java/classe/ListeMessage.java</file>
+            <file>file:/C:/Lifty/src/java/controleurs/EnvoyerMessageAction.java</file>
             <file>file:/C:/Lifty/src/java/dao/MessageDAO.java</file>
         </group>
     </open-files>

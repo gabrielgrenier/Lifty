@@ -24,7 +24,8 @@ import static org.junit.Assert.*;
  * @author mchausse
  */
 public class MessageDAOTest {
-    private static final MessageDAO dao = new MessageDAO();
+    private static final MessageDAO MESSAGEDAO = new MessageDAO();
+    private static final ProfilDAO PROFILDAO = new ProfilDAO();
     
     public MessageDAOTest() {
     }
@@ -49,16 +50,7 @@ public class MessageDAOTest {
      * Test of findById method, of class MessageDAO.
      */
     @Test
-    public void testFindById_int() {
-        System.out.println("findById");
-    }
-
-    /**
-     * Test of findById method, of class MessageDAO.
-     */
-    @Test
     public void testFindById_String() {
-        
         // Cree le message a aller chercher
         Message m = new Message();
         Date dateTime = new Date();
@@ -70,18 +62,17 @@ public class MessageDAOTest {
         m.setDate(date.format(dateTime));
         m.setTime(time.format(dateTime));
         m.setVu(false);
-        dao.create(m);
+        MESSAGEDAO.create(m);
         
         // Comparer les noms 
-        Object expResult = m;
-        Object result = dao.findById("ABCDE12345");
+        Object expResult = m.getId();
+        Object result = MESSAGEDAO.findById("ABCDE12345").getId();
         
         // Supprimer le message pour le test
-        dao.delete("ABCDE12345");
+        MESSAGEDAO.delete("ABCDE12345");
         
         // Faire la verification des donnees recus
         assertEquals(expResult, result);
-        fail("Pas trouver le profil");
     }
 
     /**
@@ -89,7 +80,6 @@ public class MessageDAOTest {
      */
     @Test
     public void testFindById_Message() {
-        
         // Cree le message a aller chercher
         Message m = new Message();
         Date dateTime = new Date();
@@ -101,18 +91,17 @@ public class MessageDAOTest {
         m.setDate(date.format(dateTime));
         m.setTime(time.format(dateTime));
         m.setVu(false);
-        dao.create(m);
+        MESSAGEDAO.create(m);
         
         // Comparer les noms 
-        Object expResult = m;
-        Object result = dao.findById(m);
+        Object expResult = m.getId();
+        Object result = MESSAGEDAO.findById(m).getId();
         
         // Supprimer le message pour le test
-        dao.delete("ABCDE12345");
+        MESSAGEDAO.delete("ABCDE12345");
         
         // Faire la verification des donnees recus
         assertEquals(expResult, result);
-        fail("Pas trouver le profil");
     }
 
     /**
@@ -121,13 +110,47 @@ public class MessageDAOTest {
     @Test
     public void testFindAll_int() {
         System.out.println("findAll");
-        int idR = 0;
-        MessageDAO instance = new MessageDAO();
-        ListeMessage expResult = null;
-        ListeMessage result = instance.findAll(idR);
+        // Cree un profil
+        Profil p = new Profil();
+        p.setId(100000);
+        p.setNom("testMessageDAO");
+        p.setPrenom("testMessageDAO");
+        p.setUsername("username");
+        p.setEmail("email");
+        p.setMotDePasse("motDePasse");
+        p.setRole(1);
+        p.setDateInscription("dateInscription");
+        p.setDateConnexion("dateConnexion");
+        p.setCodePostal("codePostal");
+        p.setEtablissement("etablissement");
+        p.setImageProfil("imageProfil");
+        p.setNomPublic(true);
+        p.setPrenomPublic(true);
+        p.setEmailPublic(true);
+        p.setValide(true);
+        p.setConducteur(false);
+        p.setRating(5);
+        p.setTarif(5);
+        p.setRayon(5);
+        
+        // Envoyer 3 messages
+        MESSAGEDAO.envoyerMessage(new Message("100000", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
+        MESSAGEDAO.envoyerMessage(new Message("100001", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
+        MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
+        
+        // Faire le traitement 
+        int idR = p.getId();
+        int expResult = 3;
+        int result = MESSAGEDAO.findAll(idR).length();
+        
+        // Supprimer les donnes pour le test
+        PROFILDAO.delete(p);
+        MESSAGEDAO.delete("100000");
+        MESSAGEDAO.delete("100001");
+        MESSAGEDAO.delete("100010");
+        
+        // afficher le resultat du test
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -136,13 +159,46 @@ public class MessageDAOTest {
     @Test
     public void testFindAll_Profil() {
         System.out.println("findAll");
-        Profil pR = null;
-        MessageDAO instance = new MessageDAO();
-        ListeMessage expResult = null;
-        ListeMessage result = instance.findAll(pR);
+        // Cree un profil
+        Profil p = new Profil();
+        p.setId(100000);
+        p.setNom("testMessageDAO");
+        p.setPrenom("testMessageDAO");
+        p.setUsername("username");
+        p.setEmail("email");
+        p.setMotDePasse("motDePasse");
+        p.setRole(1);
+        p.setDateInscription("dateInscription");
+        p.setDateConnexion("dateConnexion");
+        p.setCodePostal("codePostal");
+        p.setEtablissement("etablissement");
+        p.setImageProfil("imageProfil");
+        p.setNomPublic(true);
+        p.setPrenomPublic(true);
+        p.setEmailPublic(true);
+        p.setValide(true);
+        p.setConducteur(false);
+        p.setRating(5);
+        p.setTarif(5);
+        p.setRayon(5);
+        
+        // Envoyer 3 messages
+        MESSAGEDAO.envoyerMessage(new Message("100000", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
+        MESSAGEDAO.envoyerMessage(new Message("100001", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
+        MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
+        
+        // Faire le traitement 
+        int expResult = 3;
+        int result = MESSAGEDAO.findAll(p).length();
+        
+        // Supprimer les donnes pour le test
+        PROFILDAO.delete(p);
+        MESSAGEDAO.delete("100000");
+        MESSAGEDAO.delete("100001");
+        MESSAGEDAO.delete("100010");
+        
+        // afficher le resultat du test
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -151,14 +207,46 @@ public class MessageDAOTest {
     @Test
     public void testFindAll_int_int() {
         System.out.println("findAll");
-        int idE = 0;
-        int idR = 0;
-        MessageDAO instance = new MessageDAO();
-        ListeMessage expResult = null;
-        ListeMessage result = instance.findAll(idE, idR);
+        // Cree un profil
+        Profil p = new Profil();
+        p.setId(100000);
+        p.setNom("testMessageDAO");
+        p.setPrenom("testMessageDAO");
+        p.setUsername("username");
+        p.setEmail("email");
+        p.setMotDePasse("motDePasse");
+        p.setRole(1);
+        p.setDateInscription("dateInscription");
+        p.setDateConnexion("dateConnexion");
+        p.setCodePostal("codePostal");
+        p.setEtablissement("etablissement");
+        p.setImageProfil("imageProfil");
+        p.setNomPublic(true);
+        p.setPrenomPublic(true);
+        p.setEmailPublic(true);
+        p.setValide(true);
+        p.setConducteur(false);
+        p.setRating(5);
+        p.setTarif(5);
+        p.setRayon(5);
+        
+        // Envoyer 3 messages
+        MESSAGEDAO.envoyerMessage(new Message("100000", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
+        MESSAGEDAO.envoyerMessage(new Message("100001", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
+        MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
+        
+        // Faire le traitement 
+        int expResult = 3;
+        int result = MESSAGEDAO.findAll(p.getId(), p.getId()).length();
+        
+        // Supprimer les donnes pour le test
+        PROFILDAO.delete(p);
+        MESSAGEDAO.delete("100000");
+        MESSAGEDAO.delete("100001");
+        MESSAGEDAO.delete("100010");
+        
+        // afficher le resultat du test
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -167,14 +255,46 @@ public class MessageDAOTest {
     @Test
     public void testFindAll_Profil_Profil() {
         System.out.println("findAll");
-        Profil pE = null;
-        Profil pR = null;
-        MessageDAO instance = new MessageDAO();
-        ListeMessage expResult = null;
-        ListeMessage result = instance.findAll(pE, pR);
+        // Cree un profil
+        Profil p = new Profil();
+        p.setId(100000);
+        p.setNom("testMessageDAO");
+        p.setPrenom("testMessageDAO");
+        p.setUsername("username");
+        p.setEmail("email");
+        p.setMotDePasse("motDePasse");
+        p.setRole(1);
+        p.setDateInscription("dateInscription");
+        p.setDateConnexion("dateConnexion");
+        p.setCodePostal("codePostal");
+        p.setEtablissement("etablissement");
+        p.setImageProfil("imageProfil");
+        p.setNomPublic(true);
+        p.setPrenomPublic(true);
+        p.setEmailPublic(true);
+        p.setValide(true);
+        p.setConducteur(false);
+        p.setRating(5);
+        p.setTarif(5);
+        p.setRayon(5);
+        
+        // Envoyer 3 messages
+        MESSAGEDAO.envoyerMessage(new Message("100000", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
+        MESSAGEDAO.envoyerMessage(new Message("100001", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
+        MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
+        
+        // Faire le traitement 
+        int expResult = 3;
+        int result = MESSAGEDAO.findAll(p, p).length();
+        
+        // Supprimer les donnes pour le test
+        PROFILDAO.delete(p);
+        MESSAGEDAO.delete("100000");
+        MESSAGEDAO.delete("100001");
+        MESSAGEDAO.delete("100010");
+        
+        // afficher le resultat du test
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -446,26 +566,17 @@ public class MessageDAOTest {
      * Test of delete method, of class MessageDAO.
      */
     @Test
-    public void testDelete_int() {
-        System.out.println("delete");
-        int id = 0;
-        MessageDAO instance = new MessageDAO();
-        instance.delete(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of delete method, of class MessageDAO.
-     */
-    @Test
     public void testDelete_String() {
         System.out.println("delete");
-        String id = "";
-        MessageDAO instance = new MessageDAO();
-        instance.delete(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // Cree le message
+        Message m = new Message("10000", "test", "de la classe", "2018-10-10", "09:20:19", false);
+        MESSAGEDAO.create(m);
+        
+        // Supprimer le message
+        boolean result = MESSAGEDAO.delete(m.getId());
+        
+        // Verifier
+        assertTrue(result);
     }
 
     /**
@@ -486,7 +597,7 @@ public class MessageDAOTest {
         m.setDate(date.format(dateTime));
         m.setTime(time.format(dateTime));
         m.setVu(false);
-        dao.create(m);
+        MESSAGEDAO.create(m);
         
         //ResultSet rs = dao.findById(m);
         MessageDAO instance = new MessageDAO();

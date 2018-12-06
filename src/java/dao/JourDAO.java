@@ -106,7 +106,7 @@ public class JourDAO extends Dao{
     }
 
     @Override
-    public void delete(String id) {
+    public boolean delete(String id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
