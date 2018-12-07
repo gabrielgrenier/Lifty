@@ -5,6 +5,8 @@
  */
 package controleurs;
 
+import javax.servlet.http.HttpSession;
+
 /**
  *
  * @author usager
@@ -12,7 +14,10 @@ package controleurs;
 public class AfficherProfilAction extends AbstractAction{
     @Override
     public String execute() {
-        request.setAttribute("connecte",""+1);
+        HttpSession session = request.getSession(true);
+        if (session.getAttribute("connected")==null) {//déjà non connecté
+            return "accueil";
+        }
         return "profil";
     }
 }

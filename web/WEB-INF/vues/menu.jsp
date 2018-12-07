@@ -20,7 +20,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <%if(request.getAttribute("connecte")==null){ %>
+            <%if(session.getAttribute("connected")==null){ %>
                 <a class="navbar-brand" href="#parallax"><img id="logo" src="./static/images/petitLogo.png"/></a>
             <%}
             else{%>
@@ -29,7 +29,7 @@
         </div>
         <%
         // ====================== MENU =====================
-        if(request.getAttribute("connecte")==null){
+        if(session.getAttribute("connected")==null){
             // -----------------------------------------
             // Section de menu si non connecte
             %>
@@ -51,7 +51,7 @@
 
             // code pour afficher un nombre qui signifie le nombre de messages non-vu
             MessageDAO mDao= new MessageDAO();
-            int nb = mDao.countNonVu(Integer.parseInt(String.valueOf(request.getAttribute("connecte"))));
+            int nb = mDao.countNonVu(((Profil)session.getAttribute("connected")).getId());
             %>
             <div class="collapse navbar-collapse" id="navbar-collapse-main">
                 <ul class="navbar-form navbar-left" action="/action_page.php">
@@ -77,9 +77,9 @@
                     </div>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" style="margin-right: 1%;">
-                    <li><a class="#" href="?action=recherche&connecte=<%=String.valueOf(request.getAttribute("connecte"))%>">Recherche</a></li>
+                    <li><a class="#" href="?action=recherche&connecte=<%=((Profil)session.getAttribute("connected")).getId()%>">Recherche</a></li>
                     <li>
-                        <a class="#" href="?action=messagerie&connecte=<%=String.valueOf(request.getAttribute("connecte"))%>">
+                        <a class="#" href="?action=messagerie&connecte=<%=((Profil)session.getAttribute("connected")).getId()%>">
                             Messagerie
                             <span id='alerteNum'><sup><b><%=nb%></b></sup></span>
                         </a>
@@ -92,7 +92,7 @@
         }
         %>
         <%// ====================== FORMULAIRE DE LOGIN =====================%>
-        <form method="post" action="login">
+        <form method="post" action="./">
             <div class="container" id="panelLogin">
                 <div class="form-group">
                     <label for="emailCon">Courriel:</label>
@@ -112,16 +112,17 @@
                     <label id="inscriptionLink" class='lblLink'><u>S'insrire à Lifty</u></label>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" name="action" value="Connexion"/>
+                    
                 </div>
                 <div class="form-group">
+                    <input type="hidden" name="action" value="connexion"/>
                     <button type="submit" name="btnConnexion" id="btnConnexion" class="btn btn-primary">Se connecter</button>
                 </div>
             </div>
         </form>
         
         <%// ====================== FORMULAIRE D'INSCRIPTION =====================%>
-        <form method="post" action="register">
+        <form method="post" action="./" >
             <div class="container" id="panelInscription">
                 <div class="form-group">
                     <label for="prenomInsc">Prénom:</label>
@@ -153,7 +154,6 @@
                     <label class="radio-inline"><input type="radio" name="type" value="passInsc">: Passager</label>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" name="action" value="Inscription"/>
                 </div>
                 <div class="erreur">
                     <%
@@ -164,22 +164,25 @@
                     %>
                 </div>
                 <div class="form-group">
+                    <form>
+                    <input type="hidden" name="action" value="inscription"/>
                     <button type="submit" name="btnInscription" id="btnInscription" class="btn btn-primary">S'inscrire</button>
+                    </form>
                 </div>
             </div>
         </form>
         <%// ====================== PANNEAU DE PROFIL =====================%>
         <%
-        if(request.getAttribute("connecte")!=null){
+        if(session.getAttribute("connected")!=null){
             ProfilDAO pDao = new ProfilDAO();
             Profil p = new Profil();
-            p=pDao.findById(Integer.parseInt(String.valueOf(request.getAttribute("connecte"))));
+            p=(Profil)session.getAttribute("connected");
             %>
             <div class="container" id="panelProfil">
                 <div class="form-group">
                     <div class='row'>
                         <div class='col-lg-4'>
-                            <img src="./static/images/profils/default.png" class="img-responsive" />
+                            <a href="?action=afficherProfil"><img src="./static/images/profils/default.png" class="img-responsive" /></a>
                         </div>
                         <div class='col-lg-8'>
                             <label id='lblPrenomNom'><%=p.getPrenom()+" "+p.getNom()%></label>
@@ -197,7 +200,7 @@
                     <label class='lblLink'><a href="?action="><u>Horaire</u></a></label>
                 </div>
                 <div class="form-group">
-                    <label class='lblLink'><a href="?action=deconnexion"><u>Deconnexion</u></a></label>
+                    <label class='lblLink'><a action="" href="?action=deconnexion" ><u>Deconnexion</u></a></label>
                 </div>
             </div>
         <%
@@ -207,7 +210,7 @@
 </nav>
 
 <% // Script animation du menu
-if(request.getAttribute("connecte")!=null){ %>
+if(session.getAttribute("connected")!=null){ %>
 <script> 
     $(document).ready(function(){
         // Setter les grandeurs

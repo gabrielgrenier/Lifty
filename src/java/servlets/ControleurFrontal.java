@@ -8,6 +8,7 @@ import controleurs.DeconnexionAction;
 import controleurs.DefaultAction;
 import controleurs.MessagerieAction;
 import controleurs.InscriptionAction;
+import controleurs.ModifierInformationProfilAction;
 import controleurs.PreferencesAction;
 import controleurs.RechercheAction;
 import java.io.IOException;
@@ -26,10 +27,10 @@ public class ControleurFrontal extends HttpServlet {
         if (actionAFaire == null) actionAFaire = "";
         
         switch (actionAFaire) {
-            case "Connexion":
+            case "connexion":
                 action = new ConnexionAction();
                 break;
-            case "Inscription":
+            case "inscription":
                 action = new InscriptionAction();
                 break;
             case "confidentialite":
@@ -49,6 +50,9 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "afficherProfil":
                 action = new AfficherProfilAction();
+                break;
+            case "modInformationProfil":
+                action = new ModifierInformationProfilAction();
                 break;
             default :
                 action = new DefaultAction();

@@ -314,12 +314,19 @@ footer p{
     background-size: cover;
     z-index: -1;
 }
-
+#profilBackground{
+    background: url("../images/routeMontage.jpeg") no-repeat center center fixed;
+    display: table;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-size: cover;
+    z-index: -1;
+}
 #ProfilContainer{
    /* background : rgba(0, 0, 0, 0.8);*/
     margin : 8% 10% 5% 10%;
     padding: 1em 2em;
-    height: 95%;
 
 }
 #InformationProfilContainer{
@@ -327,32 +334,47 @@ footer p{
     padding: 2em 4em;
     height: 100%;
     color: black;
-    border-width:1em;
+    border-width:0.5em;
     border-style:solid;
     border-color: rgba(0, 0, 0, 0.8);
+    border-radius:10px;
+    border-radius:10px;
 
 }
+.mErreur{
+    color: red;
+}
 #imageProfil{
-    max-height: 15em;
-    min-height: 12em;
-    min-width: 12em;
+    height: 12em;
     border-width:5px;
     border-style:solid;
     border-color: rgba(0, 0, 0, 0.8);
-    margin-top: 15px;
-    margin-left: 20px;
+    border-radius:10px;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .textProfil{
     font-size: 18px;
 
 }
-
+#evaluation{
+    margin-left: 4px;
+}
 #infoPro{
     border-width:5px;
     border-style:solid;
     border-color: rgba(0, 0, 0, 0.8);
     background : rgba(255, 255, 255, 0.6);
+    border-radius:10px;
+}
+#vehiPro{
+    border-width:5px;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    background : rgba(255, 255, 255, 0.6);
+    border-radius:10px;
 }
 #modifPro{
     margin-left: 35px;
@@ -362,6 +384,7 @@ footer p{
     border-color: rgba(0, 0, 0, 0.8);
     font-size: 16px;
     color: black;
+    border-radius:10px;
 }
 
 .TitreProf{
@@ -373,6 +396,7 @@ footer p{
 #comProf{
     border-style:solid;
     border-color: rgba(0, 0, 0, 0.8);
+    border-radius:10px;
 }
 
 .contProf{
@@ -384,41 +408,191 @@ footer p{
 }
 #test32{
     text-align: left;
-    background : rgba(255, 255, 255, 0.4);
+    background : rgba(255, 255, 255, 0.6);
     border-style:solid;
     border-color: rgba(0, 0, 0, 0.8);
-    font-size: 16px;
+    font-size: 20px;
     color: black;
+    height: 65px;
+    width: 170px;
+    border-radius:10px;
 }
 
 #menuRating{
-    padding-left: 80%;
+   display: flex; 
+   justify-content: flex-end;
 }
 
+.btn btn-default{
+   margin: 10px;
+   height: 50px;
+}
 .imageEtoile{
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    width: 25px;
     margin:auto;
 }
-
+#boiteEtoile{
+     padding-left:1%;
+         
+}
 #textEtoile{
-    font-size: 16px;
+    font-size: 18px;
     background : rgba(0, 0, 0, 0.8);
     color: white;
 }
 
 #titreProfil{
-    font-size: 32px;
+    font-size: 40px;
     font-weight: bold;
 }
 #enteteProfil{
     margin-top: 3%;
-    margin-bottom: 7%;
+    margin-bottom: 10%;
 }
 #messagerieContainer{
     background : rgba(0, 0, 0, 0.6);
     margin : 10% 10% 5% 10%;
     height: 585px;
+}
+#menu_button{
+    margin-top: 0;
+    height: 10%;
+}
+
+.bt_mod{
+    width: 100%;
+    font-size: 100%;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    background : rgba(255, 255, 255, 0.4);
+    font-weight: bold;
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -40%;
+    white-space: normal;
+}
+/*Page Pofils - Commentaire*/
+
+#commentaire_box{
+   height: 100%;
+   min-height: 30px;
+   padding: 1em;
+   background : rgba(50, 50, 50, 0.3);
+}
+
+.critique{
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    background : rgba(216, 216, 216, 1);
+    color: black;
+    border-radius:10px;
+}
+
+.barreHautCritique{
+    
+}
+.imageProfilCritique{
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    border-width: 2px;
+    height: 6%;
+    width: 6%;
+    min-height: 40px;
+    min-width: 40px; 
+    margin-top: 1%;
+    border-radius:10px;
+}
+.userCritique{
+    font-size: 150%;
+    margin-bottom: 1%;
+    margin-top: -5%;
+    margin-left: 9%;
+}
+@media screen and (max-width: 900px) {
+    .userCritique{
+        font-size: 125%;
+        margin-top: -5.5%;
+        margin-left: 15%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .userCritique{
+        font-size: 100%;
+        margin-top: -12%;
+        margin-left: 22%;
+    }
+}
+.noteCritique{
+    margin-top: -4%;
+    margin-left: 75%;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    border-width: 0.1px;
+    
+}
+.millieuCritique{
+    margin: 2% 2% 1% 8%;
+}
+
+.contenuCritique{
+    border-radius:10px;
+    white-space: normal;
+    overflow: hidden;
+    color: black;
+    background: white;
+    padding: 4px;
+    height: 70px;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    border-width: 0.9px;
+}
+.barreBasCritique{
+    height: 30px;
+    margin-bottom: 10px;
+}
+.report{
+    margin-left: 1%;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    border-width: 0.9px;
+    height: 100%;
+}
+.barreLike{
+    margin-left: 70%;
+}
+@media screen and (max-width: 1200px) {
+    .barreLike{
+        margin-left: 72%;
+    }
+}
+@media screen and (max-width: 1100px) {
+    .barreLike{
+        margin-left: 64%;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .barreLike{
+        margin-left: 50%;
+    }
+}
+@media screen and (max-width: 700px) {
+    .barreLike{
+        margin-left: 38%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .barreLike{
+        margin-left: 18%;
+    }
+}
+.likeCritique{
+    color: green;
+}
+.dislikeCritique{
+    color: red;
+    margin-left: 5%;
 }
 /** --------------- Cote gauche ---------------*/
 #messagesContainer{
