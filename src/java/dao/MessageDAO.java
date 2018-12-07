@@ -69,6 +69,7 @@ public class MessageDAO extends Dao{
             requete = "SELECT * FROM message WHERE message.ID IN ( "+sousRequete+" )"
                     + "ORDER BY message.date DESC, message.time";
             // Executer la requete
+            System.out.println(requete);
             rs = ouvrirConnexion().executeQuery(requete);
             // Definir un tableau de la du nombres de champs recu
             output = new ListeMessage();
@@ -202,8 +203,8 @@ public class MessageDAO extends Dao{
             Message ms = (Message)o;
             try{
                 // Faire le requete qui va aller updater tous les champs 
-                requete = "UPDATE `message` SET `ID` = '"+ms.getId()+"', `titre`='"+ms.getTitre()+"', "
-                        + "`message`="+ms.getMessage()+" `date`="+ms.getDate()+" `time`="+ms.getTime()+" `vu`="+(ms.isVu()?1:0)+""
+                requete = "UPDATE `message` SET `titre`='"+ms.getTitre()+"', "
+                        + "`message`='"+ms.getMessage()+"', `date`='"+ms.getDate()+"', `time`='"+ms.getTime()+"', `vu`="+(ms.isVu()?1:0)+""
                         + " WHERE `message`.`ID` = '"+ms.getId()+"';";
                 // Executer la requete
                 ouvrirConnexion().executeUpdate(requete);
