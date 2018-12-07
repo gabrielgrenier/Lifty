@@ -3,6 +3,9 @@
     Created on : 2018-10-15, 15:00:05
     Author     : usager
 --%>
+<%@page import="services.Evaluation"%>
+<%@page import="classe.Critique"%>
+<%@page import="dao.CritiqueDAO"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
@@ -13,6 +16,7 @@
 <%@page import="java.util.List"%>
 <%@page import="classe.Jour"%>
 <%@page import="dao.JourDAO"%>
+<%@page import="services.Evaluation"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,24 +29,30 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="./static/css/style.css" type="text/css"/>
+        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     </head>
     <body id="profilBackground">
             <%
             JourDAO dao = new JourDAO();
             ProfilDAO paDao = new ProfilDAO();
+            CritiqueDAO cDao = new CritiqueDAO();
             List<Jour> listHorraire1 = dao.findAll(1);
             Profil profil;
+            List<Critique> listeCritique = null;
             try{
                 if(request.getParameter("user")==null||Integer.parseInt(String.valueOf(request.getParameter("user")))==((Profil)session.getAttribute("connected")).getId()){
                     profil = (Profil) session.getAttribute("connected") ;
+                    listeCritique = cDao.findByIdUserReceveur(profil.getId());
                 }
                 else{
                     profil = paDao.findById(Integer.parseInt(String.valueOf(request.getParameter("user"))));
+                    listeCritique = cDao.findByIdUserReceveur(profil.getId());
                 }
             } 
             catch (Exception e) {
                  profil=null;
             }
+            Evaluation e;
             %>
 
         <%@include  file="menu.jsp" %>
@@ -51,7 +61,7 @@
                     <%if(profil!=null){%>
                     <div class="row">
                         <div id="enteteProfil">
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="col-lg-4 col-md-8 col-sm-8">
                                 <div id="titreProfil">
                                     <% // Affiche sur quel profil on se trouve
                                     if(profil.getId()==((Profil)session.getAttribute("connected")).getId()){%>
@@ -61,172 +71,26 @@
                                     <%}%>
                                 </div>
                             </div>
-                            <div class="col-lg-8 col-md-5 col-sm-5">
+                            <div class="col-lg-8 col-md-4 col-sm-4">
                                 <div id="menuRating">
                                     <div id="test32">
                                         <div id="textEtoile">
-                                            Évaluation :
+                                           <span id="evaluation">Évaluation :</span>
                                         </div>
                                         <div id="boiteEtoile" style="margin:auto;">
-                                            <%
-                                            // Calcule l'évaluation
-                                            if(profil.getRating() >=4){
-                                             %>
-                                                <img  class="imageEtoile" src="./static/images/etoiles/4.4.png">
-                                                <img  class="imageEtoile" src="./static/images/etoiles/4.4.png">
-                                                <img  class="imageEtoile" src="./static/images/etoiles/4.4.png">
-                                                <img  class="imageEtoile" src="./static/images/etoiles/4.4.png">
-                                                <%
-                                                if(profil.getRating() >= 5){
-                                                    %>
-                                                    <img  class="imageEtoile" src="./static/images/etoiles/4.4.png">
-                                                    <%
-                                                }
-                                                else if(profil.getRating() > 4.66){
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/3.4.png">
-                                                    <%
-                                                }
-                                                else if(profil.getRating() > 4.33){
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/2.4.png">
-                                                    <%
-                                                }
-                                                else if(profil.getRating() > 4.0){
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/1.4.png">
-                                                    <%
-                                                }
-                                                else{
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/0.4.png">
-                                                    <%
-                                                }
-
-                                            } 
-                                            else if(profil.getRating() >=3){
-
-                                                    %>
-                                            <img  class="imageEtoile" src="./static/images/etoiles/4.4.png">
-                                            <img  class="imageEtoile" src="./static/images/etoiles/4.4.png">
-                                            <img  class="imageEtoile" src="./static/images/etoiles/4.4.png">
-                                            <%
-                                                if(profil.getRating() > 3.66){
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/3.4.png">
-                                                    <%
-                                                }
-                                                else if(profil.getRating() > 3.33){
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/2.4.png">
-                                                    <%
-                                                }
-                                                else if(profil.getRating() > 3.0){
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/1.4.png">
-                                                    <%
-                                                }
-                                                else{
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/0.4.png">
-                                                    <%
-                                                }
-                                                %>
-                                                    <img  class="imageEtoile" src="./static/images/etoiles/0.4.png">
-                                                <%
+                                            <% e = new Evaluation((float)profil.getRating());
+                                            for(int j = 0; j<e.getEtoilePleine();++j){
+                                               %><img  class="imageEtoile" src="./static/images/etoiles/4.4.png"><%
                                             }
-                                            else if(profil.getRating() >=2){
-                                            %>
-                                            <img  class="imageEtoile" src="./static/images/etoiles/4.4.png">
-                                            <img  class="imageEtoile" src="./static/images/etoiles/4.4.png">
-                                            <%    
-                                           
-                                                if(profil.getRating() > 2.66){
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/3.4.png">
-                                                    <%
-                                                }
-                                                else if(profil.getRating() > 2.33){
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/2.4.png">
-                                                    <%
-                                                }
-                                                else if(profil.getRating() > 2.0){
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/1.4.png">
-                                                    <%
-                                                }
-                                                else{
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/0.4.png">
-                                                    <%
-                                                }
-                                                 %>
-                                                    <img  class="imageEtoile" src="./static/images/etoiles/0.4.png">
-                                                    <img  class="imageEtoile" src="./static/images/etoiles/0.4.png">
-                                                    <%
+                                            if(e.getNote()!=5){
+                                                if(0.66<e.getRestant()){%><img  class="imageEtoile" src="./static/images/etoiles/3.4.png"><%}
+                                                else if(0.33<e.getRestant()){%><img  class="imageEtoile" src="./static/images/etoiles/2.4.png"><%}
+                                                else if(0<e.getRestant()){%><img  class="imageEtoile" src="./static/images/etoiles/1.4.png"><%}
+                                                else{%><img  class="imageEtoile" src="./static/images/etoiles/0.4.png"><%}
                                             }
-                                            else if(profil.getRating() >=1){
-                                                                                                %>
-                                            <img  class="imageEtoile" src="./static/images/etoiles/4.4.png">
-                                            <%
-                                                if(profil.getRating() > 1.66){
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/3.4.png">
-                                                    <%
-                                                }
-                                                else if(profil.getRating() > 1.33){
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/2.4.png">
-                                                    <%
-                                                }
-                                                else if(profil.getRating() > 1.0){
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/1.4.png">
-                                                    <%
-                                                }
-                                                else{
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/0.4.png">
-                                                    <%
-                                                }
-
-                                                %>
-                                                    <img  class="imageEtoile" src="./static/images/etoiles/0.4.png">
-                                                    <img  class="imageEtoile" src="./static/images/etoiles/0.4.png">
-                                                    <img  class="imageEtoile" src="./static/images/etoiles/0.4.png">
-                                                    <%
-                                            }
-                                            else{
-                                                if(profil.getRating() > 0.66){
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/3.4.png">
-                                                    <%
-                                                }
-                                                else if(profil.getRating() > 0.33){
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/2.4.png">
-                                                    <%
-                                                }
-                                                else if(profil.getRating() > 0){
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/1.4.png">
-                                                    <%
-                                                }
-                                                else{
-                                                    %>
-                                                        <img  class="imageEtoile" src="./static/images/etoiles/0.4.png">
-                                                    <%
-                                                }
-                                                %>
-                                                    <img  class="imageEtoile" src="./static/images/etoiles/0.4.png">
-                                                    <img  class="imageEtoile" src="./static/images/etoiles/0.4.png">
-                                                    <img  class="imageEtoile" src="./static/images/etoiles/0.4.png">
-                                                    <img  class="imageEtoile" src="./static/images/etoiles/0.4.png">
-                                                <%
-                                            }
-                                            %>
-
+                                            for(int j = 0; j<e.getEtoileVide();++j){
+                                                %><img  class="imageEtoile" src="./static/images/etoiles/0.4.png"><%
+                                            }%>
                                         </div>
                                     </div>
                                 </div>
@@ -480,9 +344,6 @@
                               </table>
                         </div>
                     </div>
-                    <div class="row"> 
-                        <br />
-                    </div>
                     <div class="row">
                         <div id="menu_button" class="col-lg-3 col-md-4 col-sm-5">
                             <% // Permet de savoir si c'est le compte de lutilisateur ou un autre
@@ -502,85 +363,87 @@
                                   // Permet de savoir si lu'tilisateur a un vehicule
                                   if(profil.getVehicule()!=null){
                                    // Permet de savoir si c'est le compte de lutilisateur ou un autre
-                                  if(profil.getId()==((Profil)session.getAttribute("connected")).getId()){
-                                    // Permet de savoir si le vehicule du profil est en modification
-                                    if(!"modifierVehi".equals(request.getParameter("modi"))){%>
-                                        <tr class="TitreProf">
-                                          <th>Véhicule <a href="?action=modVéhiculProfil&modi=modifierVehi" class="fa fa-pencil" style="font-size:19px;color:white"></a></th>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <th>Modele:</th>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <th>Année:</th>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <th>Couleur:</th>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <th>Fumeur:</th>
-                                          <td>Non</td>
-                                        </tr>
-                                        <tr>
-                                          <th>Nombre de place:</th>
-                                          <td></td>
-                                        </tr>
-                                  <%}else{%>
-                                        <tr class="TitreProf">
-                                          <th>Véhicule</a></th>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <th>Modele:</th>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <th>Année:</th>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <th>Couleur:</th>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <th>Fumeur:</th>
-                                          <td>Non</td>
-                                        </tr>
-                                        <tr>
-                                          <th>Nombre de place:</th>
-                                          <td></td>
-                                        </tr>
-                                    <%}
-                                    }else{%>
-                                       <tr class="TitreProf">
-                                          <th>Véhicule</a></th>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <th>Modele:</th>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <th>Année:</th>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <th>Couleur:</th>
-                                          <td></td>
-                                        </tr>
-                                        <tr>
-                                          <th>Fumeur:</th>
-                                          <td>Non</td>
-                                        </tr>
-                                        <tr>
-                                          <th>Nombre de place:</th>
-                                          <td></td>
-                                        </tr>
-                                    <%}
+                                    if(profil.getId()==((Profil)session.getAttribute("connected")).getId()){
+                                      // Permet de savoir si le vehicule du profil est en modification
+                                            if(!"modifierVehi".equals(request.getParameter("modi"))){%>
+                                                <tr class="TitreProf">
+                                                  <th>Véhicule <a href="?action=modVéhiculProfil&modi=modifierVehi" class="fa fa-pencil" style="font-size:19px;color:white"></a></th>
+                                                  <td></td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Modele:</th>
+                                                  <td></td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Année:</th>
+                                                  <td></td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Couleur:</th>
+                                                  <td></td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Fumeur:</th>
+                                                  <td>Non</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Nombre de place:</th>
+                                                  <td></td>
+                                                </tr>
+                                            <%}
+                                            else{%>
+                                                <tr class="TitreProf">
+                                                  <th>Véhicule</a></th>
+                                                  <td></td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Modele:</th>
+                                                  <td></td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Année:</th>
+                                                  <td></td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Couleur:</th>
+                                                  <td></td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Fumeur:</th>
+                                                  <td>Non</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Nombre de place:</th>
+                                                  <td></td>
+                                                </tr>
+                                          <%}
+                                        }
+                                        else{%>
+                                           <tr class="TitreProf">
+                                              <th>Véhicule</a></th>
+                                              <td></td>
+                                            </tr>
+                                            <tr>
+                                              <th>Modele:</th>
+                                              <td></td>
+                                            </tr>
+                                            <tr>
+                                              <th>Année:</th>
+                                              <td></td>
+                                            </tr>
+                                            <tr>
+                                              <th>Couleur:</th>
+                                              <td></td>
+                                            </tr>
+                                            <tr>
+                                              <th>Fumeur:</th>
+                                              <td>Non</td>
+                                            </tr>
+                                            <tr>
+                                              <th>Nombre de place:</th>
+                                              <td></td>
+                                            </tr>
+                                        <%}
                                     }else{
                                         if(profil.getId()==((Profil)session.getAttribute("connected")).getId()){%>
                                             <tr class="TitreProf">
@@ -662,10 +525,62 @@
                         <div class="col-lg-12 col-md-12 col-sm-12" class="textProfil">
                             <div id="infoPro">
                                 <div class="TitreProf">
-                                   Commentaires 
+                                   Commentaires
                                 </div>
-                                <div class="contProf">
-                                    
+                                <div id="commentaire_box">
+                                    <div id="ajoutCommentaire">
+                                    </div>
+                                    <%if(listeCritique != null){
+                                    Critique critique;
+                                    System.out.println(listeCritique.size());
+                                    for(int i = 0;i<listeCritique.size();i++){
+                                        critique = listeCritique.get(i);%>
+                                        <div class="container-fluid critique">
+                                            <div class="barreHautCritique">
+                                                <div class="imageProfilC">
+                                                    <img  class="imageProfilCritique" src="./static/images/profils/default.png" />
+                                                </div>
+                                                <div class="userCritique">
+                                                    @<%=(paDao.findById(critique.getEnvoyeurID())).getUsername()%>
+                                                </div>
+                                                <div class="noteCritique">
+                                                    <% e = new Evaluation((float)critique.getNote());
+                                                    for(int j = 0; j<e.getEtoilePleine();++j){
+                                                       %><img  class="imageEtoile" src="./static/images/etoiles/4.4.png"><%
+                                                    }
+                                                    if(e.getNote()!=5){
+                                                        if(0.66<e.getRestant()){%><img  class="imageEtoile" src="./static/images/etoiles/3.4.png"><%}
+                                                        else if(0.33<e.getRestant()){%><img  class="imageEtoile" src="./static/images/etoiles/2.4.png"><%}
+                                                        else if(0<e.getRestant()){%><img  class="imageEtoile" src="./static/images/etoiles/1.4.png"><%}
+                                                        else{%><img  class="imageEtoile" src="./static/images/etoiles/0.4.png"><%}
+                                                    }
+                                                    for(int j = 0; j<e.getEtoileVide();++j){
+                                                        %><img  class="imageEtoile" src="./static/images/etoiles/0.4.png"><%
+                                                    }%>
+                                                </div>
+                                            </div>
+                                            <div class="millieuCritique">
+                                                <div class="contenuCritique">
+                                                    <%=critique.getCommentaire()%>
+                                                </div>
+                                            </div>
+                                            <div class="barreBasCritique">
+                                                <span class="reportCritique">
+                                                    <input class="btn btn-danger report" type="submit" value="Signaler">
+                                                </span>
+                                                <span class="barreLike">
+                                                    <span>
+                                                        <a class="glyphicon glyphicon-thumbs-up likeCritique"></a> <%=critique.getLike()%>
+                                                    </span>
+                                                    <span>
+                                                        <a class="glyphicon glyphicon-thumbs-down dislikeCritique"></a> <%=critique.getDislike()%>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <br />
+                                    <%}
+                                      }%>
                                 </div>
                             </div>
                         </div>
