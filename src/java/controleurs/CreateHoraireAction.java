@@ -5,6 +5,7 @@
  */
 package controleurs;
 
+import classe.Profil;
 import dao.JourDAO;
 
 /**
@@ -15,8 +16,9 @@ public class CreateHoraireAction extends AbstractAction {
     @Override
     public String execute() {
         try{
-            JourDAO dao = new JourDAO();
-            String idUser = request.getParameter("idCreateHoraire");
+            JourDAO jourDao = new JourDAO();
+            //String idUser = request.getParameter("idCreateHoraire");
+            Profil currentUser = (Profil)request.getSession().getAttribute("connected");
             
             //Lundi      
             String debLun = (request.getParameter("debLun") == null) ? "00" : request.getParameter("debLun");
@@ -39,11 +41,11 @@ public class CreateHoraireAction extends AbstractAction {
             String finVen = (request.getParameter("finVen") == null) ? "00" : request.getParameter("finVen");
 
             //Ajout dans la BD
-            dao.create(0, Integer.parseInt(idUser), "lundi", (debLun+":00:00"), (finLun+":00:00"));
-            dao.create(0, Integer.parseInt(idUser), "mardi", (debMar+":00:00"), (finMar+":00:00"));
-            dao.create(0, Integer.parseInt(idUser), "mercredi", (debMer+":00:00"), (finMer+":00:00"));
-            dao.create(0, Integer.parseInt(idUser), "jeudi", (debJeu+":00:00"), (finJeu+":00:00"));
-            dao.create(0, Integer.parseInt(idUser), "vendredi", (debVen+":00:00"), (finVen+":00:00"));
+            jourDao.create(0, currentUser.getId(), "lundi", (debLun+":00:00"), (finLun+":00:00"));
+            jourDao.create(0, currentUser.getId(), "mardi", (debMar+":00:00"), (finMar+":00:00"));
+            jourDao.create(0, currentUser.getId(), "mercredi", (debMer+":00:00"), (finMer+":00:00"));
+            jourDao.create(0, currentUser.getId(), "jeudi", (debJeu+":00:00"), (finJeu+":00:00"));
+            jourDao.create(0, currentUser.getId(), "vendredi", (debVen+":00:00"), (finVen+":00:00"));
             return "profil";
         }catch(NumberFormatException e){return "profil";}
     }
