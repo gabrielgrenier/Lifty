@@ -184,7 +184,7 @@ public class MessageDAO extends Dao{
         String requete;
         String sousRequete;
         try{
-            sousRequete = "SELECT envoyeurID FROM messageutilisateur WHERE messageID = '"+message+"'";
+            sousRequete = "SELECT DISTINCT envoyeurID FROM messageutilisateur WHERE messageID = '"+message+"'";
             requete = "SELECT * FROM utilisateur WHERE ID = ("+sousRequete+")";
             rs = ouvrirConnexion().executeQuery(requete);
             // Cree et retourne le profilDAO pour utiliser la methode construireProfil pour construire le profil du sender

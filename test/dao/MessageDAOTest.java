@@ -140,7 +140,7 @@ public class MessageDAOTest {
         
         // Faire le traitement 
         int idR = p.getId();
-        int expResult = 3;
+        int expResult = 4;
         int result = MESSAGEDAO.findAll(idR).length();
         
         // Supprimer les donnes pour le test
@@ -188,7 +188,7 @@ public class MessageDAOTest {
         MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
         
         // Faire le traitement 
-        int expResult = 3;
+        int expResult = 4;
         int result = MESSAGEDAO.findAll(p).length();
         
         // Supprimer les donnes pour le test
@@ -236,7 +236,7 @@ public class MessageDAOTest {
         MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
         
         // Faire le traitement 
-        int expResult = 3;
+        int expResult = 4;
         int result = MESSAGEDAO.findAll(p.getId(), p.getId()).length();
         
         // Supprimer les donnes pour le test
@@ -284,7 +284,7 @@ public class MessageDAOTest {
         MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
         
         // Faire le traitement 
-        int expResult = 3;
+        int expResult = 4;
         int result = MESSAGEDAO.findAll(p, p).length();
         
         // Supprimer les donnes pour le test
@@ -332,7 +332,7 @@ public class MessageDAOTest {
         MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
         
         // Faire le traitement 
-        int expResult = 1;
+        int expResult = 2;
         int result = MESSAGEDAO.findAllVu(p.getId(), p.getId(), true).length();
         
         // Supprimer les donnes pour le test
@@ -381,7 +381,7 @@ public class MessageDAOTest {
         MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
         
         // Faire le traitement 
-        int expResult = 1;
+        int expResult = 2;
         int result = MESSAGEDAO.findAllVu(p.getId(), p.getId()).length();
         
         // Supprimer les donnes pour le test
@@ -430,7 +430,7 @@ public class MessageDAOTest {
         MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
         
         // Faire le traitement 
-        int expResult = 1;
+        int expResult = 2;
         int result = MESSAGEDAO.findAllVu(p, p).length();
         
         // Supprimer les donnes pour le test
@@ -479,7 +479,7 @@ public class MessageDAOTest {
         MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
         
         // Faire le traitement 
-        int expResult = 1;
+        int expResult = 2;
         int result = MESSAGEDAO.findAllVu(p, p, true).length();
         
         // Supprimer les donnes pour le test
@@ -824,8 +824,8 @@ public class MessageDAOTest {
         p.setEmail("email");
         p.setMotDePasse("motDePasse");
         p.setRole(1);
-        p.setDateInscription("dateInscription");
-        p.setDateConnexion("dateConnexion");
+        p.setDateInscription("2018-10-03");
+        p.setDateConnexion("2018-10-03");
         p.setCodePostal("codePostal");
         p.setEtablissement("etablissement");
         p.setImageProfil("imageProfil");
@@ -837,20 +837,21 @@ public class MessageDAOTest {
         p.setRating(5);
         p.setTarif(5);
         p.setRayon(5);
+        PROFILDAO.delete(p); 
+        PROFILDAO.create(p); 
         
         // Envoyer 3 messages
-        Message m = new Message("100000", "test", "de la classe", "2018-10-10", "09:20:19", true);
+        MESSAGEDAO.delete("110000");
+        Message m = new Message("110000", "test", "de la classe", "2018-10-10", "09:20:19", true);
         MESSAGEDAO.envoyerMessage(m, p, p);
         
         // Faire le traitement 
-        Profil expResult = p;
-        Profil result = MESSAGEDAO.getSender(m.getId());
+        int expResult = p.getId();
+        int result = MESSAGEDAO.getSender(m.getId()).getId();
         
         // Supprimer les donnes pour le test
         PROFILDAO.delete(p);
-        MESSAGEDAO.delete("100000");
-        MESSAGEDAO.delete("100001");
-        MESSAGEDAO.delete("100010");
+        MESSAGEDAO.delete("110000");
         
         // afficher le resultat du test
         assertEquals(expResult, result);
@@ -870,8 +871,8 @@ public class MessageDAOTest {
         p.setEmail("email");
         p.setMotDePasse("motDePasse");
         p.setRole(1);
-        p.setDateInscription("dateInscription");
-        p.setDateConnexion("dateConnexion");
+        p.setDateInscription("2018-10-03");
+        p.setDateConnexion("2018-10-03");
         p.setCodePostal("codePostal");
         p.setEtablissement("etablissement");
         p.setImageProfil("imageProfil");
@@ -883,20 +884,21 @@ public class MessageDAOTest {
         p.setRating(5);
         p.setTarif(5);
         p.setRayon(5);
+        PROFILDAO.delete(p); 
+        PROFILDAO.create(p); 
         
         // Envoyer 3 messages
-        Message m = new Message("100000", "test", "de la classe", "2018-10-10", "09:20:19", true);
+        MESSAGEDAO.delete("110000");
+        Message m = new Message("110000", "test", "de la classe", "2018-10-10", "09:20:19", true);
         MESSAGEDAO.envoyerMessage(m, p, p);
         
         // Faire le traitement 
-        Profil expResult = p;
-        Profil result = MESSAGEDAO.getSender(m);
+        int expResult = p.getId();
+        int result = MESSAGEDAO.getSender(m).getId();
         
         // Supprimer les donnes pour le test
         PROFILDAO.delete(p);
-        MESSAGEDAO.delete("100000");
-        MESSAGEDAO.delete("100001");
-        MESSAGEDAO.delete("100010");
+        MESSAGEDAO.delete("110000");
         
         // afficher le resultat du test
         assertEquals(expResult, result);
@@ -950,8 +952,8 @@ public class MessageDAOTest {
         p.setEmail("email");
         p.setMotDePasse("motDePasse");
         p.setRole(1);
-        p.setDateInscription("dateInscription");
-        p.setDateConnexion("dateConnexion");
+        p.setDateInscription("2018-10-03");
+        p.setDateConnexion("2018-10-03");
         p.setCodePostal("codePostal");
         p.setEtablissement("etablissement");
         p.setImageProfil("imageProfil");
@@ -963,14 +965,17 @@ public class MessageDAOTest {
         p.setRating(5);
         p.setTarif(5);
         p.setRayon(5);
+        PROFILDAO.delete(p); 
+        PROFILDAO.create(p); 
         
         // Envoyer le messages
-        Message expResult = new Message("100000", "test", "de la classe", "2018-10-10", "09:20:19", false);
+        MESSAGEDAO.delete("101000");
+        Message expResult = new Message("101000", "test", "de la classe", "2018-10-10", "09:20:19", false);
         MESSAGEDAO.envoyerMessage(expResult, p, p);
         
         // Supprimer les donnes pour le test
         PROFILDAO.delete(p);
-        MESSAGEDAO.delete("100000");
+        MESSAGEDAO.delete("101000");
         
         int result = MESSAGEDAO.findAll(p, p).length();
         assertEquals(1, result);
@@ -991,8 +996,8 @@ public class MessageDAOTest {
         p.setEmail("email");
         p.setMotDePasse("motDePasse");
         p.setRole(1);
-        p.setDateInscription("dateInscription");
-        p.setDateConnexion("dateConnexion");
+        p.setDateInscription("2018-10-03");
+        p.setDateConnexion("2018-10-03");
         p.setCodePostal("codePostal");
         p.setEtablissement("etablissement");
         p.setImageProfil("imageProfil");
@@ -1004,14 +1009,16 @@ public class MessageDAOTest {
         p.setRating(5);
         p.setTarif(5);
         p.setRayon(5);
+        PROFILDAO.delete(p); 
+        PROFILDAO.create(p); 
         
         // Envoyer le messages
-        Message expResult = new Message("100000", "test", "de la classe", "2018-10-10", "09:20:19", false);
+        Message expResult = new Message("100100", "test", "de la classe", "2018-10-10", "09:20:19", false);
         MESSAGEDAO.envoyerMessage(expResult, p.getId(), p.getUsername());
         
         // Supprimer les donnes pour le test
         PROFILDAO.delete(p);
-        MESSAGEDAO.delete("100000");
+        MESSAGEDAO.delete("100100");
         
         int result = MESSAGEDAO.findAll(p, p).length();
         assertEquals(1, result);
@@ -1032,8 +1039,8 @@ public class MessageDAOTest {
         p.setEmail("email");
         p.setMotDePasse("motDePasse");
         p.setRole(1);
-        p.setDateInscription("dateInscription");
-        p.setDateConnexion("dateConnexion");
+        p.setDateInscription("2018-10-03");
+        p.setDateConnexion("2018-10-03");
         p.setCodePostal("codePostal");
         p.setEtablissement("etablissement");
         p.setImageProfil("imageProfil");
@@ -1045,14 +1052,17 @@ public class MessageDAOTest {
         p.setRating(5);
         p.setTarif(5);
         p.setRayon(5);
+        PROFILDAO.delete(p); 
+        PROFILDAO.create(p); 
         
         // Envoyer le messages
-        Message expResult = new Message("100000", "test", "de la classe", "2018-10-10", "09:20:19", false);
+        MESSAGEDAO.delete("200000");
+        Message expResult = new Message("200000", "test", "de la classe", "2018-10-10", "09:20:19", false);
         MESSAGEDAO.envoyerMessage(expResult, p.getUsername(), p.getUsername());
         
         // Supprimer les donnes pour le test
         PROFILDAO.delete(p);
-        MESSAGEDAO.delete("100000");
+        MESSAGEDAO.delete("200000");
         
         int result = MESSAGEDAO.findAll(p, p).length();
         assertEquals(1, result);
@@ -1065,7 +1075,7 @@ public class MessageDAOTest {
     public void testDelete_String() {
         System.out.println("delete");
         // Cree le message
-        Message m = new Message("10000", "test", "de la classe", "2018-10-10", "09:20:19", false);
+        Message m = new Message("30000", "test", "de la classe", "2018-10-10", "09:20:19", false);
         MESSAGEDAO.create(m);
         
         // Supprimer le message
