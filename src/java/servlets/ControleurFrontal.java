@@ -46,6 +46,7 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "recherche":
                 action = new RechercheAction();
+                break;
             case "afficherProfil":
                 action = new AfficherProfilAction();
                 break;

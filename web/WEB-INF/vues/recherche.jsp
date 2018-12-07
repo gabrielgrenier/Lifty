@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="row">
-                <iframe id ="mapRecherche" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2793.648181402067!2d-73.5845177840561!3d45.55740247910211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91eace22b9bcf%3A0x18799aed17aa23d9!2sColl%C3%A8ge+de+Rosemont!5e0!3m2!1sfr!2sca!4v1519943892970"  frameborder="0" style="border:0" allowfullscreen=""></iframe>
+                <iframe id="mapRecherche" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2793.648181402067!2d-73.5845177840561!3d45.55740247910211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91eace22b9bcf%3A0x18799aed17aa23d9!2sColl%C3%A8ge+de+Rosemont!5e0!3m2!1sfr!2sca!4v1519943892970" width="500" height="350" frameborder="0" style="border:0" allowfullscreen=""></iframe>
             </div>
         </div>
         <div class="row" id="tblSecteur">
@@ -91,5 +91,13 @@
         else{
             if(document.getElementById("usagerListe").style.display !== "none"){$("#usagerListe").animate({height:'toggle'});}
         }
+    }
+    
+    function myMap() {
+    var mapProp= {
+        center:new google.maps.LatLng(51.508742,-0.120850),
+        zoom:5,
+    };
+    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
     }
 </script>
