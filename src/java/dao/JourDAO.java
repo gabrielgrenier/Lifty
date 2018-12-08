@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JourDAO extends Dao{
+    public JourDAO(){
+        
+    }
     
     public Jour find(int idUser, String jour){ //trouve un jour de la semaine selon l'ID du user et le jour
 	try{
@@ -109,7 +112,13 @@ public class JourDAO extends Dao{
     }
     @Override
     public void delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            String requete;
+            requete = "DELETE FROM `jour` WHERE `jour`.`ID` = "+id+"";
+            ouvrirConnexion().executeUpdate(requete);
+        }
+        catch(Exception e){}
+        finally{fermerConnexions(con,rs,sqlQuery);}
     }
     
     @Override

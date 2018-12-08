@@ -657,3 +657,17 @@ footer p{
 .inputHorraireNum{
     max-width: 6em;
 }
+
+/*----------------CreateHoraire.jsp------------*/
+.contenuHoraire{
+    margin-top:10em;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding:2em 1em 2em 1em;
+}
+.tableHoraire thead th{
+    background-color: #212529;
+    color:white;
+}
+.tableHoraire th{
+    background-color: white;
+}
