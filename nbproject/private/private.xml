@@ -2,23 +2,10 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-<<<<<<< HEAD
             <file>file:/G:/Session4/Project/git/Lifty/src/java/services/rechercheService.java</file>
-            <file>file:/G:/Session4/Project/git/Lifty/src/java/controleurs/InscriptionAction.java</file>
-            <file>file:/G:/Session4/Project/git/Lifty/src/java/controleurs/RechercheAction.java</file>
-            <file>file:/G:/Session4/Project/git/Lifty/web/WEB-INF/vues/messagerie.jsp</file>
             <file>file:/G:/Session4/Project/git/Lifty/web/WEB-INF/vues/recherche.jsp</file>
-=======
-            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/web/WEB-INF/vues/profil.jsp</file>
-            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/web/static/css/style.css</file>
-            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/web/WEB-INF/vues/CreateHoraire.jsp</file>
-            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/src/java/controleurs/CreateHoraireAction.java</file>
->>>>>>> 9127a7f0470ef3d1a5bd1aa75c21bfbd78e77ac4
+            <file>file:/G:/Session4/Project/git/Lifty/src/java/controleurs/ConnexionAction.java</file>
         </group>
->>>>>>> 6145715d0bd8e668e745aa97eec0da801f67ec9f
     </open-files>
 </project-private>
