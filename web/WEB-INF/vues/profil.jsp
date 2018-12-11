@@ -36,7 +36,8 @@
             JourDAO dao = new JourDAO();
             ProfilDAO paDao = new ProfilDAO();
             CritiqueDAO cDao = new CritiqueDAO();
-            List<Jour> listHorraire1 = dao.findAll(1);
+            Profil currentUser = (Profil)request.getSession().getAttribute("connected");
+            List<Jour> listHorraire1 = dao.findAll(currentUser.getId());
             Profil profil;
             List<Critique> listeCritique = null;
             try{
@@ -475,7 +476,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12" class="textProfil">
                             <div id="infoPro">
                                 <div class="TitreProf">
-                                   Horaire 
+                                   Horaire <a href="?action=createHoraireAff" style="float:right; margin-right:1em;"><span class="glyphicon glyphicon-edit"></span></a>
                                 </div>
                                 <div id="contProfHoraire">
                                     <table class="table table-hover table-bordered">

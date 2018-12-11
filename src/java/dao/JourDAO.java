@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JourDAO extends Dao{
+    public JourDAO(){
+        
+    }
     
     public Jour find(int idUser, String jour){ //trouve un jour de la semaine selon l'ID du user et le jour
 	try{
@@ -26,6 +29,7 @@ public class JourDAO extends Dao{
     
     public List<Jour> findAll(int idUser){ //trouve tous les jours d'un utilisateur
         List<Jour> listeJour = new ArrayList<>();
+        List<Jour> listeTrie = new ArrayList<>();
         String requete;
 	try{
             requete = "SELECT * FROM jour WHERE userID = '"+idUser+"'";
@@ -33,7 +37,29 @@ public class JourDAO extends Dao{
             rs = ouvrirConnexion().executeQuery(requete);
             // Pour chaque on cree un jour et lajoute a la liste
             while(rs.next())listeJour.add(construireObjet(rs));
-            return listeJour;              
+            for(int i=0; i<5; i++){
+                switch (listeJour.get(i).getJour()) {
+                    case "lundi":
+                        listeTrie.add(listeJour.get(i));
+                        break;
+                    case "mardi":
+                        listeTrie.add(listeJour.get(i));
+                        break;
+                    case "mercredi":
+                        listeTrie.add(listeJour.get(i));
+                        break;
+                    case "jeudi":
+                        listeTrie.add(listeJour.get(i));
+                        break;
+                    case "vendredi":
+                        listeTrie.add(listeJour.get(i));
+                        break;
+                    default:
+                        listeTrie.add(null);
+                        break;
+                }
+            }
+            return listeTrie;              
 	}
         catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
 	finally{fermerConnexions(con,rs,sqlQuery);}
@@ -86,7 +112,13 @@ public class JourDAO extends Dao{
     }
     @Override
     public void delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            String requete;
+            requete = "DELETE FROM `jour` WHERE `jour`.`ID` = "+id+"";
+            ouvrirConnexion().executeUpdate(requete);
+        }
+        catch(Exception e){}
+        finally{fermerConnexions(con,rs,sqlQuery);}
     }
     
     @Override

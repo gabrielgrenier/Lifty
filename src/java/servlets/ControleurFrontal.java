@@ -4,6 +4,7 @@ import controleurs.AbstractAction;
 import controleurs.AfficherProfilAction;
 import controleurs.ConfidentialiteAction;
 import controleurs.ConnexionAction;
+import controleurs.CreateHoraireAction;
 import controleurs.DeconnexionAction;
 import controleurs.DefaultAction;
 import controleurs.MessagerieAction;
@@ -11,6 +12,7 @@ import controleurs.InscriptionAction;
 import controleurs.ModifierInformationProfilAction;
 import controleurs.PreferencesAction;
 import controleurs.RechercheAction;
+import controleurs.CreateHoraireAffAction;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -50,6 +52,12 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "afficherProfil":
                 action = new AfficherProfilAction();
+                break;
+            case "createHoraireAff":
+                action = new CreateHoraireAffAction();
+                break;
+            case "createHoraire":
+                action = new CreateHoraireAction();
                 break;
             case "modInformationProfil":
                 action = new ModifierInformationProfilAction();
