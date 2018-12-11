@@ -7,15 +7,19 @@ htlm, body {
     width: 100%;
 }
 
+
+.imgAcc {
+    border-width:3px;
+    border-style:solid;
+    border-color:#ffffff;
+    box-shadow: 0px 0px 53px -8px rgba(0,0,0,0.75);
+}
 /*img{
     border-width:3px;
     border-style:solid;
     border-color:#ffffff;
     box-shadow: 0px 0px 47px -3px rgba(0,0,0,0.75);
 }*/
-
-
-
 
 .attribue{
     font-style:italic; 
@@ -180,10 +184,8 @@ footer p{
     color: white;
 }
 #logo{
-    max-height: 50px;
-    border-style: none;
-    border-radius: 0px;
-    box-shadow: none;
+    max-height: 2.5em;
+    margin-left: -1.5em;
 }
 .erreur *{
     color : red;
@@ -662,4 +664,22 @@ footer p{
     background : white;
     color : black;
     height: 480px;
+}
+/*------------------ Horaire ------------------*/
+.inputHorraireNum{
+    max-width: 6em;
+}
+
+/*----------------CreateHoraire.jsp------------*/
+.contenuHoraire{
+    margin-top:10em;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding:2em 1em 2em 1em;
+}
+.tableHoraire thead th{
+    background-color: #212529;
+    color:white;
+}
+.tableHoraire th{
+    background-color: white;
 }

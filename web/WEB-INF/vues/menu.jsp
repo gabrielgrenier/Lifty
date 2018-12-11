@@ -60,7 +60,6 @@
             %>
             <div class="collapse navbar-collapse" id="navbar-collapse-main">
                 <ul class="nav navbar-nav navbar-right" style="margin-right: 1%;">
-                    <li><a class="#" href="#parallax">Accueil</a></li>
                     <li><a class="#" href="#contenu1">À Propos</a></li>
                     <li><a class="#" href="#contenu2">Fonctionnalitées</a></li>
                     <li><a class="#" href="#contenu3">Nous Contacter</a></li>

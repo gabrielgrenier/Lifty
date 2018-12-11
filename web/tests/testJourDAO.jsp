@@ -44,7 +44,7 @@
             }
             out.println("<hr>");
             out.println("<h2>Test : create(idJour, idUser, jour, debut, fin)</h2>");
-            dao.create(100, 2, "mardi","10:12:12", "15:12:12");
+            dao.create(200, 2, "mardi","10:12:12", "15:12:12");
             
             out.println("<hr>");
             out.println("<h2>Test : create(Jour j)</h2>");

@@ -36,16 +36,22 @@
             JourDAO dao = new JourDAO();
             ProfilDAO paDao = new ProfilDAO();
             CritiqueDAO cDao = new CritiqueDAO();
-            List<Jour> listHorraire1 = dao.findAll(1);
+            Profil currentUser = (Profil)request.getSession().getAttribute("connected");
+            List<Jour> listHorraire1 = dao.findAll(currentUser.getId());
             Profil profil;
             List<Critique> listeCritique = null;
             try{
-                if(request.getParameter("user")==null||Integer.parseInt(String.valueOf(request.getParameter("user")))==((Profil)session.getAttribute("connected")).getId()){
+                if(((request.getParameter("user")==null&&request.getAttribute("userC")==null))||Integer.parseInt(String.valueOf(request.getParameter("user")))==((Profil)session.getAttribute("connected")).getId()){
                     profil = (Profil) session.getAttribute("connected") ;
                     listeCritique = cDao.findByIdUserReceveur(profil.getId());
                 }
                 else{
-                    profil = paDao.findById(Integer.parseInt(String.valueOf(request.getParameter("user"))));
+                    if(request.getParameter("user")!=null){
+                        profil = paDao.findById(Integer.parseInt(String.valueOf(request.getParameter("user"))));
+                    }
+                    else{
+                       profil = paDao.findById(Integer.parseInt(String.valueOf(request.getAttribute("userC")))); 
+                    }
                     listeCritique = cDao.findByIdUserReceveur(profil.getId());
                 }
             } 
@@ -475,7 +481,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12" class="textProfil">
                             <div id="infoPro">
                                 <div class="TitreProf">
-                                   Horaire 
+                                   Horaire <a href="?action=createHoraireAff" style="float:right; margin-right:1em;"><span class="glyphicon glyphicon-edit"></span></a>
                                 </div>
                                 <div id="contProfHoraire">
                                     <table class="table table-hover table-bordered">
@@ -522,65 +528,97 @@
                     </div>
                     <div class="row"> 
                         <br />
-                        <div class="col-lg-12 col-md-12 col-sm-12" class="textProfil">
+                        <div class="textProfil">
                             <div id="infoPro">
-                                <div class="TitreProf">
-                                   Commentaires
-                                </div>
-                                <div id="commentaire_box">
-                                    <div id="ajoutCommentaire">
+                                <% if(profil.getId()==((Profil)session.getAttribute("connected")).getId()){%>
+                                    <div class="TitreProf">
+                                       Commentaires
                                     </div>
-                                    <%if(listeCritique != null){
-                                    Critique critique;
-                                    System.out.println(listeCritique.size());
-                                    for(int i = 0;i<listeCritique.size();i++){
-                                        critique = listeCritique.get(i);%>
+                                <%}
+                                else{%>
+                                    <div class="TitreProf">
+                                        Commentaires <a href="?action=ajouterCom&user=<%=profil.getId()%>" class="fa fa-pencil" style="font-size:19px;color:white"></a>
+                                    </div>
+                                <%}%>
+                                <div id="commentaire_box">
+                                    <%if(("add".equals(request.getAttribute("Commentaire"))) && !(Integer.parseInt(String.valueOf(request.getParameter("user")))==((Profil)session.getAttribute("connected")).getId())){%>
+                                    <div id="ajoutCommentaire">
                                         <div class="container-fluid critique">
-                                            <div class="barreHautCritique">
-                                                <div class="imageProfilC">
-                                                    <img  class="imageProfilCritique" src="./static/images/profils/default.png" />
-                                                </div>
-                                                <div class="userCritique">
-                                                    @<%=(paDao.findById(critique.getEnvoyeurID())).getUsername()%>
-                                                </div>
-                                                <div class="noteCritique">
-                                                    <% e = new Evaluation((float)critique.getNote());
-                                                    for(int j = 0; j<e.getEtoilePleine();++j){
-                                                       %><img  class="imageEtoile" src="./static/images/etoiles/4.4.png"><%
-                                                    }
-                                                    if(e.getNote()!=5){
-                                                        if(0.66<e.getRestant()){%><img  class="imageEtoile" src="./static/images/etoiles/3.4.png"><%}
-                                                        else if(0.33<e.getRestant()){%><img  class="imageEtoile" src="./static/images/etoiles/2.4.png"><%}
-                                                        else if(0<e.getRestant()){%><img  class="imageEtoile" src="./static/images/etoiles/1.4.png"><%}
-                                                        else{%><img  class="imageEtoile" src="./static/images/etoiles/0.4.png"><%}
-                                                    }
-                                                    for(int j = 0; j<e.getEtoileVide();++j){
-                                                        %><img  class="imageEtoile" src="./static/images/etoiles/0.4.png"><%
-                                                    }%>
-                                                </div>
-                                            </div>
-                                            <div class="millieuCritique">
-                                                <div class="contenuCritique">
-                                                    <%=critique.getCommentaire()%>
-                                                </div>
-                                            </div>
-                                            <div class="barreBasCritique">
-                                                <span class="reportCritique">
-                                                    <input class="btn btn-danger report" type="submit" value="Signaler">
-                                                </span>
-                                                <span class="barreLike">
-                                                    <span>
-                                                        <a class="glyphicon glyphicon-thumbs-up likeCritique"></a> <%=critique.getLike()%>
-                                                    </span>
-                                                    <span>
-                                                        <a class="glyphicon glyphicon-thumbs-down dislikeCritique"></a> <%=critique.getDislike()%>
-                                                    </span>
-                                                </span>
-                                            </div>
+                                            <form method="post" action="./">
+                                                Note (0 et 5): <input type="text" name="evaluation" value="" /><br />
+                                                Description: <input type="text" name="commentaire" value="" /><br />
+                                                <input type="hidden" name="user" value="<%=profil.getId()%>" />
+                                                <input type="hidden" name="action" value="ajouterCom" />
+                                                <input type="submit" value="Créer" />
+                                            </form>
+                                            <form method="post" action="./">
+                                                <input type="hidden" name="user" value="<%=profil.getId()%>" />
+                                                <input type="hidden" name="action" value="afficherProfil" />
+                                                <input type="submit" value="Annuler" />
+                                            </form>
                                         </div>
-                                        <br />
-                                    <%}
-                                      }%>
+                                    </div>
+                                    <br />
+                                    <%}%>
+                                    <%
+                                        if(listeCritique.size() > 0){
+                                            Critique critique;
+                                            System.out.println(listeCritique.size());
+                                            for(int i = 0;i<listeCritique.size();i++){
+                                                critique = listeCritique.get(i);%>
+                                                <div class="container-fluid critique">
+                                                    <div class="barreHautCritique">
+                                                        <div class="imageProfilC">
+                                                            <img  class="imageProfilCritique" src="./static/images/profils/default.png" />
+                                                        </div>
+                                                        <div class="userCritique">
+                                                            @<%=(paDao.findById(critique.getEnvoyeurID())).getUsername()%>
+                                                        </div>
+                                                        <div class="noteCritique">
+                                                            <% e = new Evaluation((float)critique.getNote());
+                                                            for(int j = 0; j<e.getEtoilePleine();++j){
+                                                               %><img  class="imageEtoile" src="./static/images/etoiles/4.4.png"><%
+                                                            }
+                                                            if(e.getNote()!=5){
+                                                                if(0.66<e.getRestant()){%><img  class="imageEtoile" src="./static/images/etoiles/3.4.png"><%}
+                                                                else if(0.33<e.getRestant()){%><img  class="imageEtoile" src="./static/images/etoiles/2.4.png"><%}
+                                                                else if(0<e.getRestant()){%><img  class="imageEtoile" src="./static/images/etoiles/1.4.png"><%}
+                                                                else{%><img  class="imageEtoile" src="./static/images/etoiles/0.4.png"><%}
+                                                            }
+                                                            for(int j = 0; j<e.getEtoileVide();++j){
+                                                                %><img  class="imageEtoile" src="./static/images/etoiles/0.4.png"><%
+                                                            }%>
+                                                        </div>
+                                                    </div>
+                                                    <div class="millieuCritique">
+                                                        <div class="contenuCritique">
+                                                            <%=critique.getCommentaire()%>
+                                                        </div>
+                                                    </div>
+                                                    <div class="barreBasCritique">
+                                                        <span class="reportCritique">
+                                                            <input class="btn btn-danger report" type="submit" value="Signaler">
+                                                        </span>
+                                                        <span class="barreLike">
+                                                            <span>
+                                                                <a class="glyphicon glyphicon-thumbs-up likeCritique"></a> <%=critique.getLike()%>
+                                                            </span>
+                                                            <span>
+                                                                <a class="glyphicon glyphicon-thumbs-down dislikeCritique"></a> <%=critique.getDislike()%>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                    <%      }
+                                        }
+                                        else if(!"add".equals(request.getAttribute("Commentaire")) && listeCritique.size() <= 0){%>
+                                            <div class="container-fluid critique">
+                                                <span style="color:black;">Il n'y a pas de critique !</span>
+                                            </div>
+                                            <%
+                                        }
+                                    %>
                                 </div>
                             </div>
                         </div>

@@ -29,7 +29,7 @@
     <div class="padding" id="contenu1">
         <div class="container">
             <div class="col-sm-6">
-                <img src="./static/images/covoiturage.jpg" class="img-responsive" />
+                <img src="./static/images/covoiturage.jpg" class="img-responsive imgAcc" />
             </div>
             <div class="col-sm-6 text-center">
                 <h1 class='soustitre'>À Propos</h1>
@@ -55,7 +55,7 @@
                         école.</p>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <img src="./static/images/student.jpg" class="img-responsive" />
+                    <img src="./static/images/student.jpg" class="img-responsive imgAcc" />
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <h4>Recherche automatique</h4>
@@ -65,7 +65,7 @@
                         vous habitez et l'établissement que vous fréquenter.</p>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <img src="./static/images/pancarte.jpeg"  class="img-responsive" />
+                    <img src="./static/images/pancarte.jpeg"  class="img-responsive imgAcc" />
                 </div>
             </div>
         </div>
