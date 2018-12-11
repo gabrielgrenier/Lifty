@@ -19,6 +19,7 @@ public abstract class Dao {
     protected static Connection con=null;
     protected static ResultSet rs=null;
     protected static Statement sqlQuery=null;
+    protected static final String CONNEXIONSTRING = "jdbc:mysql://localhost/lifty?user=root&password=&serverTimezone=EST&characterEncoding=UTF-8";
     
     // ==== METHODES ====
     public abstract Object findById(int id);

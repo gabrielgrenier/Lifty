@@ -3,15 +3,19 @@ package servlets;
 import controleurs.AbstractAction;
 import controleurs.AfficherProfilAction;
 import controleurs.OuvrirMessageAction;
+import controleurs.AjouterCommentaireAction;
 import controleurs.ConfidentialiteAction;
 import controleurs.ConnexionAction;
+import controleurs.CreateHoraireAction;
 import controleurs.DeconnexionAction;
 import controleurs.DefaultAction;
 import controleurs.EnvoyerMessageAction;
 import controleurs.MessagerieAction;
 import controleurs.InscriptionAction;
+import controleurs.ModifierInformationProfilAction;
 import controleurs.PreferencesAction;
 import controleurs.RechercheAction;
+import controleurs.CreateHoraireAffAction;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,10 +32,10 @@ public class ControleurFrontal extends HttpServlet {
         if (actionAFaire == null) actionAFaire = "";
         
         switch (actionAFaire) {
-            case "Connexion":
+            case "connexion":
                 action = new ConnexionAction();
                 break;
-            case "Inscription":
+            case "inscription":
                 action = new InscriptionAction();
                 break;
             case "confidentialite":
@@ -57,6 +61,18 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "envoyerMessage":
                 action = new EnvoyerMessageAction();
+                break;
+            case "createHoraireAff":
+                action = new CreateHoraireAffAction();
+                break;
+            case "createHoraire":
+                action = new CreateHoraireAction();
+                break;
+            case "modInformationProfil":
+                action = new ModifierInformationProfilAction();
+                break;
+            case "ajouterCom":
+                action = new AjouterCommentaireAction();
                 break;
             default :
                 action = new DefaultAction();

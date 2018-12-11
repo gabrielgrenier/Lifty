@@ -7,11 +7,19 @@ htlm, body {
     width: 100%;
 }
 
-img{
+
+.imgAcc {
     border-width:3px;
     border-style:solid;
     border-color:#ffffff;
+    box-shadow: 0px 0px 53px -8px rgba(0,0,0,0.75);
 }
+/*img{
+    border-width:3px;
+    border-style:solid;
+    border-color:#ffffff;
+    box-shadow: 0px 0px 47px -3px rgba(0,0,0,0.75);
+}*/
 
 .attribue{
     font-style:italic; 
@@ -109,7 +117,7 @@ text-shadow: 0 1px 0 #ccc,
 }
 
 footer{
-    background-color: #3A3A3A;
+    background-color: rgba(0, 0, 0, 0.6);
     display: table;
     height: 5em;
     width: 100%;
@@ -176,10 +184,8 @@ footer p{
     color: white;
 }
 #logo{
-    max-height: 50px;
-    border-style: none;
-    border-radius: 0px;
-    box-shadow: none;
+    max-height: 2.5em;
+    margin-left: -1.5em;
 }
 .erreur *{
     color : red;
@@ -216,7 +222,6 @@ footer p{
 #panelInscription {
     display: none;
     text-align: center;
-    height: 600px;
     float : right;
     position:absolute;
     margin-top: 10px;
@@ -258,18 +263,61 @@ footer p{
     margin : 0 0 3% 3%;
    
 }
-#recherchePanel #tblSecteur{
-    background : rgba(0, 0, 0, 0.6);
-    margin : 5% 5% 40% 5%;
-    height: 250px;
+#tblRecherche{
+    border-width:5px;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    background : rgba(255, 255, 255, 0.6);
+    border-radius:10px;
+    text-align: center;
+}
+#tblRecherche .imgProfil{
+    height: 3em;
+    width: 3em;
+}
+#tblRecherche th{
+    text-align: center;
+}
+#tblRecherche #thImg{
+    width: 10%;
 }
 #recherchePanel table {
     font-family: Helvetica;
     border-collapse: collapse;
     width: 94%;
+    height: 80%;
+    overflow-y: auto;
     margin : 3% 0 3% 3%;
     background-color: white;
 }
+#usagerListe{
+    text-align: center;
+    float : left;
+    position:absolute;
+    margin-top: 22px;
+    padding: 0 0 20px 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-style: none;
+    box-shadow: 0px 2px 94px 0px rgba(0,0,0,0.75);
+    color : white;
+    width:20%;
+    display: none;
+}
+#usagerListe .row{
+    background : rgba(0, 0, 0, 0.4);
+    margin : 10% 0 0 0;
+    width: 100%;
+}
+#usagerListe label{
+    padding: 10% 0 0 0;
+}
+#rechercheBar{
+    margin-top: 2%;
+    padding-right: 40%;;
+}
+
+
+/* -----------------------------Profils----------------------------------*/
 
 /** --------------- Messagerie ---------------*/
 #messageriePanel{
@@ -281,10 +329,285 @@ footer p{
     background-size: cover;
     z-index: -1;
 }
+#profilBackground{
+    background: url("../images/routeMontage.jpeg") no-repeat center center fixed;
+    display: table;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-size: cover;
+    z-index: -1;
+}
+#ProfilContainer{
+   /* background : rgba(0, 0, 0, 0.8);*/
+    margin : 8% 10% 5% 10%;
+    padding: 1em 2em;
+
+}
+#InformationProfilContainer{
+    background : rgba(255, 255, 255, 0.4);
+    padding: 2em 4em;
+    height: 100%;
+    color: black;
+    border-width:0.5em;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    border-radius:10px;
+    border-radius:10px;
+
+}
+.mErreur{
+    color: red;
+}
+#imageProfil{
+    height: 12em;
+    border-width:5px;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    border-radius:10px;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.textProfil{
+    font-size: 18px;
+
+}
+#evaluation{
+    margin-left: 4px;
+}
+#infoPro{
+    border-width:5px;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    background : rgba(255, 255, 255, 0.6);
+    border-radius:10px;
+}
+#vehiPro{
+    border-width:5px;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    background : rgba(255, 255, 255, 0.6);
+    border-radius:10px;
+}
+#modifPro{
+    margin-left: 35px;
+    margin-top: -55px;
+    background : rgba(255, 255, 255, 0.4);
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    font-size: 16px;
+    color: black;
+    border-radius:10px;
+}
+
+.TitreProf{
+    font-size: 20px;
+    background : rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+#comProf{
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    border-radius:10px;
+}
+
+.contProf{
+    height: 500px;
+}
+#contProfHoraire{
+    height: 40%;
+    background-color: white;
+}
+#test32{
+    text-align: left;
+    background : rgba(255, 255, 255, 0.6);
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    font-size: 20px;
+    color: black;
+    height: 65px;
+    width: 170px;
+    border-radius:10px;
+}
+
+#menuRating{
+   display: flex; 
+   justify-content: flex-end;
+}
+
+.btn btn-default{
+   margin: 10px;
+   height: 50px;
+}
+.imageEtoile{
+    height: 25px;
+    width: 25px;
+    margin:auto;
+}
+#boiteEtoile{
+     padding-left:1%;
+         
+}
+#textEtoile{
+    font-size: 18px;
+    background : rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+#titreProfil{
+    font-size: 40px;
+    font-weight: bold;
+}
+#enteteProfil{
+    margin-top: 3%;
+    margin-bottom: 10%;
+}
 #messagerieContainer{
     background : rgba(0, 0, 0, 0.6);
     margin : 10% 10% 5% 10%;
     height: 585px;
+}
+#menu_button{
+    margin-top: 0;
+    height: 10%;
+}
+
+.bt_mod{
+    width: 100%;
+    font-size: 100%;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    background : rgba(255, 255, 255, 0.4);
+    font-weight: bold;
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -40%;
+    white-space: normal;
+}
+/*Page Pofils - Commentaire*/
+
+#commentaire_box{
+   height: 100%;
+   min-height: 30px;
+   padding: 1em;
+   background : rgba(50, 50, 50, 0.3);
+}
+
+.critique{
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    background : rgba(216, 216, 216, 1);
+    color: black;
+    border-radius:10px;
+}
+
+.barreHautCritique{
+    
+}
+.imageProfilCritique{
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    border-width: 2px;
+    height: 6%;
+    width: 6%;
+    min-height: 40px;
+    min-width: 40px; 
+    margin-top: 1%;
+    border-radius:10px;
+}
+.userCritique{
+    font-size: 150%;
+    margin-bottom: 1%;
+    margin-top: -5%;
+    margin-left: 9%;
+}
+@media screen and (max-width: 900px) {
+    .userCritique{
+        font-size: 125%;
+        margin-top: -5.5%;
+        margin-left: 15%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .userCritique{
+        font-size: 100%;
+        margin-top: -12%;
+        margin-left: 22%;
+    }
+}
+.noteCritique{
+    margin-top: -4%;
+    margin-left: 75%;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    border-width: 0.1px;
+    
+}
+.millieuCritique{
+    margin: 2% 2% 1% 8%;
+}
+
+.contenuCritique{
+    border-radius:10px;
+    white-space: normal;
+    overflow: hidden;
+    color: black;
+    background: white;
+    padding: 4px;
+    height: 70px;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    border-width: 0.9px;
+}
+.barreBasCritique{
+    height: 30px;
+    margin-bottom: 10px;
+}
+.report{
+    margin-left: 1%;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    border-width: 0.9px;
+    height: 100%;
+}
+.barreLike{
+    margin-left: 70%;
+}
+@media screen and (max-width: 1200px) {
+    .barreLike{
+        margin-left: 72%;
+    }
+}
+@media screen and (max-width: 1100px) {
+    .barreLike{
+        margin-left: 64%;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .barreLike{
+        margin-left: 50%;
+    }
+}
+@media screen and (max-width: 700px) {
+    .barreLike{
+        margin-left: 38%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .barreLike{
+        margin-left: 18%;
+    }
+}
+.likeCritique{
+    color: green;
+}
+.dislikeCritique{
+    color: red;
+    margin-left: 5%;
 }
 /** --------------- Cote gauche ---------------*/
 #messagesContainer{
@@ -382,4 +705,22 @@ hr{
     margin-bottom:-100px;
     position:relative;
     z-index:10000;
+}
+/*------------------ Horaire ------------------*/
+.inputHorraireNum{
+    max-width: 6em;
+}
+
+/*----------------CreateHoraire.jsp------------*/
+.contenuHoraire{
+    margin-top:10em;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding:2em 1em 2em 1em;
+}
+.tableHoraire thead th{
+    background-color: #212529;
+    color:white;
+}
+.tableHoraire th{
+    background-color: white;
 }

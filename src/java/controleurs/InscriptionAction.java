@@ -7,8 +7,9 @@ package controleurs;
 
 import classe.Profil;
 import dao.ProfilDAO;
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author Samuel
@@ -19,18 +20,21 @@ public class InscriptionAction extends AbstractAction {
     public String execute() {
         if(request.getParameter("prenomInsc")!=null && request.getParameter("nomInsc")!=null && request.getParameter("emailInsc")!=null && request.getParameter("codePInsc")!=null && request.getParameter("pwdInsc")!=null && request.getParameter("pwdConfInsc")!=null && request.getParameter("type")!=null){
             if(!request.getParameter("pwdInsc").equals(request.getParameter("pwdConfInsc"))){badPwd(); return "accueil";}
-            LocalDate now = LocalDate.now( ZoneId.of( "America/Montreal" ) ) ;
+            SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             int id = 0,
             role = 2;
-            String username = ""+request.getParameter("prenomInsc").substring(0,2)+request.getParameter("nomInsc").substring(0,3)+"",
+            String username,
             email = request.getParameter("emailInsc"),
             nom = request.getParameter("nomInsc"),
             prenom = request.getParameter("prenomInsc"),        
             motDePasse = request.getParameter("pwdInsc"),
-            dateInscription = now.toString(),
-            dateConnexion = now.toString(),
-            codePostal = request.getParameter("codePInsc"),
+            dateInscription = sm.format(new Date()),
+            dateConnexion = sm.format(new Date()),
+            codePostal = request.getParameter("codePInsc").toUpperCase(),
+            etablissement = request.getParameter("lieuxEtude"), 
             imageProfil = "./static/images/profils/default.png";
+            if(request.getParameter("nomInsc").length()>=3){username = ""+request.getParameter("prenomInsc").substring(0,2)+request.getParameter("nomInsc").substring(0,3)+"";}
+            else{username = ""+request.getParameter("prenomInsc").substring(0,2)+request.getParameter("nomInsc").substring(0,2)+"";}
             boolean isPublicNom = false,
             isPublicPrenom = false,
             isPublicEmail =false,
@@ -45,18 +49,20 @@ public class InscriptionAction extends AbstractAction {
             Profil p;
             p = pDao.findByEmail(email);
             if(p==null){
-                p = new Profil(id,username,email,nom,prenom,motDePasse,role,dateInscription,dateConnexion,codePostal,null,imageProfil,isPublicNom,isPublicPrenom,isPublicEmail,isValide,isConducteur,rating,tarif,rayon);
+                p = new Profil(id,username,email,nom,prenom,motDePasse,role,dateInscription,dateConnexion,codePostal,etablissement,imageProfil,isPublicNom,isPublicPrenom,isPublicEmail,isValide,isConducteur,rating,tarif,rayon);
                 pDao.create(p);
                 p = pDao.findByEmail(email);
-                request.setAttribute("connecte",""+p.getId());
+                HttpSession session = request.getSession(true);
+                session.setAttribute("connected", p);
                 return "recherche";
             }
-            else{return "accueil";}
+            else{emailExistant(); return "accueil";}
         }
         else{
             return "accueil";
         }
     }
     
-    private void badPwd(){request.setAttribute("errPwd"," Mot de passe incorrect ");}
+    private void badPwd(){request.setAttribute("err"," Mot de passe incorrect ");}
+    private void emailExistant(){request.setAttribute("err"," Courriel déjà en usage ");}
 }
