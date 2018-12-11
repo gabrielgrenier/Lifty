@@ -4,11 +4,13 @@
     Author     : sam
 --%>
 
+<%@page import="services.Evaluation"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Lifty | Recherche</title>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,10 +27,7 @@
                 <div class="form-group">
                     <label for="filtre">Filtrer par :</label>
                     <select id="filtre">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
+                        <option>Établissement</option>
                     </select>
                 </div>
             </div>
@@ -36,11 +35,11 @@
                 <iframe id="mapRecherche" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2793.648181402067!2d-73.5845177840561!3d45.55740247910211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91eace22b9bcf%3A0x18799aed17aa23d9!2sColl%C3%A8ge+de+Rosemont!5e0!3m2!1sfr!2sca!4v1519943892970" width="500" height="350" frameborder="0" style="border:0" allowfullscreen=""></iframe>
             </div>
         </div>
-        <div class="row" id="tblSecteur">
-            <table class="table table-hover">
+        <div class="row">
+            <table class="table table-hover" id="tblRecherche">
                 <thead>
                   <tr>
-                    <th></th>
+                    <th id="thImg"></th>
                     <th>Utilisateur</th>
                     <th>Destination</th>
                     <th>Note</th>
@@ -49,17 +48,32 @@
                 <tbody>
                     <%
                         ProfilDAO pDao = new ProfilDAO();
-                        Profil user = pDao.findById(Integer.parseInt(String.valueOf(request.getAttribute("connecte"))));
+                        Profil user = (Profil) session.getAttribute("connected");
                         List<Profil> liste = rechercheService.ListeUserAround(user.getEtablissement(), user.isConducteur());
                         for(int i = 0;i<liste.size();i++){ 
                             Profil p = liste.get(i);
                        %>
                   <tr>
-                    <td></td>
-                    <td><%=""+p.getUsername()%></td>
-                    <td><%=""+p.getEtablissement()%></td>
-                    <td><%=""+p.getRating()%></td>
+                    <td><a href="?action=afficherProfil&user=<%=p.getId()%>"><img src="<%=p.getImageProfil()%>" class="img-responsive imgProfil" /></a></td>
+                    <td><%=p.getUsername()%></td>
+                    <td><%=p.getEtablissement()%></td>
+                    <td>
+                        <% Evaluation e = new Evaluation((float)user.getRating());
+                        for(int j = 0; j<e.getEtoilePleine();++j){
+                           %><img  class="imageEtoile" src="./static/images/etoiles/4.4.png"><%
+                        }
+                        if(e.getNote()!=5){
+                            if(0.66<e.getRestant()){%><img  class="imageEtoile" src="./static/images/etoiles/3.4.png"><%}
+                            else if(0.33<e.getRestant()){%><img  class="imageEtoile" src="./static/images/etoiles/2.4.png"><%}
+                            else if(0<e.getRestant()){%><img  class="imageEtoile" src="./static/images/etoiles/1.4.png"><%}
+                            else{%><img  class="imageEtoile" src="./static/images/etoiles/0.4.png"><%}
+                        }
+                        for(int j = 0; j<e.getEtoileVide();++j){
+                            %><img  class="imageEtoile" src="./static/images/etoiles/0.4.png"><%
+                        }%>
+                    </td>
                   </tr>
+                  
                   <%}%>
                 </tbody>
               </table>
@@ -69,35 +83,10 @@
     </body>
 </html>
 <script>
-    function recherche() {
-        var input, filter, container, row, label;
-            input = document.getElementById('rechercheBar');
-            filter = input.value.toUpperCase();
-            container = document.getElementById("usagerListe");
-            row = container.getElementsByClassName('row');
-        if(filter!==""){
-            if(document.getElementById("usagerListe").style.display === "none"){
-                $("#usagerListe").animate({height:'toggle'});
-            }
-            for (i = 0; i < row.length; i++) {
-                label = row[i].getElementsByTagName("label")[0];
-                if (label.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    row[i].style.display = "";
-                } else {
-                    row[i].style.display = "none";
-                }
-            }
+    $('#tblRecherche tr').click(function() {
+        var href = $(this).find("a").attr("href");
+        if(href) {
+            window.location = href;
         }
-        else{
-            if(document.getElementById("usagerListe").style.display !== "none"){$("#usagerListe").animate({height:'toggle'});}
-        }
-    }
-    
-    function myMap() {
-    var mapProp= {
-        center:new google.maps.LatLng(51.508742,-0.120850),
-        zoom:5,
-    };
-    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-    }
+    });
 </script>

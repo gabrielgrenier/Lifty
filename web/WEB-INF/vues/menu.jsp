@@ -12,6 +12,31 @@
     //if(request.getParameter("emailCon")!=null)emailCon=request.getParameter("emailCon");
     //if(request.getParameter("pwdCon")!=null)pwdCon=request.getParameter("pwdCon");
     %>
+<script>
+    function recherche() {
+        var input, filter, container, row, label;
+            input = document.getElementById('rechercheBar');
+            filter = input.value.toUpperCase();
+            container = document.getElementById("usagerListe");
+            row = container.getElementsByClassName('row');
+        if(filter!==""){
+            if(document.getElementById("usagerListe").style.display === "none"){
+                $("#usagerListe").animate({height:'toggle'});
+            }
+            for (i = 0; i < row.length; i++) {
+                label = row[i].getElementsByTagName("label")[0];
+                if (label.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    row[i].style.display = "";
+                } else {
+                    row[i].style.display = "none";
+                }
+            }
+        }
+        else{
+            if(document.getElementById("usagerListe").style.display !== "none"){$("#usagerListe").animate({height:'toggle'});}
+        }
+    }
+</script>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menu" >
     <div class="container-fluid">
         <div class="navbar-header">
@@ -63,6 +88,7 @@
                             for(int i = 0;i<liste.size();i++){ 
                                 Profil p = liste.get(i);
                           %>
+                          <a href="?action=afficherProfil&user=<%=p.getId()%>">
                           <div class='row'>
                                 <div class='col-lg-4'>
                                     <img src="<%=p.getImageProfil()%>" class="img-responsive" />
@@ -71,6 +97,7 @@
                                     <label id='lblUsername'><%="@"+p.getUsername()%></label>
                                 </div>
                             </div>
+                        </a>
                         <%}%>
                             </div>
                         </div>
@@ -139,6 +166,29 @@
                 <div class="form-group">
                     <label for="codePInsc">Code Postal:</label>
                     <input type="text" class="form-control" id="codePInsc" name="codePInsc" placeholder ='H0H 0H0' value="<%=(request.getParameter("codePInsc")!=null)?request.getParameter("codePInsc"):""%>" pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]" title="Code postal invalide" required>
+                </div>
+                <div class="form-group">
+                    <label for="lieuxEtude">Établissement d'étude:</label>
+                    <select class="form-control" id="lieuxEtude" name="lieuxEtude" value="<%=(request.getParameter("lieuxEtude")!=null)?request.getParameter("lieuxEtude"):""%>" >
+                        <option>Collège Ahuntsic</option>
+                        <option>Cégep André-Laurendeau</option>
+                        <option>Collège de Bois-de-Boulogne</option>
+                        <option>Collège de Maisonneuve</option>
+                        <option>Collège de Rosemont</option>
+                        <option>Cégep de Saint-Laurent</option>
+                        <option>Cégep du Vieux Montréal</option>
+                        <option>Cégep Marie-Victorin</option>
+                        <option>Collège Gérald-Godin</option>
+                        <option>Dawson College</option>
+                        <option>John Abbot College</option>
+                        <option>Collège André-Grasset</option>
+                        <option>Collège Jean-de-Brébeuf</option>
+                        <option>Collège LaSalle</option>
+                        <option>Cégep régional de Lanaudière</option>
+                        <option>Collège Lionel-Groulx</option>
+                        <option>Collège Montmorency</option>
+                        <option>Cégep de Saint-Jérôme</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="pwdInsc">Mot de passe:</label>
