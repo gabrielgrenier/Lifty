@@ -258,8 +258,13 @@
     </div>
 </nav>
 
+<<<<<<< HEAD
+<% // Script animation du menu si lusager est connecter
+if(request.getAttribute("connecte")!=null){ %>
+=======
 <% // Script animation du menu
 if(session.getAttribute("connected")!=null){ %>
+>>>>>>> 91791a909f1573a24d318efb1d4b0c18816277a1
 <script> 
     $(document).ready(function(){
         // Setter les grandeurs

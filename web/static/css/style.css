@@ -211,7 +211,8 @@ footer p{
     box-shadow: 0px 2px 94px 0px rgba(0,0,0,0.75);
     color : white;
 }
-#panelLogin .lblLink:hover,#panelProfil .lblLink:hover{
+#panelLogin .lblLink:hover,
+#panelProfil .lblLink:hover{
     color : #3399ff;
 }
 #panelLogin button{
@@ -612,24 +613,39 @@ footer p{
 #messagesContainer{
     font-family: Helvetica;
     margin : 15px 0px 0px 0px;
+    border:solid;
+    border-color:rgba(0,0,0,0.8);
+    margin-right: -10px;
 }
 #messagesHead{
     font-family: Helvetica;
-    background : grey;
-    color : black;
-    height: 60px;
+    background : rgba(0,0,0,0.8);
+    color : white;
     font-size: 28px;
     text-align: center;
-    padding-top: 10px;
+    margin-left: -15px;
+    padding-left:7px;
+    width: 345px
 }
 #messages{
-    background : lightgrey;
+    background : rgba(211,211,211,0.8);
     color : black;
-    height: 480px;
+    height: 510px;
+    margin-left: -15px;
+    padding-left:7px;
+    width: 345px;
+    overflow-y:hidden;
 }
 .unMessage{
     background : white;
     border: outset black 1px;
+    margin : 5px 0px 5px 0px;
+    padding:5px;
+    height:75px;
+}
+.unMessageSelect{
+    background : gray;
+    border: inset black 1px;
     margin : 5px 0px 5px 0px;
     padding:5px;
     height:75px;
@@ -642,7 +658,7 @@ footer p{
 }
 /** --------------- Cote droit ---------------*/
 #messageContainer{
-    margin : 15px 0px 0px 0px;
+    margin-top : 15px;
 }
 .messageHead{
     background : lightgrey;
@@ -651,7 +667,6 @@ footer p{
     font-size: 23px;
     text-align: center;
     vertical-align: central;
-    padding-top: 10px;
 }
 .messageHead a{
     font-family: Helvetica;
@@ -660,10 +675,36 @@ footer p{
 .messageHead a:hover{
     color : grey;
 }
-.messageBody{
+#messageBody{
     background : white;
     color : black;
-    height: 480px;
+    height: 490px;
+}
+#messageEnvoyeur,
+#messageTitre,
+#messageTexte{
+    margin-left:7px;
+    margin-right:5px;
+    height:40px;
+}
+#messageTexte p{
+    margin-left:7px;
+}
+hr{
+    margin-top:-15px;
+    margin-bottom:10px;
+}
+#btnEnvoyerMessage{
+    position: absolute;
+    right:30px;
+    bottom:40px;
+}
+.notif{
+    font-size: 18px;
+    margin-top: 4em;
+    margin-bottom:-100px;
+    position:relative;
+    z-index:10000;
 }
 /*------------------ Horaire ------------------*/
 .inputHorraireNum{

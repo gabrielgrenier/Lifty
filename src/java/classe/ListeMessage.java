@@ -1,6 +1,6 @@
 package classe;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 /* ==== INFO ====
 
@@ -11,11 +11,11 @@ import java.util.ArrayList;
 */
 public class ListeMessage {
     // ==== VARIABLES ====
-    private ArrayList messages;
+    private LinkedList messages;
     
     // ==== CONSTRUCTEURS ====
-    public ListeMessage(ArrayList l){messages = l;}
-    public ListeMessage(){messages = new ArrayList();}
+    public ListeMessage(LinkedList l){messages = l;}
+    public ListeMessage(){messages = new LinkedList();}
     
     // ==== GETTERS ====
     public int length(){return messages.size();}
