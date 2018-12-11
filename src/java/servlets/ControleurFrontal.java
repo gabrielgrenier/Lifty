@@ -2,6 +2,7 @@ package servlets;
 
 import controleurs.AbstractAction;
 import controleurs.AfficherProfilAction;
+import controleurs.AjouterCommentaireAction;
 import controleurs.ConfidentialiteAction;
 import controleurs.ConnexionAction;
 import controleurs.DeconnexionAction;
@@ -53,6 +54,9 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "modInformationProfil":
                 action = new ModifierInformationProfilAction();
+                break;
+            case "ajouterCom":
+                action = new AjouterCommentaireAction();
                 break;
             default :
                 action = new DefaultAction();

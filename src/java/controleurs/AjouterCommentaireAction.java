@@ -11,16 +11,15 @@ import javax.servlet.http.HttpSession;
  *
  * @author usager
  */
-public class AfficherProfilAction extends AbstractAction{
+public class AjouterCommentaireAction extends AbstractAction{
     @Override
     public String execute() {
         HttpSession session = request.getSession(true);
         if (session.getAttribute("connected")==null) {//déjà non connecté
             return "accueil";
         }
-        if (request.getParameter("user")!=null){
-            request.setAttribute("userC",request.getParameter("user"));
-        }
+        request.setAttribute("user",request.getParameter("user"));
+        request.setAttribute("Commentaire","add");
         return "profil";
     }
 }
