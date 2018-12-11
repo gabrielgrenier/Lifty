@@ -221,7 +221,6 @@ footer p{
 #panelInscription {
     display: none;
     text-align: center;
-    height: 600px;
     float : right;
     position:absolute;
     margin-top: 10px;
@@ -263,10 +262,23 @@ footer p{
     margin : 0 0 3% 3%;
    
 }
-#recherchePanel #tblSecteur{
-    background : rgba(0, 0, 0, 0.6);
-    margin : 5% 5% 40% 5%;
-    height: 20%px;
+#tblRecherche{
+    border-width:5px;
+    border-style:solid;
+    border-color: rgba(0, 0, 0, 0.8);
+    background : rgba(255, 255, 255, 0.6);
+    border-radius:10px;
+    text-align: center;
+}
+#tblRecherche .imgProfil{
+    height: 3em;
+    width: 3em;
+}
+#tblRecherche th{
+    text-align: center;
+}
+#tblRecherche #thImg{
+    width: 10%;
 }
 #recherchePanel table {
     font-family: Helvetica;

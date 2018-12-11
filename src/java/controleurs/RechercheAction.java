@@ -1,5 +1,8 @@
 
 package controleurs;
+
+import javax.servlet.http.HttpSession;
+
 /* ==== INFO ====
 
  * @author maxime chausse
@@ -11,12 +14,10 @@ public class RechercheAction extends AbstractAction{
 
     @Override
     public String execute() {
-        // IMPLEMENTER LA VERIFICATION DE CONNECTION
-        if(request.getParameter("connecte")!=null){
-            request.setAttribute("connecte",request.getParameter("connecte"));
-            return "recherche";
+        HttpSession session = request.getSession(true);
+        if (session.getAttribute("connected")==null) {//déjà non connecté
+            return "accueil";
         }
-        //return "accueil";
         return "recherche";
     }
     
