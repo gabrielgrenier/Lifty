@@ -6,6 +6,7 @@
 package controleurs;
 
 import classe.Profil;
+import dao.JourDAO;
 import dao.ProfilDAO;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -46,14 +47,24 @@ public class InscriptionAction extends AbstractAction {
             tarif = 0,
             rayon = 0;
             ProfilDAO pDao = new ProfilDAO();
+            JourDAO jDao = new JourDAO();
             Profil p;
             p = pDao.findByEmail(email);
             if(p==null){
                 p = new Profil(id,username,email,nom,prenom,motDePasse,role,dateInscription,dateConnexion,codePostal,etablissement,imageProfil,isPublicNom,isPublicPrenom,isPublicEmail,isValide,isConducteur,rating,tarif,rayon);
                 pDao.create(p);
                 p = pDao.findByEmail(email);
+                
+                //Creation des jours
+                jDao.create(0, p.getId(), "lundi", "00:00:00", "00:00:00");
+                jDao.create(0, p.getId(), "mardi", "00:00:00", "00:00:00");
+                jDao.create(0, p.getId(), "mercredi", "00:00:00", "00:00:00");
+                jDao.create(0, p.getId(), "jeudi", "00:00:00", "00:00:00");
+                jDao.create(0, p.getId(), "vendredi", "00:00:00", "00:00:00");
+
                 HttpSession session = request.getSession(true);
                 session.setAttribute("connected", p);
+
                 return "recherche";
             }
             else{emailExistant(); return "accueil";}
