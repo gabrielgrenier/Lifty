@@ -5,10 +5,7 @@
         <group>
             <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/web/WEB-INF/vues/profil.jsp</file>
             <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/src/java/controleurs/InscriptionAction.java</file>
-            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/web/static/css/style.css</file>
-            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/web/WEB-INF/vues/CreateHoraire.jsp</file>
-            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/src/java/controleurs/CreateHoraireAction.java</file>
-            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/test/dao/MessageDAOTest.java</file>
+            <file>file:/C:/Users/gabri/OneDrive/ProjetInfo/Lifty/src/java/singleton/ConnexionBD.java</file>
         </group>
     </open-files>
 </project-private>
