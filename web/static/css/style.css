@@ -254,14 +254,12 @@ footer p{
 }
 #recherchePanel #mapContainer{
     background : rgba(0, 0, 0, 0.6);
-    margin : 10% 5% 0 5%;
-    height: 570px;
+    margin: 10em 0em 5em 0em;
 }
 #recherchePanel #mapRecherche{
     height: 500px;
     width: 94%;
     margin : 0 0 3% 3%;
-   
 }
 #tblRecherche{
     border-width:5px;
@@ -270,6 +268,13 @@ footer p{
     background : rgba(255, 255, 255, 0.6);
     border-radius:10px;
     text-align: center;
+}
+#tblRecherche .rowProfil{
+    transition: 0.5s;
+}
+#tblRecherche .rowProfil:hover{
+    cursor: pointer;
+    background-color:#EBEBEB;
 }
 #tblRecherche .imgProfil{
     height: 3em;
