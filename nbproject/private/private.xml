@@ -3,35 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/profil.jsp</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/accueil.jsp</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/messagerie.jsp</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/AfficherProfilAction.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/singleton/ConnexionBD.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/dao/ProfilDAO.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/dao/CritiqueDAO.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/AjouterCommentaireAction.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/test/services/EvaluationTest.java</file>
+            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/services/Evaluation.java</file>
             <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/test/dao/MessageDAOTest.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/servlets/ControleurFrontal.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/EnvoyerMessageAction.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/CreateHoraireAction.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/web.xml</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/classe/Profil.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/ConfidentialiteAction.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/CreateHoraire.jsp</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/recherche.jsp</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/ModifierInformationProfilAction.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/src/java/controleurs/ConnexionAction.java</file>
-            <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/static/css/style.css</file>
             <file>file:/G:/Session4_Automne2018/Développement_de_Projets_Informatiques/ProjetGit/Lifty/web/WEB-INF/vues/menu.jsp</file>
-=======
-            <file>file:/G:/Session4/Project/git/Lifty/src/java/singleton/ConnexionBD.java</file>
-            <file>file:/G:/Session4/Project/git/Lifty/src/java/controleurs/RechercheAction.java</file>
-            <file>file:/G:/Session4/Project/git/Lifty/web/WEB-INF/vues/menu.jsp</file>
-            <file>file:/G:/Session4/Project/git/Lifty/web/WEB-INF/vues/messagerie.jsp</file>
-            <file>file:/G:/Session4/Project/git/Lifty/web/WEB-INF/vues/profil.jsp</file>
->>>>>>> fbbde333ea749a8cc32e50e1c0b45e8b2c36d67b
         </group>
     </open-files>
 </project-private>

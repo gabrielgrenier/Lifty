@@ -29,9 +29,10 @@ public class Evaluation {
 
     public void setNote(float note) {
         this.note = note;
-        this.etoilePleine = Math.round(note);
+        this.chiffre = Character.toString(String.valueOf(note).charAt(0));
+        this.etoilePleine = Integer.valueOf(this.chiffre);
         this.restant = (note % etoilePleine);
-        this.etoileVide = 5-etoilePleine;
+        this.etoileVide = 4-etoilePleine;
     }
 
     public int getEtoilePleine() {
