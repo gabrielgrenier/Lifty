@@ -140,7 +140,7 @@ public class MessageDAOTest {
         
         // Faire le traitement 
         int idR = p.getId();
-        int expResult = 4;
+        int expResult = 3;
         int result = MESSAGEDAO.findAll(idR).length();
         
         // Supprimer les donnes pour le test
@@ -188,7 +188,7 @@ public class MessageDAOTest {
         MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
         
         // Faire le traitement 
-        int expResult = 4;
+        int expResult = 3;
         int result = MESSAGEDAO.findAll(p).length();
         
         // Supprimer les donnes pour le test
@@ -236,7 +236,7 @@ public class MessageDAOTest {
         MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
         
         // Faire le traitement 
-        int expResult = 4;
+        int expResult = 3;
         int result = MESSAGEDAO.findAll(p.getId(), p.getId()).length();
         
         // Supprimer les donnes pour le test
@@ -284,7 +284,7 @@ public class MessageDAOTest {
         MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
         
         // Faire le traitement 
-        int expResult = 4;
+        int expResult = 3;
         int result = MESSAGEDAO.findAll(p, p).length();
         
         // Supprimer les donnes pour le test
@@ -332,7 +332,7 @@ public class MessageDAOTest {
         MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
         
         // Faire le traitement 
-        int expResult = 2;
+        int expResult = 1;
         int result = MESSAGEDAO.findAllVu(p.getId(), p.getId(), true).length();
         
         // Supprimer les donnes pour le test
@@ -381,7 +381,7 @@ public class MessageDAOTest {
         MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
         
         // Faire le traitement 
-        int expResult = 2;
+        int expResult = 1;
         int result = MESSAGEDAO.findAllVu(p.getId(), p.getId()).length();
         
         // Supprimer les donnes pour le test
@@ -430,7 +430,7 @@ public class MessageDAOTest {
         MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
         
         // Faire le traitement 
-        int expResult = 2;
+        int expResult = 1;
         int result = MESSAGEDAO.findAllVu(p, p).length();
         
         // Supprimer les donnes pour le test
@@ -479,7 +479,7 @@ public class MessageDAOTest {
         MESSAGEDAO.envoyerMessage(new Message("100010", "test", "de la classe", "2018-10-10", "09:20:19", false), p, p);
         
         // Faire le traitement 
-        int expResult = 2;
+        int expResult = 1;
         int result = MESSAGEDAO.findAllVu(p, p, true).length();
         
         // Supprimer les donnes pour le test
@@ -978,7 +978,7 @@ public class MessageDAOTest {
         MESSAGEDAO.delete("101000");
         
         int result = MESSAGEDAO.findAll(p, p).length();
-        assertEquals(1, result);
+        assertEquals(0, result);
     }
 
     /**
@@ -1021,7 +1021,7 @@ public class MessageDAOTest {
         MESSAGEDAO.delete("100100");
         
         int result = MESSAGEDAO.findAll(p, p).length();
-        assertEquals(1, result);
+        assertEquals(0, result);
     }
 
     /**
@@ -1065,7 +1065,7 @@ public class MessageDAOTest {
         MESSAGEDAO.delete("200000");
         
         int result = MESSAGEDAO.findAll(p, p).length();
-        assertEquals(1, result);
+        assertEquals(0, result);
     }
 
     /**
