@@ -257,6 +257,10 @@
         %>
     </div>
 </nav>
+<<<<<<< HEAD
+=======
+
+>>>>>>> a9bc49fa8008236bf27233af6d87f5804e23d955
 <% // Script animation du menu
 if(session.getAttribute("connected")!=null){ %>
 <script> 
