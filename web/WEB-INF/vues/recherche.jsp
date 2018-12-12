@@ -58,7 +58,7 @@
                     <td><%=p.getUsername()%></td>
                     <td><%=p.getEtablissement()%></td>
                     <td>
-                        <% Evaluation e = new Evaluation((float)user.getRating());
+                        <% Evaluation e = new Evaluation((float)p.getRating());
                         for(int j = 0; j<e.getEtoilePleine();++j){
                            %><img  class="imageEtoile" src="./static/images/etoiles/4.4.png"><%
                         }
