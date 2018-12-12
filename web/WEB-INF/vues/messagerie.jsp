@@ -10,6 +10,7 @@
 <%@page import="classe.Message"%>
 <%@page import="dao.MessageDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -203,6 +204,9 @@
             });
             function ouvrirMessage(id){
                  $(".form"+id).submit();
+            }
+            function redirigerMessagerie(){
+                window.location = "messagerie.jsp";
             }
             function nouveauMessage(idUser,username,titre){
                 // Aller chercher le formulaire

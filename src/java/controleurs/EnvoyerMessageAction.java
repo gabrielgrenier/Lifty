@@ -40,7 +40,7 @@ public class EnvoyerMessageAction extends AbstractAction{
                 newMessage.setVu(false);
                 
                 // Envoyer le message
-                boolean succes;
+                boolean succes = false;
                 succes = mDao.envoyerMessage(newMessage,
                         Integer.parseInt(request.getParameter("connecte")),
                         String.valueOf(request.getParameter("usernameDestinataire"))
