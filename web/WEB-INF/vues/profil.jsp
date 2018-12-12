@@ -36,8 +36,8 @@
             JourDAO dao = new JourDAO();
             ProfilDAO paDao = new ProfilDAO();
             CritiqueDAO cDao = new CritiqueDAO();
-            Profil currentUser = (Profil)request.getSession().getAttribute("connected");
-            List<Jour> listHorraire1 = dao.findAll(currentUser.getId());
+            //Profil currentUser = (Profil)request.getSession().getAttribute("connected");
+            List<Jour> listHorraire1 = dao.findAll(1);
             Profil profil;
             List<Critique> listeCritique = null;
             try{
@@ -545,16 +545,28 @@
                                     <div id="ajoutCommentaire">
                                         <div class="container-fluid critique">
                                             <form method="post" action="./">
-                                                Note (0 et 5): <input type="text" name="evaluation" value="" /><br />
-                                                Description: <input type="text" name="commentaire" value="" /><br />
-                                                <input type="hidden" name="user" value="<%=profil.getId()%>" />
+                                                <br />
+                                                <div >
+                                                    Note (0 et 5): <br /><input type="text" name="evaluation" value="" />
+                                                </div>
+                                                
+                                                Commmentaire: 
+                                                <div >
+                                                    <textarea rows="4" cols="50" name="commentaire"></textarea><br />
+                                                </div>
+                                                <input type="hidden" name="receveur" value="<%=profil.getId()%>" />
+                                                <input type="hidden" name="envoyeur" value="<%=((Profil)session.getAttribute("connected")).getId()%>" />
                                                 <input type="hidden" name="action" value="ajouterCom" />
-                                                <input type="submit" value="Créer" />
+                                                <div class="col-lg-3 col-xs-3">
+                                                    <input type="submit" style="float:left;" value="Créer" />
+                                                </div>
                                             </form>
                                             <form method="post" action="./">
                                                 <input type="hidden" name="user" value="<%=profil.getId()%>" />
                                                 <input type="hidden" name="action" value="afficherProfil" />
-                                                <input type="submit" value="Annuler" />
+                                                <div class="col-lg-3 col-xs-3">
+                                                <input type="submit" style="float:right;" value="Annuler" />
+                                                </div><br />
                                             </form>
                                         </div>
                                     </div>
