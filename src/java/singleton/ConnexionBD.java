@@ -17,7 +17,7 @@ public class ConnexionBD {
     private static String chainePilote = "com.mysql.cj.jdbc.Driver", 
             urlBD = "jdbc:mysql://localhost/lifty?user=root&password=root&serverTimezone=EST";
     private static String user = "root",
-            password = "";
+            password = "root";
     
     // ==== CONSTRUCTEUR ====
     private ConnexionBD() {}

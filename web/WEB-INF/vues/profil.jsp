@@ -36,7 +36,7 @@
             JourDAO dao = new JourDAO();
             ProfilDAO paDao = new ProfilDAO();
             CritiqueDAO cDao = new CritiqueDAO();
-            //Profil currentUser = (Profil)request.getSession().getAttribute("connected");
+            Profil currentUser = (Profil)request.getSession().getAttribute("connected");
             List<Jour> listHorraire1 = dao.findAll(1);
             Profil profil;
             List<Critique> listeCritique = null;
@@ -541,7 +541,7 @@
                                     </div>
                                 <%}%>
                                 <div id="commentaire_box">
-                                    <%if(("add".equals(request.getAttribute("Commentaire"))) && !(Integer.parseInt(String.valueOf(request.getParameter("user")))==((Profil)session.getAttribute("connected")).getId())){%>
+                                    <%if(("add".equals(request.getAttribute("Commentaire")))){%>
                                     <div id="ajoutCommentaire">
                                         <div class="container-fluid critique">
                                             <form method="post" action="./">
@@ -554,6 +554,7 @@
                                                 <div >
                                                     <textarea rows="4" cols="50" name="commentaire"></textarea><br />
                                                 </div>
+                                                <input type="hidden" name="user" value="<%=profil.getId()%>" />
                                                 <input type="hidden" name="receveur" value="<%=profil.getId()%>" />
                                                 <input type="hidden" name="envoyeur" value="<%=((Profil)session.getAttribute("connected")).getId()%>" />
                                                 <input type="hidden" name="action" value="ajouterCom" />
