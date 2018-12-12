@@ -57,7 +57,7 @@
                  profil=null;
             }
             Evaluation e;
-            List<Jour> listHorraire1 = dao.findAll(1);
+            List<Jour> listHorraire1 = dao.findAll(profil.getId());
             %>
 
         <%@include  file="menu.jsp" %>
