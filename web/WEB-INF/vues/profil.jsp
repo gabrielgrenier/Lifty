@@ -36,8 +36,6 @@
             JourDAO dao = new JourDAO();
             ProfilDAO paDao = new ProfilDAO();
             CritiqueDAO cDao = new CritiqueDAO();
-            Profil currentUser = (Profil)request.getSession().getAttribute("connected");
-            List<Jour> listHorraire1 = dao.findAll(1);
             Profil profil;
             List<Critique> listeCritique = null;
             try{
@@ -59,6 +57,7 @@
                  profil=null;
             }
             Evaluation e;
+            List<Jour> listHorraire1 = dao.findAll(1);
             %>
 
         <%@include  file="menu.jsp" %>

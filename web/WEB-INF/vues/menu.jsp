@@ -257,7 +257,6 @@
         %>
     </div>
 </nav>
-
 <% // Script animation du menu
 if(session.getAttribute("connected")!=null){ %>
 <script> 

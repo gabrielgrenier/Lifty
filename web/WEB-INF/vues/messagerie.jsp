@@ -63,6 +63,7 @@
                             Message messageSelect;
                             MessageDAO mDao = new MessageDAO();
                             Profil sender;
+                            Profil user = (Profil) session.getAttribute("connected");
                             Message message;
                             ListeMessage messages;
                             if(request.getAttribute("messageSelect") != null){
@@ -72,18 +73,18 @@
                                 messageSelect = new Message();
                                 messageSelect.setId("");
                             }
-                            messages = mDao.findAll(Integer.parseInt(String.valueOf(request.getAttribute("connecte"))));
+                            messages = mDao.findAll(user.getId());
                             for(int i=0;i<messages.length();i++){
                                 sender = mDao.getSender(messages.get(i));
                                 message = messages.get(i);
                                 // Ouvrir le bon div si un message est selectionner
                                 if(messageSelect.getId() == message.getId()){
                                     %>
-                                    <div class='unMessageSelect' onclick='ouvrirMessage("<%=message.getId()%>")'>
+                                    <div class='unMessageSelect' onclick="ouvrirMessage('<%=message.getId()%>')">
                                     <%
                                 }else{
                                     %>
-                                    <div class='unMessage' onclick='ouvrirMessage("<%=message.getId()%>")'>
+                                    <div class='unMessage' onclick="ouvrirMessage('<%=message.getId()%>')">
                                     <%
                                 }
                                 %>
@@ -118,12 +119,12 @@
                         <!-- Heading avec les boutons -->
                         <div class='panel-heading messageHead'>
                             <div class="col-lg-4">
-                                <a onclick="nouveauMessage(<%=String.valueOf(request.getAttribute("connecte"))%>,'','')">
+                                <a onclick="nouveauMessage('<%=user.getId()%>','','')">
                                     <span class="glyphicon glyphicon-plus">Nouveau</span>
                                 </a>
                             </div>
                             <div class="col-lg-4">
-                                <a onclick="nouveauMessage(<%=String.valueOf(request.getAttribute("connecte"))%>,'<%=mDao.getSender(messageSelect.getId()).getUsername()%>','<%=messageSelect.getTitre()%>')">
+                                <a onclick="nouveauMessage('<%=user.getId()%>','<%=mDao.getSender(messageSelect.getId()).getUsername()%>','<%=messageSelect.getTitre()%>')">
                                     <span class="glyphicon glyphicon-share-alt">Repondre</span>
                                 </a>
                             </div>
@@ -163,7 +164,7 @@
                         <!-- Heading avec les boutons -->
                         <div class='panel-heading messageHead'>
                             <div class="col-lg-4">
-                                <a onclick="nouveauMessage(<%=String.valueOf(request.getAttribute("connecte"))%>,'','')">
+                                <a onclick="nouveauMessage('<%=user.getId()%>','','')">
                                 <span class="glyphicon glyphicon-plus">Nouveau</span></a>
                             </div>
                         </div>
