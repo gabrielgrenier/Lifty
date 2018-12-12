@@ -10,6 +10,7 @@ import dao.JourDAO;
 import dao.ProfilDAO;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author Samuel
@@ -30,7 +31,8 @@ public class InscriptionAction extends AbstractAction {
             motDePasse = request.getParameter("pwdInsc"),
             dateInscription = sm.format(new Date()),
             dateConnexion = sm.format(new Date()),
-            codePostal = request.getParameter("codePInsc"),
+            codePostal = request.getParameter("codePInsc").toUpperCase(),
+            etablissement = request.getParameter("lieuxEtude"), 
             imageProfil = "./static/images/profils/default.png";
             if(request.getParameter("nomInsc").length()>=3){username = ""+request.getParameter("prenomInsc").substring(0,2)+request.getParameter("nomInsc").substring(0,3)+"";}
             else{username = ""+request.getParameter("prenomInsc").substring(0,2)+request.getParameter("nomInsc").substring(0,2)+"";}
@@ -49,16 +51,20 @@ public class InscriptionAction extends AbstractAction {
             Profil p;
             p = pDao.findByEmail(email);
             if(p==null){
-                p = new Profil(id,username,email,nom,prenom,motDePasse,role,dateInscription,dateConnexion,codePostal,null,imageProfil,isPublicNom,isPublicPrenom,isPublicEmail,isValide,isConducteur,rating,tarif,rayon);
+                p = new Profil(id,username,email,nom,prenom,motDePasse,role,dateInscription,dateConnexion,codePostal,etablissement,imageProfil,isPublicNom,isPublicPrenom,isPublicEmail,isValide,isConducteur,rating,tarif,rayon);
                 pDao.create(p);
                 p = pDao.findByEmail(email);
+
                 //Creation des jours
                 jDao.create(0, p.getId(), "lundi", "00:00:00", "00:00:00");
                 jDao.create(0, p.getId(), "mardi", "00:00:00", "00:00:00");
                 jDao.create(0, p.getId(), "mercredi", "00:00:00", "00:00:00");
                 jDao.create(0, p.getId(), "jeudi", "00:00:00", "00:00:00");
                 jDao.create(0, p.getId(), "vendredi", "00:00:00", "00:00:00");
-                request.setAttribute("connecte",""+p.getId());
+
+                HttpSession session = request.getSession(true);
+                session.setAttribute("connected", p);
+
                 return "recherche";
             }
             else{emailExistant(); return "accueil";}

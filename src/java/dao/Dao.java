@@ -1,10 +1,10 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import singleton.ConnexionBD;
 /* ==== INFO ====
 
  * @author maxime chausse
@@ -19,13 +19,15 @@ public abstract class Dao {
     protected static Connection con=null;
     protected static ResultSet rs=null;
     protected static Statement sqlQuery=null;
-    protected static final String CONNEXIONSTRING = "jdbc:mysql://localhost/lifty?user=root&password=root&serverTimezone=EST&characterEncoding=UTF-8";
+    protected static final String CONNEXIONSTRING = "jdbc:mysql://localhost/lifty?user=root&password=&serverTimezone=EST&characterEncoding=UTF-8";
     
     // ==== METHODES ====
     public abstract Object findById(int id);
+    public abstract Object findById(String id);
     public abstract void create(Object o);
     public abstract void update(Object o);
     public abstract void delete(int id);
+    public abstract boolean delete(String id);
     
     // ==== FONCTIONS ====
     
@@ -33,13 +35,9 @@ public abstract class Dao {
     // Elle peut faire une exception sql car elle n'est pas traiter a l'interieur
     public abstract Object construireObjet(ResultSet rs) throws SQLException;
     
-    protected Statement ouvrirConnexion()throws SQLException, ClassNotFoundException{
-        //Chargement du pilote 
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        //Ouverture de connexion 
-        con = DriverManager.getConnection(CONNEXIONSTRING);
-        // Executer la requete
-        return con.createStatement();
+    protected Statement ouvrirConnexion()throws SQLException{
+        // Ouverture de connexion et retour du statement
+        return ConnexionBD.getConnexion().createStatement();
     }
     
     // Fonctions qui recouves et fermes les connexions ouvertes

@@ -39,7 +39,6 @@ public class ConnexionAction extends AbstractAction {
                         p.setDateConnexion(sm.format(new Date()));
                         pDao.update(p);
                         session.setAttribute("connected", p);
-                        request.setAttribute("connecte",""+p.getId());
                         return "recherche";
                 }
             invalide();

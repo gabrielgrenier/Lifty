@@ -1,15 +1,16 @@
 package controleurs;
 
+import javax.servlet.http.HttpSession;
+
 public class MessagerieAction extends AbstractAction{
 
     @Override
     public String execute() {
-        // IMPLEMENTER LA VERIFICATION DE CONNECTION
-        if(request.getParameter("connecte")!=null){
-            request.setAttribute("connecte",request.getParameter("connecte"));
-            return "messagerie";
+        HttpSession session = request.getSession(true);
+        if (session.getAttribute("connected")==null) {//déjà non connecté
+            return "accueil";
         }
-        //return "accueil";
+        request.setAttribute("messageSelect",request.getParameter("messageSelect"));
         return "messagerie";
+        }
     }
-}

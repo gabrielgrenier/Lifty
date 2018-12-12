@@ -22,7 +22,7 @@ public class JourDAO extends Dao{
             if (rs.next()) return construireObjet(rs);
             else return null;
 	}
-        catch(SQLException | ClassNotFoundException e){ return null;}
+        catch(SQLException e){ return null;}
 	finally{fermerConnexions(con,rs,sqlQuery);}
     }
     public Jour find(Jour j){return find(j.getUserId(),j.getJour());}
@@ -61,7 +61,7 @@ public class JourDAO extends Dao{
             }
             return listeTrie;              
 	}
-        catch(SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch(SQLException e){System.out.println("Exception : "+e);}
 	finally{fermerConnexions(con,rs,sqlQuery);}
         return null;
     }
@@ -81,7 +81,7 @@ public class JourDAO extends Dao{
                 //Ouverture de connexion
                 ouvrirConnexion().executeUpdate(requete);
             }
-            catch(SQLException | ClassNotFoundException e){}
+            catch(SQLException e){}
             finally{fermerConnexions(con,rs,sqlQuery);}
         }
     }
@@ -101,7 +101,7 @@ public class JourDAO extends Dao{
                 //Ouverture de connexion 
                 ouvrirConnexion().executeUpdate(requete);
             }
-            catch(SQLException | ClassNotFoundException e){}
+            catch(SQLException e){}
             finally{fermerConnexions(con,rs,sqlQuery);}
         }
     }
@@ -130,5 +130,15 @@ public class JourDAO extends Dao{
         j.setDebut(""+rs.getTime("debut"));
         j.setFin(""+rs.getTime("fin"));
         return j;
+    }
+
+    @Override
+    public Object findById(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean delete(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

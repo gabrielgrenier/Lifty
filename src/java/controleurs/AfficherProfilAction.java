@@ -18,6 +18,9 @@ public class AfficherProfilAction extends AbstractAction{
         if (session.getAttribute("connected")==null) {//déjà non connecté
             return "accueil";
         }
+        if (request.getParameter("user")!=null){
+            request.setAttribute("userC",request.getParameter("user"));
+        }
         return "profil";
     }
 }
