@@ -79,11 +79,11 @@
                                 // Ouvrir le bon div si un message est selectionner
                                 if(messageSelect.getId() == message.getId()){
                                     %>
-                                    <div class='unMessageSelect' onclick='ouvrirMessage("<%=message.getId()%>")'>
+                                    <div class='unMessageSelect' onclick="ouvrirMessage('<%=message.getId()%>')">
                                     <%
                                 }else{
                                     %>
-                                    <div class='unMessage' onclick='ouvrirMessage("<%=message.getId()%>")'>
+                                    <div class='unMessage' onclick="ouvrirMessage('<%=message.getId()%>')">
                                     <%
                                 }
                                 %>
@@ -118,12 +118,12 @@
                         <!-- Heading avec les boutons -->
                         <div class='panel-heading messageHead'>
                             <div class="col-lg-4">
-                                <a onclick="nouveauMessage(<%=String.valueOf(request.getAttribute("connecte"))%>,'','')">
+                                <a onclick="nouveauMessage('<%=String.valueOf(request.getAttribute("connecte"))%>','','')">
                                     <span class="glyphicon glyphicon-plus">Nouveau</span>
                                 </a>
                             </div>
                             <div class="col-lg-4">
-                                <a onclick="nouveauMessage(<%=String.valueOf(request.getAttribute("connecte"))%>,'<%=mDao.getSender(messageSelect.getId()).getUsername()%>','<%=messageSelect.getTitre()%>')">
+                                <a onclick="nouveauMessage('<%=String.valueOf(request.getAttribute("connecte"))%>','<%=mDao.getSender(messageSelect.getId()).getUsername()%>','<%=messageSelect.getTitre()%>')">
                                     <span class="glyphicon glyphicon-share-alt">Repondre</span>
                                 </a>
                             </div>
@@ -163,7 +163,7 @@
                         <!-- Heading avec les boutons -->
                         <div class='panel-heading messageHead'>
                             <div class="col-lg-4">
-                                <a onclick="nouveauMessage(<%=String.valueOf(request.getAttribute("connecte"))%>,'','')">
+                                <a onclick="nouveauMessage('<%=String.valueOf(request.getAttribute("connecte"))%>','','')">
                                 <span class="glyphicon glyphicon-plus">Nouveau</span></a>
                             </div>
                         </div>
