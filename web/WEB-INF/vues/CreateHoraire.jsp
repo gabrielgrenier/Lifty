@@ -57,7 +57,7 @@
             </c:if>
         <div class="col-lg-2"></div><!-- Margin -->
         <div class="col-lg-8 contenuHoraire">
-            <h1 style="color:white">Modification de votre horraire : </h1>
+            <h1 style="color:white">Modification de votre horaire : </h1>
             <form action="./" method="post">
                 <table class="table table-bordered tableHoraire">
                     <thead>

@@ -131,21 +131,20 @@
                     <td style="
                         <%  //Style de la case
                                 //si le jour du passager est le même que celui du conducteur
-                                if(x>=debut1 && x<=fin1 && x>=debut2 && x<=fin2 && debut1==debut2 && fin1==fin2){ out.println("background-color:#ADFF9E");}
+                                if(x>=debut1 && x<=fin1 && x>=debut2 && x<=fin2 && debut1==debut2 && fin1==fin2){ 
+                                    out.println("background-color:#ADFF9E");
+                                }
                                 //Si le conducteur et le passager commence en même temps mais termine a différente heure
                                 else if(x>=debut1 && x<=fin1 && debut1==debut2 || x>=debut1 && x<=fin2 && debut1==debut2){
                                     out.println("background-color:#ffe5b2");
-                                    //constat[constat.length] = Math.abs((debut1+fin1) - (debut2+fin2));
                                 }
                                 //si le user1 n'est pas conducteur et qu'il commence apres le conducteur, compatible mais pas optimal
                                 else if(x>=debut1 && x<=fin1 && fin1==fin2 && debut1>=debut2 && !isConducteur){
                                     out.println("background-color:#ffe5b2");
-                                    //constat[constat.length] = Math.abs((debut1+fin1) - (debut2+fin2));
                                 }
                                 //si le user1 est conducteur et qu'il avant le passager, compatible mais pas optimal
                                 else if(x>=debut1 && x<=fin1 && debut1<=debut2 && isConducteur || x>=debut1 && x<=fin2 && debut1<=debut2 && isConducteur){
                                     out.println("background-color:#ffe5b2");
-                                    //constat[constat.length] = Math.abs((debut1+fin1) - (debut2+fin2));
                                 }
                                 else if(x>=debut1 && x<=fin1){out.println("");}
                                 else{out.println("background-color:lightgrey");}

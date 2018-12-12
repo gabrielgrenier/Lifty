@@ -141,4 +141,15 @@ public class JourDAO extends Dao{
     public boolean delete(String id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public boolean deleteTest(int id){
+        try{
+            String requete;
+            requete = "DELETE FROM `jour` WHERE `jour`.`ID` = "+id+"";
+            ouvrirConnexion().executeUpdate(requete);
+            return true;
+        }
+        catch(Exception e){return false;}
+        finally{fermerConnexions(con,rs,sqlQuery);}
+    }
 }
