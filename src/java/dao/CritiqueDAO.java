@@ -25,7 +25,7 @@ public class CritiqueDAO extends Dao {
             }
             return listeCritique;
 	}
-        catch(SQLException | ClassNotFoundException e){ return null;}
+        catch(SQLException e){ return null;}
 	finally{fermerConnexions(con,rs,sqlQuery);}
     }
     
@@ -44,7 +44,7 @@ public class CritiqueDAO extends Dao {
                         + "VALUES (\'"+c.getCritiqueID()+"\', \'"+c.getNote()+"\', \'"+c.getCommentaire()+"\', \'"+c.getLike()+"\', \'"+c.getDislike()+"\', \'"+c.getEnvoyeurID()+"\', \'"+c.getReceveurID()+"\')";
                 ouvrirConnexion().executeUpdate(requete);
             }
-            catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+            catch (SQLException e){System.out.println("Exception : "+e);}
             finally{fermerConnexions(con,rs,sqlQuery);}
         }
     }
@@ -60,7 +60,7 @@ public class CritiqueDAO extends Dao {
                           +"', `receveurID`='"+c.getReceveurID()+"' WHERE `critique`.`ID` = '"+c.getCritiqueID()+"';";
                 ouvrirConnexion().executeUpdate(requete);
             }
-            catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+            catch (SQLException e){System.out.println("Exception : "+e);}
             finally{fermerConnexions(con,rs,sqlQuery);}
         }
     }
@@ -78,7 +78,7 @@ public class CritiqueDAO extends Dao {
             ouvrirConnexion().executeUpdate(requete);
             
         }
-        catch (SQLException | ClassNotFoundException e){System.out.println("Exception : "+e);}
+        catch (SQLException e){System.out.println("Exception : "+e);}
         finally{fermerConnexions(con,rs,sqlQuery);}
     }
     
@@ -93,6 +93,16 @@ public class CritiqueDAO extends Dao {
         c.setEnvoyeurID(Integer.parseInt(rs.getString("envoyeurID")));
         c.setReceveurID(Integer.parseInt(rs.getString("receveurID")));
         return c;
+    }
+
+    @Override
+    public Object findById(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean delete(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -2,12 +2,14 @@ package servlets;
 
 import controleurs.AbstractAction;
 import controleurs.AfficherProfilAction;
+import controleurs.OuvrirMessageAction;
 import controleurs.AjouterCommentaireAction;
 import controleurs.ConfidentialiteAction;
 import controleurs.ConnexionAction;
 import controleurs.CreateHoraireAction;
 import controleurs.DeconnexionAction;
 import controleurs.DefaultAction;
+import controleurs.EnvoyerMessageAction;
 import controleurs.MessagerieAction;
 import controleurs.InscriptionAction;
 import controleurs.ModifierInformationProfilAction;
@@ -53,6 +55,12 @@ public class ControleurFrontal extends HttpServlet {
                 break;
             case "afficherProfil":
                 action = new AfficherProfilAction();
+                break;
+            case "ouvrirMessage":
+                action = new OuvrirMessageAction();
+                break;
+            case "envoyerMessage":
+                action = new EnvoyerMessageAction();
                 break;
             case "createHoraireAff":
                 action = new CreateHoraireAffAction();
