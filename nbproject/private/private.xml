@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/G:/Session4/Project/git/Lifty/src/java/singleton/ConnexionBD.java</file>
+            <file>file:/G:/Session4/Project/git/Lifty/src/java/controleurs/RechercheAction.java</file>
+            <file>file:/G:/Session4/Project/git/Lifty/web/WEB-INF/vues/menu.jsp</file>
+            <file>file:/G:/Session4/Project/git/Lifty/web/WEB-INF/vues/messagerie.jsp</file>
+            <file>file:/G:/Session4/Project/git/Lifty/web/WEB-INF/vues/profil.jsp</file>
+        </group>
     </open-files>
 </project-private>
