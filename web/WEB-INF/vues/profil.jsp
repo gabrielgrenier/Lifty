@@ -37,7 +37,7 @@
             ProfilDAO paDao = new ProfilDAO();
             CritiqueDAO cDao = new CritiqueDAO();
             //Profil currentUser = (Profil)request.getSession().getAttribute("connected");
-            List<Jour> listHorraire1 = dao.findAll(1);
+            List<Jour> listHorraire1 = dao.findAll(200);
             Profil profil;
             List<Critique> listeCritique = null;
             try{
