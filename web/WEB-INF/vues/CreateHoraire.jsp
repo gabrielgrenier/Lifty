@@ -28,8 +28,10 @@
     </head>
     <body onLoad="uncheck()" id="profilBackground">
         <% 
+            Profil currentUser = (Profil)request.getSession().getAttribute("connected");
             JourDAO joursDao = new JourDAO();
-            List<Jour> listeJours = joursDao.findAll(174);
+            List<Jour> listeJours = joursDao.findAll(currentUser.getId());
+            
         %>
         <%@include  file="menu.jsp" %>            <!-- Si il y a un message à montrer -->
             <c:if test="${ !empty sessionScope['avertissement']}" >
