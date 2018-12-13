@@ -483,6 +483,10 @@
                                    Horaire <a href="?action=createHoraireAff" style="float:right; margin-right:1em;"><span class="glyphicon glyphicon-edit"></span></a>
                                 </div>
                                 <div id="contProfHoraire">
+                                    <% 
+                                        Profil currentUser = (Profil)session.getAttribute("connected");
+                                        if(currentUser.getId() == profil.getId() || currentUser.isConducteur() == profil.isConducteur()){
+                                    %>
                                     <table class="table table-hover table-bordered">
                                         <thead>
                                             <tr>
@@ -521,6 +525,147 @@
                                         <% } %>
                                         </tbody>
                                     </table>
+                                       <% 
+                                          }
+                                          else if(currentUser.isConducteur()){
+                                       %>
+                                       <table class="table table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width:5%;">Heure</th>
+                                                    <th style="width:19%;">Lundi</th>
+                                                    <th style="width:19%;">Mardi</th>
+                                                    <th style="width:19%;" >Mercredi</th>
+                                                    <th style="width:19%;">Jeudi</th>
+                                                    <th style="width:19%;" >Vendredi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <%
+                                            List<Jour> listHorraire2 = dao.findAll(currentUser.getId());
+                                            for(int x=8; x<19; x++){ //Création des colonnes dans la table
+                                            %>
+                                            <tr>
+                                                <th scope="row"><%=x%>h</th>
+                                            <%
+                                                for(int y=0; y<5; y++){
+                                                    boolean isConducteur=true;
+                                                    //passager
+                                                    int debut1 = Integer.valueOf(listHorraire1.get(y).getDebut().split(":")[0]);
+                                                    int fin1 = Integer.valueOf(listHorraire1.get(y).getFin().split(":")[0]);
+                                                    //conducteur
+                                                    int debut2 = Integer.valueOf(listHorraire2.get(y).getDebut().split(":")[0]);
+                                                    int fin2 = Integer.valueOf(listHorraire2.get(y).getFin().split(":")[0]);
+                                            %>  
+                                                    <td style="
+                                                        <%  //Style de la case
+                                                            //si le jour du passager est le même que celui du conducteur
+                                                            if(x>=debut1 && x<=fin1 && x>=debut2 && x<=fin2 && debut1==debut2 && fin1==fin2){ 
+                                                                out.println("background-color:#ADFF9E");
+                                                            }
+                                                            //Si le conducteur et le passager commence en même temps mais termine a différente heure
+                                                            else if(x>=debut1 && x<=fin1 && debut1==debut2 || x>=debut1 && x<=fin2 && debut1==debut2){
+                                                                out.println("background-color:#ffe5b2");
+                                                            }
+                                                            //si le user1 n'est pas conducteur et qu'il commence apres le conducteur, compatible mais pas optimal
+                                                            else if(x>=debut1 && x<=fin1 && fin1==fin2 && debut1>=debut2 && !isConducteur){
+                                                                out.println("background-color:#ffe5b2");
+                                                            }
+                                                            //si le user1 est conducteur et qu'il avant le passager, compatible mais pas optimal
+                                                            else if(x>=debut1 && x<=fin1 && debut1<=debut2 && isConducteur || x>=debut1 && x<=fin2 && debut1<=debut2 && isConducteur){
+                                                                out.println("background-color:#ffe5b2");
+                                                            }
+                                                            else if(x>=debut1 && x<=fin1){out.println("");}
+                                                            else{out.println("background-color:lightgrey");}
+                                                        %>
+                                                        ">
+                                                        <%  //Si c'est le debut ou la fin
+                                                            if(x==debut1 && x==debut2){out.println("Vous commencez en même temps");}
+                                                            else if(x==debut1){out.println("Début de leurs cours");}
+                                                            else if(x==debut2){out.println("Début de vos cours");}
+
+                                                            if(x==fin1 && x==fin2){out.println("Vous terminez en même temps");}
+                                                            else if(x==fin1){out.println("Fin de leurs cours");}
+                                                            else if(x==fin2){out.println("Fin de vos cours");}
+                                                        %>
+                                                    </td>
+                                                   <% } %>
+                                                </tr>
+                                            <% } %>
+                                            </tbody>
+                                        </table>
+                                       <%
+                                           }
+                                            else{
+                                        %>
+                                        <table class="table table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width:5%;">Heure</th>
+                                                    <th style="width:19%;">Lundi</th>
+                                                    <th style="width:19%;">Mardi</th>
+                                                    <th style="width:19%;" >Mercredi</th>
+                                                    <th style="width:19%;">Jeudi</th>
+                                                    <th style="width:19%;" >Vendredi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <%
+                                            List<Jour> listHorraire2 = dao.findAll(currentUser.getId());
+                                            for(int x=8; x<19; x++){ //Création des colonnes dans la table
+                                            %>
+                                            <tr>
+                                                <th scope="row"><%=x%>h</th>
+                                            <%
+                                                for(int y=0; y<5; y++){
+                                                    boolean isConducteur=false;
+                                                    //passager
+                                                    int debut1 = Integer.valueOf(listHorraire1.get(y).getDebut().split(":")[0]);
+                                                    int fin1 = Integer.valueOf(listHorraire1.get(y).getFin().split(":")[0]);
+                                                    //conducteur
+                                                    int debut2 = Integer.valueOf(listHorraire2.get(y).getDebut().split(":")[0]);
+                                                    int fin2 = Integer.valueOf(listHorraire2.get(y).getFin().split(":")[0]);
+                                            %>  
+                                                    <td style="
+                                                        <%  //Style de la case
+                                                            //si le jour du passager est le même que celui du conducteur
+                                                            if(x>=debut1 && x<=fin1 && x>=debut2 && x<=fin2 && debut1==debut2 && fin1==fin2){ 
+                                                                out.println("background-color:#ADFF9E");
+                                                            }
+                                                            //Si le conducteur et le passager commence en même temps mais termine a différente heure
+                                                            else if(x>=debut1 && x<=fin1 && debut1==debut2 || x>=debut1 && x<=fin2 && debut1==debut2){
+                                                                out.println("background-color:#ffe5b2");
+                                                            }
+                                                            //si le user1 n'est pas conducteur et qu'il commence apres le conducteur, compatible mais pas optimal
+                                                            else if(x>=debut1 && x<=fin1 && fin1==fin2 && debut1>=debut2 && !isConducteur){
+                                                                out.println("background-color:#ffe5b2");
+                                                            }
+                                                            //si le user1 est conducteur et qu'il avant le passager, compatible mais pas optimal
+                                                            else if(x>=debut1 && x<=fin1 && debut1<=debut2 && isConducteur || x>=debut1 && x<=fin2 && debut1<=debut2 && isConducteur){
+                                                                out.println("background-color:#ffe5b2");
+                                                            }
+                                                            else if(x>=debut1 && x<=fin1){out.println("");}
+                                                            else{out.println("background-color:lightgrey");}
+                                                        %>
+                                                        ">
+                                                        <%  //Si c'est le debut ou la fin
+                                                            if(x==debut1 && x==debut2){out.println("Vous commencez en même temps");}
+                                                            else if(x==debut1){out.println("Début de leurs cours");}
+                                                            else if(x==debut2){out.println("Début de vos cours");}
+
+                                                            if(x==fin1 && x==fin2){out.println("Vous terminez en même temps");}
+                                                            else if(x==fin1){out.println("Fin de leurs cours");}
+                                                            else if(x==fin2){out.println("Fin de vos cours");}
+                                                        %>
+                                                    </td>
+                                                   <% } %>
+                                                </tr>
+                                            <% } %>
+                                            </tbody>
+                                        </table>
+                                        <%
+                                            }
+                                        %>
                                 </div>
                             </div>
                         </div>
